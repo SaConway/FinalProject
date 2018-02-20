@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MsorLi.Views.ItemList">
+    <ContentPage.Content>
+        <StackLayout>
+            <ActivityIndicator IsVisible="False" IsEnabled="True" x:Name="syncIndicator"/>
+
+            <Button Text="Submit" Clicked="OnAdd" />
+            
+            <ListView x:Name="listView_items" IsPullToRefreshEnabled="true" Refreshing="OnRefresh">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="#eee" Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding image}" />
+                                    <Label Text="{Binding title}" TextColor="#f35e20" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>    
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
