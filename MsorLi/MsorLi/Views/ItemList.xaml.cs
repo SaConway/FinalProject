@@ -10,7 +10,15 @@ namespace MsorLi.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemList : ContentPage
     {
+        //---------------------------------
+        // MEMBERS
+        //---------------------------------
+
         AzureService _azureService;
+
+        //---------------------------------
+        // FUNCTIONS
+        //---------------------------------
 
         public ItemList()
         {
@@ -75,39 +83,46 @@ namespace MsorLi.Views
             }
         }
 
+        // ActivityIndicator
         private class ActivityIndicatorScope : IDisposable
         {
-            private bool showIndicator;
-            private ActivityIndicator indicator;
-            private Task indicatorDelay;
+            //---------------------------------
+            // MEMBERS
+            //---------------------------------
+            private bool _showIndicator;
+            private ActivityIndicator _indicator;
+            private Task _indicatorDelay;
 
+            //---------------------------------
+            // FUNCTIONS
+            //---------------------------------
             public ActivityIndicatorScope(ActivityIndicator indicator, bool showIndicator)
             {
-                this.indicator = indicator;
-                this.showIndicator = showIndicator;
+                _indicator = indicator;
+                _showIndicator = showIndicator;
 
                 if (showIndicator)
                 {
-                    indicatorDelay = Task.Delay(2000);
+                    _indicatorDelay = Task.Delay(2000);
                     SetIndicatorActivity(true);
                 }
                 else
                 {
-                    indicatorDelay = Task.FromResult(0);
+                    _indicatorDelay = Task.FromResult(0);
                 }
             }
 
             private void SetIndicatorActivity(bool isActive)
             {
-                this.indicator.IsVisible = isActive;
-                this.indicator.IsRunning = isActive;
+                _indicator.IsVisible = isActive;
+                _indicator.IsRunning = isActive;
             }
 
             public void Dispose()
             {
-                if (showIndicator)
+                if (_showIndicator)
                 {
-                    indicatorDelay.ContinueWith(t => SetIndicatorActivity(false), TaskScheduler.FromCurrentSynchronizationContext());
+                    _indicatorDelay.ContinueWith(t => SetIndicatorActivity(false), TaskScheduler.FromCurrentSynchronizationContext());
                 }
             }
         }

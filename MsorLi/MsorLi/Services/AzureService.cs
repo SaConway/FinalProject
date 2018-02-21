@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
-using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
-using Microsoft.WindowsAzure.MobileServices.Sync;
 using MsorLi.Services;
 using Xamarin.Forms;
 using MsorLi.Models;
@@ -18,31 +14,38 @@ namespace MsorLi.Services
 {
     public class AzureService
     {
-        static AzureService defaultInstance = new AzureService();
-        MobileServiceClient client;
+        //---------------------------------
+        // MEMBERS
+        //---------------------------------
+
+        static AzureService _defaultInstance = new AzureService();
+        MobileServiceClient _client;
 
 #if OFFLINE_SYNC_ENABLED
-            IMobileServiceSyncTable<TodoItem> todoTable;
+            IMobileServiceSyncTable<Item> _Table;
 #else
-        IMobileServiceTable<Item> studentTable;
+        IMobileServiceTable<Item> _itemsTable;
 #endif
-        const string offlineDbPath = @"localstore.db";
+
+        //---------------------------------
+        // FUNCTIONS
+        //---------------------------------
 
         //constractor function
         private AzureService()
         {
-            this.client = new MobileServiceClient(Constants.ApplicationURL);
+            _client = new MobileServiceClient(Constants.ApplicationURL);
 
 #if OFFLINE_SYNC_ENABLED
             var store = new MobileServiceSQLiteStore(offlineDbPath);
-            store.DefineTable<TodoItem>();
+            store.DefineTable<Item>();
 
             //Initializes the SyncContext using the default IMobileServiceSyncHandler.
             this.client.SyncContext.InitializeAsync(store);
 
-            this.todoTable = client.GetSyncTable<TodoItem>();
+            this._Table = client.GetSyncTable<Item>();
 #else
-            this.studentTable = client.GetTable<Item>();
+            _itemsTable = _client.GetTable<Item>();
 #endif
         }
 
@@ -50,22 +53,22 @@ namespace MsorLi.Services
         {
             get
             {
-                return defaultInstance;
+                return _defaultInstance;
             }
             private set
             {
-                defaultInstance = value;
+                _defaultInstance = value;
             }
         }
 
         public MobileServiceClient CurrentClient
         {
-            get { return client; }
+            get { return _client; }
         }
 
         public bool IsOfflineEnabled
         {
-            get { return studentTable is Microsoft.WindowsAzure.MobileServices.Sync.IMobileServiceSyncTable<Item>; }
+            get { return _itemsTable is Microsoft.WindowsAzure.MobileServices.Sync.IMobileServiceSyncTable<Item>; }
         }
 
         public async Task<ObservableCollection<Item>> GetStudentsAsync(bool syncItems = false)
@@ -78,7 +81,7 @@ namespace MsorLi.Services
                     await this.SyncAsync();
                 }
 #endif
-                IEnumerable<Item> items = await studentTable
+                IEnumerable<Item> items = await _itemsTable
                     .ToEnumerableAsync();
 
                 return new ObservableCollection<Item>(items);
@@ -98,11 +101,11 @@ namespace MsorLi.Services
         {
             if (item.Id == null)
             {
-                await studentTable.InsertAsync(item);
+                await _itemsTable.InsertAsync(item);
             }
             else
             {
-                await studentTable.UpdateAsync(item);
+                await _itemsTable.UpdateAsync(item);
             }
         }
 
@@ -115,11 +118,11 @@ namespace MsorLi.Services
             {
                 await this.client.SyncContext.PushAsync();
 
-                await this.todoTable.PullAsync(
+                await this._Table.PullAsync(
                     //The first parameter is a query name that is used internally by the client SDK to implement incremental sync.
                     //Use a different query name for each unique query in your program
                     "allTodoItems",
-                    this.todoTable.CreateQuery());
+                    this._Table.CreateQuery());
             }
             catch (MobileServicePushFailedException exc)
             {
@@ -151,6 +154,6 @@ namespace MsorLi.Services
             }
         }
 #endif
-        
+
     }
 }

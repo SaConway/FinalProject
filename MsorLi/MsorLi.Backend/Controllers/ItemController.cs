@@ -5,12 +5,10 @@ using System.Web.Http.Controllers;
 using System.Web.Http.OData;
 using Microsoft.Azure.Mobile.Server;
 using MsorLi.DataObjects;
-using MsorLi.MobileAppService.Models;
+using MsorLi.Backend.Models;
 
-namespace MsorLi.MobileAppService.Controllers
+namespace MsorLi.Backend.Controllers
 {
-    // TODO: Uncomment [Authorize] attribute to require user be authenticated to access Item(s).
-    // [Authorize]
     public class ItemController : TableController<Item>
     {
         protected override void Initialize(HttpControllerContext controllerContext)

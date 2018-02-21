@@ -1,9 +1,9 @@
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(MsorLi.MobileAppService.Startup))]
+[assembly: OwinStartup(typeof(MsorLi.Backend.Startup))]
 
-namespace MsorLi.MobileAppService
+namespace MsorLi.Backend
 {
     public partial class Startup
     {

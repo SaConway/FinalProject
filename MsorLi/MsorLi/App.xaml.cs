@@ -1,17 +1,15 @@
-﻿using System;
+﻿using MsorLi.Views;
 using Xamarin.Forms;
 
 namespace MsorLi
 {
 	public partial class App : Application
 	{
-		public static bool UseMockDataStore = true;
-		public static string AzureMobileAppUrl = "https://msorli.azurewebsites.net";
-
 		public App ()
 		{
 			InitializeComponent();
-            
+
+            MainPage = new ItemList();
         }
 
 		protected override void OnStart ()
