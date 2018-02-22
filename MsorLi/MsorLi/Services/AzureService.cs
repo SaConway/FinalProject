@@ -9,7 +9,7 @@ using Xamarin.Forms;
 using MsorLi.Models;
 using MsorLi.Utilities;
 
-[assembly: Dependency(typeof(AzureService))]
+
 namespace MsorLi.Services
 {
     public class AzureService
@@ -27,6 +27,9 @@ namespace MsorLi.Services
         IMobileServiceTable<Item> _itemsTable;
 #endif
 
+        const string offlineDbPath = @"localstore.db";
+
+
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
@@ -34,7 +37,7 @@ namespace MsorLi.Services
         //constractor function
         private AzureService()
         {
-            _client = new MobileServiceClient(Constants.ApplicationURL);
+            this._client = new MobileServiceClient(Constants.ApplicationURL);
 
 #if OFFLINE_SYNC_ENABLED
             var store = new MobileServiceSQLiteStore(offlineDbPath);
@@ -45,7 +48,7 @@ namespace MsorLi.Services
 
             this._Table = client.GetSyncTable<Item>();
 #else
-            _itemsTable = _client.GetTable<Item>();
+           this._itemsTable = _client.GetTable<Item>();
 #endif
         }
 

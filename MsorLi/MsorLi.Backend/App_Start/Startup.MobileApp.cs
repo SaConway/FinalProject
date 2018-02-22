@@ -25,7 +25,7 @@ namespace MsorLi.Backend
                 .ApplyTo(config);
 
             // Use Entity Framework Code First to create database tables based on your DbContext
-            //Database.SetInitializer(new Initializer());
+            Database.SetInitializer(new Initializer());
 
             MobileAppSettingsDictionary settings = config.GetMobileAppSettingsProvider().GetMobileAppSettings();
 
@@ -45,23 +45,23 @@ namespace MsorLi.Backend
         }
     }
 
-    //public class Initializer : CreateDatabaseIfNotExists<MasterDetailContext>
-    //{
-    //    protected override void Seed(MasterDetailContext context)
-    //    {
-    //        List<Item> todoItems = new List<Item>
-    //        {
-    //            new Item { Id = Guid.NewGuid().ToString(), Title = "כיסא", ImageUrl = "https://soholtd.co.il/wp-content/uploads/2016/10/%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA-10004.png" },
-    //        };
+    public class Initializer : CreateDatabaseIfNotExists<MasterDetailContext>
+    {
+        protected override void Seed(MasterDetailContext context)
+        {
+            List<Item> todoItems = new List<Item>
+            {
+                new Item { Id = Guid.NewGuid().ToString(), Title = "כיסא", ImageUrl = "https://soholtd.co.il/wp-content/uploads/2016/10/%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA-10004.png" },
+            };
 
-    //        foreach (Item todoItem in todoItems)
-    //        {
-    //            context.Set<Item>().Add(todoItem);
-    //        }
+            foreach (Item todoItem in todoItems)
+            {
+                context.Set<Item>().Add(todoItem);
+            }
 
-    //        base.Seed(context);
-    //    }
-    //}
+            base.Seed(context);
+        }
+    }
 
 
 }
