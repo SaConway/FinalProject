@@ -51,9 +51,6 @@
     <PackageReference Include="Xamarin.Android.Support.Design">
       <Version>26.1.0.1</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat">
-      <Version>26.1.0.1</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v4">
       <Version>26.1.0.1</Version>
     </PackageReference>
