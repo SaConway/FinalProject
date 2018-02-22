@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsorLi.UWP", "MsorLi\MsorLi
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MsorLi", "MsorLi\MsorLi\MsorLi.shproj", "{06B8C135-0323-42C1-BBFE-C611C62A161A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsorLi.Backend", "MsorLi\MsorLi.MobileAppService\MsorLi.Backend.csproj", "{FEE8D3FB-68B0-4661-86ED-5494F3D83184}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsorLi.MobileAppService", "MsorLi\MsorLi.MobileAppService\MsorLi.MobileAppService.csproj", "{FEE8D3FB-68B0-4661-86ED-5494F3D83184}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
