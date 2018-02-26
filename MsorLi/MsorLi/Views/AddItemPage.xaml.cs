@@ -4,7 +4,7 @@ using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using System.IO;
 
 namespace MsorLi.Views
 {
@@ -27,13 +27,28 @@ namespace MsorLi.Views
             _azureService = AzureService.DefaultManager;
         }
 
+        public async void PickPhotoButtonClicked(object sender, System.EventArgs e)
+        {
+            pickPictureButton.IsEnabled = false;
+            Stream stream = await DependencyService.Get<IPicturePicker>().GetImageStreamAsync();
+
+            if (stream != null)
+            {
+                image.Source = ImageSource.FromStream(() => stream);
+            }
+            else
+            {
+                pickPictureButton.IsEnabled = true;
+            }
+        }
+
         // Submit button operation
         public async void OnAdd(object sender, EventArgs e)
         {
 
 
-            var temp_item = new Item {  Title= name.Text, ImageUrl = url.Text };
-            await InsertToList(temp_item);
+            //var temp_item = new Item {  Title= name.Text, ImageUrl = url.Text };
+            //await InsertToList(temp_item);
         }
 
         async Task InsertToList(Item item)

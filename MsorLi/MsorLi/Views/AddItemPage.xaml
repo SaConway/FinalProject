@@ -11,9 +11,12 @@
                 <Entry x:Name= "name" Placeholder = "enter item name here" />   
             </StackLayout >
             
-            <StackLayout Orientation = "Horizontal" >               
-                <Label Text="Image URL:"/>              
-                <Entry x:Name="url" Placeholder = "enter Image URL here!" />           
+            <StackLayout Orientation = "Horizontal" >  
+                <Button Text="Pick Photo" x:Name="pickPictureButton" Clicked="PickPhotoButtonClicked"/>    
+
+                <StackLayout WidthRequest="100" HeightRequest="70">
+                    <Image x:Name="image"/>
+                </StackLayout>
             </StackLayout >
             
             <Button Text="Submit" Clicked="OnAdd" />
