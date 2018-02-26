@@ -37,6 +37,7 @@ namespace MsorLi.Services
         //constractor function
         private AzureService()
         {
+            //connect to the Azure service
             this._client = new MobileServiceClient(Constants.ApplicationURL);
 
 #if OFFLINE_SYNC_ENABLED
@@ -74,7 +75,7 @@ namespace MsorLi.Services
             get { return _itemsTable is Microsoft.WindowsAzure.MobileServices.Sync.IMobileServiceSyncTable<Item>; }
         }
 
-        public async Task<ObservableCollection<Item>> GetStudentsAsync(bool syncItems = false)
+        public async Task<ObservableCollection<Item>> GetItemsAsync(bool syncItems = false)
         {
             try
             {
@@ -100,7 +101,7 @@ namespace MsorLi.Services
             return null;
         }
 
-        public async Task SaveTaskAsync(Item item)
+        public async Task UploadItemToServer(Item item)
         {
             if (item.Id == null)
             {

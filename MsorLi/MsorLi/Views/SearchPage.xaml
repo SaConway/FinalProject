@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="MsorLi.Views.SearchPage"
+    Title="Search">
+	<ContentPage.Content>
+
+          <StackLayout Orientation="Vertical">
+            
+            <StackLayout Orientation = "Horizontal" >        
+                <Label Text="Search:"/>
+                <Entry x:Name= "search" Placeholder = "enter item name here" />   
+            </StackLayout >
+                   
+            <Button Text="Search" />
+            
+        </StackLayout>
+	</ContentPage.Content>
+</ContentPage>

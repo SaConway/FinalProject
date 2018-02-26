@@ -1,5 +1,4 @@
-﻿using MsorLi.Models;
-using MsorLi.Services;
+﻿using MsorLi.Services;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -8,7 +7,7 @@ using Xamarin.Forms.Xaml;
 namespace MsorLi.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemList : ContentPage
+    public partial class ItemListPage : ContentPage
     {
         //---------------------------------
         // MEMBERS
@@ -20,23 +19,12 @@ namespace MsorLi.Views
         // FUNCTIONS
         //---------------------------------
 
-        public ItemList()
+        // Contrusctor
+        public ItemListPage()
         {
             InitializeComponent();
 
             _azureService = AzureService.DefaultManager;
-        }
-
-        async Task AddItem(Item item)
-        {
-            await _azureService.SaveTaskAsync(item);
-            listView_items.ItemsSource = await _azureService.GetStudentsAsync();
-        }
-
-        public async void OnAdd(object sender, EventArgs e)
-        {
-            var item1 = new Item { Title = "ארון", ImageUrl = "http://www.doron1949.co.il/images/upload/80-1.jpg" };
-            await AddItem(item1);
         }
 
         protected override async void OnAppearing()
@@ -79,11 +67,13 @@ namespace MsorLi.Views
         {
             using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
             {
-                listView_items.ItemsSource = await _azureService.GetStudentsAsync(syncItems);
+                listView_items.ItemsSource = await _azureService.GetItemsAsync(syncItems);
             }
         }
 
+        //---------------------------------
         // ActivityIndicator
+        //---------------------------------
         private class ActivityIndicatorScope : IDisposable
         {
             //---------------------------------

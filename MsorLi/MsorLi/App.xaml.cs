@@ -9,7 +9,7 @@ namespace MsorLi
 		{
 			InitializeComponent();
 
-            MainPage = new ItemList();
+            MainPage = new NavigationPage(new MainPage());
         }
 
 		protected override void OnStart ()
