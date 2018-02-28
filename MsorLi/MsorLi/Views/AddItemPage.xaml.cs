@@ -33,10 +33,12 @@ namespace MsorLi.Views
         {
             pickPictureButton.IsEnabled = false;
             _s = await DependencyService.Get<IPicturePicker>().GetImageStreamAsync();
-            Stream _ss = _s;
+
             if (_s != null)
             {
-                image.Source = ImageSource.FromStream(() => _s);
+                // This line will cause an Exeption - probably because it's a stream that can be reed once
+
+                //image.Source = ImageSource.FromStream(() => _s);
             }
             else
             {
@@ -48,9 +50,10 @@ namespace MsorLi.Views
         public async void OnAdd(object sender, EventArgs e)
         {
             var uploadedFilename = await BlobService.UploadFileAsync(_s);
+            var imageUrl = "https://msorli.blob.core.windows.net/images/" + uploadedFilename;
 
-            //var temp_item = new Item {  Title= name.Text, ImageUrl = url.Text };
-            //await InsertToList(temp_item);
+            var temp_item = new Item {  Title = name.Text, ImageUrl = imageUrl };
+            await InsertToList(temp_item);
         }
 
         async Task InsertToList(Item item)
