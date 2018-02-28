@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.IO;
+using System.Text;
 
 namespace MsorLi.Views
 {
@@ -16,6 +17,7 @@ namespace MsorLi.Views
         //---------------------------------
 
         AzureService _azureService;
+        Stream _s;
 
         //---------------------------------
         // FUNCTIONS
@@ -30,11 +32,11 @@ namespace MsorLi.Views
         public async void PickPhotoButtonClicked(object sender, System.EventArgs e)
         {
             pickPictureButton.IsEnabled = false;
-            Stream stream = await DependencyService.Get<IPicturePicker>().GetImageStreamAsync();
-
-            if (stream != null)
+            _s = await DependencyService.Get<IPicturePicker>().GetImageStreamAsync();
+            Stream _ss = _s;
+            if (_s != null)
             {
-                image.Source = ImageSource.FromStream(() => stream);
+                image.Source = ImageSource.FromStream(() => _s);
             }
             else
             {
@@ -45,7 +47,7 @@ namespace MsorLi.Views
         // Submit button operation
         public async void OnAdd(object sender, EventArgs e)
         {
-
+            var uploadedFilename = await BlobService.UploadFileAsync(_s);
 
             //var temp_item = new Item {  Title= name.Text, ImageUrl = url.Text };
             //await InsertToList(temp_item);
