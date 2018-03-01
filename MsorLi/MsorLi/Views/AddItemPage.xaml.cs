@@ -48,15 +48,25 @@ namespace MsorLi.Views
         // Add Item button operation
         public async void OnAdd(object sender, EventArgs e)
         {
+            //Insert Image to Blob server
             var uploadedFilename = await BlobService.UploadFileAsync(_imageStream);
             var imageUrl = "https://msorli.blob.core.windows.net/images/" + uploadedFilename;
 
-            var temp_item = new Item {  Title = name.Text, ImageUrl = imageUrl };
-            await InsertToList(temp_item);
-        }
+            //Create new Item
+            var item = new Item
+            {
+                Title = name.Text,
+                ImageUrl = imageUrl,
+                Description = description.Text,
+                Condition = condition.SelectedItem.ToString(),
+                Location = city.Text + ", " + street.Text,
+                Date = DateTime.Today.ToString("d"),
+                Time = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString(),
+                ContactName = contactName.Text,
+                ContactNumber = contactNumber.Text
+            };
 
-        async Task InsertToList(Item item)
-        {
+            //Insert Item to SQL server
             await _azureService.UploadItemToServer(item);
         }
     }

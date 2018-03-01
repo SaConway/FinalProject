@@ -4,12 +4,51 @@
              x:Class="MsorLi.Views.AddItemPage"
              Title="Add Item" >
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="9">
+
+            <StackLayout Orientation = "Horizontal">   
+                <Label Text="Item name"/>
+                <Entry x:Name= "name" HorizontalOptions="FillAndExpand"/>   
+            </StackLayout>
+
+            <StackLayout Orientation = "Horizontal">        
+                <Label Text="Item Description"/>
+                <Entry x:Name= "description" HorizontalOptions="FillAndExpand"/>   
+            </StackLayout>
+
+            <StackLayout Orientation = "Horizontal">        
+                <Label Text="Condition"/>
+                <Picker x:Name="condition" Title="Select Item Condition" HorizontalOptions="FillAndExpand">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Like New</x:String>
+                            <x:String>Good</x:String>
+                            <x:String>Bad</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </StackLayout>
+
+            <StackLayout Orientation = "Horizontal">        
+                <Label Text="City"/>
+                <Entry x:Name= "city" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+
+            <StackLayout Orientation = "Horizontal">
+                <Label Text="Street"/>
+                <Entry x:Name= "street" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+
+            <StackLayout Orientation = "Horizontal">
+                <Label Text="Contact Name"/>
+                <Entry x:Name= "contactName" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+
+            <StackLayout Orientation = "Horizontal">
+                <Label Text="Contact Number"/>
+                <Entry x:Name= "contactNumber" Keyboard="Telephone" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
             
-            <StackLayout Orientation = "Horizontal" >        
-                <Label Text="item name:"/>
-                <Entry x:Name= "name" Placeholder = "enter item name here" />   
-            </StackLayout >
             
             <StackLayout Orientation = "Horizontal" >  
                 <Button Text="Pick Photo" x:Name="pickPictureButton" Clicked="PickPhotoButtonClicked"/>    

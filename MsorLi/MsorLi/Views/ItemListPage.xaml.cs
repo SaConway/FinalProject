@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using MsorLi.Models;
 
 namespace MsorLi.Views
 {
@@ -70,6 +71,22 @@ namespace MsorLi.Views
                 listView_items.ItemsSource = await _azureService.GetItemsAsync(syncItems);
             }
         }
+
+        async void OnSelection(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem == null)
+            {
+                return; //ItemSelected is called on deselection, which results in SelectedItem being set to null
+            }
+           // DisplayAlert("Item Selected", e.SelectedItem.ToString(), "Ok");
+            ((ListView)sender).SelectedItem = null; //uncomment line if you want to disable the visual selection state.
+
+            //TODO :MAKE AN EXCEPTION CASE FOR THIS CAST
+            Item selectedItem = (Item)e.SelectedItem;
+         
+            await Navigation.PushAsync(new ItemPage(selectedItem));
+        }
+
 
         //---------------------------------
         // ActivityIndicator
