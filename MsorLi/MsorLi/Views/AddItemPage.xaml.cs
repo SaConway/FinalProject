@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.IO;
-using System.Text;
 
 namespace MsorLi.Views
 {
@@ -17,7 +16,7 @@ namespace MsorLi.Views
         //---------------------------------
 
         AzureService _azureService;
-        Stream _s;
+        Stream _imageStream;
 
         //---------------------------------
         // FUNCTIONS
@@ -32,11 +31,11 @@ namespace MsorLi.Views
         public async void PickPhotoButtonClicked(object sender, System.EventArgs e)
         {
             pickPictureButton.IsEnabled = false;
-            _s = await DependencyService.Get<IPicturePicker>().GetImageStreamAsync();
+            _imageStream = await DependencyService.Get<IPicturePicker>().GetImageStreamAsync();
 
-            if (_s != null)
+            if (_imageStream != null)
             {
-                // This line will cause an Exeption - probably because it's a stream that can be reed once
+                // This line will cause an Exeption - probably because it's a stream that can be read once
 
                 //image.Source = ImageSource.FromStream(() => _s);
             }
@@ -46,10 +45,10 @@ namespace MsorLi.Views
             }
         }
 
-        // Submit button operation
+        // Add Item button operation
         public async void OnAdd(object sender, EventArgs e)
         {
-            var uploadedFilename = await BlobService.UploadFileAsync(_s);
+            var uploadedFilename = await BlobService.UploadFileAsync(_imageStream);
             var imageUrl = "https://msorli.blob.core.windows.net/images/" + uploadedFilename;
 
             var temp_item = new Item {  Title = name.Text, ImageUrl = imageUrl };

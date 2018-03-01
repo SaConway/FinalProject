@@ -1,5 +1,4 @@
 ﻿using MsorLi.Droid;
-using System;
 using System.Threading.Tasks;
 using Android.Content;
 using Xamarin.Forms;
