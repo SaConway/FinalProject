@@ -56,17 +56,17 @@ namespace MsorLi.Views
             var item = new Item
             {
                 Title = name.Text,
-                ImageUrl = imageUrl,
-                Description = description.Text,
-                Condition = condition.SelectedItem.ToString(),
-                Location = city.Text + ", " + street.Text,
-                Date = DateTime.Today.ToString("d"),
-                Time = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString(),
-                ContactName = contactName.Text,
-                ContactNumber = contactNumber.Text
+                ImageUrl = imageUrl
+                //Description = description.Text,
+                //Condition = condition.SelectedItem.ToString(),
+                //Location = city.Text + ", " + street.Text,
+                //ViewCounter = 0,
+                //Date = DateTime.Today.ToString("d"),
+                //Time = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString(),
+                //ContactName = contactName.Text,
+                //ContactNumber = contactNumber.Text
             };
 
-            //Insert Item to SQL server
             await _azureService.UploadItemToServer(item);
         }
     }

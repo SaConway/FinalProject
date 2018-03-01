@@ -46,7 +46,7 @@
 
             <StackLayout Orientation = "Horizontal">
                 <Label Text="Contact Number"/>
-                <Entry x:Name= "contactNumber" Keyboard="Telephone" HorizontalOptions="FillAndExpand"/>
+                <Entry x:Name= "contactNumber" HorizontalOptions="FillAndExpand"/>
             </StackLayout>
             
             
