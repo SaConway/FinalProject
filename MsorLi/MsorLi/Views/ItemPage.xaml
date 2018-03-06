@@ -5,7 +5,18 @@
 	<ContentPage.Content>
         <StackLayout>
             <Label x:Name="title" HorizontalOptions="CenterAndExpand"/>
+            <Label x:Name="description" HorizontalOptions="CenterAndExpand"/>    
+            <Label x:Name="condition" HorizontalOptions="CenterAndExpand"/>
+            <StackLayout Orientation="Horizontal">
+                <Label x:Name="date" HorizontalOptions="CenterAndExpand"/>
+                <Label x:Name="time" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+            <Label x:Name="location" HorizontalOptions="CenterAndExpand"/>
+            <Label x:Name="view_counter" HorizontalOptions="CenterAndExpand"/>
+            <Label x:Name="contact_name" HorizontalOptions="CenterAndExpand"/>
+            <Label x:Name="contact_number" HorizontalOptions="CenterAndExpand"/>
             <Image x:Name="image" WidthRequest="70" HeightRequest="70"/>
+            
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>
