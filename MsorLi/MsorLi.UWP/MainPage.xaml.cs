@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace MsorLi.UWP
+namespace MsorLiService.UWP
 {
     public sealed partial class MainPage
     {
@@ -21,7 +21,7 @@ namespace MsorLi.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new MsorLi.App());
+            LoadApplication(new MsorLiService.App());
         }
     }
 }

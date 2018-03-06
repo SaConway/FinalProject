@@ -5,16 +5,16 @@ using System.Web.Http.Controllers;
 using System.Web.Http.OData;
 using Microsoft.Azure.Mobile.Server;
 using MsorLi.DataObjects;
-using MsorLi.Backend.Models;
+using MsorLi.Models;
 
-namespace MsorLi.Backend.Controllers
+namespace MsorLi.Controllers
 {
     public class ItemController : TableController<Item>
     {
         protected override void Initialize(HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
-            MasterDetailContext context = new MasterDetailContext();
+            MsorLiContext context = new MsorLiContext();
 
             DomainManager = new EntityDomainManager<Item>(context, Request);
 

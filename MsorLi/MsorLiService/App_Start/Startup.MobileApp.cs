@@ -7,17 +7,18 @@ using Microsoft.Azure.Mobile.Server;
 using Microsoft.Azure.Mobile.Server.Authentication;
 using Microsoft.Azure.Mobile.Server.Config;
 using MsorLi.DataObjects;
-using MsorLi.Backend.Models;
+using MsorLi.Models;
 using Owin;
 
-
-namespace MsorLi.Backend
+namespace MsorLi
 {
     public partial class Startup
     {
         public static void ConfigureMobileApp(IAppBuilder app)
         {
             HttpConfiguration config = new HttpConfiguration();
+
+            //For more information on Web API tracing, see http://go.microsoft.com/fwlink/?LinkId=620686 
             config.EnableSystemDiagnosticsTracing();
 
             new MobileAppConfiguration()
@@ -25,7 +26,10 @@ namespace MsorLi.Backend
                 .ApplyTo(config);
 
             // Use Entity Framework Code First to create database tables based on your DbContext
-            Database.SetInitializer(new Initializer());
+            Database.SetInitializer(new MsorLiInitializer());
+
+            // To prevent Entity Framework from modifying your database schema, use a null database initializer
+            // Database.SetInitializer<MsorLiContext>(null);
 
             MobileAppSettingsDictionary settings = config.GetMobileAppSettingsProvider().GetMobileAppSettings();
 
@@ -45,23 +49,35 @@ namespace MsorLi.Backend
         }
     }
 
-    public class Initializer : CreateDatabaseIfNotExists<MasterDetailContext>
+    public class MsorLiInitializer : CreateDatabaseIfNotExists<MsorLiContext>
     {
-        protected override void Seed(MasterDetailContext context)
+        protected override void Seed(MsorLiContext context)
         {
-            List<Item> todoItems = new List<Item>
+            List<Item> Items = new List<Item>
             {
-                new Item { Id = Guid.NewGuid().ToString(), Title = "כיסא", ImageUrl = "https://soholtd.co.il/wp-content/uploads/2016/10/%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA-10004.png" }
+                new Item
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Title ="ארון",
+                    ImageUrl ="http://www.doron1949.co.il/images/upload/80-1.jpg",
+                    Description = "ארון יפה וחדש",
+                    Condition = "חדש",
+                    Location = "ngkv",
+                    ViewCounter = 0,
+                    ContactName = "dsdad",
+                    ContactNumber = "Sddad",
+                    Date = "dss",
+                    Time = "asd",
+    }
             };
 
-            foreach (Item todoItem in todoItems)
+            foreach (Item item in Items)
             {
-                context.Set<Item>().Add(todoItem);
+                context.Set<Item>().Add(item);
             }
 
             base.Seed(context);
         }
     }
-
-
 }
+

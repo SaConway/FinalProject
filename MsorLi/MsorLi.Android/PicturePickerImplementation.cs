@@ -18,7 +18,7 @@ namespace MsorLi.Droid
             intent.SetAction(Intent.ActionGetContent);
 
             // Get the MainActivity instance
-            MainActivity activity = Forms.Context as MainActivity;
+            MainActivity activity = Android.App.Application.Context as MainActivity;
 
             // Start the picture-picker activity (resumes in MainActivity.cs)
             activity.StartActivityForResult(
