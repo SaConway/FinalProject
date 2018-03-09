@@ -1,7 +1,6 @@
 ﻿using MsorLi.Models;
 using MsorLi.Services;
 using System;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.IO;
@@ -37,7 +36,9 @@ namespace MsorLi.Views
             {
                 // This line will cause an Exeption - probably because it's a stream that can be read once
 
-                //image.Source = ImageSource.FromStream(() => _s);
+                image.Source = ImageSource.FromStream(() => _imageStream);
+
+                image.IsVisible = true;
             }
             else
             {
@@ -68,6 +69,50 @@ namespace MsorLi.Views
             };
 
             await _azureService.UploadItemToServer(item);
+        }
+
+        // If user inserted new info to one of the entries, make the label visable
+        private void NameTextChangedEvent(object sender, EventArgs e)
+        {
+            Entry entry = sender as Entry;
+
+            bool IsVisable = false;
+
+            if (entry.Text.Length > 0)
+            {
+                IsVisable = true;
+                entry.Margin = new Thickness(25, 15, 25, 0);
+            }
+            else
+            {
+                IsVisable = false;
+                entry.Margin = new Thickness(25, 50, 25, 0);
+            }
+
+            if (entry.Placeholder.ToString() == "שם מוצר")
+            {
+                nameLabel.IsVisible = IsVisable;
+            }
+            else if (entry.Placeholder.ToString() == "תיאור מוצר")
+            {
+                descriptionLabel.IsVisible = IsVisable;
+            }
+            else if (entry.Placeholder.ToString() == "עיר מגורים")
+            {
+                cityLabel.IsVisible = IsVisable;
+            }
+            else if (entry.Placeholder.ToString() == "רחוב")
+            {
+                streetLabel.IsVisible = IsVisable;
+            }
+            else if (entry.Placeholder.ToString() == "שם איש קשר")
+            {
+                contactNameLabel.IsVisible = IsVisable;
+            }
+            else if (entry.Placeholder.ToString() == "טלפון ליצירת קשר")
+            {
+                contactNumberLabel.IsVisible = IsVisable;
+            }
         }
     }
 }
