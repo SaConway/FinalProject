@@ -56,7 +56,7 @@ namespace MsorLi.Views
             var item = new Item
             {
                 Title = name.Text,
-                ImageUrl = imageUrl,
+                ImageUrl = image.ToString(),
                 Description = description.Text,
                 Condition = condition.SelectedItem.ToString(),
                 Location = city.Text + ", " + street.Text,

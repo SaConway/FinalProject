@@ -2,21 +2,108 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="MsorLi.Views.ItemPage">
-	<ContentPage.Content>
-        <StackLayout>
-            <Label x:Name="title" HorizontalOptions="CenterAndExpand"/>
-            <Label x:Name="description" HorizontalOptions="CenterAndExpand"/>    
-            <Label x:Name="condition" HorizontalOptions="CenterAndExpand"/>
-            <StackLayout Orientation="Horizontal">
-                <Label x:Name="date" HorizontalOptions="CenterAndExpand"/>
-                <Label x:Name="time" HorizontalOptions="CenterAndExpand"/>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="GrayColorBoxView" TargetType="BoxView">
+                <Setter Property="Color" Value="#999999"/>
+            </Style>
+
+            <Style x:Key="GrayColorLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="#999999"/>
+            </Style>
+
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="#2196F3"/>
+            </Style>
+
+            <Style x:Key="mySubtitleStyle" TargetType="Label" BaseResourceKey="SubtitleStyle"/>
+
+            <Style x:Key="myBodyStyle" TargetType="Label" BaseResourceKey="BodyStyle"/>
+
+            <Style x:Key="myGrayBodyStyle" TargetType="Label" BaseResourceKey="BodyStyle">
+                <Setter Property="TextColor" Value="#999999"/>
+            </Style>
+
+            <!--<Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="PrimaryDark">#1976D2</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightBackgroundColor">#FAFAFA</Color>
+            <Color x:Key="DarkBackgroundColor">#C0C0C0</Color>
+            <Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
+            <Color x:Key="LightTextColor">#999999</Color>-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+
+                <!--תמונות-->
+                <Image x:Name="image" Margin="3" HorizontalOptions="CenterAndExpand"/>
+
+                <!--פרטים על המוצר-->
+                <Label HorizontalTextAlignment="End" Margin="0,25,25,0" Text="פרטים על המוצר" Style="{StaticResource mySubtitleStyle}"/>
+
+                <BoxView Margin="20,5,20,5" HorizontalOptions="FillAndExpand" HeightRequest="1" Style="{StaticResource GrayColorBoxView}"/>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="קטגוריה" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
+                    <Label Text="מצב מוצר" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
+                    <Label Text="מיקום" Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
+                    <Label Text="תאריך פרסום" Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
+                    <Label Text="תיאור המוצר" Grid.Row="4" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
+
+                    <Label x:Name="title" Grid.Row="0" Grid.Column="0" Margin="25,0,0,0" HorizontalTextAlignment="End" Style="{DynamicResource myBodyStyle}"/>
+                    <Label x:Name="condition" Grid.Row="1" Grid.Column="0" Margin="25,0,0,0" HorizontalTextAlignment="End" Style="{DynamicResource myBodyStyle}"/>
+                    <Label x:Name="location" Grid.Row="2" Grid.Column="0" Margin="25,0,0,0" HorizontalTextAlignment="End" Style="{DynamicResource myBodyStyle}"/>
+                    <Label x:Name="date" Grid.Row="3" Grid.Column="0" Margin="25,0,0,0" HorizontalTextAlignment="End" Style="{DynamicResource myBodyStyle}"/>
+                    <Label x:Name="description" Grid.Row="4" Grid.Column="0" Margin="25,0,0,0" HorizontalTextAlignment="End" Style="{DynamicResource myBodyStyle}"/>
+                </Grid>
+
+                <!--פרטים על המוסר-->
+                <Label HorizontalTextAlignment="End" Margin="0,25,25,0" Text="פרטים על המוסר" Style="{StaticResource mySubtitleStyle}"/>
+
+                <BoxView Margin="20,5,20,5" HorizontalOptions="FillAndExpand" HeightRequest="1" Style="{StaticResource GrayColorBoxView}"/>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="שם" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
+                    <Label Text="טלפון" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
+                    <Label Text="דירוג" Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
+
+                    <Label x:Name="contact_name" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="End" Style="{DynamicResource myBodyStyle}"/>
+                    <Label x:Name="contact_number" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="End" Style="{DynamicResource myBodyStyle}"/>
+                    <Label x:Name="contact_rate" Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="End" Style="{DynamicResource myBodyStyle}"/>
+                </Grid>
+
+                <!--כפתורים-->
+                <Button Text="שיתוף מוצר" FontSize="Medium" HorizontalOptions="FillAndExpand" Margin="30,20,30,0" Style="{StaticResource ButtonStyle}"/>
+                <Button Text="שמירת מוצר" FontSize="Medium" HorizontalOptions="FillAndExpand" Margin="30,0,30,30" Style="{StaticResource ButtonStyle}"/>
+
             </StackLayout>
-            <Label x:Name="location" HorizontalOptions="CenterAndExpand"/>
-            <Label x:Name="view_counter" HorizontalOptions="CenterAndExpand"/>
-            <Label x:Name="contact_name" HorizontalOptions="CenterAndExpand"/>
-            <Label x:Name="contact_number" HorizontalOptions="CenterAndExpand"/>
-            <Image x:Name="image" WidthRequest="70" HeightRequest="70"/>
-            
-        </StackLayout>
-	</ContentPage.Content>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
