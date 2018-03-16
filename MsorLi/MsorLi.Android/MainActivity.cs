@@ -5,14 +5,13 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Xamarin.Forms;
 
 namespace MsorLi.Droid
 {
     [Activity(Label = "MsorLi", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        private static MainActivity mContext;
-
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -23,15 +22,7 @@ namespace MsorLi.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
             LoadApplication(new App());
-
-            mContext = this;
         }
-
-        public static MainActivity GetMainActivity()
-        {
-            return mContext;
-        }
-
 
         //--------------------------------------------
         // PICTURE HANDLE
@@ -61,9 +52,5 @@ namespace MsorLi.Droid
                 }
             }
         }
-
-        //--------------------------------------------
-
     }
 }
-

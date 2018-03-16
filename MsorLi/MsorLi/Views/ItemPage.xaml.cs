@@ -22,7 +22,7 @@ namespace MsorLi.Views
             InitializeComponent();
 
             title.Text = item.Title;
-            image.Source = item.ImageUrl;
+            image.Source = item.ImageUrl_1;
             description.Text = item.Description;
             condition.Text = item.Condition;
             location.Text = item.Location;

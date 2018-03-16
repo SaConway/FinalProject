@@ -59,7 +59,7 @@ namespace MsorLi
                 {
                     Id = Guid.NewGuid().ToString(),
                     Title ="ארון",
-                    ImageUrl ="http://www.doron1949.co.il/images/upload/80-1.jpg",
+                    ImageUrl_1 ="http://www.doron1949.co.il/images/upload/80-1.jpg",
                     Description = "ארון יפה וחדש",
                     Condition = "חדש",
                     Location = "ngkv",
