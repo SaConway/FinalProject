@@ -6,7 +6,9 @@ using System.IO;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MsorLi.Views
 {
     public partial class AddItemPage : ContentPage
@@ -65,7 +67,7 @@ namespace MsorLi.Views
             }
         }
 
-        // Add Item button operation
+        //Add Item button operation
         public async void OnAdd_Event(object sender, EventArgs e)
         {
             try
