@@ -4,6 +4,7 @@
     {
         public string Id { get; set; }
         public string Title { get; set; }
+        public int NumOfImages { get; set; }
         public string ImageUrl_1 { get; set; }
         public string ImageUrl_2 { get; set; }
         public string ImageUrl_3 { get; set; }

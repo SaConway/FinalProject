@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
              x:Class="MsorLi.Views.ItemPage">
 
     <ContentPage.Resources>
@@ -37,7 +38,38 @@
             <StackLayout>
 
                 <!--תמונות-->
-                <Image x:Name="image" Margin="3" HorizontalOptions="CenterAndExpand"/>
+                <control:CarouselView x:Name="imagesView">
+                    <control:CarouselView.ItemTemplate>
+                        <DataTemplate>
+
+                            <AbsoluteLayout>
+
+                                <Image Source="{Binding ImageUrl}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
+
+                                <Frame CornerRadius="7"
+                                       Padding="5"
+                                       Margin="0,5,5,0"
+                                       BackgroundColor="#80000000"
+                                       AbsoluteLayout.LayoutFlags="All" 
+                                       AbsoluteLayout.LayoutBounds="1,0,0.13,0.15">
+
+                                    <StackLayout>
+
+                                        <Label HorizontalTextAlignment="Center" 
+                                               VerticalTextAlignment="Center"
+                                               TextColor="WhiteSmoke" 
+                                               Text="{Binding ImageNumber}"
+                                               Style="{DynamicResource myBodyStyle}"/>
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                            </AbsoluteLayout>
+
+                        </DataTemplate>
+                    </control:CarouselView.ItemTemplate>
+                </control:CarouselView>
 
                 <!--פרטים על המוצר-->
                 <Label HorizontalTextAlignment="End" Margin="0,25,25,0" Text="פרטים על המוצר" Style="{StaticResource mySubtitleStyle}"/>

@@ -96,6 +96,7 @@ namespace MsorLi.Views
             var item = new Item
             {
                 Title = name.Text,
+                NumOfImages = imageUrls.Count,
                 ImageUrl_1 = imageUrls.Count >= 1 ? imageUrls[0] : "",
                 ImageUrl_2 = imageUrls.Count >= 2 ? imageUrls[1] : "",
                 ImageUrl_3 = imageUrls.Count >= 3 ? imageUrls[2] : "",

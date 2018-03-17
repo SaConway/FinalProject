@@ -59,7 +59,7 @@
                 <control:CarouselView x:Name="imagesView" HeightRequest="0">
                     <control:CarouselView.ItemTemplate>
                         <DataTemplate>
-                            <Image Aspect="Fill" Source="{Binding .}"/>
+                            <Image Aspect="AspectFill" Source="{Binding .}"/>
                         </DataTemplate>
                     </control:CarouselView.ItemTemplate>
                 </control:CarouselView>

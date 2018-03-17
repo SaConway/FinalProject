@@ -53,29 +53,6 @@ namespace MsorLi
     {
         protected override void Seed(MsorLiContext context)
         {
-            List<Item> Items = new List<Item>
-            {
-                new Item
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Title ="ארון",
-                    ImageUrl_1 ="http://www.doron1949.co.il/images/upload/80-1.jpg",
-                    Description = "ארון יפה וחדש",
-                    Condition = "חדש",
-                    Location = "ngkv",
-                    ViewCounter = 0,
-                    ContactName = "dsdad",
-                    ContactNumber = "Sddad",
-                    Date = "dss",
-                    Time = "asd",
-    }
-            };
-
-            foreach (Item item in Items)
-            {
-                context.Set<Item>().Add(item);
-            }
-
             base.Seed(context);
         }
     }
