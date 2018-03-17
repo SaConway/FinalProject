@@ -183,3 +183,4 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Debug\MsorLiSe
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Debug\MsorLiService.csproj.CopyComplete
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Debug\MsorLiService.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Debug\MsorLiService.pdb
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Debug\MsorLiService.csprojResolveAssemblyReference.cache

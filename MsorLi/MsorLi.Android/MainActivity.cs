@@ -20,6 +20,9 @@ namespace MsorLi.Droid
 
             base.OnCreate(bundle);
 
+            App.ScreenHeight = (int)(Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
+            App.ScreenWidth = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();

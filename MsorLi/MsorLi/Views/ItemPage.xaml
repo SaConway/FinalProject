@@ -34,7 +34,7 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView >
             <StackLayout>
 
                 <!--תמונות-->
@@ -44,18 +44,20 @@
 
                             <AbsoluteLayout>
 
-                                <Image Source="{Binding ImageUrl}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
+                                <Image Source="{Binding ImageUrl}"
+                                       AbsoluteLayout.LayoutFlags="All"
+                                       AbsoluteLayout.LayoutBounds="0,0,1,1"/>
 
                                 <Frame CornerRadius="7"
                                        Padding="5"
                                        Margin="0,5,5,0"
                                        BackgroundColor="#80000000"
-                                       AbsoluteLayout.LayoutFlags="All" 
-                                       AbsoluteLayout.LayoutBounds="1,0,0.13,0.15">
+                                       AbsoluteLayout.LayoutFlags="PositionProportional"
+                                       AbsoluteLayout.LayoutBounds="1,0,AutoSize,AutoSize">
 
                                     <StackLayout>
 
-                                        <Label HorizontalTextAlignment="Center" 
+                                        <Label HorizontalTextAlignment="Center"
                                                VerticalTextAlignment="Center"
                                                TextColor="WhiteSmoke" 
                                                Text="{Binding ImageNumber}"

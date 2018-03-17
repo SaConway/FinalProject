@@ -24,6 +24,10 @@ namespace MsorLi.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+
+            App.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
+            App.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

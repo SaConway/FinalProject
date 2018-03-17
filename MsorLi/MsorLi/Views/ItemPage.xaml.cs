@@ -11,9 +11,8 @@ namespace MsorLi.Views
         //---------------------------------
         // MEMBERS
         //---------------------------------
-
-
-
+        
+            
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
@@ -23,6 +22,9 @@ namespace MsorLi.Views
             try
             {
                 InitializeComponent();
+
+                imagesView.HeightRequest = (double)(App.ScreenHeight / 3.5);
+
                 UpdateItemDetails(item);
             }
             catch
@@ -39,22 +41,22 @@ namespace MsorLi.Views
 
             if (item.ImageUrl_1 != "")
             {
-                Models.Image image = new Models.Image { ImageUrl = item.ImageUrl_1, ImageNumber = "1 of " + item.NumOfImages.ToString() };
+                Models.Image image = new Models.Image { ImageUrl = item.ImageUrl_1, ImageNumber = " 1 מתוך " + item.NumOfImages.ToString() };
                 images.Add(image);
             }
             if (item.ImageUrl_2 != "")
             {
-                Models.Image image = new Models.Image { ImageUrl = item.ImageUrl_2, ImageNumber = "2 of " + item.NumOfImages.ToString() };
+                Models.Image image = new Models.Image { ImageUrl = item.ImageUrl_2, ImageNumber = " 2 מתוך " + item.NumOfImages.ToString() };
                 images.Add(image);
             }
             if (item.ImageUrl_3 != "")
             {
-                Models.Image image = new Models.Image { ImageUrl = item.ImageUrl_3, ImageNumber = "3 of " + item.NumOfImages.ToString() };
+                Models.Image image = new Models.Image { ImageUrl = item.ImageUrl_3, ImageNumber = " 3 מתוך " + item.NumOfImages.ToString() };
                 images.Add(image);
             }
             if (item.ImageUrl_4 != "")
             {
-                Models.Image image = new Models.Image { ImageUrl = item.ImageUrl_4, ImageNumber = "4 of " + item.NumOfImages.ToString() };
+                Models.Image image = new Models.Image { ImageUrl = item.ImageUrl_4, ImageNumber = " 4 מתוך " + item.NumOfImages.ToString() };
                 images.Add(image);
             }
 
