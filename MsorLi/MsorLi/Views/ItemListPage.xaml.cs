@@ -14,7 +14,7 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------
 
-        AzureService _azureService;
+        AzureItemService _azureService;
 
         //---------------------------------
         // FUNCTIONS
@@ -28,7 +28,7 @@ namespace MsorLi.Views
 
             InitializeComponent();
 
-            _azureService = AzureService.DefaultManager;
+            _azureService = AzureItemService.DefaultManager;
         }
 
         protected override async void OnAppearing()

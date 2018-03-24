@@ -1,15 +1,11 @@
 ﻿using Microsoft.Azure.Mobile.Server;
 
-namespace MsorLi.DataObjects
+namespace MsorLiService.DataObjects
 {
     public class Item : EntityData
     {
         public string Title { get; set; }
         public int NumOfImages { get; set; }
-        public string ImageUrl_1 { get; set; }
-        public string ImageUrl_2 { get; set; }
-        public string ImageUrl_3 { get; set; }
-        public string ImageUrl_4 { get; set; }
         public string Description { get; set; }
         public string Condition { get; set; }
         public string Location { get; set; }

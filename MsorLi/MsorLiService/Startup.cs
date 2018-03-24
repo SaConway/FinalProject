@@ -1,9 +1,9 @@
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(MsorLi.Startup))]
+[assembly: OwinStartup(typeof(MsorLiService.Startup))]
 
-namespace MsorLi
+namespace MsorLiService
 {
     public partial class Startup
     {

@@ -17,7 +17,8 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------------------------
 
-        AzureService _azureService = AzureService.DefaultManager;
+        AzureItemService _azureItemService = AzureItemService.DefaultManager;
+        AzureImageService _azureImageService = AzureImageService.DefaultManager;
         List<byte[]> _byteData = new List<byte[]>();
         ObservableCollection<ImageSource> _images = new ObservableCollection<ImageSource>();
         const int MAX_NUM_OF_IMAGES = 4;
@@ -61,10 +62,7 @@ namespace MsorLi.Views
 
                 pickPictureButton.IsEnabled = _images.Count == 4 ? false : true;
             }
-            catch (Exception)
-            {
-
-            }
+            catch (Exception) {}
         }
 
         //Add Item button operation
@@ -72,35 +70,50 @@ namespace MsorLi.Views
         {
             try
             {
-                // Save images in data base
+                // Save images in blob
                 List<string> imageUrls = await SaveImagesInDB();
 
                 // Create new item
-                Item item = CreateNewItem(imageUrls);
+                Item item = CreateNewItem(imageUrls.Count);
 
                 // Upload item to data base
-                await _azureService.UploadItemToServer(item);
-            }
-            catch
-            {
+                await _azureItemService.UploadToServer(item, item.Id);
 
+                // Create all item images
+                List<ItemImage> itemImages = CreateItemImages(imageUrls, item.Id);
+
+                // Upload item images to data base
+                foreach (var itemImage in itemImages)
+                {
+                    await _azureImageService.UploadToServer(itemImage, itemImage.Id);
+                }
             }
+
+            catch {}
         }
 
         //---------------------------------------------------
         // PRIVATE FUNCTIONS
         //---------------------------------------------------
 
-        private Item CreateNewItem(List<string> imageUrls)
+        private List<ItemImage> CreateItemImages(List<string> imageUrls , string id)
+        {
+            List<ItemImage> itemImages = new List<ItemImage>();
+
+            foreach(var imageUrl in imageUrls)
+            {
+                itemImages.Add(new ItemImage { Url = imageUrl, ItemId = id });
+            }
+
+            return itemImages;
+        }
+
+        private Item CreateNewItem(int numOfUrls)
         {
             var item = new Item
             {
                 Title = name.Text,
-                NumOfImages = imageUrls.Count,
-                ImageUrl_1 = imageUrls.Count >= 1 ? imageUrls[0] : "",
-                ImageUrl_2 = imageUrls.Count >= 2 ? imageUrls[1] : "",
-                ImageUrl_3 = imageUrls.Count >= 3 ? imageUrls[2] : "",
-                ImageUrl_4 = imageUrls.Count >= 4 ? imageUrls[3] : "",
+                NumOfImages = numOfUrls,
                 Description = description.Text,
                 Condition = condition.SelectedItem.ToString(),
                 Location = city.Text + ", " + street.Text,

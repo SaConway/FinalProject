@@ -1,11 +1,10 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
-using Microsoft.Azure.Mobile.Server;
 using Microsoft.Azure.Mobile.Server.Tables;
-using MsorLi.DataObjects;
+using MsorLiService.DataObjects;
 
-namespace MsorLi.Models
+namespace MsorLiService.Models
 {
     public class MsorLiContext : DbContext
     {
@@ -24,6 +23,7 @@ namespace MsorLi.Models
 
         // TABLE NAME!!
         public DbSet<Item> Items { get; set; }
+        public DbSet<ItemImage> ItemImages { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Data.Entity;
 using System.Web.Http;
 using Microsoft.Azure.Mobile.Server;
 using Microsoft.Azure.Mobile.Server.Authentication;
 using Microsoft.Azure.Mobile.Server.Config;
-using MsorLi.DataObjects;
-using MsorLi.Models;
+using MsorLiService.Models;
 using Owin;
 
-namespace MsorLi
+namespace MsorLiService
 {
     public partial class Startup
     {
