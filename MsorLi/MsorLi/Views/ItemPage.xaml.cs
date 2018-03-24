@@ -1,5 +1,6 @@
 ﻿using Microsoft.WindowsAzure.Storage.Table;
 using MsorLi.Models;
+using MsorLi.Services;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,8 +13,9 @@ namespace MsorLi.Views
         //---------------------------------
         // MEMBERS
         //---------------------------------
-        
-            
+
+        AzureImageService _azureImageService = AzureImageService.DefaultManager;
+
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
@@ -34,37 +36,21 @@ namespace MsorLi.Views
             }
         }
 
-        private void UpdateItemDetails(Item item)
+        private async void UpdateItemDetails(Item item)
         {
             title.Text = item.Title;
 
-            TableQuery<ItemImage> query = new TableQuery<ItemImage>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Smith"));
+            ObservableCollection<Models.Image> images = new ObservableCollection<Models.Image>();
 
+            var itemImages = await _azureImageService.GetItemImages(item.Id);
 
-            //ObservableCollection<Models.Image> images = new ObservableCollection<Models.Image>();
+            for (int i = 0; i < itemImages.Count; ++i)
+            {
+                Models.Image image = new Models.Image { ImageUrl = itemImages[i].Url, ImageNumber = (i + 1).ToString() + " מתוך " + itemImages.Count.ToString() };
+                images.Add(image);
+            }
 
-            //if (item.ImageUrl_1 != "")
-            //{
-            //    Models.Image image = new Models.Image { ImageUrl = item.ImageUrl_1, ImageNumber = " 1 מתוך " + item.NumOfImages.ToString() };
-            //    images.Add(image);
-            //}
-            //if (item.ImageUrl_2 != "")
-            //{
-            //    Models.Image image = new Models.Image { ImageUrl = item.ImageUrl_2, ImageNumber = " 2 מתוך " + item.NumOfImages.ToString() };
-            //    images.Add(image);
-            //}
-            //if (item.ImageUrl_3 != "")
-            //{
-            //    Models.Image image = new Models.Image { ImageUrl = item.ImageUrl_3, ImageNumber = " 3 מתוך " + item.NumOfImages.ToString() };
-            //    images.Add(image);
-            //}
-            //if (item.ImageUrl_4 != "")
-            //{
-            //    Models.Image image = new Models.Image { ImageUrl = item.ImageUrl_4, ImageNumber = " 4 מתוך " + item.NumOfImages.ToString() };
-            //    images.Add(image);
-            //}
-
-            //imagesView.ItemsSource = images;
+            imagesView.ItemsSource = images;
 
             description.Text = item.Description;
             condition.Text = item.Condition;

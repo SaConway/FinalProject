@@ -14,7 +14,7 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------
 
-        AzureItemService _azureService;
+        AzureItemService _azureItemService = AzureItemService.DefaultManager;
 
         //---------------------------------
         // FUNCTIONS
@@ -27,8 +27,6 @@ namespace MsorLi.Views
             NavigationPage.SetHasNavigationBar(this, false);
 
             InitializeComponent();
-
-            _azureService = AzureItemService.DefaultManager;
         }
 
         protected override async void OnAppearing()
@@ -71,23 +69,26 @@ namespace MsorLi.Views
         {
             using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
             {
-                listView_items.ItemsSource = await _azureService.GetItemsAsync(syncItems);
+                listView_items.ItemsSource = await _azureItemService.GetItemsAsync(syncItems);
             }
         }
 
         async void OnSelection(object sender, SelectedItemChangedEventArgs e)
         {
-            if (e.SelectedItem == null)
+            try
             {
-                return; //ItemSelected is called on deselection, which results in SelectedItem being set to null
+                if (e.SelectedItem == null)
+                {
+                    return; 
+                }
+
+                ((ListView)sender).SelectedItem = null;
+                Item selectedItem = (Item)e.SelectedItem;
+
+                await Navigation.PushAsync(new ItemPage(selectedItem));
             }
-            // DisplayAlert("Item Selected", e.SelectedItem.ToString(), "Ok");
-            ((ListView)sender).SelectedItem = null; //uncomment line if you want to disable the visual selection state.
 
-            //TODO :MAKE AN EXCEPTION CASE FOR THIS CAST
-            Item selectedItem = (Item)e.SelectedItem;
-
-            await Navigation.PushAsync(new ItemPage(selectedItem));
+            catch (Exception) { }
         }
 
         //---------------------------------

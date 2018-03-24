@@ -31,15 +31,17 @@ namespace MsorLi.Services
         // FUNCTIONS
         //---------------------------------
 
-        public async Task<ObservableCollection<ItemImage>> GetImagesAsync(bool syncImages = false)
+        public async Task<ObservableCollection<ItemImage>> GetItemImages(string itemId)
         {
             try
             {
-                IEnumerable<ItemImage> Images = await _table.ToEnumerableAsync();
-                return new ObservableCollection<ItemImage>(Images);
+                IEnumerable<ItemImage> images = await _table
+                    .Where(itemImage => itemImage.ItemId == itemId)
+                    .ToEnumerableAsync();
+                return new ObservableCollection<ItemImage>(images);
             }
 
-            catch (Exception) {}
+            catch (Exception) { }
             return null;
         }
     }

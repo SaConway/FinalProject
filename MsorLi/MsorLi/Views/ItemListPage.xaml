@@ -14,7 +14,7 @@
                         <StackLayout BackgroundColor="#eee" Orientation="Vertical">
                             <StackLayout Orientation="Horizontal" >
                                 <StackLayout WidthRequest="60" HeightRequest="60">
-                                    <Image Source="{Binding ImageUrl_1}" />
+                                    <Image Source="{Binding Url}" />
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical">
                                     <Label Text="{Binding Date}" TextColor="#f35e20"  />
