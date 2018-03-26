@@ -69,6 +69,7 @@ namespace MsorLi.Views
         {
             using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
             {
+                //data binding for listview 
                 listView_items.ItemsSource = await _azureItemService.GetItemsAsync(syncItems);
             }
         }
