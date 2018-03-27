@@ -11,7 +11,7 @@
 namespace MsorLi.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\final\\FinalProject\\MsorLi\\MsorLi\\Views\\MenuPage.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\idanm\\Source\\Repos\\FinalProject2\\MsorLi\\MsorLi\\Views\\MenuPage.xaml")]
     public partial class MenuPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
