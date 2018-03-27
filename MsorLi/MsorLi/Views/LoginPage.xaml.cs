@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
+using MsorLi.Utilities;
 
 
 namespace MsorLi.Views
@@ -18,9 +19,7 @@ namespace MsorLi.Views
 
         public LoginPage()
         {
-
             InitializeComponent();
-            
         }
 
         private async void SubmitBtnClicked(object sender, EventArgs e)
@@ -36,7 +35,8 @@ namespace MsorLi.Views
                 {
                     // Success
 
-                    
+                    Settings._GeneralSettings = "True";
+
                 }
 
                 else
@@ -54,7 +54,6 @@ namespace MsorLi.Views
         {
             try
             {
-
             }
             catch
             {

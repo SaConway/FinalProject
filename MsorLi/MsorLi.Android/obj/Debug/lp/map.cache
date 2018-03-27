@@ -65,3 +65,5 @@ System.IO.FileSystem.Primitives
 System.IO.FileSystem
 System.Security.Cryptography.Primitives
 System.ComponentModel
+Plugin.Settings.Abstractions
+Plugin.Settings

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace MsorLi.Views
 {
@@ -9,7 +6,18 @@ namespace MsorLi.Views
     {
         public MainPage()
         {
+            // Disable Navigation Bar
+            NavigationPage.SetHasNavigationBar(this, false);
+
             InitializeComponent();
+
         }
+
+
+        public MainPage get ()
+        {
+            return this;
+        }
+
     }
 }
