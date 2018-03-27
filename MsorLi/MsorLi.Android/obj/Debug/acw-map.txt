@@ -2,6 +2,10 @@ MsorLi.Droid.MainActivity, MsorLi.Android;md59ce7a3286e2a58b5ab0d064143ff1326.Ma
 MsorLi.Droid.MainActivity, MsorLi.Android, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md59ce7a3286e2a58b5ab0d064143ff1326.MainActivity
 MsorLi.Droid.MainActivity;md59ce7a3286e2a58b5ab0d064143ff1326.MainActivity
 msorli.droid.MainActivity;md59ce7a3286e2a58b5ab0d064143ff1326.MainActivity
+MsorLi.Droid.MyTabsRenderer, MsorLi.Android;md59ce7a3286e2a58b5ab0d064143ff1326.MyTabsRenderer
+MsorLi.Droid.MyTabsRenderer, MsorLi.Android, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md59ce7a3286e2a58b5ab0d064143ff1326.MyTabsRenderer
+MsorLi.Droid.MyTabsRenderer;md59ce7a3286e2a58b5ab0d064143ff1326.MyTabsRenderer
+msorli.droid.MyTabsRenderer;md59ce7a3286e2a58b5ab0d064143ff1326.MyTabsRenderer
 CarouselView.FormsPlugin.Android.CarouselViewRenderer, CarouselView.FormsPlugin.Android;md5fa3be16b83ce3acd3be83265686c14de.CarouselViewRenderer
 CarouselView.FormsPlugin.Android.CarouselViewRenderer, CarouselView.FormsPlugin.Android, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5fa3be16b83ce3acd3be83265686c14de.CarouselViewRenderer
 CarouselView.FormsPlugin.Android.CarouselViewRenderer;md5fa3be16b83ce3acd3be83265686c14de.CarouselViewRenderer

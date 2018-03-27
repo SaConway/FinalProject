@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
+using MsorLi.Utilities;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MsorLi.Views
@@ -30,12 +31,22 @@ namespace MsorLi.Views
         // C-TOR
         public AddItemPage()
         {
-            InitializeComponent();
+                InitializeComponent();
         }
 
         //---------------------------------------------------
         // EVENT FUNCTIONS
         //---------------------------------------------------
+
+        async protected override void OnAppearing()
+        {
+            if (Settings._GeneralSettings != "True")
+            {
+                MainPage m = new MainPage();
+                m.get().CurrentPage = m.get().Children[0];
+                await Navigation.PushAsync(new LoginPage());
+            }
+        }
 
         public async void PickImageButton_Event(object sender, System.EventArgs e)
         {

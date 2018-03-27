@@ -49,6 +49,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureUserService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BlobService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ItemListPage.xaml.cs">
       <DependentUpon>ItemListPage.xaml</DependentUpon>
       <SubType>Code</SubType>
