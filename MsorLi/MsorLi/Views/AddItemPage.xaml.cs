@@ -42,9 +42,9 @@ namespace MsorLi.Views
         {
             if (Settings._GeneralSettings != "True")
             {
+                await Navigation.PushAsync(new LoginPage());
                 MainPage m = new MainPage();
                 m.get().CurrentPage = m.get().Children[0];
-                await Navigation.PushAsync(new LoginPage());
             }
         }
 
