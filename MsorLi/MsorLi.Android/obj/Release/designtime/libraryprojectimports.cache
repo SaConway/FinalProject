@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Paths>
   <Jars>
-    <Jar>obj\Release\lp\4\jl\formsviewgroup.jar</Jar>
-    <Jar>obj\Release\lp\22\jl\support-annotations.jar</Jar>
     <Jar>C:\final\FinalProject\MsorLi\MsorLi.Android\obj\Release\lp\21\jl\bin\classes.jar</Jar>
     <Jar>C:\final\FinalProject\MsorLi\MsorLi.Android\obj\Release\lp\22\jl\support-annotations.jar</Jar>
     <Jar>C:\final\FinalProject\MsorLi\MsorLi.Android\obj\Release\lp\23\jl\bin\classes.jar</Jar>
