@@ -159,8 +159,10 @@
     <Compile Include="App_Start\Startup.MobileApp.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ItemImageController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataObjects\Item.cs" />
     <Compile Include="DataObjects\ItemImage.cs" />
+    <Compile Include="DataObjects\User.cs" />
     <Compile Include="Models\MsorLiContext.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

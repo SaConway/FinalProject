@@ -2,5 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TargetiOSDevice />
+    <SelectedDevice>iPhone 8 iOS 11.2</SelectedDevice>
+    <DefaultDevice>iPhone 8 iOS 11.2</DefaultDevice>
   </PropertyGroup>
 </Project>

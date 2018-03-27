@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MsorLi.Views.RegisterPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to registration!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="שם פרטי"/>
+            <Entry Placeholder="שם פרטי" x:Name="firstName" HorizontalTextAlignment="End"/>
+            <Label Text="שם משפחה"/>
+            <Entry Placeholder="שם משפחה" x:Name="lastName"/>
+            <Label Text="מייל"/>
+            <Entry Placeholder="מייל" x:Name="email"/>
+            <Label Text="סיסמה"/>
+            <Entry Placeholder="סיסמה" x:Name="password"/>
+            <Label Text="טלפון"/>
+            <Entry Placeholder="טלפון" x:Name="phoneNumber"/>
+            <Label Text="כתובת"/>
+            <Entry Placeholder="כתובת" x:Name="address"/>
+
+            <Button Text="Submit" Clicked="SubmitBtnClicked"/>
+            <Button Text="Allready Registered" Clicked="LoginBtnClicked"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
