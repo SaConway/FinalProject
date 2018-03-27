@@ -116,6 +116,8 @@ class MonoPackageManager_Resources {
 		"Microsoft.WindowsAzure.Storage.dll",
 		"Newtonsoft.Json.dll",
 		"PCLCrypto.dll",
+		"Plugin.Settings.Abstractions.dll",
+		"Plugin.Settings.dll",
 		"SQLitePCLRaw.core.dll",
 		"SQLitePCLRaw.provider.e_sqlite3.dll",
 		"Xamarin.Android.Support.Animated.Vector.Drawable.dll",

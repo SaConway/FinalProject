@@ -24,7 +24,7 @@ namespace MsorLi.Views
         public ItemListPage()
         {
             // Disable Navigation Bar
-            NavigationPage.SetHasNavigationBar(this, false);
+            //NavigationPage.SetHasNavigationBar(this, false);
 
             InitializeComponent();
         }

@@ -252,3 +252,9 @@ C:\final\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.csproj.Core
 C:\final\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.csproj.CopyComplete
 C:\final\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.dll
 C:\final\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.pdb
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.Abstractions.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.pdb
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.xml
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.Abstractions.pdb
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.Abstractions.xml

@@ -12,6 +12,8 @@ PInvoke.BCrypt
 PInvoke.Kernel32
 PInvoke.NCrypt
 PInvoke.Windows.Core
+Plugin.Settings.Abstractions
+Plugin.Settings
 SQLitePCLRaw.batteries_green
 SQLitePCLRaw.batteries_v2
 SQLitePCLRaw.core
@@ -65,5 +67,3 @@ System.IO.FileSystem.Primitives
 System.IO.FileSystem
 System.Security.Cryptography.Primitives
 System.ComponentModel
-Plugin.Settings.Abstractions
-Plugin.Settings
