@@ -56,10 +56,5 @@ namespace MsorLi.Views
                 // catch!!!
             }
         }
-
-        public void LoginBtnClicked(object sender, EventArgs e)
-        {
-            // Go Back to Login page
-        }
     }
 }

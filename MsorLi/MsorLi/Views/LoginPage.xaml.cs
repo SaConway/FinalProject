@@ -30,7 +30,7 @@ namespace MsorLi.Views
                 string password = Password.Text;
 
                 ObservableCollection<User> ThisUser = await _azureUserService.LoginAsync(email, password);
-                
+
                 if (ThisUser != null)
                 {
                     // Success
@@ -45,23 +45,16 @@ namespace MsorLi.Views
                 }
                 
             }
-            catch (Exception)
-            {
-            }
+            catch (Exception) {}
 
         }
         private async void RegBtnClicked(object sender, EventArgs e)
         {
             try
             {
+                await Navigation.PushAsync(new RegisterPage());
             }
-            catch
-            {
-
-
-            }
-
+            catch (Exception) {}
         }
-        
     }
 }

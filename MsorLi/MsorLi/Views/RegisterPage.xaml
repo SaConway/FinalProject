@@ -22,7 +22,6 @@
             <Entry Placeholder="כתובת" x:Name="address"/>
 
             <Button Text="Submit" Clicked="SubmitBtnClicked"/>
-            <Button Text="Allready Registered" Clicked="LoginBtnClicked"/>
 
         </StackLayout>
     </ContentPage.Content>

@@ -4,6 +4,8 @@ namespace MsorLi.Views
 {
     public partial class MainPage : TabbedPage
     {
+        public static MainPage mainPage;
+
         public MainPage()
         {
             // Disable Navigation Bar
@@ -11,13 +13,7 @@ namespace MsorLi.Views
 
             InitializeComponent();
 
+            mainPage = this;
         }
-
-
-        public MainPage get ()
-        {
-            return this;
-        }
-
     }
 }

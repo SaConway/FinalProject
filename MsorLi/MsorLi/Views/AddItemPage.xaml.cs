@@ -31,7 +31,7 @@ namespace MsorLi.Views
         // C-TOR
         public AddItemPage()
         {
-                InitializeComponent();
+            InitializeComponent();
         }
 
         //---------------------------------------------------
@@ -43,8 +43,8 @@ namespace MsorLi.Views
             if (Settings._GeneralSettings != "True")
             {
                 await Navigation.PushAsync(new LoginPage());
-                MainPage m = new MainPage();
-                m.get().CurrentPage = m.get().Children[0];
+
+                MainPage.mainPage.CurrentPage = MainPage.mainPage.Children[0];
             }
         }
 
