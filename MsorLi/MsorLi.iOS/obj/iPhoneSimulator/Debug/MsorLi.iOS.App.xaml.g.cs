@@ -11,7 +11,7 @@
 namespace MsorLi {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\idanm\\Source\\Repos\\FinalProject2\\MsorLi\\MsorLi\\App.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\final\\FinalProject\\MsorLi\\MsorLi\\App.xaml")]
     public partial class App : global::Xamarin.Forms.Application {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]

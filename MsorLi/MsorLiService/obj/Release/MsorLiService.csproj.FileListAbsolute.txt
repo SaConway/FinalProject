@@ -183,6 +183,12 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLi
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.csproj.CopyComplete
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.pdb
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.Abstractions.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.pdb
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.xml
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.Abstractions.pdb
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.Abstractions.xml
 C:\final\FinalProject\MsorLi\MsorLiService\bin\MsorLiService.dll.config
 C:\final\FinalProject\MsorLi\MsorLiService\bin\MsorLiService.dll
 C:\final\FinalProject\MsorLi\MsorLiService\bin\MsorLiService.pdb
@@ -196,6 +202,8 @@ C:\final\FinalProject\MsorLi\MsorLiService\bin\Microsoft.IdentityModel.Tokens.dl
 C:\final\FinalProject\MsorLi\MsorLiService\bin\Microsoft.Owin.Host.SystemWeb.dll
 C:\final\FinalProject\MsorLi\MsorLiService\bin\Microsoft.Owin.Security.dll
 C:\final\FinalProject\MsorLi\MsorLiService\bin\Newtonsoft.Json.dll
+C:\final\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.Abstractions.dll
+C:\final\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.dll
 C:\final\FinalProject\MsorLi\MsorLiService\bin\System.IdentityModel.Tokens.Jwt.dll
 C:\final\FinalProject\MsorLi\MsorLiService\bin\System.Net.Http.Formatting.dll
 C:\final\FinalProject\MsorLi\MsorLiService\bin\System.Spatial.dll
@@ -213,6 +221,10 @@ C:\final\FinalProject\MsorLi\MsorLiService\bin\Microsoft.IdentityModel.Tokens.xm
 C:\final\FinalProject\MsorLi\MsorLiService\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\final\FinalProject\MsorLi\MsorLiService\bin\Microsoft.Owin.Security.xml
 C:\final\FinalProject\MsorLi\MsorLiService\bin\Newtonsoft.Json.xml
+C:\final\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.pdb
+C:\final\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.xml
+C:\final\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.Abstractions.pdb
+C:\final\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.Abstractions.xml
 C:\final\FinalProject\MsorLi\MsorLiService\bin\System.IdentityModel.Tokens.Jwt.xml
 C:\final\FinalProject\MsorLi\MsorLiService\bin\System.Net.Http.Formatting.xml
 C:\final\FinalProject\MsorLi\MsorLiService\bin\System.Spatial.xml
@@ -252,9 +264,3 @@ C:\final\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.csproj.Core
 C:\final\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.csproj.CopyComplete
 C:\final\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.dll
 C:\final\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.pdb
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.Abstractions.dll
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.dll
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.pdb
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.xml
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.Abstractions.pdb
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.Abstractions.xml

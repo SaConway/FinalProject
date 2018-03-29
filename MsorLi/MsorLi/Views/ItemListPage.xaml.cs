@@ -24,7 +24,7 @@ namespace MsorLi.Views
         public ItemListPage()
         {
             // Disable Navigation Bar
-            //NavigationPage.SetHasNavigationBar(this, false);
+            NavigationPage.SetHasNavigationBar(this, false);
 
             InitializeComponent();
         }
@@ -87,6 +87,18 @@ namespace MsorLi.Views
                 Item selectedItem = (Item)e.SelectedItem;
 
                 await Navigation.PushAsync(new ItemPage(selectedItem));
+            }
+
+            catch (Exception) { }
+        }
+
+        public async void OpenMenu(object sender, SelectedItemChangedEventArgs e)
+        {
+
+            try
+            {
+                
+                await Navigation.PushAsync(new MenuPage());
             }
 
             catch (Exception) { }
