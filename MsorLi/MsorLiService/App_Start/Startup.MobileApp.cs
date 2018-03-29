@@ -1,9 +1,12 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Web.Http;
 using Microsoft.Azure.Mobile.Server;
 using Microsoft.Azure.Mobile.Server.Authentication;
 using Microsoft.Azure.Mobile.Server.Config;
+using MsorLiService.DataObjects;
 using MsorLiService.Models;
 using Owin;
 
@@ -50,6 +53,16 @@ namespace MsorLiService
     {
         protected override void Seed(MsorLiContext context)
         {
+            //List<ItemImage> ItemImages = new List<ItemImage>
+            //{
+            //    new ItemImage { Id = Guid.NewGuid().ToString(), Url = "First item", IsPriorityImage = false },
+            //};
+
+            //foreach (var v in ItemImages)
+            //{
+            //    context.Set<ItemImage>().Add(v);
+            //}
+
             base.Seed(context);
         }
     }

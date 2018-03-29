@@ -1,6 +1,6 @@
-﻿using Microsoft.WindowsAzure.Storage.Table;
-using MsorLi.Models;
+﻿using MsorLi.Models;
 using MsorLi.Services;
+using System;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,12 +15,13 @@ namespace MsorLi.Views
         //---------------------------------
 
         AzureImageService _azureImageService = AzureImageService.DefaultManager;
+        AzureItemService _azureItemService = AzureItemService.DefaultManager;
 
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
 
-        public ItemPage(Item item)
+        public ItemPage(string itemId)
         {
             try
             {
@@ -28,16 +29,18 @@ namespace MsorLi.Views
 
                 imagesView.HeightRequest = (double)(App.ScreenHeight / 3.5);
 
-                UpdateItemDetails(item);
+                UpdateItemDetails(itemId);
             }
-            catch
+            catch (Exception)
             {
 
             }
         }
 
-        private async void UpdateItemDetails(Item item)
+        private async void UpdateItemDetails(string itemId)
         {
+            Item item = await _azureItemService.GetItemAsync(itemId);
+
             title.Text = item.Title;
 
             ObservableCollection<Models.Image> images = new ObservableCollection<Models.Image>();

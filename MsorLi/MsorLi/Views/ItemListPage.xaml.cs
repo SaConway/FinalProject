@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MsorLi.Models;
+using System.Collections.ObjectModel;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace MsorLi.Views
 {
@@ -15,7 +18,12 @@ namespace MsorLi.Views
         //---------------------------------
 
         AzureItemService _azureItemService = AzureItemService.DefaultManager;
+        AzureImageService _azureImageService = AzureImageService.DefaultManager;
 
+        public ObservableCollection<ItemImage> AllImages = new ObservableCollection<ItemImage>();
+        public ObservableCollection<Tuple<string, string, string, string>> ImagePairs =
+                            new ObservableCollection<Tuple<string, string, string, string>>();
+        
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
@@ -27,13 +35,12 @@ namespace MsorLi.Views
             //NavigationPage.SetHasNavigationBar(this, false);
 
             InitializeComponent();
+            
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
-            // Set syncItems to true in order to synchronize the data on startup when running in offline mode
             await RefreshItems(true, syncItems: true);
         }
 
@@ -69,27 +76,38 @@ namespace MsorLi.Views
         {
             using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
             {
-                //data binding for listview 
-                listView_items.ItemsSource = await _azureItemService.GetItemsAsync(syncItems);
+                AllImages = await _azureImageService.GetAllPriorityImages();
+                CreateImagePairs();
+                listView_items.ItemsSource = ImagePairs;
             }
         }
 
-        async void OnSelection(object sender, SelectedItemChangedEventArgs e)
+        async void OnSelection(object sender, EventArgs e)
         {
             try
             {
-                if (e.SelectedItem == null)
-                {
-                    return; 
-                }
+                TappedEventArgs obj = e as TappedEventArgs;
+                var itemId = obj.Parameter.ToString();
 
-                ((ListView)sender).SelectedItem = null;
-                Item selectedItem = (Item)e.SelectedItem;
-
-                await Navigation.PushAsync(new ItemPage(selectedItem));
+                await Navigation.PushAsync(new ItemPage(itemId));
             }
 
             catch (Exception) { }
+        }
+
+        private void CreateImagePairs()
+        {
+            ImagePairs.Clear();
+
+            for (int i = 0; i < AllImages.Count; i += 2)
+            {
+                string Item1 = AllImages[i].Url;
+                string Item2 = AllImages[i].ItemId;
+                string Item3 = i + 1 < AllImages.Count ? AllImages[i + 1].Url : "";
+                string Item4 = i + 1 < AllImages.Count ? AllImages[i + 1].ItemId : "";
+
+                ImagePairs.Add(new Tuple<string, string, string, string>(Item1, Item2, Item3, Item4));
+            }
         }
 
         //---------------------------------

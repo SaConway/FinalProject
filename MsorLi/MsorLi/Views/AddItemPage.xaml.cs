@@ -100,7 +100,10 @@ namespace MsorLi.Views
                 }
             }
 
-            catch {}
+            catch (Exception e2)
+            {
+                int i = 0;
+            }
         }
 
         //---------------------------------------------------
@@ -111,9 +114,17 @@ namespace MsorLi.Views
         {
             List<ItemImage> itemImages = new List<ItemImage>();
 
-            foreach(var imageUrl in imageUrls)
+            for (int i = 0; i < imageUrls.Count; ++i)
             {
-                itemImages.Add(new ItemImage { Url = imageUrl, ItemId = id });
+                if (i == 0)
+                {
+                    // First and Priority image
+                    itemImages.Add(new ItemImage { Url = imageUrls[i], ItemId = id, IsPriorityImage = true });
+                }
+                else
+                {
+                    itemImages.Add(new ItemImage { Url = imageUrls[i], ItemId = id, IsPriorityImage = false });
+                }
             }
 
             return itemImages;

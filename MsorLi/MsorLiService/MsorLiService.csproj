@@ -169,7 +169,6 @@
     <Compile Include="DataObjects\Item.cs" />
     <Compile Include="DataObjects\ItemImage.cs" />
     <Compile Include="DataObjects\User.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Models\MsorLiContext.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

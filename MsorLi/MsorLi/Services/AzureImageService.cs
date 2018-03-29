@@ -44,5 +44,18 @@ namespace MsorLi.Services
             catch (Exception) { }
             return null;
         }
+
+        public async Task<ObservableCollection<ItemImage>> GetAllPriorityImages()
+        {
+            try
+            {
+                IEnumerable<ItemImage> images = await _table
+                    .ToEnumerableAsync();
+                return new ObservableCollection<ItemImage>(images);
+            }
+
+            catch (Exception) { }
+            return null;
+        }
     }
 }

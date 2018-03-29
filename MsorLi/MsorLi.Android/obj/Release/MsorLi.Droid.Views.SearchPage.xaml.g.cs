@@ -11,7 +11,7 @@
 namespace MsorLi.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\final\\FinalProject\\MsorLi\\MsorLi\\Views\\SearchPage.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi\\Views\\SearchPage.xaml")]
     public partial class SearchPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]

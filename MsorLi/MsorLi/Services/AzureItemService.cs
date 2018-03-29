@@ -42,5 +42,17 @@ namespace MsorLi.Services
             catch (Exception) {}
             return null;
         }
+
+        public async Task<Item> GetItemAsync(string itemId)
+        {
+            try
+            {
+                Item item = await _table.LookupAsync(itemId);
+                return item;
+            }
+
+            catch (Exception) { }
+            return null;
+        }
     }
 }

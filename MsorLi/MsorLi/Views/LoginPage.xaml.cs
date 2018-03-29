@@ -36,7 +36,7 @@ namespace MsorLi.Views
                     // Success
 
                     Settings._GeneralSettings = "True";
-
+                    await Navigation.PopAsync();
                 }
 
                 else

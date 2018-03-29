@@ -28,7 +28,9 @@ namespace MsorLiService.Controllers
 
         public IQueryable<ItemImage> GetAllImages()
         {
-            return Query();
+            return Query()
+                    .Where(itemImage => itemImage.IsPriorityImage == true)
+                    .OrderByDescending(Item => Item.CreatedAt);
         }
 
         public SingleResult<ItemImage> GetImage(string id)
@@ -51,7 +53,5 @@ namespace MsorLiService.Controllers
         {
             return DeleteAsync(id);
         }
-
-        public void ff() { }
     }
 }
