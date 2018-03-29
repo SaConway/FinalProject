@@ -1,5 +1,4 @@
 ﻿using MsorLi.Views;
-using System.Runtime.Remoting.Contexts;
 using Xamarin.Forms;
 
 namespace MsorLi
@@ -12,8 +11,7 @@ namespace MsorLi
         public App ()
 		{
 			InitializeComponent();
-
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage (new ItemListPage());
         }
 
 		protected override void OnStart ()

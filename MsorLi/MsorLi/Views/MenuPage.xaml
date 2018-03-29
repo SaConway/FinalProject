@@ -3,6 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="MsorLi.Views.MenuPage"
              Title="Menu">
-	<ContentPage.Content>
-	</ContentPage.Content>
+
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+
+                </Grid.RowDefinitions>
+                <BoxView Grid.Row="0"/>
+                <Image Source="unknown-user.png" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="100" HeightRequest="100"/>
+                <Label Text="Name of user" HorizontalOptions="Center" VerticalOptions="End" Grid.Row="2"/>
+
+                <TableView Intent="Settings" Grid.Row="3">
+                    <TableRoot>
+                        <TableSection>
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical" >
+                                    <Label Text="פרופיל" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                            </ViewCell>
+                            <ViewCell >
+                                <StackLayout Orientation="Vertical" >
+                                    <Label Text="אהבתי " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                            </ViewCell>
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical" >
+                                    <Label Text="הגדרות" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+
+            </Grid>
+
+
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
+    
+    

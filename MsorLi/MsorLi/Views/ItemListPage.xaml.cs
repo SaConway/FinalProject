@@ -32,7 +32,7 @@ namespace MsorLi.Views
         public ItemListPage()
         {
             // Disable Navigation Bar
-            //NavigationPage.SetHasNavigationBar(this, false);
+            NavigationPage.SetHasNavigationBar(this, false);
 
             InitializeComponent();
             
@@ -108,6 +108,18 @@ namespace MsorLi.Views
 
                 ImagePairs.Add(new Tuple<string, string, string, string>(Item1, Item2, Item3, Item4));
             }
+        }
+
+        public async void OpenMenu(object sender, SelectedItemChangedEventArgs e)
+        {
+
+            try
+            {
+                
+                await Navigation.PushAsync(new MenuPage());
+            }
+
+            catch (Exception) { }
         }
 
         //---------------------------------

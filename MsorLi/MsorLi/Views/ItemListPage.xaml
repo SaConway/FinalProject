@@ -3,10 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MsorLi.Views.ItemListPage"
              Title="מסור-לי">
-
+    
     <ContentPage.Content>
-    <StackLayout>
-        <ActivityIndicator IsVisible="False" IsEnabled="True" x:Name="syncIndicator"/>
+        
+       
+        <StackLayout>
+            <Grid VerticalOptions="FillAndExpand" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <BoxView Color="#4286f4" Grid.Row="0" Grid.ColumnSpan="3" Scale="2"/>
+                
+                <Button Text="main page" TextColor="White" HorizontalOptions="CenterAndExpand" Grid.Column="0"/>
+
+                <SearchBar Placeholder="search" Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand"/>
+
+                <Button Text="Menu" TextColor="White" Grid.Row="0" Grid.Column="2" Clicked="OpenMenu"/>
+                
+            </Grid>
+            <ActivityIndicator IsVisible="False" IsEnabled="True" x:Name="syncIndicator"/>
 
             <ListView x:Name="listView_items" IsPullToRefreshEnabled="true" Refreshing="OnRefresh" HasUnevenRows="True" SeparatorVisibility="None">
                 <ListView.ItemTemplate>
