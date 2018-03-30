@@ -28,9 +28,8 @@ namespace MsorLiService.Controllers
 
         public IQueryable<ItemImage> GetAllImages()
         {
-            return Query()
-                    .Where(itemImage => itemImage.IsPriorityImage == true)
-                    .OrderByDescending(Item => Item.CreatedAt);
+            return Query();
+                    //.OrderByDescending(ItemImage => ItemImage.CreatedAt);
         }
 
         public SingleResult<ItemImage> GetImage(string id)

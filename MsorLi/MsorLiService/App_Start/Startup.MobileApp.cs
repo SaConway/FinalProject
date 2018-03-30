@@ -53,15 +53,18 @@ namespace MsorLiService
     {
         protected override void Seed(MsorLiContext context)
         {
-            //List<ItemImage> ItemImages = new List<ItemImage>
-            //{
-            //    new ItemImage { Id = Guid.NewGuid().ToString(), Url = "First item", IsPriorityImage = false },
-            //};
+        //    List<ItemCategory> Categories = new List<ItemCategory>
+        //    {
+        //        new ItemCategory { Id = Guid.NewGuid().ToString(), Name = "מוצרי חשמל" },
+        //        new ItemCategory { Id = Guid.NewGuid().ToString(), Name = "ריהוט וכלי בית" },
+        //        new ItemCategory { Id = Guid.NewGuid().ToString(), Name = "בגדים ואופנה" },
+        //        new ItemCategory { Id = Guid.NewGuid().ToString(), Name = "תחביבים" },
+        //    };
 
-            //foreach (var v in ItemImages)
-            //{
-            //    context.Set<ItemImage>().Add(v);
-            //}
+        //    foreach (var c in Categories)
+        //    {
+        //        context.Set<ItemCategory>().Add(c);
+        //    }
 
             base.Seed(context);
         }

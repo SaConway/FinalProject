@@ -31,17 +31,19 @@ namespace MsorLi.Services
         // FUNCTIONS
         //---------------------------------
 
-        public async Task<ObservableCollection<Item>> GetItemsAsync(bool syncItems = false)
-        {
-            try
-            {
-                IEnumerable<Item> items = await _table.ToEnumerableAsync();
-                return new ObservableCollection<Item>(items);
-            }
+        //public async Task<ObservableCollection<Item>> GetItemsAsync(bool syncItems = false)
+        //{
+        //    try
+        //    {
+        //        IEnumerable<Item> items = await _table
+        //            .Where(Item => Item.NumOfImages == 5)
+        //            .ToEnumerableAsync();
+        //        return new ObservableCollection<Item>(items);
+        //    }
 
-            catch (Exception) {}
-            return null;
-        }
+        //    catch (Exception) { }
+        //    return null;
+        //}
 
         public async Task<Item> GetItemAsync(string itemId)
         {

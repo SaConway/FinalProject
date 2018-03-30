@@ -20,6 +20,7 @@ namespace MsorLi.Views
 
         AzureItemService _azureItemService = AzureItemService.DefaultManager;
         AzureImageService _azureImageService = AzureImageService.DefaultManager;
+
         List<byte[]> _byteData = new List<byte[]>();
         ObservableCollection<ImageSource> _images = new ObservableCollection<ImageSource>();
         const int MAX_NUM_OF_IMAGES = 4;
@@ -43,8 +44,6 @@ namespace MsorLi.Views
             if (Settings._GeneralSettings != "True")
             {
                 await Navigation.PushAsync(new LoginPage());
-
-                MainPage.mainPage.CurrentPage = MainPage.mainPage.Children[0];
             }
         }
 
@@ -98,11 +97,12 @@ namespace MsorLi.Views
                 {
                     await _azureImageService.UploadToServer(itemImage, itemImage.Id);
                 }
+
+                await Navigation.PopAsync();
             }
 
-            catch (Exception e2)
+            catch (Exception)
             {
-                int i = 0;
             }
         }
 
@@ -153,10 +153,12 @@ namespace MsorLi.Views
         {
             List<string> imageUrls = new List<string>();
 
-            foreach (var byteData in _byteData)
+            foreach (var imageData in _byteData)
             {
+                byte[] resizedImage = ImageResizer.ResizeImage(imageData, 400, 400);
+
                 //Insert Image to Blob server
-                var imageUrl = await BlobService.UploadFileAsync(new MemoryStream(byteData));
+                var imageUrl = await BlobService.UploadFileAsync(new MemoryStream(resizedImage));
                 imageUrls.Add("https://msorli.blob.core.windows.net/images/" + imageUrl);
             }
 

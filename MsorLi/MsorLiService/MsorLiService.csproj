@@ -163,10 +163,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Startup.MobileApp.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ItemImageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataObjects\Item.cs" />
+    <Compile Include="DataObjects\ItemCategory.cs" />
     <Compile Include="DataObjects\ItemImage.cs" />
     <Compile Include="DataObjects\User.cs" />
     <Compile Include="Models\MsorLiContext.cs" />

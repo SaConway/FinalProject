@@ -35,13 +35,13 @@ namespace MsorLi.Views
             NavigationPage.SetHasNavigationBar(this, false);
 
             InitializeComponent();
-            
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             await RefreshItems(true, syncItems: true);
+
         }
 
         public async void OnRefresh(object sender, EventArgs e)
@@ -89,6 +89,8 @@ namespace MsorLi.Views
                 TappedEventArgs obj = e as TappedEventArgs;
                 var itemId = obj.Parameter.ToString();
 
+                if (itemId == "") return;
+
                 await Navigation.PushAsync(new ItemPage(itemId));
             }
 
@@ -97,17 +99,22 @@ namespace MsorLi.Views
 
         private void CreateImagePairs()
         {
-            ImagePairs.Clear();
-
-            for (int i = 0; i < AllImages.Count; i += 2)
+            try
             {
-                string Item1 = AllImages[i].Url;
-                string Item2 = AllImages[i].ItemId;
-                string Item3 = i + 1 < AllImages.Count ? AllImages[i + 1].Url : "";
-                string Item4 = i + 1 < AllImages.Count ? AllImages[i + 1].ItemId : "";
+                ImagePairs.Clear();
 
-                ImagePairs.Add(new Tuple<string, string, string, string>(Item1, Item2, Item3, Item4));
+                for (int i = 0; i < AllImages.Count; i += 2)
+                {
+                    string Item1 = AllImages[i].Url;
+                    string Item2 = AllImages[i].ItemId;
+                    string Item3 = i + 1 < AllImages.Count ? AllImages[i + 1].Url : "";
+                    string Item4 = i + 1 < AllImages.Count ? AllImages[i + 1].ItemId : "";
+
+                    ImagePairs.Add(new Tuple<string, string, string, string>(Item1, Item2, Item3, Item4));
+                }
             }
+
+            catch (Exception) { }
         }
 
         public async void OpenMenu(object sender, SelectedItemChangedEventArgs e)
@@ -120,6 +127,18 @@ namespace MsorLi.Views
             }
 
             catch (Exception) { }
+        }
+
+        private async void AddItem_EventClick(object sender, EventArgs e)
+        {
+            try
+            {
+                await Navigation.PushAsync(new AddItemPage());
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         //---------------------------------

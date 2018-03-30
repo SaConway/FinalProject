@@ -3,29 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MsorLi.Views.ItemListPage"
              Title="מסור-לי">
-    
+
     <ContentPage.Content>
-        
        
         <StackLayout>
-            <Grid VerticalOptions="FillAndExpand" Margin="10">
+
+            <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#2196F3">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <BoxView Color="#4286f4" Grid.Row="0" Grid.ColumnSpan="3" Scale="2"/>
-                
-                <Button Text="main page" TextColor="White" HorizontalOptions="CenterAndExpand" Grid.Column="0"/>
+                <Button Text="כל המוצרים" TextColor="White" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" Grid.Column="0"/>
 
-                <SearchBar Placeholder="search" Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand"/>
+                <SearchBar Placeholder="חיפוש.." HorizontalTextAlignment="End" Grid.Column="1"/>
 
-                <Button Text="Menu" TextColor="White" Grid.Row="0" Grid.Column="2" Clicked="OpenMenu"/>
+                <Button Text="תפריט" TextColor="White" BackgroundColor="Transparent" Grid.Column="2" Clicked="OpenMenu"/>
                 
             </Grid>
+            
+            <Button HorizontalOptions="FillAndExpand" Clicked="AddItem_EventClick" Text="Add" TextColor="White"/>
+            
             <ActivityIndicator IsVisible="False" IsEnabled="True" x:Name="syncIndicator"/>
 
             <ListView x:Name="listView_items" IsPullToRefreshEnabled="true" Refreshing="OnRefresh" HasUnevenRows="True" SeparatorVisibility="None">
@@ -60,11 +63,11 @@
 
                             </Grid>
 
-                    </ViewCell>
+                        </ViewCell>
                     
-                </DataTemplate>
-            </ListView.ItemTemplate>    
-        </ListView>
-    </StackLayout>
+                    </DataTemplate>
+                </ListView.ItemTemplate>    
+            </ListView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

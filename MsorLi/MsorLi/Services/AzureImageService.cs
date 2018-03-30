@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Microsoft.WindowsAzure.MobileServices;
 using MsorLi.Models;
 
 
@@ -50,7 +51,10 @@ namespace MsorLi.Services
             try
             {
                 IEnumerable<ItemImage> images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true)
                     .ToEnumerableAsync();
+
                 return new ObservableCollection<ItemImage>(images);
             }
 
