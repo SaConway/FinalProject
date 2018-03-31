@@ -1,6 +1,5 @@
 ﻿using MsorLi.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -30,19 +29,20 @@ namespace MsorLi.Services
         // FUNCTIONS
         //---------------------------------
 
-        //public async Task<List<string>> GetAllCategories()
-        //{
-        //    try
-        //    {
-        //        var categories = await _table
-        //            .Select(Category => Category.Name)
-        //            .ToListAsync();
+        public async Task<ObservableCollection<string>> GetAllSavedOfUser(string userId)
+        {
+            try
+            {
+                var savedItems = await _table
+                    .Where(Saved => Saved.UserId == userId)
+                    .Select(Saved => Saved.ItemId)
+                    .ToEnumerableAsync();
 
-        //        return categories;
-        //    }
+                return new ObservableCollection<string>(savedItems);
+            }
 
-        //    catch (Exception) { }
-        //    return null;
-        //}
+            catch (Exception) { }
+            return null;
+        }
     }
 }

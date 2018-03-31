@@ -5,8 +5,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MsorLi.Models;
 using System.Collections.ObjectModel;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace MsorLi.Views
 {

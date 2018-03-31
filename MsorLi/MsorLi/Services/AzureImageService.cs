@@ -61,5 +61,22 @@ namespace MsorLi.Services
             catch (Exception) { }
             return null;
         }
+
+        public async Task<List<string>> GetImageUrl(string itemId)
+        {
+            try
+            {
+                var imageUrl = await _table
+                    .Where(i => i.ItemId == itemId && i.IsPriorityImage == true)
+                    .Select(i => i.Url)
+                    .ToListAsync();
+
+                return imageUrl;
+            }
+
+            catch (Exception) { }
+            return null;
+        
+        }
     }
 }

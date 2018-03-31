@@ -111,6 +111,8 @@ namespace MsorLi.Views
 
             catch (Exception)
             {
+                await DisplayAlert("שגיאה", "לא ניתן להשלים את פעולת פרסום המוצר. נסה/י שנית מאוחר יותר.", "אישור");
+                await Navigation.PopAsync();
             }
         }
 

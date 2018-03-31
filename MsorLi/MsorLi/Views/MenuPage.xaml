@@ -26,17 +26,17 @@
                         <TableSection>
                             <ViewCell>
                                 <StackLayout Orientation="Vertical" >
-                                    <Label Text="פרופיל" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Button Text="פרופיל" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </StackLayout>
                             </ViewCell>
                             <ViewCell >
                                 <StackLayout Orientation="Vertical" >
-                                    <Label Text="אהבתי " HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Button Text="מוצרים שאהבתי" Clicked="SavedItemsClickEvent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </StackLayout>
                             </ViewCell>
                             <ViewCell>
                                 <StackLayout Orientation="Vertical" >
-                                    <Label Text="הגדרות" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Button Text="הגדרות" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </StackLayout>
                             </ViewCell>
                         </TableSection>

@@ -11,5 +11,10 @@ namespace MsorLi.Views
         {
             InitializeComponent();
         }
+
+        private async void SavedItemsClickEvent(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SavedItemsPage());
+        }
     }
 }
