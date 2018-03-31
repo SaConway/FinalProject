@@ -3,55 +3,64 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MsorLi.Views.SavedItemsPage"
              Title="מוצרים שאהבתי">
-    
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="myBodyStyle" TargetType="Label" BaseResourceKey="BodyStyle"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label x:Name="NoItems" IsVisible="False" Text="לא קיימים מוצרים להציג.." VerticalOptions="Start" HorizontalOptions="CenterAndExpand" Margin="0,10,0,0"/>
+        <ScrollView>
+            <StackLayout>
+                <Label x:Name="NoItems" IsVisible="False" Text="לא קיימים מוצרים להציג.." VerticalOptions="Start" 
+                       HorizontalOptions="CenterAndExpand" Margin="0,10,0,0" Style="{DynamicResource myBodyStyle}"/>
 
-            <ListView x:Name="listView_items" HasUnevenRows="True" Margin="5">
-                <ListView.ItemTemplate>
-                    <DataTemplate >
-                        <ViewCell>
+                <ListView x:Name="listView_items" HasUnevenRows="True" Margin="5">
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <ViewCell>
 
-                            <Grid Margin="10" HorizontalOptions="EndAndExpand" HeightRequest="{Binding Item4}">
+                                <Grid Margin="10" HorizontalOptions="EndAndExpand" HeightRequest="{Binding Item4}">
 
-                                <Grid.RowDefinitions>
+                                    <Grid.RowDefinitions>
                                     
-                                    <RowDefinition/>
+                                        <RowDefinition/>
                                     
-                                </Grid.RowDefinitions>
+                                    </Grid.RowDefinitions>
                                 
-                                <Grid.ColumnDefinitions>
+                                    <Grid.ColumnDefinitions>
 
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="2*"/>
 
-                                </Grid.ColumnDefinitions>
+                                    </Grid.ColumnDefinitions>
 
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0">
+                                    <StackLayout VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0">
 
-                                    <Button Text="מחיקה"/>
-                                    <Button Text="למודעה"/>
+                                        <Button Text="מחיקה" Clicked="DeleteSavedItem"/>
+                                        <Button Text="למודעה"/>
 
-                                </StackLayout>
+                                    </StackLayout>
 
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1">
+                                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1">
 
-                                    <Label Text="{Binding Item2}"/>
-                                    <Label Text="{Binding Item3}"/>
+                                        <Label Text="{Binding Item2}" Style="{DynamicResource myBodyStyle}"/>
+                                        <Label Text="{Binding Item3}" Style="{DynamicResource myBodyStyle}"/>
 
-                                </StackLayout>
+                                    </StackLayout>
 
-                                <Image Source="{Binding Item1}" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2"/>
+                                    <Image Source="{Binding Item1}" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2"/>
                                 
-                            </Grid>
+                                </Grid>
                             
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

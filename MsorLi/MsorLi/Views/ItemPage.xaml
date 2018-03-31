@@ -34,7 +34,7 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <ScrollView >
+        <ScrollView>
             <StackLayout>
 
                 <!--תמונות-->
@@ -130,8 +130,11 @@
                 </Grid>
 
                 <!--כפתורים-->
-                <Button Text="שיתוף מוצר" FontSize="Medium" HorizontalOptions="FillAndExpand" Margin="30,20,30,0" Style="{StaticResource ButtonStyle}"/>
-                <Button Text="שמירת מוצר" Clicked="SaveButtonClick" FontSize="Medium" HorizontalOptions="FillAndExpand" Margin="30,0,30,30" Style="{StaticResource ButtonStyle}"/>
+                <Button Text="שיתוף מוצר" FontSize="Medium" HorizontalOptions="FillAndExpand"
+                        Margin="30,20,30,0" Style="{StaticResource ButtonStyle}"/>
+                
+                <Button x:Name="SaveButton" Clicked="SaveButtonClick" FontSize="Medium"
+                        HorizontalOptions="FillAndExpand" Margin="30,0,30,30" Style="{StaticResource ButtonStyle}"/>
 
             </StackLayout>
         </ScrollView>

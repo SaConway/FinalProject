@@ -15,7 +15,10 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------
 
-        string _itemId = "";
+        AzureSavedItemService _savedItemService = AzureSavedItemService.DefaultManager;
+        SavedItem _savedItem = new SavedItem();
+        bool _saveItem = false;
+        bool _itemWasSaved = false;
 
         //---------------------------------
         // FUNCTIONS
@@ -25,18 +28,47 @@ namespace MsorLi.Views
         {
             try
             {
-                InitializeComponent();
-
-                _itemId = itemId;
-
-                imagesView.HeightRequest = (double)(App.ScreenHeight / 3.5);
-
-                UpdateItemDetails(itemId);
+                _savedItem.ItemId = itemId;
+                _savedItem.UserId = Settings._GeneralSettings;
             }
             catch (Exception)
             {
 
             }
+        }
+
+        async protected override void OnAppearing()
+        {
+            try
+            {
+                InitializeComponent();
+                imagesView.HeightRequest = (double)(App.ScreenHeight / 2.5);
+                UpdateItemDetails(_savedItem.ItemId);
+
+                if (_savedItem.UserId != "")
+                {
+                    // User is logged in
+                    // Check if the item is saved by the user
+                    var itemSavedId = await _savedItemService.IsItemSaved(_savedItem.ItemId, _savedItem.UserId);
+
+                    if (itemSavedId != "")
+                    {
+                        _savedItem.Id = itemSavedId;
+                        _itemWasSaved = true;
+                        SaveButton.Text = "בטל שמירת מוצר";
+                    }
+                    else
+                    {
+                        _itemWasSaved = false;
+                        SaveButton.Text = "שמור מוצר";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         private async void UpdateItemDetails(string itemId)
@@ -77,20 +109,41 @@ namespace MsorLi.Views
         {
             try
             {
-                if (Settings._GeneralSettings == "")
+                if (_savedItem.UserId == "")
                 {
+                    // User is Not logedin
                     await Navigation.PushAsync(new LoginPage());
                 }
                 else
                 {
-                    var userId = Settings._GeneralSettings;
+                    // User is allowed to save Item
 
-                    AzureSavedItemService savedItemService = AzureSavedItemService.DefaultManager;
-                    await savedItemService.UploadToServer(new SavedItem { ItemId = _itemId, UserId = userId }, null);
+                    if (SaveButton.Text == "שמור מוצר")
+                    {
+                        SaveButton.Text = "בטל שמירת מוצר";
+                        _saveItem = true;
+                    }
+                    else
+                    {
+                        SaveButton.Text = "שמור מוצר";
+                        _saveItem = false;
+                    }
                 }
             }
 
             catch (Exception) { }
+        }
+
+        protected async override void OnDisappearing()
+        {
+            if (_saveItem && !_itemWasSaved)
+            {
+                await _savedItemService.UploadToServer(_savedItem, null);
+            }
+            else if (!_saveItem && _itemWasSaved)
+            {
+                await _savedItemService.DeleteSavedItem(_savedItem);
+            }
         }
     }
 }

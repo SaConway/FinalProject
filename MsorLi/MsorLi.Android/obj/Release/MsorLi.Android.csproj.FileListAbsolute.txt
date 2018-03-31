@@ -1,4 +1,3 @@
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\MsorLi.Android.csprojResolveAssemblyReference.cache
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Release\MsorLi.Android.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Release\MsorLi.Android.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Release\com.companyname.MsorLi.apk
@@ -27,6 +26,7 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\res\v
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\res\drawable\xamarin_logo.png
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\R.cs.flag
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\uploadflags.txt
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\MsorLi.Droid.Views.SavedItemsPage.xaml.g.cs
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Release\Microsoft.CSharp.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Release\Mono.Android.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Release\mscorlib.pdb

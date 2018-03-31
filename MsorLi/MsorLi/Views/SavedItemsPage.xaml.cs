@@ -14,6 +14,9 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------
 
+        AzureSavedItemService _savedItemService = AzureSavedItemService.DefaultManager;
+
+
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
@@ -34,8 +37,7 @@ namespace MsorLi.Views
                     // Create List of Saved Items
 
                     var userId = Settings._GeneralSettings;
-                    AzureSavedItemService savedItemService = AzureSavedItemService.DefaultManager;
-                    var savedItemIds = await savedItemService.GetAllSavedOfUser(userId);
+                    var savedItemIds = await _savedItemService.GetAllSavedOfUser(userId);
 
                     if (savedItemIds.Count == 0)
                     {
@@ -86,5 +88,19 @@ namespace MsorLi.Views
                 return false;
             }
         }
+
+        private async void DeleteSavedItem(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+
+            catch (Exception)
+            {
+                await DisplayAlert("שגיאה", "לא ניתן למחוק מוצר. נסה שנית מאוחר יותר.", "אישור");
+            }
+        }
+
     }
 }
