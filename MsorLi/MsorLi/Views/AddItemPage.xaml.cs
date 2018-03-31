@@ -34,16 +34,24 @@ namespace MsorLi.Views
         {
             InitializeComponent();
         }
-
+        
         //---------------------------------------------------
         // EVENT FUNCTIONS
         //---------------------------------------------------
-
+        
         async protected override void OnAppearing()
         {
-            if (Settings._GeneralSettings != "True")
+            if (Settings._GeneralSettings == "")
             {
                 await Navigation.PushAsync(new LoginPage());
+            }
+
+            AzureCategoryService azureCategory = AzureCategoryService.DefaultManager;
+            List<string> categories = await azureCategory.GetAllCategories();
+
+            foreach (var c in categories)
+            {
+                category.Items.Add(c);
             }
         }
 
@@ -134,7 +142,7 @@ namespace MsorLi.Views
         {
             var item = new Item
             {
-                Title = name.Text,
+                Category = category.Items[category.SelectedIndex],
                 NumOfImages = numOfUrls,
                 Description = description.Text,
                 Condition = condition.SelectedItem.ToString(),
@@ -199,12 +207,8 @@ namespace MsorLi.Views
                 IsVisable = false;
                 entry.Margin = new Thickness(25, 50, 25, 0);
             }
-
-            if (entry.Placeholder.ToString() == "שם מוצר")
-            {
-                nameLabel.IsVisible = IsVisable;
-            }
-            else if (entry.Placeholder.ToString() == "תיאור מוצר")
+            
+            if (entry.Placeholder.ToString() == "תיאור מוצר")
             {
                 descriptionLabel.IsVisible = IsVisable;
             }

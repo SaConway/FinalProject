@@ -53,21 +53,31 @@ namespace MsorLiService
     {
         protected override void Seed(MsorLiContext context)
         {
-        //    List<ItemCategory> Categories = new List<ItemCategory>
-        //    {
-        //        new ItemCategory { Id = Guid.NewGuid().ToString(), Name = "מוצרי חשמל" },
-        //        new ItemCategory { Id = Guid.NewGuid().ToString(), Name = "ריהוט וכלי בית" },
-        //        new ItemCategory { Id = Guid.NewGuid().ToString(), Name = "בגדים ואופנה" },
-        //        new ItemCategory { Id = Guid.NewGuid().ToString(), Name = "תחביבים" },
-        //    };
+            List<ItemCategory> Categories = new List<ItemCategory>
+            {
+                new ItemCategory { Id = Guid.NewGuid().ToString(), Name = "מוצרי חשמל" },
+                new ItemCategory { Id = Guid.NewGuid().ToString(), Name = "ריהוט וכלי בית" },
+                new ItemCategory { Id = Guid.NewGuid().ToString(), Name = "בגדים ואופנה" },
+                new ItemCategory { Id = Guid.NewGuid().ToString(), Name = "תחביבים" },
+            };
 
-        //    foreach (var c in Categories)
-        //    {
-        //        context.Set<ItemCategory>().Add(c);
-        //    }
+            foreach (var c in Categories)
+            {
+                context.Set<ItemCategory>().Add(c);
+            }
+
+            List<User> users = new List<User>
+            {
+                new User { Id = Guid.NewGuid().ToString(), FirstName="שגיא", LastName="קונווי", Email="1", Password="1", Phone="0544512565", Address="הגעש", Permission="user"  },
+                new User { Id = Guid.NewGuid().ToString(), FirstName="עידן", LastName="מרסיאנו", Email="2", Password="2", Phone="051554787", Address="המצדים", Permission="user"  },
+            };
+
+            foreach (var u in users)
+            {
+                context.Set<User>().Add(u);
+            }
 
             base.Seed(context);
         }
     }
 }
-

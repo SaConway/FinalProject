@@ -1,9 +1,12 @@
 ﻿using MsorLi.Models;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace MsorLi.Services
 {
-    public class AzureCategoryService : AzureService<ItemCategory>
+    class AzureCategoryService : AzureService<ItemCategory>
     {
         //---------------------------------
         // MEMBERS
@@ -27,10 +30,19 @@ namespace MsorLi.Services
         // FUNCTIONS
         //---------------------------------
 
-        async public Task AddAllCategories()
+        public async Task<List<string>> GetAllCategories()
         {
-            //await UploadToServer(new ItemCategory { Name= "מוצרי חשמל" }, null);
-            await _table.InsertAsync(new ItemCategory { Name = "מוצרי חשמל" });
+            try
+            {
+                var categories = await _table
+                    .Select(Category => Category.Name)
+                    .ToListAsync();
+
+                return categories;
+            }
+
+            catch (Exception) { }
+            return null;
         }
     }
 }

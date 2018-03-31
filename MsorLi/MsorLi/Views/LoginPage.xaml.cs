@@ -35,7 +35,7 @@ namespace MsorLi.Views
                 {
                     // Success
 
-                    Settings._GeneralSettings = "True";
+                    Settings._GeneralSettings = ThisUser[0].Id;
                     await Navigation.PopAsync();
                 }
 

@@ -20,15 +20,15 @@
         <ScrollView>
             <StackLayout> 
                 <!--שם מוצר-->
-                <Label IsVisible="False" Text="שם מוצר" x:Name="nameLabel" HorizontalOptions="FillAndExpand" Margin="25,50,25,-25" HorizontalTextAlignment="End"/>
-                <Entry x:Name="name" TextChanged="NameTextChangedEvent" Placeholder="שם מוצר" PlaceholderColor="#999999" HorizontalOptions="FillAndExpand" Margin="25,50,25,0" HorizontalTextAlignment="End"/>
+                <Label Text="קטגוריה" HorizontalOptions="FillAndExpand" Margin="25,50,25,-15" HorizontalTextAlignment="End"/>
+                <Picker x:Name="category" HorizontalOptions="FillAndExpand" Margin="25,5,25,0"/>
 
                 <!--תיאור מוצר-->
                 <Label IsVisible="False" Text="תיאור מוצר" x:Name="descriptionLabel" HorizontalOptions="FillAndExpand" Margin="25,50,25,-25" HorizontalTextAlignment="End"/>
                 <Entry x:Name="description" TextChanged="NameTextChangedEvent" Placeholder="תיאור מוצר" PlaceholderColor="#999999" HorizontalOptions="FillAndExpand" Margin="25,50,25,0" HorizontalTextAlignment="End"/>
 
                 <!--מצב מוצר-->
-                <Label Text="מצב מוצר" HorizontalOptions="FillAndExpand" Margin="25,50,25,-25" HorizontalTextAlignment="End"/>
+                <Label Text="מצב מוצר" HorizontalOptions="FillAndExpand" Margin="25,50,25,-15" HorizontalTextAlignment="End"/>
                 <Picker x:Name="condition"  HorizontalOptions="FillAndExpand" Margin="25,5,25,0">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">

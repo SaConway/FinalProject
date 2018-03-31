@@ -4,7 +4,7 @@ namespace MsorLiService.DataObjects
 {
     public class Item : EntityData
     {
-        public string Title { get; set; }
+        public string Category { get; set; }
         public int NumOfImages { get; set; }
         public string Description { get; set; }
         public string Condition { get; set; }

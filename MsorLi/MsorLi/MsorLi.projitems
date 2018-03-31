@@ -43,10 +43,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ItemCategory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ItemImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SavedItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureCategoryService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureImageService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureItemService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\AzureSavedItemService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureUserService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BlobService.cs" />

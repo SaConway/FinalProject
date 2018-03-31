@@ -131,7 +131,7 @@
 
                 <!--כפתורים-->
                 <Button Text="שיתוף מוצר" FontSize="Medium" HorizontalOptions="FillAndExpand" Margin="30,20,30,0" Style="{StaticResource ButtonStyle}"/>
-                <Button Text="שמירת מוצר" FontSize="Medium" HorizontalOptions="FillAndExpand" Margin="30,0,30,30" Style="{StaticResource ButtonStyle}"/>
+                <Button Text="שמירת מוצר" Clicked="SaveButtonClick" FontSize="Medium" HorizontalOptions="FillAndExpand" Margin="30,0,30,30" Style="{StaticResource ButtonStyle}"/>
 
             </StackLayout>
         </ScrollView>
