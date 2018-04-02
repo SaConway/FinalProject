@@ -25,12 +25,14 @@ namespace MsorLi.Views
         {
             try
             {
+                // Check if the user is logged in
                 if (Settings._GeneralSettings == "")
                 {
+                    // If not, go to login
                     await Navigation.PushAsync(new LoginPage());
                 }
 
-                else // User has Logged In
+                else
                 {
                     InitializeComponent();
                     
@@ -74,7 +76,7 @@ namespace MsorLi.Views
             }
         }
 
-        // For Android Only
+        // For android only, return to item list
         protected override bool OnBackButtonPressed()
         {
             try

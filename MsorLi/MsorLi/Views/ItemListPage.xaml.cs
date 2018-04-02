@@ -89,10 +89,15 @@ namespace MsorLi.Views
 
                 if (itemId == "") return;
 
-                await Navigation.PushAsync(new ItemPage(itemId));
+                ItemPage itemPage = new ItemPage(itemId);
+                await itemPage.InitializeAsync();
+                await Navigation.PushAsync(itemPage);
             }
 
-            catch (Exception) { }
+            catch (Exception)
+            {
+                await DisplayAlert("שגיאה", "לא ניתן לטעון עמוד מבוקש", "אישור");
+            }
         }
 
         private void CreateImagePairs()

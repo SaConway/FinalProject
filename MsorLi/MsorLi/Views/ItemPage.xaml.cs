@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MsorLi.Utilities;
+using System.Threading.Tasks;
 
 namespace MsorLi.Views
 {
@@ -15,101 +16,112 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------
 
-        AzureSavedItemService _savedItemService = AzureSavedItemService.DefaultManager;
-        SavedItem _savedItem = new SavedItem();
         bool _saveItem = false;
         bool _itemWasSaved = false;
+
+        Item _item = new Item();
+        string _userId = Settings._GeneralSettings;
+        ObservableCollection<ItemImage> _images = new ObservableCollection<ItemImage>();
+        string _savedId = "";
+
+        AzureSavedItemService _savedItemService = AzureSavedItemService.DefaultManager;
+        AzureImageService imageService = AzureImageService.DefaultManager;
+        AzureItemService itemService = AzureItemService.DefaultManager;
 
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
 
+        // INITIALIZE FUNCTIONS
+        //----------------------------------------------------------
+
+        // c-tor
         public ItemPage(string itemId)
         {
-            try
-            {
-                _savedItem.ItemId = itemId;
-                _savedItem.UserId = Settings._GeneralSettings;
-            }
-            catch (Exception)
-            {
-
-            }
+            _item.Id = itemId;
         }
 
-        async protected override void OnAppearing()
+        public async Task InitializeAsync()
         {
-            try
-            {
-                InitializeComponent();
-                imagesView.HeightRequest = (double)(App.ScreenHeight / 2.5);
-                UpdateItemDetails(_savedItem.ItemId);
+            var task1 = SetItemAsync();
+            var task2 = SetItemImagesAsync();
+            var task3 = SetItemSavedAsync();
 
-                if (_savedItem.UserId != "")
-                {
-                    // User is logged in
-                    // Check if the item is saved by the user
-                    var itemSavedId = await _savedItemService.IsItemSaved(_savedItem.ItemId, _savedItem.UserId);
+            await Task.WhenAll(task1, task2, task3);
 
-                    if (itemSavedId != "")
-                    {
-                        _savedItem.Id = itemSavedId;
-                        _itemWasSaved = true;
-                        SaveButton.Text = "בטל שמירת מוצר";
-                    }
-                    else
-                    {
-                        _itemWasSaved = false;
-                        SaveButton.Text = "שמור מוצר";
-                    }
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-
+            MyInitializeComponent();
         }
 
-        private async void UpdateItemDetails(string itemId)
+        public void MyInitializeComponent()
         {
-            try
+            InitializeComponent();
+
+            // Update item details
+
+            title.Text = _item.Category;
+            description.Text = _item.Description;
+            condition.Text = _item.Condition;
+            location.Text = _item.Location;
+            contact_name.Text = _item.ContactName;
+            contact_number.Text = _item.ContactNumber;
+            date.Text = _item.Date;
+
+            // Update item images
+
+            imagesView.HeightRequest = (double)(App.ScreenHeight / 2.5);
+
+            ObservableCollection<Models.Image> images = new ObservableCollection<Models.Image>();
+
+            for (int i = 0; i < _images.Count; ++i)
             {
-                AzureImageService imageService = AzureImageService.DefaultManager;
-                AzureItemService itemService = AzureItemService.DefaultManager;
-
-                Item item = await itemService.GetItemAsync(itemId);
-
-                title.Text = item.Category;
-
-                ObservableCollection<Models.Image> images = new ObservableCollection<Models.Image>();
-
-                var itemImages = await imageService.GetItemImages(item.Id);
-
-                for (int i = 0; i < itemImages.Count; ++i)
-                {
-                    Models.Image image = new Models.Image { ImageUrl = itemImages[i].Url, ImageNumber = (i + 1).ToString() + " מתוך " + itemImages.Count.ToString() };
-                    images.Add(image);
-                }
-
-                imagesView.ItemsSource = images;
-
-                description.Text = item.Description;
-                condition.Text = item.Condition;
-                location.Text = item.Location;
-                contact_name.Text = item.ContactName;
-                contact_number.Text = item.ContactNumber;
-                date.Text = item.Date;
+                Models.Image image = new Models.Image { ImageUrl = _images[i].Url, ImageNumber = (i + 1).ToString() + " מתוך " + _images.Count.ToString() };
+                images.Add(image);
             }
 
-            catch (Exception) { }
+            imagesView.ItemsSource = images;
+
+            // Update saved item details
+
+            if (_userId == "") return;    // User is not logged in, nothing to change
+
+            if (_savedId != "")
+            {
+                // Item is not saved by the user
+
+                _itemWasSaved = true;
+                SaveButton.Text = "בטל שמירת מוצר";
+            }
+            else
+            {
+                // Item is saved by the user
+
+                _itemWasSaved = false;
+                SaveButton.Text = "שמור מוצר";
+            }
         }
+
+        protected async override void OnDisappearing()
+        {
+            SavedItem savedItem = new SavedItem { Id = _savedId, ItemId = _item.Id, UserId = _userId };
+
+            if (_saveItem && !_itemWasSaved)
+            {
+                await _savedItemService.UploadToServer(savedItem, null);
+            }
+            else if (!_saveItem && _itemWasSaved)
+            {
+                await _savedItemService.DeleteSavedItem(savedItem);
+            }
+        }
+
+        // EVENT FUNCTIONS
+        //----------------------------------------------------------
 
         private async void SaveButtonClick(object sender, EventArgs e)
         {
             try
             {
-                if (_savedItem.UserId == "")
+                if (_userId == "")
                 {
                     // User is Not logedin
                     await Navigation.PushAsync(new LoginPage());
@@ -131,19 +143,28 @@ namespace MsorLi.Views
                 }
             }
 
-            catch (Exception) { }
+            catch (Exception)
+            {
+                await DisplayAlert("שגיאה", "לא ניתן לשמור מוצר מבוקש. נסה שנית.", "אישור");
+            }
         }
 
-        protected async override void OnDisappearing()
+        // PRIVATE FUNCTIONS
+        //----------------------------------------------------------
+
+        private async Task SetItemAsync()
         {
-            if (_saveItem && !_itemWasSaved)
-            {
-                await _savedItemService.UploadToServer(_savedItem, null);
-            }
-            else if (!_saveItem && _itemWasSaved)
-            {
-                await _savedItemService.DeleteSavedItem(_savedItem);
-            }
+            _item = await itemService.GetItemAsync(_item.Id);
+        }
+
+        private async Task SetItemImagesAsync()
+        {
+            _images = await imageService.GetItemImages(_item.Id);
+        }
+
+        private async Task SetItemSavedAsync()
+        {
+            _savedId = await _savedItemService.IsItemSaved(_item.Id, _userId);
         }
     }
 }
