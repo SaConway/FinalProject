@@ -132,8 +132,8 @@
                 <!--כפתורים-->
                 <Button Text="שיתוף מוצר" FontSize="Medium" HorizontalOptions="FillAndExpand"
                         Margin="30,20,30,0" Style="{StaticResource ButtonStyle}"/>
-                
-                <Button x:Name="SaveButton" Clicked="SaveButtonClick" FontSize="Medium"
+
+                <Button x:Name="SaveButton" Text="שמור מוצר" Clicked="SaveButtonClick" FontSize="Medium"
                         HorizontalOptions="FillAndExpand" Margin="30,0,30,30" Style="{StaticResource ButtonStyle}"/>
 
             </StackLayout>

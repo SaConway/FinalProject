@@ -22,6 +22,25 @@ namespace MsorLi.Views
             InitializeComponent();
         }
 
+
+        // EVENT FUNCTIONS
+        //----------------------------------------------------------
+
+        // For android only, return to item list
+        protected override bool OnBackButtonPressed()
+        {
+            try
+            {
+                Navigation.PopToRootAsync();
+                return true;
+            }
+
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         private async void SubmitBtnClicked(object sender, EventArgs e)
         {
             try

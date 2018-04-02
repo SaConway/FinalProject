@@ -15,6 +15,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
 
                 </Grid.RowDefinitions>
                 <BoxView Grid.Row="0"/>
@@ -26,17 +27,22 @@
                         <TableSection>
                             <ViewCell>
                                 <StackLayout Orientation="Vertical" >
-                                    <Button Text="פרופיל" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Button Text="פרופיל" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </StackLayout>
                             </ViewCell>
                             <ViewCell >
                                 <StackLayout Orientation="Vertical" >
-                                    <Button Text="מוצרים שאהבתי" Clicked="SavedItemsClickEvent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Button Text="מוצרים שאהבתי" BackgroundColor="Transparent" Clicked="SavedItemsClickEvent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </StackLayout>
                             </ViewCell>
                             <ViewCell>
                                 <StackLayout Orientation="Vertical" >
-                                    <Button Text="הגדרות" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Button Text="הגדרות" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                            </ViewCell>
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical" >
+                                    <Button Text="התנתק" BackgroundColor="Transparent" Clicked="LogOutClickEvent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 </StackLayout>
                             </ViewCell>
                         </TableSection>

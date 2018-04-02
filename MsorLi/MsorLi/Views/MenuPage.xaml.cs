@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-
 using Xamarin.Forms;
+using MsorLi.Utilities;
 
 namespace MsorLi.Views
 {
@@ -14,7 +13,33 @@ namespace MsorLi.Views
 
         private async void SavedItemsClickEvent(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SavedItemsPage());
+            try
+            {
+                SavedItemsPage savedItemsPage = new SavedItemsPage();
+
+                if (Settings._GeneralSettings != "")
+                    await savedItemsPage.InitializeAsync();
+
+                await Navigation.PushAsync(savedItemsPage);
+            }
+
+            catch (Exception)
+            {
+                await DisplayAlert("שגיאה", "לא ניתן לטעון מוצרים. נסה שנית מאוחר יותר.", "אישור");
+            }
+        }
+
+        private async void LogOutClickEvent(object sender, EventArgs e)
+        {
+            try
+            {
+                Settings._GeneralSettings = "";
+                await Navigation.PopToRootAsync();
+            }
+            catch (Exception)
+            {
+                await DisplayAlert("שגיאה", "לא ניתן להתנתק. נסה שנית מאוחר יותר.", "אישור");
+            }
         }
     }
 }

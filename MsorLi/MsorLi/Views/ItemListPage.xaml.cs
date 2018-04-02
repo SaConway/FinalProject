@@ -122,10 +122,8 @@ namespace MsorLi.Views
 
         public async void OpenMenu(object sender, SelectedItemChangedEventArgs e)
         {
-
             try
             {
-                
                 await Navigation.PushAsync(new MenuPage());
             }
 

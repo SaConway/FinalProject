@@ -25,8 +25,8 @@ namespace MsorLi.Views
         string _savedId = "";
 
         AzureSavedItemService _savedItemService = AzureSavedItemService.DefaultManager;
-        AzureImageService imageService = AzureImageService.DefaultManager;
-        AzureItemService itemService = AzureItemService.DefaultManager;
+        AzureImageService _imageService = AzureImageService.DefaultManager;
+        AzureItemService _itemService = AzureItemService.DefaultManager;
 
         //---------------------------------
         // FUNCTIONS
@@ -100,17 +100,16 @@ namespace MsorLi.Views
             }
         }
 
+        // Override OnDisappearing
         protected async override void OnDisappearing()
         {
-            SavedItem savedItem = new SavedItem { Id = _savedId, ItemId = _item.Id, UserId = _userId };
-
             if (_saveItem && !_itemWasSaved)
             {
-                await _savedItemService.UploadToServer(savedItem, null);
+                await _savedItemService.UploadToServer(new SavedItem { ItemId = _item.Id, UserId = _userId }, null);
             }
             else if (!_saveItem && _itemWasSaved)
             {
-                await _savedItemService.DeleteSavedItem(savedItem);
+                await _savedItemService.DeleteSavedItem(new SavedItem { Id = _savedId, ItemId = _item.Id, UserId = _userId });
             }
         }
 
@@ -149,17 +148,35 @@ namespace MsorLi.Views
             }
         }
 
+        // EVENT FUNCTIONS
+        //----------------------------------------------------------
+
+        // For android only, return to item list
+        protected override bool OnBackButtonPressed()
+        {
+            try
+            {
+                Navigation.PopToRootAsync();
+                return true;
+            }
+
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         // PRIVATE FUNCTIONS
         //----------------------------------------------------------
 
         private async Task SetItemAsync()
         {
-            _item = await itemService.GetItemAsync(_item.Id);
+            _item = await _itemService.GetItemAsync(_item.Id);
         }
 
         private async Task SetItemImagesAsync()
         {
-            _images = await imageService.GetItemImages(_item.Id);
+            _images = await _imageService.GetItemImages(_item.Id);
         }
 
         private async Task SetItemSavedAsync()

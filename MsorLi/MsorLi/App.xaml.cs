@@ -1,4 +1,5 @@
 ﻿using MsorLi.Views;
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
 namespace MsorLi
@@ -10,7 +11,7 @@ namespace MsorLi
 
         public App ()
 		{
-			InitializeComponent();
+            InitializeComponent();
             MainPage = new NavigationPage (new ItemListPage());
         }
 
