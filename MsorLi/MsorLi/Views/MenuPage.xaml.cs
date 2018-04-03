@@ -15,12 +15,7 @@ namespace MsorLi.Views
         {
             try
             {
-                SavedItemsPage savedItemsPage = new SavedItemsPage();
-
-                if (Settings._GeneralSettings != "")
-                    await savedItemsPage.InitializeAsync();
-
-                await Navigation.PushAsync(savedItemsPage);
+                await Navigation.PushAsync(new SavedItemsPage());
             }
 
             catch (Exception)
