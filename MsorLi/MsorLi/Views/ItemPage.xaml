@@ -74,9 +74,11 @@
                 </control:CarouselView>
 
                 <!--פרטים על המוצר-->
-                <Label HorizontalTextAlignment="End" Margin="0,25,25,0" Text="פרטים על המוצר" Style="{StaticResource mySubtitleStyle}"/>
+                <Label HorizontalTextAlignment="End" Margin="0,25,25,0" Text="פרטים על המוצר"
+                       Style="{StaticResource mySubtitleStyle}"/>
 
-                <BoxView Margin="20,5,20,5" HorizontalOptions="FillAndExpand" HeightRequest="1" Style="{StaticResource GrayColorBoxView}"/>
+                <BoxView Margin="20,5,20,5" HorizontalOptions="FillAndExpand" HeightRequest="1"
+                         Style="{StaticResource GrayColorBoxView}"/>
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -91,23 +93,35 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Text="קטגוריה" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
-                    <Label Text="מצב מוצר" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
-                    <Label Text="מיקום" Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
-                    <Label Text="תאריך פרסום" Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
-                    <Label Text="תיאור המוצר" Grid.Row="4" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
+                    <Label Text="קטגוריה" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="End"
+                           Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
+                    <Label Text="מצב מוצר" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="End"
+                           Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
+                    <Label Text="מיקום" Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="End" 
+                           Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
+                    <Label Text="תאריך פרסום" Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="End"
+                           Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
+                    <Label Text="תיאור המוצר" Grid.Row="4" Grid.Column="1" HorizontalTextAlignment="End" 
+                           Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
 
-                    <Label x:Name="title" Grid.Row="0" Grid.Column="0" Margin="25,0,0,0" HorizontalTextAlignment="End" Style="{DynamicResource myBodyStyle}"/>
-                    <Label x:Name="condition" Grid.Row="1" Grid.Column="0" Margin="25,0,0,0" HorizontalTextAlignment="End" Style="{DynamicResource myBodyStyle}"/>
-                    <Label x:Name="location" Grid.Row="2" Grid.Column="0" Margin="25,0,0,0" HorizontalTextAlignment="End" Style="{DynamicResource myBodyStyle}"/>
-                    <Label x:Name="date" Grid.Row="3" Grid.Column="0" Margin="25,0,0,0" HorizontalTextAlignment="End" Style="{DynamicResource myBodyStyle}"/>
-                    <Label x:Name="description" Grid.Row="4" Grid.Column="0" Margin="25,0,0,0" HorizontalTextAlignment="End" Style="{DynamicResource myBodyStyle}"/>
+                    <Label x:Name="title" Grid.Row="0" Grid.Column="0" Margin="25,0,0,0" HorizontalTextAlignment="End" 
+                           Style="{DynamicResource myBodyStyle}"/>
+                    <Label x:Name="condition" Grid.Row="1" Grid.Column="0" Margin="25,0,0,0" HorizontalTextAlignment="End"
+                           Style="{DynamicResource myBodyStyle}"/>
+                    <Label x:Name="location" Grid.Row="2" Grid.Column="0" Margin="25,0,0,0" HorizontalTextAlignment="End"
+                           Style="{DynamicResource myBodyStyle}"/>
+                    <Label x:Name="date" Grid.Row="3" Grid.Column="0" Margin="25,0,0,0" HorizontalTextAlignment="End" 
+                           Style="{DynamicResource myBodyStyle}"/>
+                    <Label x:Name="description" Grid.Row="4" Grid.Column="0" Margin="25,0,0,0" HorizontalTextAlignment="End"
+                           Style="{DynamicResource myBodyStyle}"/>
                 </Grid>
 
                 <!--פרטים על המוסר-->
-                <Label HorizontalTextAlignment="End" Margin="0,25,25,0" Text="פרטים על המוסר" Style="{StaticResource mySubtitleStyle}"/>
+                <Label HorizontalTextAlignment="End" Margin="0,25,25,0" Text="פרטים על המוסר" 
+                       Style="{StaticResource mySubtitleStyle}"/>
 
-                <BoxView Margin="20,5,20,5" HorizontalOptions="FillAndExpand" HeightRequest="1" Style="{StaticResource GrayColorBoxView}"/>
+                <BoxView Margin="20,5,20,5" HorizontalOptions="FillAndExpand" HeightRequest="1" 
+                         Style="{StaticResource GrayColorBoxView}"/>
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -120,13 +134,19 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Text="שם" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
-                    <Label Text="טלפון" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
-                    <Label Text="דירוג" Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="End" Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
+                    <Label Text="שם" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="End"
+                           Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
+                    <Label Text="טלפון" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="End" 
+                           Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
+                    <Label Text="דירוג" Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="End" 
+                           Margin="0,0,25,0" Style="{DynamicResource myGrayBodyStyle}"/>
 
-                    <Label x:Name="contact_name" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="End" Style="{DynamicResource myBodyStyle}"/>
-                    <Label x:Name="contact_number" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="End" Style="{DynamicResource myBodyStyle}"/>
-                    <Label x:Name="contact_rate" Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="End" Style="{DynamicResource myBodyStyle}"/>
+                    <Label x:Name="contact_name" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="End" 
+                           Style="{DynamicResource myBodyStyle}"/>
+                    <Label x:Name="contact_number" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="End" 
+                           Style="{DynamicResource myBodyStyle}"/>
+                    <Label x:Name="contact_rate" Grid.Row="2" Grid.Column="0" HorizontalTextAlignment="End"
+                           Style="{DynamicResource myBodyStyle}"/>
                 </Grid>
 
                 <!--כפתורים-->

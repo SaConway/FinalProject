@@ -65,10 +65,13 @@
                 </control:CarouselView>
                     
                 <!--כפתור בחירת תמונות-->
-                <Button Text="בחירת תמונה" Margin="0,50,0,0" FontSize="Medium" BackgroundColor="Transparent" TextColor="#1976D2" HorizontalOptions="Center" x:Name="pickPictureButton" Clicked="PickImageButton_Event"/>
+                <Button Text="בחירת תמונה" Margin="0,50,0,0" FontSize="Medium"
+                        BackgroundColor="Transparent" TextColor="#1976D2"
+                        HorizontalOptions="Center" x:Name="pickPictureButton" Clicked="PickImageButton_Event"/>
 
                 <!--כפתור פרסום מוצר-->
-                <Button Text="פרסום מוצר" Clicked="OnAdd_Event" FontSize="Medium" HorizontalOptions="FillAndExpand" Margin="30,50,30,30" Style="{StaticResource ButtonStyle}"/>
+                <Button Text="פרסום מוצר" Clicked="OnAdd_Event" FontSize="Medium" 
+                        HorizontalOptions="FillAndExpand" Margin="30,50,30,30" Style="{StaticResource ButtonStyle}"/>
 
             </StackLayout>
         </ScrollView>

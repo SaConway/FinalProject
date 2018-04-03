@@ -4753,24 +4753,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\idanm\\.nuget\\packages\\": {},
+    "C:\\Users\\sagee\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\final\\FinalProject\\MsorLi\\MsorLi.Android\\MsorLi.Android.csproj",
+      "projectUniqueName": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.Android\\MsorLi.Android.csproj",
       "projectName": "MsorLi.Android",
-      "projectPath": "C:\\final\\FinalProject\\MsorLi\\MsorLi.Android\\MsorLi.Android.csproj",
-      "packagesPath": "C:\\Users\\idanm\\.nuget\\packages\\",
-      "outputPath": "C:\\final\\FinalProject\\MsorLi\\MsorLi.Android\\obj\\",
+      "projectPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.Android\\MsorLi.Android.csproj",
+      "packagesPath": "C:\\Users\\sagee\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\idanm\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\sagee\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],

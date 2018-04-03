@@ -19,7 +19,8 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Text="כל המוצרים" TextColor="White" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" Grid.Column="0"/>
+                <Button Text="כל המוצרים" TextColor="White" BackgroundColor="Transparent"
+                        HorizontalOptions="CenterAndExpand" Grid.Column="0"/>
 
                 <SearchBar Placeholder="חיפוש.." HorizontalTextAlignment="End" Grid.Column="1"/>
 
@@ -31,15 +32,15 @@
             
             <ActivityIndicator IsVisible="False" IsEnabled="True" x:Name="syncIndicator"/>
 
-            <ListView x:Name="listView_items" IsPullToRefreshEnabled="true" Refreshing="OnRefresh" SeparatorVisibility="None">
+            <ListView x:Name="listView_items" IsPullToRefreshEnabled="true" Refreshing="OnRefresh" HasUnevenRows="False" RowHeight="200">
                 <ListView.ItemTemplate>
-                    <DataTemplate >    
+                    <DataTemplate>    
                         <ViewCell>
 
-                            <Grid RowSpacing="0" ColumnSpacing="0">
+                            <Grid RowSpacing="0" ColumnSpacing="0" HeightRequest="{Binding Item5}">
 
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="200"/>
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
 
                                 <Grid.ColumnDefinitions>

@@ -30,16 +30,15 @@ namespace MsorLi.Services
         // FUNCTIONS
         //---------------------------------
 
-        public async Task<ObservableCollection<string>> GetAllSavedOfUser(string userId)
+        public async Task<ObservableCollection<SavedItem>> GetAllSavedOfUser(string userId)
         {
             try
             {
                 var savedItems = await _table
                     .Where(Saved => Saved.UserId == userId)
-                    .Select(Saved => Saved.ItemId)
                     .ToEnumerableAsync();
 
-                return new ObservableCollection<string>(savedItems);
+                return new ObservableCollection<SavedItem>(savedItems);
             }
 
             catch (Exception) { }

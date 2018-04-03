@@ -20,9 +20,11 @@ namespace MsorLi.Views
         AzureImageService _azureImageService = AzureImageService.DefaultManager;
 
         public ObservableCollection<ItemImage> AllImages = new ObservableCollection<ItemImage>();
-        public ObservableCollection<Tuple<string, string, string, string>> ImagePairs =
-                            new ObservableCollection<Tuple<string, string, string, string>>();
+        public ObservableCollection<Tuple<string, string, string, string, int>> ImagePairs =
+                            new ObservableCollection<Tuple<string, string, string, string, int>>();
+
         bool _startupRefresh = false;
+
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
@@ -151,7 +153,7 @@ namespace MsorLi.Views
                     string Item3 = i + 1 < AllImages.Count ? AllImages[i + 1].Url : "";
                     string Item4 = i + 1 < AllImages.Count ? AllImages[i + 1].ItemId : "";
 
-                    ImagePairs.Add(new Tuple<string, string, string, string>(Item1, Item2, Item3, Item4));
+                    ImagePairs.Add(new Tuple<string, string, string, string, int>(Item1, Item2, Item3, Item4, App.ScreenWidth / 2));
                 }
             }
 
