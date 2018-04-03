@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MsorLi.Models;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace MsorLi.Views
 {
@@ -21,7 +22,7 @@ namespace MsorLi.Views
         public ObservableCollection<ItemImage> AllImages = new ObservableCollection<ItemImage>();
         public ObservableCollection<Tuple<string, string, string, string>> ImagePairs =
                             new ObservableCollection<Tuple<string, string, string, string>>();
-        
+        bool _startupRefresh = false;
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
@@ -33,18 +34,34 @@ namespace MsorLi.Views
             NavigationPage.SetHasNavigationBar(this, false);
 
             InitializeComponent();
+
         }
+        protected async override void OnAppearing()
 
-        protected override async void OnAppearing()
         {
-            base.OnAppearing();
-            await RefreshItems(true, syncItems: true);
+            try
+            {
+                base.OnAppearing();
 
+                if (!_startupRefresh)
+                {
+                    await RefreshItems(true, syncItems: true);
+                    _startupRefresh = true;
+                }
+            }
+            catch
+            {
+                await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים", "אישור");
+
+            }
         }
 
         public async void OnRefresh(object sender, EventArgs e)
         {
+            if (sender == null) await DisplayAlert("Refresh Error", "Couldn't refresh data", "OK");
+
             var list = (ListView)sender;
+
             Exception error = null;
             try
             {
@@ -56,7 +73,11 @@ namespace MsorLi.Views
             }
             finally
             {
-                list.EndRefresh();
+                if (list != null)
+                {
+                    list.EndRefresh();
+
+                }
             }
 
             if (error != null)
@@ -72,11 +93,28 @@ namespace MsorLi.Views
 
         private async Task RefreshItems(bool showActivityIndicator, bool syncItems)
         {
-            using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
+            try
             {
-                AllImages = await _azureImageService.GetAllPriorityImages();
-                CreateImagePairs();
-                listView_items.ItemsSource = ImagePairs;
+                using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
+                {
+                    AllImages = await _azureImageService.GetAllPriorityImages();
+                    if (AllImages != null)
+                    {
+                        CreateImagePairs();
+
+                        if (ImagePairs != null)
+                        {
+                            //listView_items.HasUnevenRows = true;
+                            listView_items.ItemsSource = ImagePairs;
+                        }
+                        else
+                            listView_items.ItemsSource = null;
+                    }
+                }
+            }
+            catch
+            {
+                await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים בתוך רענון", "אישור");
             }
         }
 
@@ -159,17 +197,26 @@ namespace MsorLi.Views
             //---------------------------------
             public ActivityIndicatorScope(ActivityIndicator indicator, bool showIndicator)
             {
-                _indicator = indicator;
-                _showIndicator = showIndicator;
+                try
+                {
 
-                if (showIndicator)
-                {
-                    _indicatorDelay = Task.Delay(2000);
-                    SetIndicatorActivity(true);
+
+                    _indicator = indicator;
+                    _showIndicator = showIndicator;
+
+                    if (showIndicator)
+                    {
+                        _indicatorDelay = Task.Delay(2000);
+                        SetIndicatorActivity(true);
+                    }
+                    else
+                    {
+                        _indicatorDelay = Task.FromResult(0);
+                    }
                 }
-                else
+                catch
                 {
-                    _indicatorDelay = Task.FromResult(0);
+                    Debug.WriteLine("שגיאה במכוון הטעינה");
                 }
             }
 
@@ -181,9 +228,17 @@ namespace MsorLi.Views
 
             public void Dispose()
             {
-                if (_showIndicator)
+                try
                 {
-                    _indicatorDelay.ContinueWith(t => SetIndicatorActivity(false), TaskScheduler.FromCurrentSynchronizationContext());
+                    if (_showIndicator)
+                    {
+                        _indicatorDelay.ContinueWith(t => SetIndicatorActivity(false), TaskScheduler.FromCurrentSynchronizationContext());
+                    }
+                }
+                catch
+                {
+                    Debug.WriteLine("שגיאה במכוון הטעינה");
+
                 }
             }
         }

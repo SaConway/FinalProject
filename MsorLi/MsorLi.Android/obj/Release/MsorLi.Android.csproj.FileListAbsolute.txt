@@ -101,12 +101,6 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\andro
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\android\assets\System.ServiceModel.Internals.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\android\assets\System.Xml.Linq.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\android\assets\System.Xml.pdb
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Release\MsorLi.Android.dll
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\linksrc\MsorLi.Android.dll.mdb
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\linksrc\FormsViewGroup.dll.mdb
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\linksrc\Microsoft.WindowsAzure.Storage.dll.mdb
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\linksrc\Plugin.Settings.Abstractions.dll.mdb
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\linksrc\Plugin.Settings.dll.mdb
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\linksrc\Xamarin.Forms.Core.dll.mdb
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\linksrc\Xamarin.Forms.Platform.Android.dll.mdb
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\linksrc\Xamarin.Forms.Xaml.dll.mdb
+C:\final\FinalProject\MsorLi\MsorLi.Android\obj\Release\MsorLi.Android.csprojResolveAssemblyReference.cache
+C:\final\FinalProject\MsorLi\MsorLi.Android\obj\Release\MsorLi.Android.dll
+C:\final\FinalProject\MsorLi\MsorLi.Android\obj\Release\MsorLi.Android.pdb

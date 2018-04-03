@@ -92,6 +92,7 @@ namespace MsorLi.Views
         public void MyInitializeComponent()
         {
             InitializeComponent();
+            listView_items.IsVisible = true;
 
             if (!_isItems)
             {
