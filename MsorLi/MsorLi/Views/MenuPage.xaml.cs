@@ -36,5 +36,16 @@ namespace MsorLi.Views
                 await DisplayAlert("שגיאה", "לא ניתן להתנתק. נסה שנית מאוחר יותר.", "אישור");
             }
         }
+        private async void ProfileClickEvent(object sender, EventArgs e)
+        {
+            try
+            {
+               await Navigation.PushAsync(new ProfilePage());
+            }
+            catch (Exception)
+            {
+                //await DisplayAlert("שגיאה", "לא ניתן להתנתק. נסה שנית מאוחר יותר.", "אישור");
+            }
+        }
     }
 }

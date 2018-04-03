@@ -3,56 +3,100 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="MsorLi.Views.MenuPage"
              Title="Menu">
+    
+    <!--Styles-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="LabelStyle" TargetType="Label" BaseResourceKey="BodyStyle"/>
+        </ResourceDictionary>
 
+    </ContentPage.Resources>
 
     <ContentPage.Content>
-        <ScrollView>
-            <Grid>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+        <Grid>
 
-                </Grid.RowDefinitions>
-                <BoxView Grid.Row="0"/>
-                <Image Source="unknown-user.png" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="100" HeightRequest="100"/>
-                <Label Text="Name of user" HorizontalOptions="Center" VerticalOptions="End" Grid.Row="2"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
 
-                <TableView Intent="Settings" Grid.Row="3">
-                    <TableRoot>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Orientation="Vertical" >
-                                    <Button Text="פרופיל" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                </StackLayout>
-                            </ViewCell>
-                            <ViewCell >
-                                <StackLayout Orientation="Vertical" >
-                                    <Button Text="מוצרים שאהבתי" BackgroundColor="Transparent" Clicked="SavedItemsClickEvent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                </StackLayout>
-                            </ViewCell>
-                            <ViewCell>
-                                <StackLayout Orientation="Vertical" >
-                                    <Button Text="הגדרות" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                </StackLayout>
-                            </ViewCell>
-                            <ViewCell>
-                                <StackLayout Orientation="Vertical" >
-                                    <Button Text="התנתק" BackgroundColor="Transparent" Clicked="LogOutClickEvent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                    </TableRoot>
-                </TableView>
+            <StackLayout Grid.Row="0" BackgroundColor="#00BCD4">
+                <StackLayout VerticalOptions="CenterAndExpand">
+                    <Image Source="unknown-user.png" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="100" HeightRequest="100"/>
+                    <Label Text="Name of user" HorizontalOptions="Center" VerticalOptions="End" />
+                </StackLayout>
+            </StackLayout>
+            
+            <StackLayout Grid.Row="1" Margin="0,20,20,0" >
 
-            </Grid>
+                <!--Profile button-->
+                <StackLayout Margin="0,20,0,0">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ProfileClickEvent">
+                        </TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+
+                    <Grid ColumnSpacing="10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="פרופיל" FontSize="Medium" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="0" Style="{DynamicResource LabelStyle}"/>
+                        <Image Source="profile.png" Grid.Column="1" />
+                    </Grid>
+
+                </StackLayout>
+
+                <!--Like items button-->
+                <StackLayout Margin="0,20,0,0">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SavedItemsClickEvent">
+                        </TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+
+                    <Grid ColumnSpacing="10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="מוצרים שאהבתי" FontSize="Medium" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="0" Style="{DynamicResource LabelStyle}"/>
+                        <Image Source="love_icon.png" Grid.Column="1" />
+                    </Grid>
+
+                </StackLayout>
 
 
-        </ScrollView>
+                <!--Logout button-->
+                <StackLayout Margin="0,20,0,0">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="LogOutClickEvent">
+                        </TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+
+                    <Grid ColumnSpacing="10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="התנתק " FontSize="Medium" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="0" Style="{DynamicResource LabelStyle}"/>
+                        <Image Source="logout.png" Grid.Column="1"/>
+                    </Grid>
+
+                </StackLayout>
+
+            </StackLayout>
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>
     
