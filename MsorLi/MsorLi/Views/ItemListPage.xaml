@@ -15,7 +15,7 @@
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
@@ -27,11 +27,11 @@
                 
             </Grid>
             
-            <Button HorizontalOptions="FillAndExpand" Clicked="AddItem_EventClick" Text="Add" TextColor="White"/>
+            <Button HorizontalOptions="FillAndExpand" Clicked="AddItem_EventClick" Text="Add" TextColor="Black"/>
             
             <ActivityIndicator IsVisible="False" IsEnabled="True" x:Name="syncIndicator"/>
 
-            <ListView x:Name="listView_items" IsPullToRefreshEnabled="true" Refreshing="OnRefresh" HasUnevenRows="True" SeparatorVisibility="None">
+            <ListView x:Name="listView_items" IsPullToRefreshEnabled="true" Refreshing="OnRefresh" SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate >    
                         <ViewCell>
