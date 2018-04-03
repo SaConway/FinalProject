@@ -22,12 +22,17 @@ namespace MsorLi.Views
         AzureItemService _itemService = AzureItemService.DefaultManager;
         AzureImageService _imageService = AzureImageService.DefaultManager;
 
+        ObservableCollection<SavedItem> _savedItems = new ObservableCollection<SavedItem>();
         ObservableCollection<Item> _items = new ObservableCollection<Item>();
         ObservableCollection<string> _imageURLs = new ObservableCollection<string>();
+
+        ObservableCollection<Tuple<string, string, string, int, int>> _myCollection =
+                    new ObservableCollection<Tuple<string, string, string, int, int>>();
 
         bool _isItems = false;
         string _userId = Settings._GeneralSettings;
         bool _myBoolean = true;
+        bool _firstAppearing = true;
 
         //---------------------------------
         // FUNCTIONS
@@ -35,51 +40,66 @@ namespace MsorLi.Views
 
         protected async override void OnAppearing()
         {
-            // Check if the user is logged in
-            if (Settings._GeneralSettings == "" && _myBoolean)
+            try
             {
-                _myBoolean = false;
+                // User is not logged in
+                if (Settings._GeneralSettings == "" && _myBoolean)
+                {
+                    _myBoolean = false;
+                    await Navigation.PushAsync(new LoginPage());
+                }
 
-                // If not, go to login
-                await Navigation.PushAsync(new LoginPage());
+                // User is not logged in and he is back from loog in page
+                else if (Settings._GeneralSettings == "" && !_myBoolean)
+                {
+                    await Navigation.PopToRootAsync();
+                }
+
+                // User has just looged in
+                else if (Settings._GeneralSettings != "" && !_myBoolean)
+                {
+                    _myBoolean = true;
+                    await InitializeAsync();
+                }
+
+                // User is looged in and its his first appearing
+                else if (Settings._GeneralSettings != "" && _firstAppearing)
+                {
+                    _firstAppearing = false;
+                    await InitializeAsync();
+                }
             }
 
-            else if (Settings._GeneralSettings == "" && !_myBoolean)
+            catch (Exception)
             {
+                await DisplayAlert("שגיאה", "לא לטעון דף מבוקש. נסה שנית מאוחר יותר.", "אישור");
                 await Navigation.PopToRootAsync();
-            }
-
-            // Check if user has just looged in
-            if (Settings._GeneralSettings != "" && !_myBoolean)
-            {
-                _myBoolean = true;
-                await InitializeAsync();
             }
         }
 
-        public async Task InitializeAsync()
+        private async Task InitializeAsync()
         {
-            var savedItemIds = await _savedItemService.GetAllSavedOfUser(Settings._GeneralSettings);
+            _savedItems = await _savedItemService.GetAllSavedOfUser(Settings._GeneralSettings);
 
-            if (savedItemIds.Count > 0)
+            if (_savedItems.Count > 0)
             {
                 // There Are Saved Items
 
                 _isItems = true;
 
-                for (int i = 0; i < savedItemIds.Count; i++)
+                for (int i = 0; i < _savedItems.Count; i++)
                 {
                     _items.Add(null);
                     _imageURLs.Add(null);
                 }
 
                 List<Task> TaskList = new List<Task>();
-                for (int i = 0; i < savedItemIds.Count; i++)
+                for (int i = 0; i < _savedItems.Count; i++)
                 {
-                    var task1 = SetItemAsync(savedItemIds[i], i);
+                    var task1 = SetItemAsync(_savedItems[i].ItemId, i);
                     TaskList.Add(task1);
 
-                    var task2 = SetImageUrlAsync(savedItemIds[i], i);
+                    var task2 = SetImageUrlAsync(_savedItems[i].ItemId, i);
                     TaskList.Add(task2);
                 }
 
@@ -89,7 +109,7 @@ namespace MsorLi.Views
             MyInitializeComponent();
         }
 
-        public void MyInitializeComponent()
+        private void MyInitializeComponent()
         {
             InitializeComponent();
             listView_items.IsVisible = true;
@@ -99,16 +119,15 @@ namespace MsorLi.Views
                 NoItems.IsVisible = true;
             }
 
-            ObservableCollection<Tuple<string, string, string, int>> savedItems =
-                    new ObservableCollection<Tuple<string, string, string, int>>();
+            _myCollection.Clear();
 
             for (int i = 0; i < _items.Count; i++)
             {
-                savedItems.Add(new Tuple<string, string, string, int>
-                        (_imageURLs[i], _items[i].Category, _items[i].Location, (App.ScreenHeight / 5)));
+                _myCollection.Add(new Tuple<string, string, string, int, int>
+                        (_imageURLs[i], _items[i].Category, _items[i].Location, (App.ScreenHeight / 5), i));
             }
 
-            listView_items.ItemsSource = savedItems;
+            listView_items.ItemsSource = _myCollection;
         }
 
         // EVENT FUNCTIONS
@@ -133,13 +152,40 @@ namespace MsorLi.Views
         {
             try
             {
+                TappedEventArgs obj = e as TappedEventArgs;
+                int index = (int)obj.Parameter;
 
+                _myCollection.Remove(new Tuple<string, string, string, int, int>
+                    (_imageURLs[index], _items[index].Category, _items[index].Location, (App.ScreenHeight / 5), index));
+
+                listView_items.ItemsSource = _myCollection;
+
+                if (_myCollection.Count == 0)
+                {
+                    NoItems.IsVisible = true;
+                    listView_items.IsVisible = false;
+                }
+
+                await _savedItemService.DeleteSavedItem(new SavedItem { Id = _savedItems[index].Id });
             }
 
             catch (Exception)
             {
                 await DisplayAlert("שגיאה", "לא ניתן למחוק מוצר. נסה שנית מאוחר יותר.", "אישור");
             }
+        }
+
+        private async void GoToItemPage(object sender, EventArgs e)
+        {
+            TappedEventArgs obj = e as TappedEventArgs;
+            int index = (int)obj.Parameter;
+
+            ItemPage itemPage = new ItemPage(_savedItems[index].ItemId);
+            itemPage._itemWasSaved = true;
+            itemPage._saveItem = true;
+
+            await itemPage.InitializeAsync();
+            await Navigation.PushAsync(itemPage);
         }
 
         // PRIVATE FUNCTIONS

@@ -25,35 +25,69 @@ namespace MsorLi.Views
         ObservableCollection<ImageSource> _images = new ObservableCollection<ImageSource>();
         const int MAX_NUM_OF_IMAGES = 4;
 
+        List<string> _categories = new List<string>();
+
+        bool _myBoolean = true;
+        bool _firstAppearing = true;
+
         //---------------------------------------------------
         // FUNCTIONS
         //---------------------------------------------------
 
-        // C-TOR
-        public AddItemPage()
-        {
-            InitializeComponent();
-        }
-        
-        //---------------------------------------------------
-        // EVENT FUNCTIONS
-        //---------------------------------------------------
-        
         async protected override void OnAppearing()
         {
-            if (Settings._GeneralSettings == "")
+            // User is not logged in
+            if (Settings._GeneralSettings == "" && _myBoolean)
             {
+                _myBoolean = false;
                 await Navigation.PushAsync(new LoginPage());
             }
 
-            AzureCategoryService azureCategory = AzureCategoryService.DefaultManager;
-            List<string> categories = await azureCategory.GetAllCategories();
-
-            foreach (var c in categories)
+            // User is not logged in and he is back from loog in page
+            else if (Settings._GeneralSettings == "" && !_myBoolean)
             {
-                category.Items.Add(c);
+                await Navigation.PopToRootAsync();
+            }
+
+            // User has just looged in
+            else if (Settings._GeneralSettings != "" && !_myBoolean)
+            {
+                _myBoolean = true;
+                await InitializeAsync();
+            }
+
+            // User is looged in and its his first appearing
+            else if (Settings._GeneralSettings != "" && _firstAppearing)
+            {
+                _firstAppearing = false;
+                await InitializeAsync();
             }
         }
+
+        private async Task InitializeAsync()
+        {
+            AzureCategoryService azureCategory = AzureCategoryService.DefaultManager;
+            _categories = await azureCategory.GetAllCategories();
+
+            MyInitializeComponent();
+        }
+
+        private void MyInitializeComponent()
+        {
+            InitializeComponent();
+
+            if (_categories != null)
+            {
+                foreach (var c in _categories)
+                {
+                    category.Items.Add(c);
+                }
+            }
+        }
+
+        //---------------------------------------------------
+        // EVENT FUNCTIONS
+        //---------------------------------------------------
 
         public async void PickImageButton_Event(object sender, System.EventArgs e)
         {

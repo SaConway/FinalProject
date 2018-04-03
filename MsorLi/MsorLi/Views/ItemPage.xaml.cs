@@ -16,8 +16,8 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------
 
-        bool _saveItem = false;
-        bool _itemWasSaved = false;
+        public bool _saveItem = false;
+        public bool _itemWasSaved = false;
 
         Item _item = new Item();
         string _userId = Settings._GeneralSettings;
@@ -109,7 +109,7 @@ namespace MsorLi.Views
             }
             else if (!_saveItem && _itemWasSaved)
             {
-                await _savedItemService.DeleteSavedItem(new SavedItem { Id = _savedId, ItemId = _item.Id, UserId = _userId });
+                await _savedItemService.DeleteSavedItem(new SavedItem { Id = _savedId });
             }
         }
 
@@ -147,16 +147,13 @@ namespace MsorLi.Views
                 await DisplayAlert("שגיאה", "לא ניתן לשמור מוצר מבוקש. נסה שנית.", "אישור");
             }
         }
-
-        // EVENT FUNCTIONS
-        //----------------------------------------------------------
-
+        
         // For android only, return to item list
         protected override bool OnBackButtonPressed()
         {
             try
             {
-                Navigation.PopToRootAsync();
+                Navigation.PopAsync();
                 return true;
             }
 

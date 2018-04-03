@@ -14,19 +14,17 @@
         <ScrollView>
             <StackLayout>
                 <Label x:Name="NoItems" IsVisible="False" Text="לא קיימים מוצרים להציג.." VerticalOptions="Start" 
-                       HorizontalOptions="CenterAndExpand" Margin="0,10,0,0" Style="{DynamicResource myBodyStyle}"/>
+                       HorizontalOptions="CenterAndExpand" Margin="0,20,0,0" Style="{DynamicResource myBodyStyle}"/>
 
                 <ListView x:Name="listView_items" IsVisible="False" HasUnevenRows="True" Margin="5">
                     <ListView.ItemTemplate>
-                        <DataTemplate >
+                        <DataTemplate>
                             <ViewCell>
 
-                                <Grid Margin="10" HorizontalOptions="EndAndExpand" HeightRequest="{Binding Item4}">
+                                <Grid Margin="10,10,0,10" HorizontalOptions="CenterAndExpand" HeightRequest="{Binding Item4}">
 
                                     <Grid.RowDefinitions>
-                                    
                                         <RowDefinition/>
-                                    
                                     </Grid.RowDefinitions>
                                 
                                     <Grid.ColumnDefinitions>
@@ -39,8 +37,17 @@
 
                                     <StackLayout VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0">
 
-                                        <Button Text="מחיקה" Clicked="DeleteSavedItem"/>
-                                        <Button Text="למודעה"/>
+                                        <Label Text="מחיקה">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="DeleteSavedItem" CommandParameter="{Binding Item5}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+
+                                        <Label Text="למודעה">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="GoToItemPage" CommandParameter="{Binding Item5}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
 
                                     </StackLayout>
 
@@ -51,7 +58,8 @@
 
                                     </StackLayout>
 
-                                    <Image Source="{Binding Item1}" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2"/>
+                                    <Image Source="{Binding Item1}" VerticalOptions="Center"
+                                           HorizontalOptions="End" Grid.Column="2"/>
                                 
                                 </Grid>
                             
