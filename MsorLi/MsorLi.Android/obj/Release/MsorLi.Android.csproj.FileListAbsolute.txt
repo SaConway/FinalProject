@@ -101,6 +101,3 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\andro
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\android\assets\System.ServiceModel.Internals.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\android\assets\System.Xml.Linq.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\android\assets\System.Xml.pdb
-C:\final\FinalProject\MsorLi\MsorLi.Android\obj\Release\MsorLi.Android.csprojResolveAssemblyReference.cache
-C:\final\FinalProject\MsorLi\MsorLi.Android\obj\Release\MsorLi.Android.dll
-C:\final\FinalProject\MsorLi\MsorLi.Android\obj\Release\MsorLi.Android.pdb

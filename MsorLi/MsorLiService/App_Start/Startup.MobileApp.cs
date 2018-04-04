@@ -68,8 +68,8 @@ namespace MsorLiService
 
             List<User> users = new List<User>
             {
-                new User { Id = Guid.NewGuid().ToString(), FirstName="שגיא", LastName="קונווי", Email="1", Password="1", Phone="0544512565", Address="הגעש", Permission="user"  },
-                new User { Id = Guid.NewGuid().ToString(), FirstName="עידן", LastName="מרסיאנו", Email="2", Password="2", Phone="051554787", Address="המצדים", Permission="user"  },
+                new User { Id = Guid.NewGuid().ToString(), FirstName="שגיא", LastName="קונווי", Email="1", Password="1", Phone="0544512565", Address="הגעש", Permission="user", ImgUrl="https://msorli.blob.core.windows.net/images/1be3a60a-75d3-4eaf-8d7d-5866f04ba616" },
+                new User { Id = Guid.NewGuid().ToString(), FirstName="עידן", LastName="מרסיאנו", Email="2", Password="2", Phone="051554787", Address="המצדים", Permission="user", ImgUrl="https://msorli.blob.core.windows.net/images/%D7%A4%D7%A8%D7%95%D7%A4%D7%99%D7%9C.jpg"  },
             };
 
             foreach (var u in users)
