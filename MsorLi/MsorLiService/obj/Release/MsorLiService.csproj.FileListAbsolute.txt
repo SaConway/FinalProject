@@ -24,6 +24,7 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Newtonsoft.Jso
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Owin.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.Abstractions.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.Settings.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\SuaveControls.FloatingActionButton.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\System.Net.Http.Formatting.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\System.Spatial.dll
@@ -40,6 +41,9 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\System.Web.Web
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\System.Web.WebPages.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\System.Web.WebPages.Razor.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\WebGrease.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Xamarin.Forms.Core.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Xamarin.Forms.Platform.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Xamarin.Forms.Xaml.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Antlr3.Runtime.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\AutoMapper.xml
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\EntityFramework.xml
@@ -78,6 +82,11 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\System.Web.Raz
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\System.Web.WebPages.xml
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\System.Web.WebPages.Deployment.xml
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\System.Web.WebPages.Razor.xml
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Xamarin.Forms.Core.pdb
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Xamarin.Forms.Core.xml
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Xamarin.Forms.Platform.pdb
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Xamarin.Forms.Xaml.pdb
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Xamarin.Forms.Xaml.xml
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\de\Microsoft.Azure.Mobile.Server.resources.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\es\Microsoft.Azure.Mobile.Server.resources.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\fr\Microsoft.Azure.Mobile.Server.resources.dll
@@ -141,7 +150,6 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\ko\System.Spat
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\ru\System.Spatial.resources.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.csprojResolveAssemblyReference.cache
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.csproj.CoreCompileInputs.cache
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.csproj.CopyComplete
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.dll
