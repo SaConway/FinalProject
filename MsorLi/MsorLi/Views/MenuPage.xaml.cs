@@ -9,6 +9,31 @@ namespace MsorLi.Views
         public MenuPage()
         {
             InitializeComponent();
+
+        }
+        protected async override void OnAppearing()
+
+        {
+            try
+            {
+                if (Settings.UserId != "")
+                {
+                    UserName.Text = "שלום " + Settings.UserFirstName;
+                    UserImg.Source = Settings.ImgUrl;
+                    logButton.Text = "התנתק";
+                }
+                else
+                {
+                    UserName.Text = "שלום אורח";
+                    UserImg.Source = "unknown-user.png";
+                    logButton.Text = "התחבר";
+                }
+            }
+            catch
+            {
+                await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים", "אישור");
+
+            }
         }
 
         private async void SavedItemsClickEvent(object sender, EventArgs e)
@@ -24,12 +49,18 @@ namespace MsorLi.Views
             }
         }
 
-        private async void LogOutClickEvent(object sender, EventArgs e)
+        private async void LogbuttonClickEvent(object sender, EventArgs e)
         {
             try
             {
-                Settings._GeneralSettings = "";
-                await Navigation.PopToRootAsync();
+                //if user is looged and pressed logout
+                if (Settings.UserId != ""){
+                    Settings.UserId = "";
+					await Navigation.PopToRootAsync();
+                    Settings.ClearUserData();
+                }
+                else
+                    await Navigation.PushAsync(new LoginPage());
             }
             catch (Exception)
             {

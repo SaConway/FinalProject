@@ -15,21 +15,60 @@ namespace MsorLi.Utilities
 
         #region Settings Constants
 
-        private const string _SettingsKey = "settings_key";
         private static readonly string _SettingsDefault = string.Empty;
 
         #endregion
 
-        public static string _GeneralSettings
+        public static string UserId
         {
-            get
-            {
-                return _AppSettings.GetValueOrDefault(_SettingsKey, _SettingsDefault, "Settings.txt");
-            }
-            set
-            {
-                _AppSettings.AddOrUpdateValue(_SettingsKey, value, "Settings.txt");
-            }
+            get => _AppSettings.GetValueOrDefault(nameof(UserId), _SettingsDefault, "Settings.txt");
+            set =>_AppSettings.AddOrUpdateValue(nameof(UserId), value, "Settings.txt");
+        }
+
+        public static string UserFirstName
+        {
+            get =>  _AppSettings.GetValueOrDefault(nameof(UserFirstName), _SettingsDefault, "Settings.txt");
+            set => _AppSettings.AddOrUpdateValue(nameof(UserFirstName), value, "Settings.txt");
+        }
+
+        public static string UserLastName
+        {
+            get => _AppSettings.GetValueOrDefault(nameof(UserLastName), _SettingsDefault, "Settings.txt");
+            set => _AppSettings.AddOrUpdateValue(nameof(UserLastName), value, "Settings.txt");
+        }
+
+        public static string ImgUrl
+        {
+            get => _AppSettings.GetValueOrDefault(nameof(ImgUrl), _SettingsDefault, "Settings.txt");
+            set => _AppSettings.AddOrUpdateValue(nameof(ImgUrl), value, "Settings.txt");
+        }
+
+        public static string Email
+        {
+            get => _AppSettings.GetValueOrDefault(nameof(Email), _SettingsDefault, "Settings.txt");
+            set => _AppSettings.AddOrUpdateValue(nameof(Email), value, "Settings.txt");
+        }
+
+        public static string Phone
+        {
+            get => _AppSettings.GetValueOrDefault(nameof(Phone), _SettingsDefault, "Settings.txt");
+            set => _AppSettings.AddOrUpdateValue(nameof(Phone), value, "Settings.txt");
+        }
+
+        public static string Address
+        {
+            get => _AppSettings.GetValueOrDefault(nameof(Address), _SettingsDefault, "Settings.txt");
+            set => _AppSettings.AddOrUpdateValue(nameof(Address), value, "Settings.txt");
+        }
+
+        public static string Permission
+        {
+            get => _AppSettings.GetValueOrDefault(nameof(Permission), _SettingsDefault, "Settings.txt");
+            set => _AppSettings.AddOrUpdateValue(nameof(Permission), value, "Settings.txt");
+        }
+
+        public static void ClearUserData(){
+            _AppSettings.Clear("Settings.txt");
         }
     }
 }

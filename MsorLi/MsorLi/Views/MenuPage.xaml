@@ -23,8 +23,8 @@
 
             <StackLayout Grid.Row="0" BackgroundColor="#00BCD4">
                 <StackLayout VerticalOptions="CenterAndExpand">
-                    <Image Source="unknown-user.png" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="100" HeightRequest="100"/>
-                    <Label Text="Name of user" HorizontalOptions="Center" VerticalOptions="End" />
+                    <Image x:Name="UserImg"  HorizontalOptions="Center" VerticalOptions="End" WidthRequest="100" HeightRequest="100"/>
+                    <Label x:Name="UserName" HorizontalOptions="Center" VerticalOptions="End" />
                 </StackLayout>
             </StackLayout>
             
@@ -73,11 +73,11 @@
                 </StackLayout>
 
 
-                <!--Logout button-->
+                <!--Login/Logout button-->
                 <StackLayout Margin="0,20,0,0">
 
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="LogOutClickEvent">
+                        <TapGestureRecognizer Tapped="LogbuttonClickEvent">
                         </TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>
 
@@ -88,7 +88,7 @@
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Text="התנתק " FontSize="Medium" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="0" Style="{DynamicResource LabelStyle}"/>
+                        <Label x:Name="logButton" FontSize="Medium" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="0" Style="{DynamicResource LabelStyle}"/>
                         <Image Source="logout.png" Grid.Column="1"/>
                     </Grid>
 

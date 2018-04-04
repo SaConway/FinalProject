@@ -20,7 +20,7 @@ namespace MsorLi.Views
         public bool _itemWasSaved = false;
 
         Item _item = new Item();
-        string _userId = Settings._GeneralSettings;
+        string _userId = Settings.UserId;
         ObservableCollection<ItemImage> _images = new ObservableCollection<ItemImage>();
         string _savedId = "";
 

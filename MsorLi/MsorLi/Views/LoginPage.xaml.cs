@@ -54,7 +54,15 @@ namespace MsorLi.Views
                 {
                     // Success
 
-                    Settings._GeneralSettings = ThisUser[0].Id;
+                    Settings.UserId = ThisUser[0].Id;
+                    Settings.UserFirstName = ThisUser[0].FirstName;
+                    Settings.UserLastName = ThisUser[0].LastName;
+                    Settings.ImgUrl = ThisUser[0].ImgUrl;
+                    Settings.Email = ThisUser[0].Email;
+                    Settings.Phone = ThisUser[0].Phone;
+                    Settings.Address = ThisUser[0].Address;
+                    Settings.Permission = ThisUser[0].Permission;
+
                     await Navigation.PopAsync();
                 }
 

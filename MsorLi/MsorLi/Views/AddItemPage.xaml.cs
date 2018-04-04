@@ -37,27 +37,27 @@ namespace MsorLi.Views
         async protected override void OnAppearing()
         {
             // User is not logged in
-            if (Settings._GeneralSettings == "" && _myBoolean)
+            if (Settings.UserId == "" && _myBoolean)
             {
                 _myBoolean = false;
                 await Navigation.PushAsync(new LoginPage());
             }
 
-            // User is not logged in and he is back from loog in page
-            else if (Settings._GeneralSettings == "" && !_myBoolean)
+            // User is not logged in and he is back from log in page
+            else if (Settings.UserId == "" && !_myBoolean)
             {
                 await Navigation.PopToRootAsync();
             }
 
             // User has just looged in
-            else if (Settings._GeneralSettings != "" && !_myBoolean)
+            else if (Settings.UserId != "" && !_myBoolean)
             {
                 _myBoolean = true;
                 await InitializeAsync();
             }
 
             // User is looged in and its his first appearing
-            else if (Settings._GeneralSettings != "" && _firstAppearing)
+            else if (Settings.UserId != "" && _firstAppearing)
             {
                 _firstAppearing = false;
                 await InitializeAsync();

@@ -30,7 +30,7 @@ namespace MsorLi.Views
                     new ObservableCollection<Tuple<string, string, string, int, int>>();
 
         bool _isItems = false;
-        string _userId = Settings._GeneralSettings;
+        string _userId = Settings.UserId;
         bool _myBoolean = true;
         bool _firstAppearing = true;
 
@@ -43,27 +43,27 @@ namespace MsorLi.Views
             try
             {
                 // User is not logged in
-                if (Settings._GeneralSettings == "" && _myBoolean)
+                if (Settings.UserId == "" && _myBoolean)
                 {
                     _myBoolean = false;
                     await Navigation.PushAsync(new LoginPage());
                 }
 
                 // User is not logged in and he is back from loog in page
-                else if (Settings._GeneralSettings == "" && !_myBoolean)
+                else if (Settings.UserId == "" && !_myBoolean)
                 {
                     await Navigation.PopToRootAsync();
                 }
 
                 // User has just looged in
-                else if (Settings._GeneralSettings != "" && !_myBoolean)
+                else if (Settings.UserId != "" && !_myBoolean)
                 {
                     _myBoolean = true;
                     await InitializeAsync();
                 }
 
                 // User is looged in and its his first appearing
-                else if (Settings._GeneralSettings != "" && _firstAppearing)
+                else if (Settings.UserId != "" && _firstAppearing)
                 {
                     _firstAppearing = false;
                     await InitializeAsync();
@@ -79,7 +79,7 @@ namespace MsorLi.Views
 
         private async Task InitializeAsync()
         {
-            _savedItems = await _savedItemService.GetAllSavedOfUser(Settings._GeneralSettings);
+            _savedItems = await _savedItemService.GetAllSavedOfUser(Settings.UserId);
 
             if (_savedItems.Count > 0)
             {
