@@ -84,7 +84,6 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\System.Web.Web
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\System.Web.WebPages.Razor.xml
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Xamarin.Forms.Core.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Xamarin.Forms.Core.xml
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Xamarin.Forms.Platform.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Xamarin.Forms.Xaml.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Xamarin.Forms.Xaml.xml
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\de\Microsoft.Azure.Mobile.Server.resources.dll

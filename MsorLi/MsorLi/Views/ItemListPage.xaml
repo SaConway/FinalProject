@@ -24,7 +24,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!--Go To Top-->
-                    <Image Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"
+                    <Image Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"
                            Source="top.png" Margin="10,0,10,0" BackgroundColor="Transparent">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer>
@@ -39,7 +39,7 @@
                                BackgroundColor="Transparent"/>
 
                     <!--Menu-->
-                    <Image Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" 
+                    <Image Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center" 
                            Source="menu.png" Margin="10,0,10,0"> 
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OpenMenu">

@@ -11,64 +11,62 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <Label x:Name="NoItems" IsVisible="False" Text="לא קיימים מוצרים להציג.." VerticalOptions="Start" 
-                       HorizontalOptions="CenterAndExpand" Margin="0,20,0,0" Style="{DynamicResource myBodyStyle}"/>
+        <StackLayout>
+            <Label x:Name="NoItems" IsVisible="False" Text="לא קיימים מוצרים להציג.." VerticalOptions="Start" 
+                    HorizontalOptions="CenterAndExpand" Margin="0,20,0,0" Style="{DynamicResource myBodyStyle}"/>
 
-                <ListView x:Name="listView_items" IsVisible="False" HasUnevenRows="True" Margin="5">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
+            <ListView x:Name="listView_items" IsVisible="False" Margin="5">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
 
-                                <Grid Margin="10,10,0,10" HorizontalOptions="CenterAndExpand" HeightRequest="{Binding Item4}">
+                            <Grid Margin="10,10,0,10" HorizontalOptions="CenterAndExpand">
 
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
                                 
-                                    <Grid.ColumnDefinitions>
+                                <Grid.ColumnDefinitions>
 
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="2*"/>
 
-                                    </Grid.ColumnDefinitions>
+                                </Grid.ColumnDefinitions>
 
-                                    <StackLayout VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0">
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0">
 
-                                        <Label Text="מחיקה">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="DeleteSavedItem" CommandParameter="{Binding Item5}"/>
-                                            </Label.GestureRecognizers>
-                                        </Label>
+                                    <Label Text="מחיקה">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="DeleteSavedItem" CommandParameter="{Binding Item1}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
 
-                                        <Label Text="למודעה">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="GoToItemPage" CommandParameter="{Binding Item5}"/>
-                                            </Label.GestureRecognizers>
-                                        </Label>
+                                    <Label Text="למודעה">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="GoToItemPage" CommandParameter="{Binding Item1}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
 
-                                    </StackLayout>
+                                </StackLayout>
 
-                                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1">
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1">
 
-                                        <Label Text="{Binding Item2}" Style="{DynamicResource myBodyStyle}"/>
-                                        <Label Text="{Binding Item3}" Style="{DynamicResource myBodyStyle}"/>
+                                    <Label Text="{Binding Item2}" Style="{DynamicResource myBodyStyle}"/>
+                                    <Label Text="{Binding Item3}" Style="{DynamicResource myBodyStyle}"/>
 
-                                    </StackLayout>
+                                </StackLayout>
 
-                                    <Image Source="{Binding Item1}" VerticalOptions="Center"
-                                           HorizontalOptions="End" Grid.Column="2"/>
+                                <Image Source="{Binding Item4}" VerticalOptions="Center"
+                                        HorizontalOptions="End" Grid.Column="2"/>
                                 
-                                </Grid>
+                            </Grid>
                             
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-            </StackLayout>
-        </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
