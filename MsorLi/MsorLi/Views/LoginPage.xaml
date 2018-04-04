@@ -1,22 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MsorLi.Views.LoginPage">
     <ContentPage.Content>
         <StackLayout>
             
-            <Label Text="Login Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="דף התחברות" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
             
-            <Label Text="User Name (Email)"/>
-            <Entry x:Name="Email" Placeholder="Email"/>
+            <Label Text="שם משתמש (אימייל)" HorizontalOptions="End" Margin="5"/>
+            <Entry x:Name="Email" Placeholder="אימייל" HorizontalTextAlignment="End"/>
             
-            <Label Text="Password"/>
-            <Entry x:Name="Password" Placeholder="Password"/>
+            <Label Text="סיסמא" HorizontalOptions="End" Margin="5"/>
+            <Entry x:Name="Password" Placeholder="סיסמא" HorizontalTextAlignment="End"/>
 
-            <Button Text="Submit" Clicked="SubmitBtnClicked"/>
-            <Button Text="Not Registerd?" Clicked="RegBtnClicked"/>
+            <Button Text="התחבר" Clicked="SubmitBtnClicked"/>
+            <Button Text="לא רשום?" Clicked="RegBtnClicked"/>
             
         </StackLayout>
     </ContentPage.Content>

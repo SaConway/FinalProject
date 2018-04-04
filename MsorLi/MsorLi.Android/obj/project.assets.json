@@ -792,6 +792,20 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
+      "Xam.Plugins.Forms.ImageCircle/2.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.5.0.121934"
+        },
+        "compile": {
+          "lib/MonoAndroid10/ImageCircle.Forms.Plugin.Abstractions.dll": {},
+          "lib/MonoAndroid10/ImageCircle.Forms.Plugin.Android.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10/ImageCircle.Forms.Plugin.Abstractions.dll": {},
+          "lib/MonoAndroid10/ImageCircle.Forms.Plugin.Android.dll": {}
+        }
+      },
       "Xam.Plugins.Settings/3.1.1": {
         "type": "package",
         "compile": {
@@ -4289,6 +4303,37 @@
         "windowsazure.storage.nuspec"
       ]
     },
+    "Xam.Plugins.Forms.ImageCircle/2.0.2": {
+      "sha512": "LyLQE2Pn9hHFKURhCCs5Z+5nb5KALmzQPUySeCi7AmCBbs0UkXQ48PSre8Nf4SbXSvASe8ewycD++xeqaeufJw==",
+      "type": "package",
+      "path": "xam.plugins.forms.imagecircle/2.0.2",
+      "files": [
+        "lib/MonoAndroid10/ImageCircle.Forms.Plugin.Abstractions.dll",
+        "lib/MonoAndroid10/ImageCircle.Forms.Plugin.Abstractions.pdb",
+        "lib/MonoAndroid10/ImageCircle.Forms.Plugin.Abstractions.xml",
+        "lib/MonoAndroid10/ImageCircle.Forms.Plugin.Android.XML",
+        "lib/MonoAndroid10/ImageCircle.Forms.Plugin.Android.dll",
+        "lib/MonoAndroid10/ImageCircle.Forms.Plugin.Android.pdb",
+        "lib/UAP10/ImageCircle.Forms.Plugin.Abstractions.dll",
+        "lib/UAP10/ImageCircle.Forms.Plugin.Abstractions.pdb",
+        "lib/UAP10/ImageCircle.Forms.Plugin.Abstractions.xml",
+        "lib/UAP10/ImageCircle.Forms.Plugin.UWP.XML",
+        "lib/UAP10/ImageCircle.Forms.Plugin.UWP.dll",
+        "lib/UAP10/ImageCircle.Forms.Plugin.UWP.pdb",
+        "lib/UAP10/ImageCircle.Forms.Plugin.UWP.pri",
+        "lib/Xamarin.iOS10/ImageCircle.Forms.Plugin.Abstractions.dll",
+        "lib/Xamarin.iOS10/ImageCircle.Forms.Plugin.Abstractions.pdb",
+        "lib/Xamarin.iOS10/ImageCircle.Forms.Plugin.Abstractions.xml",
+        "lib/Xamarin.iOS10/ImageCircle.Forms.Plugin.iOS.XML",
+        "lib/Xamarin.iOS10/ImageCircle.Forms.Plugin.iOS.dll",
+        "lib/netstandard1.0/ImageCircle.Forms.Plugin.Abstractions.deps.json",
+        "lib/netstandard1.0/ImageCircle.Forms.Plugin.Abstractions.dll",
+        "lib/netstandard1.0/ImageCircle.Forms.Plugin.Abstractions.pdb",
+        "lib/netstandard1.0/ImageCircle.Forms.Plugin.Abstractions.xml",
+        "xam.plugins.forms.imagecircle.2.0.2.nupkg.sha512",
+        "xam.plugins.forms.imagecircle.nuspec"
+      ]
+    },
     "Xam.Plugins.Settings/3.1.1": {
       "sha512": "EQEYQJ64ZLqui5GWkLMavgqitHxwUHZHryTzUD1021UBuz1XwDSjPL45W0K4pPXjz9oKbg7YpRXKPR1luPr/5Q==",
       "type": "package",
@@ -4789,6 +4834,7 @@
       "Microsoft.Azure.Mobile.Client.SQLiteStore >= 4.0.2",
       "SuaveControls.FloatingActionButton >= 2018.1.5",
       "WindowsAzure.Storage >= 9.1.0",
+      "Xam.Plugins.Forms.ImageCircle >= 2.0.2",
       "Xam.Plugins.Settings >= 3.1.1",
       "Xamarin.Android.Support.CustomTabs >= 23.3.0",
       "Xamarin.Android.Support.v4 >= 25.4.0.2",
@@ -4797,26 +4843,42 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\sagee\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {}
+=======
+    "/Users/Idan Marciano/.nuget/packages/": {}
+>>>>>>> 8c751e1... Idan Goodnight
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.Android\\MsorLi.Android.csproj",
       "projectName": "MsorLi.Android",
       "projectPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.Android\\MsorLi.Android.csproj",
       "packagesPath": "C:\\Users\\sagee\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.Android\\obj\\",
+=======
+      "projectUniqueName": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/MsorLi.Android.csproj",
+      "projectName": "MsorLi.Android",
+      "projectPath": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/MsorLi.Android.csproj",
+      "packagesPath": "/Users/Idan Marciano/.nuget/packages/",
+      "outputPath": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj",
+>>>>>>> 8c751e1... Idan Goodnight
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\sagee\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+=======
+        "/Users/Idan Marciano/.config/NuGet/NuGet.Config"
+>>>>>>> 8c751e1... Idan Goodnight
       ],
       "originalTargetFrameworks": [
         "monoandroid81"
@@ -4829,6 +4891,12 @@
         "monoandroid81": {
           "projectReferences": {}
         }
+      }
+    },
+    "dependencies": {
+      "Xam.Plugins.Forms.ImageCircle": {
+        "target": "Package",
+        "version": "[2.0.2, )"
       }
     },
     "frameworks": {
