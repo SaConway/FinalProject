@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using SuaveControls.FloatingActionButton.iOS.Renderers;
 using UIKit;
 
 namespace MsorLi.iOS
@@ -27,6 +28,8 @@ namespace MsorLi.iOS
 
             App.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
             App.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
+
+            FloatingActionButtonRenderer.InitRenderer();
 
             LoadApplication(new App());
 

@@ -5,7 +5,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MsorLi.Models;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace MsorLi.Views
 {
@@ -37,9 +36,10 @@ namespace MsorLi.Views
 
             InitializeComponent();
 
+            listView_items.RowHeight = App.ScreenWidth / 2;
         }
-        protected async override void OnAppearing()
 
+        protected async override void OnAppearing()
         {
             try
             {
@@ -54,17 +54,14 @@ namespace MsorLi.Views
             catch
             {
                 await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים", "אישור");
-
             }
         }
 
         public async void OnRefresh(object sender, EventArgs e)
         {
-            if (sender == null) await DisplayAlert("Refresh Error", "Couldn't refresh data", "OK");
-
             var list = (ListView)sender;
-
             Exception error = null;
+
             try
             {
                 await RefreshItems(false, true);
@@ -84,7 +81,7 @@ namespace MsorLi.Views
 
             if (error != null)
             {
-                await DisplayAlert("Refresh Error", "Couldn't refresh data (" + error.Message + ")", "OK");
+                await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים.", "אישור");
             }
         }
 
@@ -106,17 +103,14 @@ namespace MsorLi.Views
 
                         if (ImagePairs != null)
                         {
-                            //listView_items.HasUnevenRows = true;
                             listView_items.ItemsSource = ImagePairs;
                         }
-                        else
-                            listView_items.ItemsSource = null;
                     }
                 }
             }
             catch
             {
-                await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים בתוך רענון", "אישור");
+                await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים.", "אישור");
             }
         }
 
@@ -136,7 +130,7 @@ namespace MsorLi.Views
 
             catch (Exception)
             {
-                await DisplayAlert("שגיאה", "לא ניתן לטעון עמוד מבוקש", "אישור");
+                await DisplayAlert("שגיאה", "לא ניתן לטעון עמוד מבוקש.", "אישור");
             }
         }
 
@@ -157,10 +151,13 @@ namespace MsorLi.Views
                 }
             }
 
-            catch (Exception) { }
+            catch (Exception)
+            {
+
+            }
         }
 
-        public async void OpenMenu(object sender, SelectedItemChangedEventArgs e)
+        private async void OpenMenu(object sender, SelectedItemChangedEventArgs e)
         {
             try
             {
@@ -201,8 +198,6 @@ namespace MsorLi.Views
             {
                 try
                 {
-
-
                     _indicator = indicator;
                     _showIndicator = showIndicator;
 
@@ -218,7 +213,6 @@ namespace MsorLi.Views
                 }
                 catch
                 {
-                    Debug.WriteLine("שגיאה במכוון הטעינה");
                 }
             }
 
@@ -239,8 +233,6 @@ namespace MsorLi.Views
                 }
                 catch
                 {
-                    Debug.WriteLine("שגיאה במכוון הטעינה");
-
                 }
             }
         }

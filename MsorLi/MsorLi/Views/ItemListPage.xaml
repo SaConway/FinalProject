@@ -2,72 +2,97 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MsorLi.Views.ItemListPage"
+             xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
              Title="מסור-לי">
 
     <ContentPage.Content>
-       
-        <StackLayout>
 
-            <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#2196F3">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Button Text="כל המוצרים" TextColor="White" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" Grid.Column="0"/>
-
-                <SearchBar Placeholder="חיפוש.." HorizontalTextAlignment="End" Grid.Column="1" BackgroundColor="Transparent"/>
-
-                <Button Text="תפריט" TextColor="White" BackgroundColor="Transparent" Grid.Column="2" Clicked="OpenMenu"/>
-                
-            </Grid>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             
-            <Button HorizontalOptions="FillAndExpand" Clicked="AddItem_EventClick" Text="Add" TextColor="Black"/>
-            
-            <ActivityIndicator IsVisible="False" IsEnabled="True" x:Name="syncIndicator"/>
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Spacing="0">
 
-            <ListView x:Name="listView_items" IsPullToRefreshEnabled="true" Refreshing="OnRefresh" SeparatorVisibility="None" RowHeight="200">
-                <ListView.ItemTemplate>
-                    <DataTemplate >
-                        <ViewCell>
+                <!--ToolBar-->
+                <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#00BCD4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                            <Grid RowSpacing="0" ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="200"/>
-                                </Grid.RowDefinitions>
+                    <!--Go To Top-->
+                    <Image Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"
+                           Source="top.png" Margin="10,0,10,0" BackgroundColor="Transparent">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer>
+                            </TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50*"/>
-                                    <ColumnDefinition Width="50*"/>
-                                </Grid.ColumnDefinitions>
+                    <!--Search-->
+                    <SearchBar Placeholder="חיפוש.." HorizontalTextAlignment="End" Grid.Column="1" 
+                               PlaceholderColor="White" TextColor="White" CancelButtonColor="White"
+                               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                               BackgroundColor="Transparent"/>
 
-                                <Image Grid.Column="0" Aspect="AspectFill" Margin="0,0,2,4" Source="{Binding Item1}">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnSelection" CommandParameter="{Binding Item2}">
-                                        </TapGestureRecognizer>
-                                    </Image.GestureRecognizers>
-                                </Image>
+                    <!--Menu-->
+                    <Image Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" 
+                           Source="menu.png" Margin="10,0,10,0"> 
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OpenMenu">
+                            </TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
 
-                                <Image Grid.Column="1" Aspect="AspectFill" Margin="2,0,0,4" Source="{Binding Item3}">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnSelection" CommandParameter="{Binding Item4}" >
-                                        </TapGestureRecognizer>
-                                    </Image.GestureRecognizers>
-                                </Image>
+                </Grid>
 
-                            </Grid>
+                <ActivityIndicator IsVisible="False" IsEnabled="True" x:Name="syncIndicator"/>
 
-                        </ViewCell>
+                <!--List Of Images-->
+                <ListView x:Name="listView_items" IsPullToRefreshEnabled="true" Refreshing="OnRefresh"
+                          SeparatorVisibility="None" RowHeight="200">
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <ViewCell>
 
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+                                <Grid RowSpacing="0" ColumnSpacing="0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Column="0" Aspect="AspectFill" Margin="0,4,2,0" Source="{Binding Item1}">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnSelection" CommandParameter="{Binding Item2}">
+                                            </TapGestureRecognizer>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+
+                                    <Image Grid.Column="1" Aspect="AspectFill" Margin="2,4,0,0" Source="{Binding Item3}">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnSelection" CommandParameter="{Binding Item4}" >
+                                            </TapGestureRecognizer>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+
+                                </Grid>
+
+                            </ViewCell>
+
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <!--Add Button-->
+            <controls:FloatingActionButton AbsoluteLayout.LayoutBounds="1,1,AutoSize, AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional"
+                                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                           Clicked="AddItem_EventClick" Image="add.png" ButtonColor="#CDDC39"/>
+
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -235,6 +235,26 @@
           "lib/Xamarin.iOS10/SQLitePCLRaw.provider.sqlite3.dll": {}
         }
       },
+      "SuaveControls.FloatingActionButton/2018.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.4.231"
+        },
+        "frameworkAssemblies": [
+          "System",
+          "System.Core",
+          "System.Xml",
+          "Xamarin.iOS"
+        ],
+        "compile": {
+          "lib/xamarinios10/SuaveControls.FloatingActionButton.dll": {},
+          "lib/xamarinios10/SuaveControls.FloatingActionButton.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/SuaveControls.FloatingActionButton.dll": {},
+          "lib/xamarinios10/SuaveControls.FloatingActionButton.iOS.dll": {}
+        }
+      },
       "System.AppContext/4.3.0": {
         "type": "package",
         "compile": {
@@ -1126,6 +1146,26 @@
           "lib/Xamarin.iOS10/SQLitePCLRaw.provider.sqlite3.dll": {}
         }
       },
+      "SuaveControls.FloatingActionButton/2018.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.4.231"
+        },
+        "frameworkAssemblies": [
+          "System",
+          "System.Core",
+          "System.Xml",
+          "Xamarin.iOS"
+        ],
+        "compile": {
+          "lib/xamarinios10/SuaveControls.FloatingActionButton.dll": {},
+          "lib/xamarinios10/SuaveControls.FloatingActionButton.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/SuaveControls.FloatingActionButton.dll": {},
+          "lib/xamarinios10/SuaveControls.FloatingActionButton.iOS.dll": {}
+        }
+      },
       "System.AppContext/4.3.0": {
         "type": "package",
         "compile": {
@@ -1953,6 +1993,26 @@
           "lib/Xamarin.iOS10/SQLitePCLRaw.provider.sqlite3.dll": {}
         }
       },
+      "SuaveControls.FloatingActionButton/2018.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.4.231"
+        },
+        "frameworkAssemblies": [
+          "System",
+          "System.Core",
+          "System.Xml",
+          "Xamarin.iOS"
+        ],
+        "compile": {
+          "lib/xamarinios10/SuaveControls.FloatingActionButton.dll": {},
+          "lib/xamarinios10/SuaveControls.FloatingActionButton.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/SuaveControls.FloatingActionButton.dll": {},
+          "lib/xamarinios10/SuaveControls.FloatingActionButton.iOS.dll": {}
+        }
+      },
       "System.AppContext/4.3.0": {
         "type": "package",
         "compile": {
@@ -2778,6 +2838,26 @@
         },
         "runtime": {
           "lib/Xamarin.iOS10/SQLitePCLRaw.provider.sqlite3.dll": {}
+        }
+      },
+      "SuaveControls.FloatingActionButton/2018.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.4.231"
+        },
+        "frameworkAssemblies": [
+          "System",
+          "System.Core",
+          "System.Xml",
+          "Xamarin.iOS"
+        ],
+        "compile": {
+          "lib/xamarinios10/SuaveControls.FloatingActionButton.dll": {},
+          "lib/xamarinios10/SuaveControls.FloatingActionButton.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/SuaveControls.FloatingActionButton.dll": {},
+          "lib/xamarinios10/SuaveControls.FloatingActionButton.iOS.dll": {}
         }
       },
       "System.AppContext/4.3.0": {
@@ -3734,6 +3814,20 @@
         "lib/Xamarin.iOS10/SQLitePCLRaw.provider.sqlite3.dll",
         "sqlitepclraw.provider.sqlite3.ios_unified.1.1.2.nupkg.sha512",
         "sqlitepclraw.provider.sqlite3.ios_unified.nuspec"
+      ]
+    },
+    "SuaveControls.FloatingActionButton/2018.1.5": {
+      "sha512": "sgnBqhD3nXNT/yEO0DzS+WfaHYnhnf8K3g9FMD9o5CMpdG7NOuJme8AmbmOyEBHw0NeLMDX+FHmErVBCMq36BA==",
+      "type": "package",
+      "path": "suavecontrols.floatingactionbutton/2018.1.5",
+      "files": [
+        "lib/monoandroid80/SuaveControls.FloatingActionButton.Droid.dll",
+        "lib/monoandroid80/SuaveControls.FloatingActionButton.dll",
+        "lib/portable45-net45+win8+wpa81/SuaveControls.FloatingActionButton.dll",
+        "lib/xamarinios10/SuaveControls.FloatingActionButton.dll",
+        "lib/xamarinios10/SuaveControls.FloatingActionButton.iOS.dll",
+        "suavecontrols.floatingactionbutton.2018.1.5.nupkg.sha512",
+        "suavecontrols.floatingactionbutton.nuspec"
       ]
     },
     "System.AppContext/4.3.0": {
@@ -6773,6 +6867,7 @@
       "CarouselView.FormsPlugin >= 5.2.0",
       "Microsoft.Azure.Mobile.Client >= 4.0.2",
       "Microsoft.Azure.Mobile.Client.SQLiteStore >= 4.0.2",
+      "SuaveControls.FloatingActionButton >= 2018.1.5",
       "WindowsAzure.Storage >= 9.1.0",
       "Xam.Plugins.Settings >= 3.1.1",
       "Xamarin.Forms >= 2.5.0.280555",
@@ -6780,43 +6875,32 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\idanm\\.nuget\\packages\\": {},
+    "C:\\Users\\sagee\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {}
-=======
-    "/Users/Idan Marciano/.nuget/packages/": {}
->>>>>>> f9fcc3f... added user url
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\final\\FinalProject\\MsorLi\\MsorLi.iOS\\MsorLi.iOS.csproj",
+      "projectUniqueName": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.iOS\\MsorLi.iOS.csproj",
       "projectName": "MsorLi.iOS",
-      "projectPath": "C:\\final\\FinalProject\\MsorLi\\MsorLi.iOS\\MsorLi.iOS.csproj",
-      "packagesPath": "C:\\Users\\idanm\\.nuget\\packages\\",
-      "outputPath": "C:\\final\\FinalProject\\MsorLi\\MsorLi.iOS\\obj\\",
-=======
-      "projectUniqueName": "/Users/Idan Marciano/Projects/SaConway/FinalProject.git/MsorLi/MsorLi.iOS/MsorLi.iOS.csproj",
-      "projectName": "MsorLi.iOS",
-      "projectPath": "/Users/Idan Marciano/Projects/SaConway/FinalProject.git/MsorLi/MsorLi.iOS/MsorLi.iOS.csproj",
-      "packagesPath": "/Users/Idan Marciano/.nuget/packages/",
-      "outputPath": "/Users/Idan Marciano/Projects/SaConway/FinalProject.git/MsorLi/MsorLi.iOS/obj",
->>>>>>> f9fcc3f... added user url
+      "projectPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.iOS\\MsorLi.iOS.csproj",
+      "packagesPath": "C:\\Users\\sagee\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.iOS\\obj\\",
       "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\"
+      ],
       "configFilePaths": [
-<<<<<<< HEAD
-        "C:\\Users\\idanm\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\sagee\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
-=======
-        "/Users/Idan Marciano/.config/NuGet/NuGet.Config"
->>>>>>> f9fcc3f... added user url
       ],
       "originalTargetFrameworks": [
         "xamarinios10"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6830,31 +6914,35 @@
         "dependencies": {
           "CarouselView.FormsPlugin": {
             "target": "Package",
-            "version": "5.2.0"
-          },
-          "WindowsAzure.Storage": {
-            "target": "Package",
-            "version": "9.1.0"
-          },
-          "Xam.Plugins.Settings": {
-            "target": "Package",
-            "version": "3.1.1"
+            "version": "[5.2.0, )"
           },
           "Microsoft.Azure.Mobile.Client": {
             "target": "Package",
-            "version": "4.0.2"
+            "version": "[4.0.2, )"
           },
           "Microsoft.Azure.Mobile.Client.SQLiteStore": {
             "target": "Package",
-            "version": "4.0.2"
+            "version": "[4.0.2, )"
+          },
+          "SuaveControls.FloatingActionButton": {
+            "target": "Package",
+            "version": "[2018.1.5, )"
+          },
+          "WindowsAzure.Storage": {
+            "target": "Package",
+            "version": "[9.1.0, )"
+          },
+          "Xam.Plugins.Settings": {
+            "target": "Package",
+            "version": "[3.1.1, )"
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "2.5.0.280555"
+            "version": "[2.5.0.280555, )"
           },
           "Xamarin.Forms.CarouselView": {
             "target": "Package",
-            "version": "2.3.0-pre2"
+            "version": "[2.3.0-pre2, )"
           }
         }
       }
