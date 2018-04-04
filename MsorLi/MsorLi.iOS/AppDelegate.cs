@@ -24,6 +24,9 @@ namespace MsorLi.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+
+            //init for the circle image plugin
+            ImageCircle.Forms.Plugin.iOS.ImageCircleRenderer.Init();
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 
             App.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;

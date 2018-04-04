@@ -4,12 +4,24 @@
              x:Class="MsorLi.Views.ItemListPage"
              xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
              Title="מסור-לי">
-
+    
+    <!-- Padding for ios status bar -->
+     <ContentPage.Padding>
+            <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
+    </ContentPage.Padding>
+    
     <ContentPage.Content>
+
 
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             
             <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Spacing="0">
+
+            <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#00BCD4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
 
                 <!--ToolBar-->
                 <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#00BCD4">

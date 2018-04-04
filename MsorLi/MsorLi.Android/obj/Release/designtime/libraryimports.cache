@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Paths>
+<<<<<<< HEAD
   <ManifestDocuments>
     <ManifestDocument>obj\Release\lp\23\jl\AndroidManifest.xml</ManifestDocument>
     <ManifestDocument>obj\Release\lp\25\jl\AndroidManifest.xml</ManifestDocument>
@@ -44,4 +45,9 @@
     <Jar>obj\Release\lp\39\jl\bin\classes.jar</Jar>
     <Jar>obj\Release\lp\5\jl\formsviewgroup.jar</Jar>
   </Jars>
+=======
+  <ManifestDocuments />
+  <NativeLibraries />
+  <Jars />
+>>>>>>> 8c751e1... Idan Goodnight
 </Paths>

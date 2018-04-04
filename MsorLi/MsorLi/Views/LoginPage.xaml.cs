@@ -26,7 +26,7 @@ namespace MsorLi.Views
         // EVENT FUNCTIONS
         //----------------------------------------------------------
 
-        // For android only, return to item list
+        // For ANDROID only, return to item list
         protected override bool OnBackButtonPressed()
         {
             try
@@ -63,7 +63,7 @@ namespace MsorLi.Views
                     Settings.Address = ThisUser[0].Address;
                     Settings.Permission = ThisUser[0].Permission;
 
-                    await Navigation.PopAsync();
+                    await Navigation.PopToRootAsync();
                 }
 
                 else
