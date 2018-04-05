@@ -7,21 +7,14 @@
     
     <!-- Padding for ios status bar -->
      <ContentPage.Padding>
-            <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
+            <OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0" />
     </ContentPage.Padding>
     
     <ContentPage.Content>
 
-
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             
             <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Spacing="0">
-
-            <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#00BCD4">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                </Grid.RowDefinitions>
-
 
                 <!--ToolBar-->
                 <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#00BCD4">
@@ -37,7 +30,7 @@
 
                     <!--Go To Top-->
                     <Image Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"
-                           Source="top.png" Margin="10,0,10,0" BackgroundColor="Transparent">
+                            Source="top.png" Margin="10,0,10,0" BackgroundColor="Transparent">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer>
                             </TapGestureRecognizer>
@@ -46,13 +39,13 @@
 
                     <!--Search-->
                     <SearchBar Placeholder="חיפוש.." HorizontalTextAlignment="End" Grid.Column="1" 
-                               PlaceholderColor="White" TextColor="White" CancelButtonColor="White"
-                               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
-                               BackgroundColor="Transparent"/>
+                                PlaceholderColor="White" TextColor="White" CancelButtonColor="White"
+                                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                BackgroundColor="Transparent"/>
 
                     <!--Menu-->
                     <Image Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center" 
-                           Source="menu.png" Margin="10,0,10,0"> 
+                            Source="menu.png" Margin="10,0,10,0">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OpenMenu">
                             </TapGestureRecognizer>
