@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Paths>
+<<<<<<< HEAD
   <Jars>
     <Jar>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\27\jl\bin\classes.jar</Jar>
     <Jar>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\28\jl\support-annotations.jar</Jar>
@@ -80,4 +81,11 @@
     <ResolvedResourceDirectoryStamp>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\42.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\44.stamp</ResolvedResourceDirectoryStamp>
   </ResolvedResourceDirectoryStamps>
+=======
+  <Jars />
+  <ResolvedResourceDirectories />
+  <ResolvedAssetDirectories />
+  <ResolvedEnvironmentFiles />
+  <ResolvedResourceDirectoryStamps />
+>>>>>>> 3a80ec3... ida n good morning
 </Paths>

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Paths>
+<<<<<<< HEAD
   <ManifestDocuments>
     <ManifestDocument>obj\Release\lp\27\jl\AndroidManifest.xml</ManifestDocument>
     <ManifestDocument>obj\Release\lp\29\jl\AndroidManifest.xml</ManifestDocument>
@@ -44,4 +45,9 @@
     <Jar>obj\Release\lp\42\jl\bin\classes.jar</Jar>
     <Jar>obj\Release\lp\43\jl\bin\classes.jar</Jar>
   </Jars>
+=======
+  <ManifestDocuments />
+  <NativeLibraries />
+  <Jars />
+>>>>>>> 3a80ec3... ida n good morning
 </Paths>

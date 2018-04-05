@@ -23,6 +23,7 @@
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/Owin.dll
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/Plugin.Settings.Abstractions.dll
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/Plugin.Settings.dll
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/SuaveControls.FloatingActionButton.dll
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/System.IdentityModel.Tokens.Jwt.dll
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/System.Net.Http.Formatting.dll
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/System.Spatial.dll
@@ -39,6 +40,9 @@
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/System.Web.WebPages.dll
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/System.Web.WebPages.Razor.dll
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/WebGrease.dll
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/Xamarin.Forms.Core.dll
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/Xamarin.Forms.Platform.dll
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/Xamarin.Forms.Xaml.dll
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/Antlr3.Runtime.pdb
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/AutoMapper.xml
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/EntityFramework.xml
@@ -77,6 +81,12 @@
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/System.Web.WebPages.xml
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/System.Web.WebPages.Deployment.xml
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/System.Web.WebPages.Razor.xml
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/Xamarin.Forms.Core.pdb
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/Xamarin.Forms.Core.dll.mdb
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/Xamarin.Forms.Core.xml
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/Xamarin.Forms.Xaml.pdb
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/Xamarin.Forms.Xaml.dll.mdb
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/Xamarin.Forms.Xaml.xml
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/de/Microsoft.Azure.Mobile.Server.resources.dll
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/es/Microsoft.Azure.Mobile.Server.resources.dll
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/fr/Microsoft.Azure.Mobile.Server.resources.dll
@@ -140,6 +150,7 @@
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/ru/System.Spatial.resources.dll
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/zh-Hans/System.Spatial.resources.dll
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/bin/zh-Hant/System.Spatial.resources.dll
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/obj/Debug/MsorLiService.csprojResolveAssemblyReference.cache
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/obj/Debug/MsorLiService.csproj.CoreCompileInputs.cache
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/obj/Debug/MsorLiService.dll
 /Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLiService/obj/Debug/MsorLiService.pdb
