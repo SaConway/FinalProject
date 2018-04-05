@@ -199,6 +199,17 @@
           "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
         }
       },
+      "Plugin.Share/7.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Plugin.Share.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Share.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Plugin.Share.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Share.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_green/1.1.2": {
         "type": "package",
         "dependencies": {
@@ -1124,6 +1135,17 @@
           "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
         }
       },
+      "Plugin.Share/7.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Plugin.Share.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Share.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Plugin.Share.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Share.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_green/1.1.2": {
         "type": "package",
         "dependencies": {
@@ -1985,6 +2007,17 @@
           "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
         }
       },
+      "Plugin.Share/7.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Plugin.Share.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Share.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Plugin.Share.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Share.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_green/1.1.2": {
         "type": "package",
         "dependencies": {
@@ -2844,6 +2877,17 @@
         },
         "runtime": {
           "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
+        }
+      },
+      "Plugin.Share/7.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Plugin.Share.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Share.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Plugin.Share.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Share.dll": {}
         }
       },
       "SQLitePCLRaw.bundle_green/1.1.2": {
@@ -3791,6 +3835,40 @@
         "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.xml",
         "pinvoke.windows.core.0.3.2.nupkg.sha512",
         "pinvoke.windows.core.nuspec"
+      ]
+    },
+    "Plugin.Share/7.1.1": {
+      "sha512": "07mFq3H9eeX2TGNKitmByjDKZl/3KXZrT2jv/27mEEnY7me/lHQSX52mI0B1mVTZquCloNmZm12EcV1t4fFSSA==",
+      "type": "package",
+      "path": "plugin.share/7.1.1",
+      "files": [
+        "lib/MonoAndroid10/Plugin.Share.Abstractions.dll",
+        "lib/MonoAndroid10/Plugin.Share.Abstractions.pdb",
+        "lib/MonoAndroid10/Plugin.Share.Abstractions.xml",
+        "lib/MonoAndroid10/Plugin.Share.dll",
+        "lib/MonoAndroid10/Plugin.Share.pdb",
+        "lib/MonoAndroid10/Plugin.Share.xml",
+        "lib/UAP10/Plugin.Share.Abstractions.dll",
+        "lib/UAP10/Plugin.Share.Abstractions.pdb",
+        "lib/UAP10/Plugin.Share.Abstractions.xml",
+        "lib/UAP10/Plugin.Share.XML",
+        "lib/UAP10/Plugin.Share.dll",
+        "lib/UAP10/Plugin.Share.pdb",
+        "lib/UAP10/Plugin.Share.pri",
+        "lib/Xamarin.iOS10/Plugin.Share.Abstractions.dll",
+        "lib/Xamarin.iOS10/Plugin.Share.Abstractions.pdb",
+        "lib/Xamarin.iOS10/Plugin.Share.Abstractions.xml",
+        "lib/Xamarin.iOS10/Plugin.Share.dll",
+        "lib/Xamarin.iOS10/Plugin.Share.xml",
+        "lib/netstandard1.0/Plugin.Share.Abstractions.dll",
+        "lib/netstandard1.0/Plugin.Share.Abstractions.pdb",
+        "lib/netstandard1.0/Plugin.Share.Abstractions.xml",
+        "lib/netstandard1.0/Plugin.Share.deps.json",
+        "lib/netstandard1.0/Plugin.Share.dll",
+        "lib/netstandard1.0/Plugin.Share.pdb",
+        "lib/netstandard1.0/Plugin.Share.xml",
+        "plugin.share.7.1.1.nupkg.sha512",
+        "plugin.share.nuspec"
       ]
     },
     "SQLitePCLRaw.bundle_green/1.1.2": {
@@ -6954,6 +7032,7 @@
       "CarouselView.FormsPlugin >= 5.2.0",
       "Microsoft.Azure.Mobile.Client >= 4.0.2",
       "Microsoft.Azure.Mobile.Client.SQLiteStore >= 4.0.2",
+      "Plugin.Share >= 7.1.1",
       "SuaveControls.FloatingActionButton >= 2018.1.5",
       "WindowsAzure.Storage >= 9.1.0",
       "Xam.Plugins.Forms.ImageCircle >= 2.0.2",
@@ -7011,6 +7090,10 @@
           "Microsoft.Azure.Mobile.Client.SQLiteStore": {
             "target": "Package",
             "version": "[4.0.2, )"
+          },
+          "Plugin.Share": {
+            "target": "Package",
+            "version": "[7.1.1, )"
           },
           "SuaveControls.FloatingActionButton": {
             "target": "Package",

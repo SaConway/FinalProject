@@ -15,17 +15,18 @@
             <Label x:Name="NoItems" IsVisible="False" Text="לא קיימים מוצרים להציג.." VerticalOptions="Start" 
                     HorizontalOptions="CenterAndExpand" Margin="0,20,0,0" Style="{DynamicResource myBodyStyle}"/>
 
-            <ListView x:Name="listView_items" IsVisible="False" Margin="5">
+            <ListView x:Name="listView_items" IsVisible="False" Margin="5"
+                      HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
 
-                            <Grid Margin="10,10,0,10" HorizontalOptions="CenterAndExpand">
+                            <Grid Margin="10,10,0,10" HorizontalOptions="FillAndExpand">
 
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                
+
                                 <Grid.ColumnDefinitions>
 
                                     <ColumnDefinition Width="*"/>
@@ -36,17 +37,17 @@
 
                                 <StackLayout VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0">
 
-                                    <Label Text="מחיקה">
-                                        <Label.GestureRecognizers>
+                                    <Image Source="delete.png">
+                                        <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="DeleteSavedItem" CommandParameter="{Binding Item1}"/>
-                                        </Label.GestureRecognizers>
-                                    </Label>
+                                        </Image.GestureRecognizers>
+                                    </Image>
 
-                                    <Label Text="למודעה">
-                                        <Label.GestureRecognizers>
+                                    <Image Source="go_to.png">
+                                        <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="GoToItemPage" CommandParameter="{Binding Item1}"/>
-                                        </Label.GestureRecognizers>
-                                    </Label>
+                                        </Image.GestureRecognizers>
+                                    </Image>
 
                                 </StackLayout>
 
@@ -59,14 +60,13 @@
 
                                 <Image Source="{Binding Item4}" VerticalOptions="Center"
                                         HorizontalOptions="End" Grid.Column="2"/>
-                                
+
                             </Grid>
-                            
+
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

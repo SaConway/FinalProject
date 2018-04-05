@@ -17,40 +17,40 @@
             <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Spacing="0">
 
                 <!--ToolBar-->
-                <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#00BCD4">
+                <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#00BCD4" Padding="7">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <!--Go To Top-->
-                    <Image Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"
-                            Source="top.png" Margin="10,0,10,0" BackgroundColor="Transparent">
+                    <!--Search-->
+                    <Image Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="5,0,2.5,0"
+                            Source="search.png">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer>
                             </TapGestureRecognizer>
                         </Image.GestureRecognizers>
                     </Image>
 
-                    <!--Search-->
-                    <SearchBar Placeholder="חיפוש.." HorizontalTextAlignment="End" Grid.Column="1" 
-                                PlaceholderColor="White" TextColor="White" CancelButtonColor="White"
-                                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
-                                BackgroundColor="Transparent"/>
+                    <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="Center">
 
-                    <!--Menu-->
-                    <Image Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center" 
-                            Source="menu.png" Margin="10,0,10,0">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OpenMenu">
-                            </TapGestureRecognizer>
-                        </Image.GestureRecognizers>
-                    </Image>
+                        <Label Text="מסור-לי" TextColor="White" FontSize="Large"
+                               VerticalTextAlignment="Center" VerticalOptions="Center" HorizontalTextAlignment="End" Margin="7,0,7,0"/>
+
+                        <!--Menu-->
+                        <Image HorizontalOptions="Center" VerticalOptions="Center" Margin="2.5,0,5,0"
+                            Source="menu.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OpenMenu">
+                                </TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                    </StackLayout>
 
                 </Grid>
 
@@ -94,9 +94,9 @@
             </StackLayout>
 
             <!--Add Button-->
-            <controls:FloatingActionButton AbsoluteLayout.LayoutBounds="1,1,AutoSize, AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional"
-                                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
-                                           Clicked="AddItem_EventClick" Image="add.png" ButtonColor="#CDDC39"/>
+            <controls:FloatingActionButton AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional"
+                                           Image="add.png" HorizontalOptions="Center" VerticalOptions="Center"
+                                           Clicked="AddItem_EventClick" ButtonColor="#00BCD4"/>
 
         </AbsoluteLayout>
     </ContentPage.Content>

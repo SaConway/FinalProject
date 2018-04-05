@@ -203,6 +203,30 @@
           "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
         }
       },
+      "Plugin.CurrentActivity/1.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/MonoAndroid10/Plugin.CurrentActivity.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10/Plugin.CurrentActivity.dll": {}
+        }
+      },
+      "Plugin.Share/7.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Plugin.CurrentActivity": "1.0.1",
+          "Xamarin.Android.Support.CustomTabs": "25.4.0.2"
+        },
+        "compile": {
+          "lib/MonoAndroid10/Plugin.Share.Abstractions.dll": {},
+          "lib/MonoAndroid10/Plugin.Share.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10/Plugin.Share.Abstractions.dll": {},
+          "lib/MonoAndroid10/Plugin.Share.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_green/1.1.2": {
         "type": "package",
         "dependencies": {
@@ -1437,6 +1461,53 @@
         "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.xml",
         "pinvoke.windows.core.0.3.2.nupkg.sha512",
         "pinvoke.windows.core.nuspec"
+      ]
+    },
+    "Plugin.CurrentActivity/1.0.1": {
+      "sha512": "lzspruFRwQRo5T1K4JNOJVvSNBLE9+jOvX9CGWB6sJ7q2GeXxY76LLTdirkhiq1/yYgBXkXsXIBzlRoCGJDuJA==",
+      "type": "package",
+      "path": "plugin.currentactivity/1.0.1",
+      "files": [
+        "content/MonoAndroid10/MainApplication.cs.pp",
+        "lib/MonoAndroid10/Plugin.CurrentActivity.dll",
+        "lib/MonoAndroid10/Plugin.CurrentActivity.xml",
+        "plugin.currentactivity.1.0.1.nupkg.sha512",
+        "plugin.currentactivity.nuspec",
+        "readme.txt"
+      ]
+    },
+    "Plugin.Share/7.1.1": {
+      "sha512": "07mFq3H9eeX2TGNKitmByjDKZl/3KXZrT2jv/27mEEnY7me/lHQSX52mI0B1mVTZquCloNmZm12EcV1t4fFSSA==",
+      "type": "package",
+      "path": "plugin.share/7.1.1",
+      "files": [
+        "lib/MonoAndroid10/Plugin.Share.Abstractions.dll",
+        "lib/MonoAndroid10/Plugin.Share.Abstractions.pdb",
+        "lib/MonoAndroid10/Plugin.Share.Abstractions.xml",
+        "lib/MonoAndroid10/Plugin.Share.dll",
+        "lib/MonoAndroid10/Plugin.Share.pdb",
+        "lib/MonoAndroid10/Plugin.Share.xml",
+        "lib/UAP10/Plugin.Share.Abstractions.dll",
+        "lib/UAP10/Plugin.Share.Abstractions.pdb",
+        "lib/UAP10/Plugin.Share.Abstractions.xml",
+        "lib/UAP10/Plugin.Share.XML",
+        "lib/UAP10/Plugin.Share.dll",
+        "lib/UAP10/Plugin.Share.pdb",
+        "lib/UAP10/Plugin.Share.pri",
+        "lib/Xamarin.iOS10/Plugin.Share.Abstractions.dll",
+        "lib/Xamarin.iOS10/Plugin.Share.Abstractions.pdb",
+        "lib/Xamarin.iOS10/Plugin.Share.Abstractions.xml",
+        "lib/Xamarin.iOS10/Plugin.Share.dll",
+        "lib/Xamarin.iOS10/Plugin.Share.xml",
+        "lib/netstandard1.0/Plugin.Share.Abstractions.dll",
+        "lib/netstandard1.0/Plugin.Share.Abstractions.pdb",
+        "lib/netstandard1.0/Plugin.Share.Abstractions.xml",
+        "lib/netstandard1.0/Plugin.Share.deps.json",
+        "lib/netstandard1.0/Plugin.Share.dll",
+        "lib/netstandard1.0/Plugin.Share.pdb",
+        "lib/netstandard1.0/Plugin.Share.xml",
+        "plugin.share.7.1.1.nupkg.sha512",
+        "plugin.share.nuspec"
       ]
     },
     "SQLitePCLRaw.bundle_green/1.1.2": {
@@ -4836,6 +4907,7 @@
       "CarouselView.FormsPlugin >= 5.2.0",
       "Microsoft.Azure.Mobile.Client >= 4.0.2",
       "Microsoft.Azure.Mobile.Client.SQLiteStore >= 4.0.2",
+      "Plugin.Share >= 7.1.1",
       "SuaveControls.FloatingActionButton >= 2018.1.5",
       "WindowsAzure.Storage >= 9.1.0",
       "Xam.Plugins.Forms.ImageCircle >= 2.0.2",
@@ -4896,6 +4968,10 @@
             "target": "Package",
             "version": "[4.0.2, )"
           },
+          "Plugin.Share": {
+            "target": "Package",
+            "version": "[7.1.1, )"
+          },
           "SuaveControls.FloatingActionButton": {
             "target": "Package",
             "version": "[2018.1.5, )"
@@ -4939,6 +5015,16 @@
       "warningLevel": 1,
       "message": "Detected package version outside of dependency constraint: Xamarin.Android.Support.CustomTabs 23.3.0 requires Xamarin.Android.Support.v4 (= 23.3.0) but version Xamarin.Android.Support.v4 25.4.0.2 was resolved.",
       "libraryId": "Xamarin.Android.Support.v4",
+      "targetGraphs": [
+        "MonoAndroid,Version=v8.1"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: Xamarin.Android.Support.CustomTabs from 25.4.0.2 to 23.3.0. Reference the package directly from the project to select a different version. \r\n MsorLi.Android -> Plugin.Share 7.1.1 -> Xamarin.Android.Support.CustomTabs (>= 25.4.0.2) \r\n MsorLi.Android -> Xamarin.Android.Support.CustomTabs (>= 23.3.0)",
+      "libraryId": "Xamarin.Android.Support.CustomTabs",
       "targetGraphs": [
         "MonoAndroid,Version=v8.1"
       ]

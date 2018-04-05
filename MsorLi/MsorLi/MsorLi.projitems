@@ -54,6 +54,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\BlobService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\ImageResizer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\IShare.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ItemListPage.xaml.cs">
       <DependentUpon>ItemListPage.xaml</DependentUpon>
