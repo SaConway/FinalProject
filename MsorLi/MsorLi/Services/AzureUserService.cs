@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Storage.Table;
 using MsorLi.Models;
 
 namespace MsorLi.Services
@@ -31,21 +29,37 @@ namespace MsorLi.Services
         // FUNCTIONS
         //---------------------------------
 
-        public async Task<ObservableCollection<User>> LoginAsync(string email , string password)
+        public async Task<User> LoginAsync(string email ,string password)
         {
             try
             {
+                var user = await _table
+                    .Where(User => User.Email == email && User.Password == password)
+                    .ToListAsync();
 
-
-                //IEnumerable<User> user1 = await _table.Where(filter);
-                //return user;
-                IEnumerable<User> user_task = await _table.Where(user => user.Email == email && user.Password == password).ToEnumerableAsync();
-                return new ObservableCollection<User>(user_task);
+                return user.Count != 0 ? user[0] : null;
             }
 
             catch (Exception) { }
             return null;
         }
+
+        public async Task<bool> IsEmailExistAsync(string email)
+        {
+            try
+            {
+                var user = await _table
+                    .Where(User => User.Email == email)
+                    .ToListAsync();
+
+                return user.Count != 0 ? true : false;
+            }
+
+            catch (Exception)
+            {
+
+            }
+            return false;
+        }
     }
 }
-

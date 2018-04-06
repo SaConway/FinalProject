@@ -35,7 +35,7 @@
 
                                 </Grid.ColumnDefinitions>
 
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0">
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0">
 
                                     <Image Source="delete.png">
                                         <Image.GestureRecognizers>
@@ -51,7 +51,7 @@
 
                                 </StackLayout>
 
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1">
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Grid.Column="1">
 
                                     <Label Text="{Binding Item2}" Style="{DynamicResource myBodyStyle}"/>
                                     <Label Text="{Binding Item3}" Style="{DynamicResource myBodyStyle}"/>
@@ -59,7 +59,7 @@
                                 </StackLayout>
 
                                 <Image Source="{Binding Item4}" VerticalOptions="Center"
-                                        HorizontalOptions="End" Grid.Column="2"/>
+                                        HorizontalOptions="EndAndExpand" Grid.Column="2"/>
 
                             </Grid>
 

@@ -76,6 +76,18 @@ namespace MsorLi.Views
         {
             InitializeComponent();
 
+            city.Text = Settings.Address;
+            contactName.Text = Settings.UserFirstName + " " + Settings.UserLastName;
+            contactNumber.Text = Settings.Phone;
+
+            city.Margin = new Thickness(25, 15, 25, 0);
+            contactName.Margin = new Thickness(25, 15, 25, 0);
+            contactNumber.Margin = new Thickness(25, 15, 25, 0);
+
+            cityLabel.IsVisible = true;
+            contactNameLabel.IsVisible = true;
+            contactNumberLabel.IsVisible = true;
+
             if (_categories != null)
             {
                 foreach (var c in _categories)
@@ -122,6 +134,12 @@ namespace MsorLi.Views
         {
             try
             {
+                if (Validation() == false)
+                {
+                    await DisplayAlert("", "אחד או יותר משדות החובה לא מולאו. יש למלא את כולן ולנסות בשנית.", "אישור");
+                    return;
+                }
+
                 // Save images in blob
                 List<string> imageUrls = await SaveImagesInDB();
 
@@ -134,13 +152,18 @@ namespace MsorLi.Views
                 // Create all item images
                 List<ItemImage> itemImages = CreateItemImages(imageUrls, item.Id);
 
+                List<Task> TaskList = new List<Task>();
+
                 // Upload item images to data base
                 foreach (var itemImage in itemImages)
                 {
-                    await _azureImageService.UploadToServer(itemImage, itemImage.Id);
+                    var task = UploadImageToTable(itemImage);
+                    TaskList.Add(task);
                 }
+                await Task.WhenAll(TaskList);
 
                 await Navigation.PopAsync();
+                DependencyService.Get<IMessage>().LongAlert("פרסום המוצר בוצע בהצלחה");
             }
 
             catch (Exception)
@@ -153,6 +176,27 @@ namespace MsorLi.Views
         //---------------------------------------------------
         // PRIVATE FUNCTIONS
         //---------------------------------------------------
+
+        private async Task UploadImageToTable(ItemImage itemImage)
+        {
+            await _azureImageService.UploadToServer(itemImage, itemImage.Id);
+        }
+
+        private bool Validation()
+        {
+            if (category.SelectedIndex == -1 ||
+                _images.Count == 0 ||
+                description.Text.Length == 0 ||
+                condition.SelectedIndex == -1 ||
+                city.Text.Length == 0 ||
+                contactName.Text.Length == 0 ||
+                contactNumber.Text.Length == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         private List<ItemImage> CreateItemImages(List<string> imageUrls , string id)
         {
@@ -252,7 +296,7 @@ namespace MsorLi.Views
             {
                 cityLabel.IsVisible = IsVisable;
             }
-            else if (entry.Placeholder.ToString() == "רחוב")
+            else if (entry.Placeholder.ToString() == "רחוב (אופציונלי)")
             {
                 streetLabel.IsVisible = IsVisable;
             }

@@ -12,12 +12,12 @@
     
     <ContentPage.Content>
 
-        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <AbsoluteLayout>
             
             <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Spacing="0">
 
                 <!--ToolBar-->
-                <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#00BCD4" Padding="7">
+                <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#00BCD4" Padding="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
@@ -28,7 +28,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!--Search-->
-                    <Image Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="5,0,2.5,0"
+                    <Image Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"
                             Source="search.png">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer>
@@ -38,11 +38,17 @@
 
                     <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="Center">
 
-                        <Label Text="מסור-לי" TextColor="White" FontSize="Large"
-                               VerticalTextAlignment="Center" VerticalOptions="Center" HorizontalTextAlignment="End" Margin="7,0,7,0"/>
+                        <Label Text="מסור-לי" TextColor="White" FontSize="Large" Margin="0,0,10,0"
+                               VerticalTextAlignment="Center" VerticalOptions="Center" HorizontalTextAlignment="End">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <On Platform="Android" Value="Arimo-Regular.ttf#Arimo-Regular" />
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
 
                         <!--Menu-->
-                        <Image HorizontalOptions="Center" VerticalOptions="Center" Margin="2.5,0,5,0"
+                        <Image HorizontalOptions="Center" VerticalOptions="Center"
                             Source="menu.png">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OpenMenu">
@@ -94,9 +100,18 @@
             </StackLayout>
 
             <!--Add Button-->
-            <controls:FloatingActionButton AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional"
+            <!--<controls:FloatingActionButton AbsoluteLayout.LayoutBounds="1,1,-1,-1" AbsoluteLayout.LayoutFlags="PositionProportional"
                                            Image="add.png" HorizontalOptions="Center" VerticalOptions="Center"
-                                           Clicked="AddItem_EventClick" ButtonColor="#00BCD4"/>
+                                           Clicked="AddItem_EventClick" ButtonColor="#00BCD4"/>-->
+
+            <Button CornerRadius="15" AbsoluteLayout.LayoutBounds="0.5,1,-1,-1" AbsoluteLayout.LayoutFlags="PositionProportional"
+                    Text="פרסום מוצר" Clicked="AddItem_EventClick" BackgroundColor="#00BCD4" Margin="10" TextColor="White">
+                <Button.FontFamily>
+                    <OnPlatform x:TypeArguments="x:String">
+                        <On Platform="Android" Value="Arimo-Regular.ttf#Arimo-Regular" />
+                    </OnPlatform>
+                </Button.FontFamily>
+            </Button>
 
         </AbsoluteLayout>
     </ContentPage.Content>

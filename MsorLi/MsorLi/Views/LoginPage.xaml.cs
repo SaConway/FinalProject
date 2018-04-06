@@ -2,26 +2,32 @@
 using MsorLi.Services;
 using System;
 using Xamarin.Forms;
-using System.IO;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
 using MsorLi.Utilities;
-
 
 namespace MsorLi.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        //---------------------------------
+        // MEMBERS
+        //---------------------------------
+
         AzureUserService _azureUserService = AzureUserService.DefaultManager;
 
+        int _passwordLen = 0;
+        int _emailLen = 0;
+
+        //---------------------------------
+        // FUNCTIONS
+        //---------------------------------
+
+        // C-tor
         public LoginPage()
         {
             InitializeComponent();
         }
-
 
         // EVENT FUNCTIONS
         //----------------------------------------------------------
@@ -45,43 +51,78 @@ namespace MsorLi.Views
         {
             try
             {
-                string email = Email.Text;
-                string password = Password.Text;
+                var email = Email.Text;
+                var password = Password.Text;
 
-                ObservableCollection<User> ThisUser = await _azureUserService.LoginAsync(email, password);
+                User ThisUser = await _azureUserService.LoginAsync(email, password);
 
                 if (ThisUser != null)
                 {
                     // Success
 
-                    Settings.UserId = ThisUser[0].Id;
-                    Settings.UserFirstName = ThisUser[0].FirstName;
-                    Settings.UserLastName = ThisUser[0].LastName;
-                    Settings.ImgUrl = ThisUser[0].ImgUrl;
-                    Settings.Email = ThisUser[0].Email;
-                    Settings.Phone = ThisUser[0].Phone;
-                    Settings.Address = ThisUser[0].Address;
-                    Settings.Permission = ThisUser[0].Permission;
+                    Settings.UserId = ThisUser.Id;
+                    Settings.UserFirstName = ThisUser.FirstName;
+                    Settings.UserLastName = ThisUser.LastName;
+                    Settings.ImgUrl = ThisUser.ImgUrl;
+                    Settings.Email = ThisUser.Email;
+                    Settings.Phone = ThisUser.Phone;
+                    Settings.Address = ThisUser.Address;
+                    Settings.Permission = ThisUser.Permission;
 
                     await Navigation.PopToRootAsync();
                 }
 
                 else
                 {
-                    // User not registerd
+                    await DisplayAlert("", "אחד או יותר מפרטי הזיהוי שגויים. נסה שנית.", "אישור");
                 }
-                
+
             }
-            catch (Exception) {}
+            catch (Exception) { }
 
         }
+
         private async void RegBtnClicked(object sender, EventArgs e)
         {
             try
             {
                 await Navigation.PushAsync(new RegisterPage());
             }
-            catch (Exception) {}
+            catch (Exception) { }
+        }
+
+        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                Entry entry = sender as Entry;
+                String val = entry.Text;
+                int len = val.Length;
+
+                if (entry.Placeholder == "אימייל")
+                {
+                    _emailLen = len;
+                }
+                else
+                {
+                    _passwordLen = len;
+                }
+
+                if (_emailLen > 0 && _passwordLen > 0)
+                {
+                    // User can submit
+                    MySubmitBtn.IsEnabled = true;
+                    MySubmitBtn.BackgroundColor = Color.FromHex("00BCD4");
+                }
+                else
+                {
+                    //User can't submit
+                    MySubmitBtn.IsEnabled = false;
+                    MySubmitBtn.BackgroundColor = Color.FromHex("#999999");
+                }
+            }
+
+            catch (Exception) { }
         }
     }
 }

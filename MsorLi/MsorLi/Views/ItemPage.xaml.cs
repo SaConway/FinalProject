@@ -154,7 +154,7 @@ namespace MsorLi.Views
         private void ShareButtonClick(object sender, EventArgs e)
         {
             DependencyService.Get<Utilities.IShare>().Share("מוצר למסירה, דרך אפליקציית מסור-לי.",
-                 "להלן פרטי המוצר ודרכי התקשרות עם המוסר:" + Environment.NewLine + Environment.NewLine
+                 "מוצר למסירה, דרך אפליקציית מסור--לי. להלן פרטי המוצר ודרכי התקשרות:" + Environment.NewLine + Environment.NewLine
                      + "קטגוריה: " + _item.Category + Environment.NewLine
                      + "מיקום: " + _item.Location + Environment.NewLine
                      + "מצב מוצר: " + _item.Condition + Environment.NewLine
