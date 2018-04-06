@@ -6,6 +6,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MsorLi.Utilities;
 using System.Threading.Tasks;
+using Plugin.Share;
+using Plugin.Share.Abstractions;
 
 namespace MsorLi.Views
 {
@@ -82,21 +84,19 @@ namespace MsorLi.Views
 
             // Update saved item details
 
-            if (_userId == "") return;    // User is not logged in, nothing to change
-
             if (_savedId != "")
             {
-                // Item is not saved by the user
-
+                // Item is saved by the user
                 _itemWasSaved = true;
-                SaveButton.Text = "בטל שמירת מוצר";
+                SaveButton.Source = "love_full.png";
+                SaveLabel.Text = "בטל שמירה";
             }
             else
             {
-                // Item is saved by the user
-
+                // Item is not saved by the user
                 _itemWasSaved = false;
-                SaveButton.Text = "שמור מוצר";
+                SaveButton.Source = "love_empty.png";
+                SaveLabel.Text = "שמירה";
             }
         }
 
@@ -116,6 +116,7 @@ namespace MsorLi.Views
         // EVENT FUNCTIONS
         //----------------------------------------------------------
 
+        // Save Button
         private async void SaveButtonClick(object sender, EventArgs e)
         {
             try
@@ -128,15 +129,16 @@ namespace MsorLi.Views
                 else
                 {
                     // User is allowed to save Item
-
-                    if (SaveButton.Text == "שמור מוצר")
+                    if (SaveLabel.Text == "שמירה")
                     {
-                        SaveButton.Text = "בטל שמירת מוצר";
+                        SaveButton.Source = "love_full.png";
+                        SaveLabel.Text = "בטל שמירה";
                         _saveItem = true;
                     }
                     else
                     {
-                        SaveButton.Text = "שמור מוצר";
+                        SaveButton.Source = "love_empty.png";
+                        SaveLabel.Text = "שמירה";
                         _saveItem = false;
                     }
                 }
@@ -147,7 +149,23 @@ namespace MsorLi.Views
                 await DisplayAlert("שגיאה", "לא ניתן לשמור מוצר מבוקש. נסה שנית.", "אישור");
             }
         }
-        
+
+        // Share button
+        private void ShareButtonClick(object sender, EventArgs e)
+        {
+            DependencyService.Get<Utilities.IShare>().Share("מוצר למסירה, דרך אפליקציית מסור-לי.",
+                 "להלן פרטי המוצר ודרכי התקשרות עם המוסר:" + Environment.NewLine + Environment.NewLine
+                     + "קטגוריה: " + _item.Category + Environment.NewLine
+                     + "מיקום: " + _item.Location + Environment.NewLine
+                     + "מצב מוצר: " + _item.Condition + Environment.NewLine
+                     + "תיאור: " + _item.Description + Environment.NewLine
+                     + "שם איש קשר: " + _item.ContactName + Environment.NewLine
+                     + "טלפון ליצירת קשר: " + _item.ContactNumber + Environment.NewLine + Environment.NewLine
+                     + "למגוון מוצרים נוספים אנא הורד את אפליקציית מסור-לי.",
+                    _images[0].Url
+                );
+        }
+
         // For android only, return to item list
         protected override bool OnBackButtonPressed()
         {

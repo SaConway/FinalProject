@@ -26,8 +26,8 @@ namespace MsorLi.Views
         ObservableCollection<Item> _items = new ObservableCollection<Item>();
         ObservableCollection<string> _imageURLs = new ObservableCollection<string>();
 
-        ObservableCollection<Tuple<string, string, string, int, int>> _myCollection =
-                    new ObservableCollection<Tuple<string, string, string, int, int>>();
+        ObservableCollection<Tuple<int, string, string, string>> _myCollection =
+                    new ObservableCollection<Tuple<int, string, string, string>>();
 
         bool _isItems = false;
         string _userId = Settings.UserId;
@@ -72,7 +72,7 @@ namespace MsorLi.Views
 
             catch (Exception)
             {
-                await DisplayAlert("שגיאה", "לא לטעון דף מבוקש. נסה שנית מאוחר יותר.", "אישור");
+                await DisplayAlert("שגיאה", "לא לטעון דף מבוקש. נסה שנית.", "אישור");
                 await Navigation.PopToRootAsync();
             }
         }
@@ -112,19 +112,22 @@ namespace MsorLi.Views
         private void MyInitializeComponent()
         {
             InitializeComponent();
-            listView_items.IsVisible = true;
 
             if (!_isItems)
             {
                 NoItems.IsVisible = true;
+                return;
             }
+
+            listView_items.IsVisible = true;
+            listView_items.RowHeight = App.ScreenHeight / 5;
 
             _myCollection.Clear();
 
             for (int i = 0; i < _items.Count; i++)
             {
-                _myCollection.Add(new Tuple<string, string, string, int, int>
-                        (_imageURLs[i], _items[i].Category, _items[i].Location, (App.ScreenHeight / 5), i));
+                _myCollection.Add(new Tuple<int, string, string, string>
+                        (i, _items[i].Category, _items[i].Location, _imageURLs[i]));
             }
 
             listView_items.ItemsSource = _myCollection;
@@ -155,8 +158,8 @@ namespace MsorLi.Views
                 TappedEventArgs obj = e as TappedEventArgs;
                 int index = (int)obj.Parameter;
 
-                _myCollection.Remove(new Tuple<string, string, string, int, int>
-                    (_imageURLs[index], _items[index].Category, _items[index].Location, (App.ScreenHeight / 5), index));
+                _myCollection.Remove(new Tuple<int, string, string, string>
+                    (index, _items[index].Category, _items[index].Location, _imageURLs[index]));
 
                 listView_items.ItemsSource = _myCollection;
 
