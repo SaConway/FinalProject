@@ -21,41 +21,42 @@ namespace MsorLi.Views
         List<byte[]> _byteData = new List<byte[]>();
         ObservableCollection<ImageSource> _images = new ObservableCollection<ImageSource>();
         
-        bool _myBoolean = true;
-        bool _firstAppearing = true;
-
         //---------------------------------------------------
         // FUNCTIONS
         //---------------------------------------------------
 
-        async protected override void OnAppearing()
+        protected override void OnAppearing()
         {
-            // User is not logged in
-            if (Settings.UserId == "" && _myBoolean)
-            {
-                _myBoolean = false;
-                await Navigation.PushAsync(new LoginPage());
-            }
+            // User has just looged in
+            MessagingCenter.Subscribe<LoginPage>(this, "Success", async (sender) => {
+
+                MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
+                await InitializeAsync();
+            });
 
             // User is not logged in and he is back from log in page
-            else if (Settings.UserId == "" && !_myBoolean)
-            {
-                await Navigation.PopToRootAsync();
-            }
+            MessagingCenter.Subscribe<LoginPage>(this, "NotSuccess", async (sender) => {
 
-            // User has just looged in
-            else if (Settings.UserId != "" && !_myBoolean)
-            {
-                _myBoolean = true;
-                await InitializeAsync();
-            }
+                MessagingCenter.Unsubscribe<LoginPage>(this, "NotSuccess");
+                await Navigation.PopAsync();
 
-            // User is looged in and its his first appearing
-            else if (Settings.UserId != "" && _firstAppearing)
-            {
-                _firstAppearing = false;
-                await InitializeAsync();
-            }
+            });
+
+            MessagingCenter.Subscribe<ItemListPage>(this, "FirstApearing", async (sender) => {
+
+                MessagingCenter.Unsubscribe<ItemListPage>(this, "FirstApearing");
+
+                if (Settings.UserId != "")
+                {
+                    // User is looged in and its his first appearing
+                    await InitializeAsync();
+                }
+                else
+                {
+                    // User is not logged in
+                    await Navigation.PushAsync(new LoginPage());
+                }
+            });
         }
 
         private async Task InitializeAsync()

@@ -104,6 +104,8 @@ namespace MsorLi.Views
             else if (!_saveItem && _itemWasSaved)
             {
                 await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedId });
+
+                MessagingCenter.Send<ItemPage>(this, "Item Deleted");
             }
         }
 
@@ -158,21 +160,6 @@ namespace MsorLi.Views
                      + "למגוון מוצרים נוספים אנא הורד את אפליקציית מסור-לי.",
                     _images[0].Url
                 );
-        }
-
-        // For android only, return to item list
-        protected override bool OnBackButtonPressed()
-        {
-            try
-            {
-                Navigation.PopAsync();
-                return true;
-            }
-
-            catch (Exception)
-            {
-                return false;
-            }
         }
 
         // PRIVATE FUNCTIONS

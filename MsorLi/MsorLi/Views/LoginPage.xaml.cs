@@ -17,6 +17,8 @@ namespace MsorLi.Views
         int _passwordLen = 0;
         int _emailLen = 0;
 
+        bool _succcess = false;
+
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
@@ -30,18 +32,16 @@ namespace MsorLi.Views
         // EVENT FUNCTIONS
         //----------------------------------------------------------
 
-        // For ANDROID only, return to item list
-        protected override bool OnBackButtonPressed()
+        // Override OnDisappearing
+        protected override void OnDisappearing()
         {
-            try
+            if (_succcess)
             {
-                Navigation.PopToRootAsync();
-                return true;
+                MessagingCenter.Send<LoginPage>(this, "Success");
             }
-
-            catch (Exception)
+            else
             {
-                return false;
+                MessagingCenter.Send<LoginPage>(this, "NotSuccess");
             }
         }
 
@@ -72,7 +72,8 @@ namespace MsorLi.Views
                     Settings.Address = user.Address;
                     Settings.Permission = user.Permission;
 
-                    await Navigation.PopToRootAsync();
+                    _succcess = true;
+                    await Navigation.PopAsync();
                 }
 
                 else

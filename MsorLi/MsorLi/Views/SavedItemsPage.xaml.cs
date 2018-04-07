@@ -24,9 +24,6 @@ namespace MsorLi.Views
         ObservableCollection<Tuple<int, string, string, string>> _myCollection =
                     new ObservableCollection<Tuple<int, string, string, string>>();
 
-        bool _myBoolean = true;
-        bool _firstAppearing = true;
-
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
@@ -35,32 +32,43 @@ namespace MsorLi.Views
         {
             try
             {
-                // User is not logged in
-                if (Settings.UserId == "" && _myBoolean)
-                {
-                    _myBoolean = false;
-                    await Navigation.PushAsync(new LoginPage());
-                }
-
-                // User is not logged in and he is back from loog in page
-                else if (Settings.UserId == "" && !_myBoolean)
-                {
-                    await Navigation.PopToRootAsync();
-                }
-
                 // User has just looged in
-                else if (Settings.UserId != "" && !_myBoolean)
-                {
-                    _myBoolean = true;
-                    await InitializeAsync();
-                }
+                MessagingCenter.Subscribe<LoginPage>(this, "Success", async (sender) => {
 
-                // User is looged in and its his first appearing
-                else if (Settings.UserId != "" && _firstAppearing)
-                {
-                    _firstAppearing = false;
+                    MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
                     await InitializeAsync();
-                }
+                });
+
+                // User is not logged in and he is back from log in page
+                MessagingCenter.Subscribe<LoginPage>(this, "NotSuccess", async (sender) => {
+
+                    MessagingCenter.Unsubscribe<LoginPage>(this, "NotSuccess");
+                    await Navigation.PopAsync();
+
+                });
+
+                MessagingCenter.Subscribe<MenuPage>(this, "FirstApearing", async (sender) => {
+
+                    MessagingCenter.Unsubscribe<MenuPage>(this, "FirstApearing");
+
+                    if (Settings.UserId != "")
+                    {
+                        // User is looged in and its his first appearing
+                        await InitializeAsync();
+                    }
+                    else
+                    {
+                        // User is not logged in
+                        await Navigation.PushAsync(new LoginPage());
+                    }
+                });
+
+                MessagingCenter.Subscribe<ItemPage>(this, "Item Deleted", async (sender) => {
+
+                    MessagingCenter.Unsubscribe<LoginPage>(this, "Item Deleted");
+                    //Delete item
+
+                });
             }
 
             catch (Exception)
@@ -119,7 +127,7 @@ namespace MsorLi.Views
             }
 
             listView_items.IsVisible = true;
-            listView_items.RowHeight = Utilities.Constants.ScreenHeight / 5;
+            listView_items.RowHeight = Constants.ScreenHeight / 5;
 
             _myCollection.Clear();
 
@@ -135,21 +143,6 @@ namespace MsorLi.Views
         // EVENT FUNCTIONS
         //----------------------------------------------------------
 
-        // For android only, return to item list
-        protected override bool OnBackButtonPressed()
-        {
-            try
-            {
-                Navigation.PopToRootAsync();
-                return true;
-            }
-
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
         private async void DeleteSavedItem(object sender, EventArgs e)
         {
             try
@@ -157,16 +150,7 @@ namespace MsorLi.Views
                 TappedEventArgs obj = e as TappedEventArgs;
                 int index = (int)obj.Parameter;
 
-                _myCollection.Remove(new Tuple<int, string, string, string>
-                    (index, _items[index].Category, _items[index].Location, _imageURLs[index]));
-
-                listView_items.ItemsSource = _myCollection;
-
-                if (_myCollection.Count == 0)
-                {
-                    NoItems.IsVisible = true;
-                    listView_items.IsVisible = false;
-                }
+                DeleteItemFromList(index);
 
                 await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedItems[index].Id });
             }
@@ -192,6 +176,20 @@ namespace MsorLi.Views
 
         // PRIVATE FUNCTIONS
         //----------------------------------------------------------
+
+        private void DeleteItemFromList(int index)
+        {
+            _myCollection.Remove(new Tuple<int, string, string, string>
+                    (index, _items[index].Category, _items[index].Location, _imageURLs[index]));
+
+            listView_items.ItemsSource = _myCollection;
+
+            if (_myCollection.Count == 0)
+            {
+                NoItems.IsVisible = true;
+                listView_items.IsVisible = false;
+            }
+        }
 
         private async Task SetItemAsync(string itemId, int itemIndex)
         {

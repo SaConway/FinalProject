@@ -177,6 +177,7 @@ namespace MsorLi.Views
             try
             {
                 await Navigation.PushAsync(new AddItemPage());
+                MessagingCenter.Send<ItemListPage>(this, "FirstApearing");
             }
             catch (Exception)
             {

@@ -8,7 +8,7 @@ namespace MsorLi
         public App ()
 		{
             InitializeComponent();
-            MainPage = new NavigationPage (new ItemListPage());
+            MainPage = new NavigationPage(new ItemListPage());
         }
 	}
 }

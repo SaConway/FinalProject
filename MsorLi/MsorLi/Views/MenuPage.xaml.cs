@@ -52,6 +52,7 @@ namespace MsorLi.Views
             try
             {
                 await Navigation.PushAsync(new SavedItemsPage());
+                MessagingCenter.Send<MenuPage>(this, "FirstApearing");
             }
 
             catch (Exception)
