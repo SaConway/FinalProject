@@ -29,12 +29,12 @@ namespace MsorLi.Services
         // FUNCTIONS
         //---------------------------------
 
-        public async Task<User> LoginAsync(string email ,string password)
+        public async Task<User> GetUserAsync(string email ,string password)
         {
             try
             {
                 var user = await _table
-                    .Where(User => User.Email == email && User.Password == password)
+                    .Where(User => User.Email == email)
                     .ToListAsync();
 
                 return user.Count != 0 ? user[0] : null;

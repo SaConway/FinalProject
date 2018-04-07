@@ -20,9 +20,9 @@
 
         <ScrollView>
 
-            <StackLayout Margin="15,20,15,20">
+            <StackLayout Margin="15,30,15,20">
 
-                <Grid Margin="0,40,0,0" ColumnSpacing="20" RowSpacing="0">
+                <Grid ColumnSpacing="20" RowSpacing="0">
 
                     <Grid.RowDefinitions>
                         <RowDefinition/>

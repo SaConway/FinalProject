@@ -18,9 +18,6 @@
 
                 <!--ToolBar-->
                 <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#00BCD4" Padding="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -38,7 +35,8 @@
 
                     <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="Center">
 
-                        <Label Text="מסור-לי" TextColor="White" FontSize="Large" Margin="0,0,10,0"
+                        <!--MsorLi-->
+                        <Label Text="מסור-לי" TextColor="White" FontSize="Large" Margin="0,0,15,0"
                                VerticalTextAlignment="Center" VerticalOptions="Center" HorizontalTextAlignment="End">
                             <Label.FontFamily>
                                 <OnPlatform x:TypeArguments="x:String">
@@ -66,7 +64,7 @@
                 <ListView x:Name="listView_items" IsPullToRefreshEnabled="true" Refreshing="OnRefresh"
                           SeparatorVisibility="None" RowHeight="200">
                     <ListView.ItemTemplate>
-                        <DataTemplate >
+                        <DataTemplate>
                             <ViewCell>
 
                                 <Grid RowSpacing="0" ColumnSpacing="0">
@@ -76,14 +74,14 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Image Grid.Column="0" Aspect="AspectFill" Margin="0,4,2,0" Source="{Binding Item1}">
+                                    <Image Grid.Column="0" Aspect="AspectFill" Margin="0,6,3,0" Source="{Binding Item1}">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="OnSelection" CommandParameter="{Binding Item2}">
                                             </TapGestureRecognizer>
                                         </Image.GestureRecognizers>
                                     </Image>
 
-                                    <Image Grid.Column="1" Aspect="AspectFill" Margin="2,4,0,0" Source="{Binding Item3}">
+                                    <Image Grid.Column="1" Aspect="AspectFill" Margin="3,6,0,0" Source="{Binding Item3}">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="OnSelection" CommandParameter="{Binding Item4}" >
                                             </TapGestureRecognizer>
@@ -100,12 +98,17 @@
             </StackLayout>
 
             <!--Add Button-->
+            
+            
             <!--<controls:FloatingActionButton AbsoluteLayout.LayoutBounds="1,1,-1,-1" AbsoluteLayout.LayoutFlags="PositionProportional"
                                            Image="add.png" HorizontalOptions="Center" VerticalOptions="Center"
                                            Clicked="AddItem_EventClick" ButtonColor="#00BCD4"/>-->
 
-            <Button CornerRadius="15" AbsoluteLayout.LayoutBounds="0.5,1,-1,-1" AbsoluteLayout.LayoutFlags="PositionProportional"
-                    Text="פרסום מוצר" Clicked="AddItem_EventClick" BackgroundColor="#00BCD4" Margin="10" TextColor="White">
+            <Button BorderRadius="20" AbsoluteLayout.LayoutBounds="0.5,1,-1,-1"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    FontAttributes="Bold" FontSize="Medium"
+                    Text="פרסום מוצר" Clicked="AddItem_EventClick" 
+                    BackgroundColor="#CDDC39" Margin="15" TextColor="White">
                 <Button.FontFamily>
                     <OnPlatform x:TypeArguments="x:String">
                         <On Platform="Android" Value="Arimo-Regular.ttf#Arimo-Regular" />

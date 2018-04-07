@@ -68,6 +68,7 @@ namespace MsorLi.Views
                 if (Settings.UserId != ""){
                     Settings.UserId = "";
 					await Navigation.PopToRootAsync();
+                    DependencyService.Get<IMessage>().LongAlert("בוצעה התנתקות מהמערכת");
                     Settings.ClearUserData();
                 }
                 else

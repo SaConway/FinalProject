@@ -14,11 +14,8 @@ PInvoke.BCrypt
 PInvoke.Kernel32
 PInvoke.NCrypt
 PInvoke.Windows.Core
-Plugin.CurrentActivity
 Plugin.Settings.Abstractions
 Plugin.Settings
-Plugin.Share.Abstractions
-Plugin.Share
 SQLitePCLRaw.batteries_green
 SQLitePCLRaw.batteries_v2
 SQLitePCLRaw.core

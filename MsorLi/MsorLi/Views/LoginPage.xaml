@@ -22,7 +22,7 @@
 
     <ContentPage.Content>
 
-        <StackLayout Margin="20,50,20,30">
+        <StackLayout Margin="20,30,20,30">
 
             <Entry x:Name="Email" Placeholder="אימייל" HorizontalTextAlignment="End" 
                    TextChanged="Entry_TextChanged" Keyboard="Email" Margin="0,20,0,0"/>

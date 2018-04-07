@@ -18,15 +18,9 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------------------------
 
-        AzureItemService _azureItemService = AzureItemService.DefaultManager;
-        AzureImageService _azureImageService = AzureImageService.DefaultManager;
-
         List<byte[]> _byteData = new List<byte[]>();
         ObservableCollection<ImageSource> _images = new ObservableCollection<ImageSource>();
-        const int MAX_NUM_OF_IMAGES = 4;
-
-        List<string> _categories = new List<string>();
-
+        
         bool _myBoolean = true;
         bool _firstAppearing = true;
 
@@ -66,14 +60,8 @@ namespace MsorLi.Views
 
         private async Task InitializeAsync()
         {
-            AzureCategoryService azureCategory = AzureCategoryService.DefaultManager;
-            _categories = await azureCategory.GetAllCategories();
+            var task = CategoryStorage.GetCategories();
 
-            MyInitializeComponent();
-        }
-
-        private void MyInitializeComponent()
-        {
             InitializeComponent();
 
             city.Text = Settings.Address;
@@ -88,12 +76,12 @@ namespace MsorLi.Views
             contactNameLabel.IsVisible = true;
             contactNumberLabel.IsVisible = true;
 
-            if (_categories != null)
+            await Task.WhenAll(task);
+            var categories = task.Result;
+
+            foreach (var c in categories)
             {
-                foreach (var c in _categories)
-                {
-                    category.Items.Add(c);
-                }
+                category.Items.Add(c);
             }
         }
 
@@ -105,7 +93,7 @@ namespace MsorLi.Views
         {
             try
             {
-                if (_images.Count == MAX_NUM_OF_IMAGES) return;
+                if (_images.Count == Constants.MAX_NUM_OF_IMAGES) return;
 
                 pickPictureButton.IsEnabled = false;
                 Stream imageStream = await DependencyService.Get<IPicturePicker>().GetImageStreamAsync();
@@ -147,7 +135,7 @@ namespace MsorLi.Views
                 Item item = CreateNewItem(imageUrls.Count);
 
                 // Upload item to data base
-                await _azureItemService.UploadToServer(item, item.Id);
+                await AzureItemService.DefaultManager.UploadToServer(item, item.Id);
 
                 // Create all item images
                 List<ItemImage> itemImages = CreateItemImages(imageUrls, item.Id);
@@ -179,7 +167,7 @@ namespace MsorLi.Views
 
         private async Task UploadImageToTable(ItemImage itemImage)
         {
-            await _azureImageService.UploadToServer(itemImage, itemImage.Id);
+            await AzureImageService.DefaultManager.UploadToServer(itemImage, itemImage.Id);
         }
 
         private bool Validation()

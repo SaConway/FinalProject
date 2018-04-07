@@ -6,8 +6,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MsorLi.Utilities;
 using System.Threading.Tasks;
-using Plugin.Share;
-using Plugin.Share.Abstractions;
 
 namespace MsorLi.Views
 {
@@ -25,10 +23,6 @@ namespace MsorLi.Views
         string _userId = Settings.UserId;
         ObservableCollection<ItemImage> _images = new ObservableCollection<ItemImage>();
         string _savedId = "";
-
-        AzureSavedItemService _savedItemService = AzureSavedItemService.DefaultManager;
-        AzureImageService _imageService = AzureImageService.DefaultManager;
-        AzureItemService _itemService = AzureItemService.DefaultManager;
 
         //---------------------------------
         // FUNCTIONS
@@ -70,7 +64,7 @@ namespace MsorLi.Views
 
             // Update item images
 
-            imagesView.HeightRequest = (double)(App.ScreenHeight / 2.5);
+            imagesView.HeightRequest = (double)(Utilities.Constants.ScreenHeight / 2.5);
 
             ObservableCollection<Models.Image> images = new ObservableCollection<Models.Image>();
 
@@ -105,11 +99,11 @@ namespace MsorLi.Views
         {
             if (_saveItem && !_itemWasSaved)
             {
-                await _savedItemService.UploadToServer(new SavedItem { ItemId = _item.Id, UserId = _userId }, null);
+                await AzureSavedItemService.DefaultManager.UploadToServer(new SavedItem { ItemId = _item.Id, UserId = _userId }, null);
             }
             else if (!_saveItem && _itemWasSaved)
             {
-                await _savedItemService.DeleteSavedItem(new SavedItem { Id = _savedId });
+                await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedId });
             }
         }
 
@@ -186,17 +180,17 @@ namespace MsorLi.Views
 
         private async Task SetItemAsync()
         {
-            _item = await _itemService.GetItemAsync(_item.Id);
+            _item = await AzureItemService.DefaultManager.GetItemAsync(_item.Id);
         }
 
         private async Task SetItemImagesAsync()
         {
-            _images = await _imageService.GetItemImages(_item.Id);
+            _images = await AzureImageService.DefaultManager.GetItemImages(_item.Id);
         }
 
         private async Task SetItemSavedAsync()
         {
-            _savedId = await _savedItemService.IsItemSaved(_item.Id, _userId);
+            _savedId = await AzureSavedItemService.DefaultManager.IsItemSaved(_item.Id, _userId);
         }
     }
 }

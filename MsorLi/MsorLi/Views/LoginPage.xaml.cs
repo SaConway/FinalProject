@@ -14,8 +14,6 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------
 
-        AzureUserService _azureUserService = AzureUserService.DefaultManager;
-
         int _passwordLen = 0;
         int _emailLen = 0;
 
@@ -54,31 +52,39 @@ namespace MsorLi.Views
                 var email = Email.Text;
                 var password = Password.Text;
 
-                User ThisUser = await _azureUserService.LoginAsync(email, password);
+                // Get User with this email
+                User user = await AzureUserService.DefaultManager.GetUserAsync(email, password);
 
-                if (ThisUser != null)
+                if (user != null)
                 {
-                    // Success
+                    // Check if the password is correct
+                    if (EncryptDecrypt.Decrypt(user.Password) != password)
+                    {
+                        throw new Exception("סיסמה שהוזנה אינה תקינה. נסה שנית.");
+                    }
 
-                    Settings.UserId = ThisUser.Id;
-                    Settings.UserFirstName = ThisUser.FirstName;
-                    Settings.UserLastName = ThisUser.LastName;
-                    Settings.ImgUrl = ThisUser.ImgUrl;
-                    Settings.Email = ThisUser.Email;
-                    Settings.Phone = ThisUser.Phone;
-                    Settings.Address = ThisUser.Address;
-                    Settings.Permission = ThisUser.Permission;
+                    Settings.UserId = user.Id;
+                    Settings.UserFirstName = user.FirstName;
+                    Settings.UserLastName = user.LastName;
+                    Settings.ImgUrl = user.ImgUrl;
+                    Settings.Email = user.Email;
+                    Settings.Phone = user.Phone;
+                    Settings.Address = user.Address;
+                    Settings.Permission = user.Permission;
 
                     await Navigation.PopToRootAsync();
                 }
 
                 else
                 {
-                    await DisplayAlert("", "אחד או יותר מפרטי הזיהוי שגויים. נסה שנית.", "אישור");
+                    throw new Exception("אימייל שהוזן אינו תקין. נסה שנית.");
                 }
 
             }
-            catch (Exception) { }
+            catch (Exception exc)
+            {
+                await DisplayAlert("", exc.Message, "אישור");
+            }
 
         }
 

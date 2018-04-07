@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
+﻿using Foundation;
 using SuaveControls.FloatingActionButton.iOS.Renderers;
 using UIKit;
 
@@ -29,8 +25,8 @@ namespace MsorLi.iOS
             ImageCircle.Forms.Plugin.iOS.ImageCircleRenderer.Init();
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 
-            App.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
-            App.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
+            Utilities.Constants.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
+            Utilities.Constants.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
 
             FloatingActionButtonRenderer.InitRenderer();
 

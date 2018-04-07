@@ -7,7 +7,6 @@ using System.Collections.ObjectModel;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace MsorLi.Views
 {
@@ -18,10 +17,6 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------
 
-        AzureSavedItemService _savedItemService = AzureSavedItemService.DefaultManager;
-        AzureItemService _itemService = AzureItemService.DefaultManager;
-        AzureImageService _imageService = AzureImageService.DefaultManager;
-
         ObservableCollection<SavedItem> _savedItems = new ObservableCollection<SavedItem>();
         ObservableCollection<Item> _items = new ObservableCollection<Item>();
         ObservableCollection<string> _imageURLs = new ObservableCollection<string>();
@@ -29,8 +24,6 @@ namespace MsorLi.Views
         ObservableCollection<Tuple<int, string, string, string>> _myCollection =
                     new ObservableCollection<Tuple<int, string, string, string>>();
 
-        bool _isItems = false;
-        string _userId = Settings.UserId;
         bool _myBoolean = true;
         bool _firstAppearing = true;
 
@@ -79,13 +72,11 @@ namespace MsorLi.Views
 
         private async Task InitializeAsync()
         {
-            _savedItems = await _savedItemService.GetAllSavedOfUser(Settings.UserId);
+            _savedItems = await AzureSavedItemService.DefaultManager.GetAllSavedOfUser(Settings.UserId);
 
             if (_savedItems.Count > 0)
             {
                 // There Are Saved Items
-
-                _isItems = true;
 
                 for (int i = 0; i < _savedItems.Count; i++)
                 {
@@ -112,15 +103,23 @@ namespace MsorLi.Views
         private void MyInitializeComponent()
         {
             InitializeComponent();
+            
+            // Disable Selection item
+            listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) => {
+                // don't do anything if we just de-selected the row
+                if (e.Item == null) return;
+                // do something with e.SelectedItem
+                ((ListView)sender).SelectedItem = null; // de-select the row
+            };
 
-            if (!_isItems)
+            if (_savedItems.Count == 0)
             {
                 NoItems.IsVisible = true;
                 return;
             }
 
             listView_items.IsVisible = true;
-            listView_items.RowHeight = App.ScreenHeight / 5;
+            listView_items.RowHeight = Utilities.Constants.ScreenHeight / 5;
 
             _myCollection.Clear();
 
@@ -169,7 +168,7 @@ namespace MsorLi.Views
                     listView_items.IsVisible = false;
                 }
 
-                await _savedItemService.DeleteSavedItem(new SavedItem { Id = _savedItems[index].Id });
+                await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedItems[index].Id });
             }
 
             catch (Exception)
@@ -196,13 +195,13 @@ namespace MsorLi.Views
 
         private async Task SetItemAsync(string itemId, int itemIndex)
         {
-            Item item = await _itemService.GetItemAsync(itemId);
+            Item item = await AzureItemService.DefaultManager.GetItemAsync(itemId);
             _items[itemIndex] = item;
         }
 
         private async Task SetImageUrlAsync(string itemId, int itemIndex)
         {
-            List<string> imageUrl = await _imageService.GetImageUrl(itemId);
+            List<string> imageUrl = await AzureImageService.DefaultManager.GetImageUrl(itemId);
             _imageURLs[itemIndex] = imageUrl[0];
         }
     }

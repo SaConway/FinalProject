@@ -4,8 +4,6 @@ using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using System.ComponentModel.DataAnnotations;
-using System.Net.Mail;
 using System.Text.RegularExpressions;
 
 namespace MsorLi.Views
@@ -17,7 +15,6 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------------------------
 
-        AzureUserService _azureUserService = new AzureUserService();
 
         //---------------------------------------------------
         // FUNCTIONS
@@ -45,13 +42,13 @@ namespace MsorLi.Views
                     FirstName = firstName.Text,
                     LastName = lastName.Text,
                     Email = email.Text,
-                    Password = password.Text,
+                    Password = Utilities.EncryptDecrypt.Encrypt(password.Text),
                     Phone = phoneNumber.Text,
                     Address = address.Text.Length > 0 ? city.Text + ", " + address.Text : city.Text,
                     Permission = "1"
                 };
 
-                await _azureUserService.UploadToServer(new_user, new_user.Id);
+                await AzureUserService.DefaultManager.UploadToServer(new_user, new_user.Id);
                 await Navigation.PopToRootAsync();
             }
             catch (Exception)
@@ -149,7 +146,7 @@ namespace MsorLi.Views
                     throw new Exception();
                 }
 
-                var b = await _azureUserService.IsEmailExistAsync(email.Text);
+                var b = await AzureUserService.DefaultManager.IsEmailExistAsync(email.Text);
                 if (b)
                 {
                     //Email exist

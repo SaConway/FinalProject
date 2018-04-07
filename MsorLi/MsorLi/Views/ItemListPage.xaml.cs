@@ -15,9 +15,6 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------
 
-        AzureItemService _azureItemService = AzureItemService.DefaultManager;
-        AzureImageService _azureImageService = AzureImageService.DefaultManager;
-
         public ObservableCollection<ItemImage> AllImages = new ObservableCollection<ItemImage>();
         public ObservableCollection<Tuple<string, string, string, string>> ImagePairs =
                             new ObservableCollection<Tuple<string, string, string, string>>();
@@ -36,7 +33,15 @@ namespace MsorLi.Views
 
             InitializeComponent();
 
-            listView_items.RowHeight = App.ScreenWidth / 2;
+            // Disable Selection item
+            listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) => {
+                // don't do anything if we just de-selected the row
+                if (e.Item == null) return;
+                // do something with e.SelectedItem
+                ((ListView)sender).SelectedItem = null; // de-select the row
+            };
+
+            listView_items.RowHeight = Utilities.Constants.ScreenWidth / 2;
         }
 
         protected async override void OnAppearing()
@@ -96,7 +101,7 @@ namespace MsorLi.Views
             {
                 using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
                 {
-                    AllImages = await _azureImageService.GetAllPriorityImages();
+                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages();
                     if (AllImages != null)
                     {
                         CreateImagePairs();
