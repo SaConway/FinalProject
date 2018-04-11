@@ -2,7 +2,6 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Release\MsorL
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Release\MsorLi.Android.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Release\com.companyname.MsorLi.apk
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Release\com.companyname.MsorLi-Signed.apk
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\MsorLi.Android.csprojResolveAssemblyReference.cache
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\MsorLi.Android.csproj.CoreCompileInputs.cache
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\MsorLi.Droid.App.xaml.g.cs
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\MsorLi.Droid.Views.AddItemPage.xaml.g.cs

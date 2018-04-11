@@ -21,6 +21,10 @@ namespace MsorLi.Views
 
         bool _startupRefresh = false;
 
+        // Two variables for OnSelection function
+        Boolean _isRunningItem = false;
+        Object _lockObject = new Object();
+
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
@@ -119,18 +123,25 @@ namespace MsorLi.Views
             }
         }
 
-        async void OnSelection(object sender, EventArgs e)
+        async void OnSelection(object sender, TappedEventArgs e)
         {
             try
             {
-                TappedEventArgs obj = e as TappedEventArgs;
-                var itemId = obj.Parameter.ToString();
+                // To prevent double tap on images
+                lock (_lockObject)
+                {
+                    if (_isRunningItem)
+                        return;
+                    else
+                        _isRunningItem = true;
+                }
 
-                if (itemId == "") return;
+                var itemId = e.Parameter.ToString();
 
-                ItemPage itemPage = new ItemPage(itemId);
-                await itemPage.InitializeAsync();
-                await Navigation.PushAsync(itemPage);
+                if (itemId != "")
+                    await Navigation.PushAsync(new ItemPage(itemId));
+
+                _isRunningItem = false;
             }
 
             catch (Exception)

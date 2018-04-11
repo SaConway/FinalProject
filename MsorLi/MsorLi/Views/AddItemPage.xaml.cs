@@ -25,7 +25,7 @@ namespace MsorLi.Views
         // FUNCTIONS
         //---------------------------------------------------
 
-        protected override void OnAppearing()
+        public AddItemPage()
         {
             // User has just looged in
             MessagingCenter.Subscribe<LoginPage>(this, "Success", async (sender) => {

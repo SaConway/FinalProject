@@ -28,54 +28,45 @@ namespace MsorLi.Views
         // FUNCTIONS
         //---------------------------------
 
-        protected async override void OnAppearing()
+        public SavedItemsPage()
         {
-            try
-            {
-                // User has just looged in
-                MessagingCenter.Subscribe<LoginPage>(this, "Success", async (sender) => {
+            // User has just looged in
+            MessagingCenter.Subscribe<LoginPage>(this, "Success", async (sender) => {
 
-                    MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
+                MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
+                await InitializeAsync();
+            });
+
+            // User is not logged in and he is back from log in page
+            MessagingCenter.Subscribe<LoginPage>(this, "NotSuccess", async (sender) => {
+
+                MessagingCenter.Unsubscribe<LoginPage>(this, "NotSuccess");
+                await Navigation.PopAsync();
+
+            });
+
+            MessagingCenter.Subscribe<MenuPage>(this, "FirstApearing", async (sender) => {
+
+                MessagingCenter.Unsubscribe<MenuPage>(this, "FirstApearing");
+
+                if (Settings.UserId != "")
+                {
+                    // User is looged in and its his first appearing
                     await InitializeAsync();
-                });
+                }
+                else
+                {
+                    // User is not logged in
+                    await Navigation.PushAsync(new LoginPage());
+                }
+            });
 
-                // User is not logged in and he is back from log in page
-                MessagingCenter.Subscribe<LoginPage>(this, "NotSuccess", async (sender) => {
+            MessagingCenter.Subscribe<ItemPage>(this, "Item Deleted", async (sender) => {
 
-                    MessagingCenter.Unsubscribe<LoginPage>(this, "NotSuccess");
-                    await Navigation.PopAsync();
+                MessagingCenter.Unsubscribe<LoginPage>(this, "Item Deleted");
+                //Delete item
 
-                });
-
-                MessagingCenter.Subscribe<MenuPage>(this, "FirstApearing", async (sender) => {
-
-                    MessagingCenter.Unsubscribe<MenuPage>(this, "FirstApearing");
-
-                    if (Settings.UserId != "")
-                    {
-                        // User is looged in and its his first appearing
-                        await InitializeAsync();
-                    }
-                    else
-                    {
-                        // User is not logged in
-                        await Navigation.PushAsync(new LoginPage());
-                    }
-                });
-
-                MessagingCenter.Subscribe<ItemPage>(this, "Item Deleted", async (sender) => {
-
-                    MessagingCenter.Unsubscribe<LoginPage>(this, "Item Deleted");
-                    //Delete item
-
-                });
-            }
-
-            catch (Exception)
-            {
-                await DisplayAlert("שגיאה", "לא לטעון דף מבוקש. נסה שנית.", "אישור");
-                await Navigation.PopToRootAsync();
-            }
+            });
         }
 
         private async Task InitializeAsync()
@@ -169,8 +160,9 @@ namespace MsorLi.Views
             ItemPage itemPage = new ItemPage(_savedItems[index].ItemId);
             itemPage._itemWasSaved = true;
             itemPage._saveItem = true;
+            itemPage._unSaveItem = false;
 
-            await itemPage.InitializeAsync();
+            //await itemPage.InitializeAsync();
             await Navigation.PushAsync(itemPage);
         }
 
