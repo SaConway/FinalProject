@@ -166,7 +166,7 @@ namespace MsorLi.Views
         // PRIVATE FUNCTIONS
         //---------------------------------------------------
 
-<<<<<<< HEAD
+
         private async Task UploadImageToTable(ItemImage itemImage)
         {
             await AzureImageService.DefaultManager.UploadToServer(itemImage, itemImage.Id);
