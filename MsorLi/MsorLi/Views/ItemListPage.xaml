@@ -95,7 +95,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-<<<<<<< HEAD
+
             </StackLayout>
 
             <!--Add Button-->
@@ -117,14 +117,12 @@
                 </Button.FontFamily>
             </Button>
 
-=======
-                    </StackLayout>
+
             <!--Add Button-->
             <controls:FloatingActionButton AbsoluteLayout.LayoutBounds="1,1,AutoSize, AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional"
                                            HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                                         Clicked="AddItem_EventClick" Image="add.png" ButtonColor="#CDDC39"/>
              
->>>>>>> 6c5e512... idan profile
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
