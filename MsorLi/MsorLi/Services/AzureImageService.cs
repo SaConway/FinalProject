@@ -62,6 +62,22 @@ namespace MsorLi.Services
             return null;
         }
 
+        public async Task<ObservableCollection<ItemImage>> GetAllImgByUserId(string userId)
+        {
+            try
+            {
+                IEnumerable<ItemImage> images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true && itemImage.UserId == userId)
+                    .ToEnumerableAsync();
+
+                return new ObservableCollection<ItemImage>(images);
+            }
+
+            catch (Exception) { }
+            return null;
+        }
+
         public async Task<List<string>> GetImageUrl(string itemId)
         {
             try
@@ -76,7 +92,6 @@ namespace MsorLi.Services
 
             catch (Exception) { }
             return null;
-        
         }
     }
 }

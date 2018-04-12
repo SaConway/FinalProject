@@ -14,36 +14,14 @@ namespace MsorLi.Views
                 UserName.Text = "שלום " + Settings.UserFirstName;
                 UserImg.Source = Settings.ImgUrl;
                 logButton.Text = "התנתק";
+                logImg.Source = "logout.png";
             }
             else
             {
                 UserName.Text = "שלום אורח";
                 UserImg.Source = "unknown-user.png";
                 logButton.Text = "התחבר";
-            }
-
-        }
-        protected async override void OnAppearing()
-
-        {
-            try
-            {
-                //if (Settings.UserId != "")
-                //{
-                //    UserName.Text = "שלום " + Settings.UserFirstName;
-                //    UserImg.Source = Settings.ImgUrl;
-                //    logButton.Text = "התנתק";
-                //}
-                //else
-                //{
-                //    UserName.Text = "שלום אורח";
-                //    UserImg.Source = "unknown-user.png";
-                //    logButton.Text = "התחבר";
-                //}
-            }
-            catch
-            {
-                await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים", "אישור");
+                logImg.Source = "login.png";
             }
         }
 
