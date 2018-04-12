@@ -1,28 +1,103 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MsorLi.Views.RegisterPage">
+             x:Class="MsorLi.Views.RegisterPage"
+             Title="רישום">
+
+    <!--Styles-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="#00BCD4"/>
+                <Setter Property="BorderRadius" Value="10"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--Content-->
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to registration!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
 
-            <Label Text="שם פרטי"/>
-            <Entry Placeholder="שם פרטי" x:Name="firstName" HorizontalTextAlignment="End"/>
-            <Label Text="שם משפחה"/>
-            <Entry Placeholder="שם משפחה" x:Name="lastName"/>
-            <Label Text="מייל"/>
-            <Entry Placeholder="מייל" x:Name="email"/>
-            <Label Text="סיסמה"/>
-            <Entry Placeholder="סיסמה" x:Name="password"/>
-            <Label Text="טלפון"/>
-            <Entry Placeholder="טלפון" x:Name="phoneNumber"/>
-            <Label Text="כתובת"/>
-            <Entry Placeholder="כתובת" x:Name="address"/>
+        <ScrollView>
 
-            <Button Text="Submit" Clicked="SubmitBtnClicked"/>
+            <StackLayout Margin="15,30,15,20">
 
-        </StackLayout>
+                <Grid ColumnSpacing="20" RowSpacing="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="שם פרטי" IsVisible="False" Grid.Column="1" Grid.Row="0" HorizontalOptions="FillAndExpand"
+                           HorizontalTextAlignment="End" Margin="0,50,0,0" x:Name="firstNameLabel"/>
+
+                    <Entry x:Name="firstName" Placeholder="שם פרטי" Grid.Column="1" Grid.Row="1" TextChanged="Event_TextChanged"
+                           HorizontalTextAlignment="End" HorizontalOptions="FillAndExpand" VerticalOptions="End"/>
+
+                    <Label Text="שם משפחה" IsVisible="False" Grid.Column="0" Grid.Row="0" HorizontalOptions="FillAndExpand" 
+                           HorizontalTextAlignment="End" Margin="0,50,0,0" x:Name="lastNameLabel"/>
+
+                    <Entry x:Name="lastName" Placeholder="שם משפחה" Grid.Column="0" Grid.Row="1" TextChanged="Event_TextChanged"
+                           HorizontalTextAlignment="End" HorizontalOptions="FillAndExpand" VerticalOptions="End"/>
+
+                </Grid>
+
+                <Label Text="אימייל" IsVisible="False" HorizontalOptions="FillAndExpand"
+                       Margin="0,50,0,0" HorizontalTextAlignment="End" x:Name="emailLabel"/>
+
+                <Entry x:Name="email" Placeholder="אימייל" HorizontalOptions="FillAndExpand" TextChanged="Event_TextChanged"
+                       HorizontalTextAlignment="End" Margin="0,50,0,0" Keyboard="Email"/>
+
+                <Label Text="סיסמה" IsVisible="False" HorizontalOptions="FillAndExpand"
+                       Margin="0,50,0,0" HorizontalTextAlignment="End" x:Name="passwordLabel"/>
+
+                <Entry x:Name="password" Placeholder="סיסמה" HorizontalOptions="FillAndExpand" TextChanged="Event_TextChanged"
+                       HorizontalTextAlignment="End" Margin="0,50,0,0" IsPassword="True"/>
+
+                <Label Text="מס' טלפון" IsVisible="False" HorizontalOptions="FillAndExpand" 
+                       Margin="0,50,0,0" HorizontalTextAlignment="End" x:Name="phoneLabel"/>
+
+                <Entry x:Name="phoneNumber" Placeholder="מס' טלפון" HorizontalOptions="FillAndExpand" TextChanged="Event_TextChanged"
+                       HorizontalTextAlignment="End" Margin="0,50,0,0" Keyboard="Telephone"/>
+
+                <Grid Margin="0,0,0,0" ColumnSpacing="20" RowSpacing="0">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="עיר מגורים" IsVisible="False" Grid.Column="1" Grid.Row="0" HorizontalOptions="FillAndExpand"
+                           Margin="0,50,0,0" HorizontalTextAlignment="End" x:Name="cityLabel"/>
+
+                    <Entry x:Name="city" Grid.Column="1" Placeholder="עיר מגורים" HorizontalOptions="FillAndExpand"
+                           TextChanged="Event_TextChanged" Grid.Row="1"
+                           HorizontalTextAlignment="End" VerticalOptions="End"/>
+
+                    <Label Text="כתובת (אופציונלי)" IsVisible="False" Grid.Column="0" Grid.Row="0" HorizontalOptions="FillAndExpand" 
+                           Margin="0,50,0,0" HorizontalTextAlignment="End" x:Name="adressLabel"/>
+
+                    <Entry x:Name="address" Grid.Column="0" Placeholder="כתובת (אופציונלי)" HorizontalOptions="FillAndExpand"
+                           TextChanged="Event_TextChanged" Grid.Row="1"
+                           HorizontalTextAlignment="End" VerticalOptions="End"/>
+
+                </Grid>
+
+                <Button Text="הרשמה" Margin="15,80,15,30" IsEnabled="False" FontSize="Medium" x:Name="SubmitBtn"
+                        Clicked="SubmitBtnClicked" Style="{StaticResource ButtonStyle}" BackgroundColor="#999999"/>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

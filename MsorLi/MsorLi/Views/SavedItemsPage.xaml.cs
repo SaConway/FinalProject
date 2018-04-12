@@ -7,7 +7,6 @@ using System.Collections.ObjectModel;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace MsorLi.Views
 {
@@ -18,10 +17,6 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------
 
-        AzureSavedItemService _savedItemService = AzureSavedItemService.DefaultManager;
-        AzureItemService _itemService = AzureItemService.DefaultManager;
-        AzureImageService _imageService = AzureImageService.DefaultManager;
-
         ObservableCollection<SavedItem> _savedItems = new ObservableCollection<SavedItem>();
         ObservableCollection<Item> _items = new ObservableCollection<Item>();
         ObservableCollection<string> _imageURLs = new ObservableCollection<string>();
@@ -29,63 +24,58 @@ namespace MsorLi.Views
         ObservableCollection<Tuple<int, string, string, string>> _myCollection =
                     new ObservableCollection<Tuple<int, string, string, string>>();
 
-        bool _isItems = false;
-        string _userId = Settings.UserId;
-        bool _myBoolean = true;
-        bool _firstAppearing = true;
-
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
 
-        protected async override void OnAppearing()
+        public SavedItemsPage()
         {
-            try
-            {
-                // User is not logged in
-                if (Settings.UserId == "" && _myBoolean)
+            // User has just looged in
+            MessagingCenter.Subscribe<LoginPage>(this, "Success", async (sender) => {
+
+                MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
+                await InitializeAsync();
+            });
+
+            // User is not logged in and he is back from log in page
+            MessagingCenter.Subscribe<LoginPage>(this, "NotSuccess", async (sender) => {
+
+                MessagingCenter.Unsubscribe<LoginPage>(this, "NotSuccess");
+                await Navigation.PopAsync();
+
+            });
+
+            MessagingCenter.Subscribe<MenuPage>(this, "FirstApearing", async (sender) => {
+
+                MessagingCenter.Unsubscribe<MenuPage>(this, "FirstApearing");
+
+                if (Settings.UserId != "")
                 {
-                    _myBoolean = false;
+                    // User is looged in and its his first appearing
+                    await InitializeAsync();
+                }
+                else
+                {
+                    // User is not logged in
                     await Navigation.PushAsync(new LoginPage());
                 }
+            });
 
-                // User is not logged in and he is back from loog in page
-                else if (Settings.UserId == "" && !_myBoolean)
-                {
-                    await Navigation.PopToRootAsync();
-                }
+            MessagingCenter.Subscribe<ItemPage>(this, "Item Deleted", async (sender) => {
 
-                // User has just looged in
-                else if (Settings.UserId != "" && !_myBoolean)
-                {
-                    _myBoolean = true;
-                    await InitializeAsync();
-                }
+                MessagingCenter.Unsubscribe<LoginPage>(this, "Item Deleted");
+                //Delete item
 
-                // User is looged in and its his first appearing
-                else if (Settings.UserId != "" && _firstAppearing)
-                {
-                    _firstAppearing = false;
-                    await InitializeAsync();
-                }
-            }
-
-            catch (Exception)
-            {
-                await DisplayAlert("שגיאה", "לא לטעון דף מבוקש. נסה שנית.", "אישור");
-                await Navigation.PopToRootAsync();
-            }
+            });
         }
 
         private async Task InitializeAsync()
         {
-            _savedItems = await _savedItemService.GetAllSavedOfUser(Settings.UserId);
+            _savedItems = await AzureSavedItemService.DefaultManager.GetAllSavedOfUser(Settings.UserId);
 
             if (_savedItems.Count > 0)
             {
                 // There Are Saved Items
-
-                _isItems = true;
 
                 for (int i = 0; i < _savedItems.Count; i++)
                 {
@@ -112,15 +102,23 @@ namespace MsorLi.Views
         private void MyInitializeComponent()
         {
             InitializeComponent();
+            
+            // Disable Selection item
+            listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) => {
+                // don't do anything if we just de-selected the row
+                if (e.Item == null) return;
+                // do something with e.SelectedItem
+                ((ListView)sender).SelectedItem = null; // de-select the row
+            };
 
-            if (!_isItems)
+            if (_savedItems.Count == 0)
             {
                 NoItems.IsVisible = true;
                 return;
             }
 
             listView_items.IsVisible = true;
-            listView_items.RowHeight = App.ScreenHeight / 5;
+            listView_items.RowHeight = Constants.ScreenHeight / 5;
 
             _myCollection.Clear();
 
@@ -136,21 +134,6 @@ namespace MsorLi.Views
         // EVENT FUNCTIONS
         //----------------------------------------------------------
 
-        // For android only, return to item list
-        protected override bool OnBackButtonPressed()
-        {
-            try
-            {
-                Navigation.PopToRootAsync();
-                return true;
-            }
-
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
         private async void DeleteSavedItem(object sender, EventArgs e)
         {
             try
@@ -158,18 +141,9 @@ namespace MsorLi.Views
                 TappedEventArgs obj = e as TappedEventArgs;
                 int index = (int)obj.Parameter;
 
-                _myCollection.Remove(new Tuple<int, string, string, string>
-                    (index, _items[index].Category, _items[index].Location, _imageURLs[index]));
+                DeleteItemFromList(index);
 
-                listView_items.ItemsSource = _myCollection;
-
-                if (_myCollection.Count == 0)
-                {
-                    NoItems.IsVisible = true;
-                    listView_items.IsVisible = false;
-                }
-
-                await _savedItemService.DeleteSavedItem(new SavedItem { Id = _savedItems[index].Id });
+                await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedItems[index].Id });
             }
 
             catch (Exception)
@@ -186,23 +160,38 @@ namespace MsorLi.Views
             ItemPage itemPage = new ItemPage(_savedItems[index].ItemId);
             itemPage._itemWasSaved = true;
             itemPage._saveItem = true;
+            itemPage._unSaveItem = false;
 
-            await itemPage.InitializeAsync();
+            //await itemPage.InitializeAsync();
             await Navigation.PushAsync(itemPage);
         }
 
         // PRIVATE FUNCTIONS
         //----------------------------------------------------------
 
+        private void DeleteItemFromList(int index)
+        {
+            _myCollection.Remove(new Tuple<int, string, string, string>
+                    (index, _items[index].Category, _items[index].Location, _imageURLs[index]));
+
+            listView_items.ItemsSource = _myCollection;
+
+            if (_myCollection.Count == 0)
+            {
+                NoItems.IsVisible = true;
+                listView_items.IsVisible = false;
+            }
+        }
+
         private async Task SetItemAsync(string itemId, int itemIndex)
         {
-            Item item = await _itemService.GetItemAsync(itemId);
+            Item item = await AzureItemService.DefaultManager.GetItemAsync(itemId);
             _items[itemIndex] = item;
         }
 
         private async Task SetImageUrlAsync(string itemId, int itemIndex)
         {
-            List<string> imageUrl = await _imageService.GetImageUrl(itemId);
+            List<string> imageUrl = await AzureImageService.DefaultManager.GetImageUrl(itemId);
             _imageURLs[itemIndex] = imageUrl[0];
         }
     }

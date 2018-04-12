@@ -18,70 +18,71 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------------------------
 
-        AzureItemService _azureItemService = AzureItemService.DefaultManager;
-        AzureImageService _azureImageService = AzureImageService.DefaultManager;
-
         List<byte[]> _byteData = new List<byte[]>();
         ObservableCollection<ImageSource> _images = new ObservableCollection<ImageSource>();
-        const int MAX_NUM_OF_IMAGES = 4;
-
-        List<string> _categories = new List<string>();
-
-        bool _myBoolean = true;
-        bool _firstAppearing = true;
-
+        
         //---------------------------------------------------
         // FUNCTIONS
         //---------------------------------------------------
 
-        async protected override void OnAppearing()
+        public AddItemPage()
         {
-            // User is not logged in
-            if (Settings.UserId == "" && _myBoolean)
-            {
-                _myBoolean = false;
-                await Navigation.PushAsync(new LoginPage());
-            }
+            // User has just looged in
+            MessagingCenter.Subscribe<LoginPage>(this, "Success", async (sender) => {
+
+                MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
+                await InitializeAsync();
+            });
 
             // User is not logged in and he is back from log in page
-            else if (Settings.UserId == "" && !_myBoolean)
-            {
-                await Navigation.PopToRootAsync();
-            }
+            MessagingCenter.Subscribe<LoginPage>(this, "NotSuccess", async (sender) => {
 
-            // User has just looged in
-            else if (Settings.UserId != "" && !_myBoolean)
-            {
-                _myBoolean = true;
-                await InitializeAsync();
-            }
+                MessagingCenter.Unsubscribe<LoginPage>(this, "NotSuccess");
+                await Navigation.PopAsync();
 
-            // User is looged in and its his first appearing
-            else if (Settings.UserId != "" && _firstAppearing)
-            {
-                _firstAppearing = false;
-                await InitializeAsync();
-            }
+            });
+
+            MessagingCenter.Subscribe<ItemListPage>(this, "FirstApearing", async (sender) => {
+
+                MessagingCenter.Unsubscribe<ItemListPage>(this, "FirstApearing");
+
+                if (Settings.UserId != "")
+                {
+                    // User is looged in and its his first appearing
+                    await InitializeAsync();
+                }
+                else
+                {
+                    // User is not logged in
+                    await Navigation.PushAsync(new LoginPage());
+                }
+            });
         }
 
         private async Task InitializeAsync()
         {
-            AzureCategoryService azureCategory = AzureCategoryService.DefaultManager;
-            _categories = await azureCategory.GetAllCategories();
+            var task = CategoryStorage.GetCategories();
 
-            MyInitializeComponent();
-        }
-
-        private void MyInitializeComponent()
-        {
             InitializeComponent();
 
-            if (_categories != null)
+            city.Text = Settings.Address;
+            contactName.Text = Settings.UserFirstName + " " + Settings.UserLastName;
+            contactNumber.Text = Settings.Phone;
+
+            city.Margin = new Thickness(25, 15, 25, 0);
+            contactName.Margin = new Thickness(25, 15, 25, 0);
+            contactNumber.Margin = new Thickness(25, 15, 25, 0);
+
+            cityLabel.IsVisible = true;
+            contactNameLabel.IsVisible = true;
+            contactNumberLabel.IsVisible = true;
+
+            await Task.WhenAll(task);
+            var categories = task.Result;
+
+            foreach (var c in categories)
             {
-                foreach (var c in _categories)
-                {
-                    category.Items.Add(c);
-                }
+                category.Items.Add(c);
             }
         }
 
@@ -93,7 +94,7 @@ namespace MsorLi.Views
         {
             try
             {
-                if (_images.Count == MAX_NUM_OF_IMAGES) return;
+                if (_images.Count == Constants.MAX_NUM_OF_IMAGES) return;
 
                 pickPictureButton.IsEnabled = false;
                 Stream imageStream = await DependencyService.Get<IPicturePicker>().GetImageStreamAsync();
@@ -122,6 +123,12 @@ namespace MsorLi.Views
         {
             try
             {
+                if (Validation() == false)
+                {
+                    await DisplayAlert("", "אחד או יותר משדות החובה לא מולאו. יש למלא את כולן ולנסות בשנית.", "אישור");
+                    return;
+                }
+
                 // Save images in blob
                 List<string> imageUrls = await SaveImagesInDB();
 
@@ -129,18 +136,23 @@ namespace MsorLi.Views
                 Item item = CreateNewItem(imageUrls.Count);
 
                 // Upload item to data base
-                await _azureItemService.UploadToServer(item, item.Id);
+                await AzureItemService.DefaultManager.UploadToServer(item, item.Id);
 
                 // Create all item images
-                List<ItemImage> itemImages = CreateItemImages(imageUrls, item.Id);
+                List<ItemImage> itemImages = CreateItemImages(imageUrls, item.Id, item.UserId);
+
+                List<Task> TaskList = new List<Task>();
 
                 // Upload item images to data base
                 foreach (var itemImage in itemImages)
                 {
-                    await _azureImageService.UploadToServer(itemImage, itemImage.Id);
+                    var task = UploadImageToTable(itemImage);
+                    TaskList.Add(task);
                 }
+                await Task.WhenAll(TaskList);
 
                 await Navigation.PopAsync();
+                DependencyService.Get<IMessage>().LongAlert("פרסום המוצר בוצע בהצלחה");
             }
 
             catch (Exception)
@@ -154,7 +166,32 @@ namespace MsorLi.Views
         // PRIVATE FUNCTIONS
         //---------------------------------------------------
 
+
+        private async Task UploadImageToTable(ItemImage itemImage)
+        {
+            await AzureImageService.DefaultManager.UploadToServer(itemImage, itemImage.Id);
+        }
+
+        private bool Validation()
+        {
+            if (category.SelectedIndex == -1 ||
+                _images.Count == 0 ||
+                description.Text.Length == 0 ||
+                condition.SelectedIndex == -1 ||
+                city.Text.Length == 0 ||
+                contactName.Text.Length == 0 ||
+                contactNumber.Text.Length == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         private List<ItemImage> CreateItemImages(List<string> imageUrls , string id)
+=======
+        private List<ItemImage> CreateItemImages(List<string> imageUrls , string id, string userId)
+>>>>>>> 6c5e512... idan profile
         {
             List<ItemImage> itemImages = new List<ItemImage>();
 
@@ -163,11 +200,11 @@ namespace MsorLi.Views
                 if (i == 0)
                 {
                     // First and Priority image
-                    itemImages.Add(new ItemImage { Url = imageUrls[i], ItemId = id, IsPriorityImage = true });
+                    itemImages.Add(new ItemImage { Url = imageUrls[i], ItemId = id, IsPriorityImage = true ,UserId = userId});
                 }
                 else
                 {
-                    itemImages.Add(new ItemImage { Url = imageUrls[i], ItemId = id, IsPriorityImage = false });
+                    itemImages.Add(new ItemImage { Url = imageUrls[i], ItemId = id, IsPriorityImage = false, UserId = userId});
                 }
             }
 
@@ -187,7 +224,8 @@ namespace MsorLi.Views
                 Date = DateTime.Today.ToString("d"),
                 Time = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString(),
                 ContactName = contactName.Text,
-                ContactNumber = contactNumber.Text
+                ContactNumber = contactNumber.Text,
+                UserId = Settings.UserId
             };
 
             return item;
@@ -252,7 +290,7 @@ namespace MsorLi.Views
             {
                 cityLabel.IsVisible = IsVisable;
             }
-            else if (entry.Placeholder.ToString() == "רחוב")
+            else if (entry.Placeholder.ToString() == "רחוב (אופציונלי)")
             {
                 streetLabel.IsVisible = IsVisable;
             }

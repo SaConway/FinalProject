@@ -15,14 +15,15 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------
 
-        AzureItemService _azureItemService = AzureItemService.DefaultManager;
-        AzureImageService _azureImageService = AzureImageService.DefaultManager;
-
         public ObservableCollection<ItemImage> AllImages = new ObservableCollection<ItemImage>();
         public ObservableCollection<Tuple<string, string, string, string>> ImagePairs =
                             new ObservableCollection<Tuple<string, string, string, string>>();
 
         bool _startupRefresh = false;
+
+        // Two variables for OnSelection function
+        Boolean _isRunningItem = false;
+        Object _lockObject = new Object();
 
         //---------------------------------
         // FUNCTIONS
@@ -36,7 +37,15 @@ namespace MsorLi.Views
 
             InitializeComponent();
 
-            listView_items.RowHeight = App.ScreenWidth / 2;
+            // Disable Selection item
+            listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) => {
+                // don't do anything if we just de-selected the row
+                if (e.Item == null) return;
+                // do something with e.SelectedItem
+                ((ListView)sender).SelectedItem = null; // de-select the row
+            };
+
+            listView_items.RowHeight = Utilities.Constants.ScreenWidth / 2;
         }
 
         protected async override void OnAppearing()
@@ -96,7 +105,7 @@ namespace MsorLi.Views
             {
                 using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
                 {
-                    AllImages = await _azureImageService.GetAllPriorityImages();
+                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages();
                     if (AllImages != null)
                     {
                         CreateImagePairs();
@@ -114,18 +123,25 @@ namespace MsorLi.Views
             }
         }
 
-        async void OnSelection(object sender, EventArgs e)
+        async void OnSelection(object sender, TappedEventArgs e)
         {
             try
             {
-                TappedEventArgs obj = e as TappedEventArgs;
-                var itemId = obj.Parameter.ToString();
+                // To prevent double tap on images
+                lock (_lockObject)
+                {
+                    if (_isRunningItem)
+                        return;
+                    else
+                        _isRunningItem = true;
+                }
 
-                if (itemId == "") return;
+                var itemId = e.Parameter.ToString();
 
-                ItemPage itemPage = new ItemPage(itemId);
-                await itemPage.InitializeAsync();
-                await Navigation.PushAsync(itemPage);
+                if (itemId != "")
+                    await Navigation.PushAsync(new ItemPage(itemId));
+
+                _isRunningItem = false;
             }
 
             catch (Exception)
@@ -172,6 +188,7 @@ namespace MsorLi.Views
             try
             {
                 await Navigation.PushAsync(new AddItemPage());
+                MessagingCenter.Send<ItemListPage>(this, "FirstApearing");
             }
             catch (Exception)
             {

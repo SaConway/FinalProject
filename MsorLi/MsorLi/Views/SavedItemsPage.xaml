@@ -23,10 +23,6 @@
 
                             <Grid Margin="10,10,0,10" HorizontalOptions="FillAndExpand">
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-
                                 <Grid.ColumnDefinitions>
 
                                     <ColumnDefinition Width="*"/>
@@ -35,15 +31,16 @@
 
                                 </Grid.ColumnDefinitions>
 
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0">
+                                <!--Icons - Delete and Go-To-->
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0">
 
-                                    <Image Source="delete.png">
+                                    <Image Source="delete.png" Margin="0,0,0,3">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="DeleteSavedItem" CommandParameter="{Binding Item1}"/>
                                         </Image.GestureRecognizers>
                                     </Image>
 
-                                    <Image Source="go_to.png">
+                                    <Image Source="go_to.png" Margin="0,3,0,0">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="GoToItemPage" CommandParameter="{Binding Item1}"/>
                                         </Image.GestureRecognizers>
@@ -51,15 +48,17 @@
 
                                 </StackLayout>
 
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1">
+                                <!--Item Details - Category and Location-->
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Grid.Column="1">
 
                                     <Label Text="{Binding Item2}" Style="{DynamicResource myBodyStyle}"/>
                                     <Label Text="{Binding Item3}" Style="{DynamicResource myBodyStyle}"/>
 
                                 </StackLayout>
 
+                                <!--Item Image-->
                                 <Image Source="{Binding Item4}" VerticalOptions="Center"
-                                        HorizontalOptions="End" Grid.Column="2"/>
+                                        HorizontalOptions="EndAndExpand" Grid.Column="2"/>
 
                             </Grid>
 

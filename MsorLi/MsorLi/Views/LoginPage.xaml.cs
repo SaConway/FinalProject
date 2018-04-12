@@ -2,42 +2,46 @@
 using MsorLi.Services;
 using System;
 using Xamarin.Forms;
-using System.IO;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
 using MsorLi.Utilities;
-
 
 namespace MsorLi.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        AzureUserService _azureUserService = AzureUserService.DefaultManager;
+        //---------------------------------
+        // MEMBERS
+        //---------------------------------
 
+        int _passwordLen = 0;
+        int _emailLen = 0;
+
+        bool _succcess = false;
+
+        //---------------------------------
+        // FUNCTIONS
+        //---------------------------------
+
+        // C-tor
         public LoginPage()
         {
             InitializeComponent();
         }
 
-
         // EVENT FUNCTIONS
         //----------------------------------------------------------
 
-        // For ANDROID only, return to item list
-        protected override bool OnBackButtonPressed()
+        // Override OnDisappearing
+        protected override void OnDisappearing()
         {
-            try
+            if (_succcess)
             {
-                Navigation.PopToRootAsync();
-                return true;
+                MessagingCenter.Send<LoginPage>(this, "Success");
             }
-
-            catch (Exception)
+            else
             {
-                return false;
+                MessagingCenter.Send<LoginPage>(this, "NotSuccess");
             }
         }
 
@@ -45,43 +49,87 @@ namespace MsorLi.Views
         {
             try
             {
-                string email = Email.Text;
-                string password = Password.Text;
+                var email = Email.Text;
+                var password = Password.Text;
 
-                ObservableCollection<User> ThisUser = await _azureUserService.LoginAsync(email, password);
+                // Get User with this email
+                User user = await AzureUserService.DefaultManager.GetUserAsync(email, password);
 
-                if (ThisUser != null)
+                if (user != null)
                 {
-                    // Success
+                    // Check if the password is correct
+                    if (EncryptDecrypt.Decrypt(user.Password) != password)
+                    {
+                        throw new Exception("סיסמה שהוזנה אינה תקינה. נסה שנית.");
+                    }
 
-                    Settings.UserId = ThisUser[0].Id;
-                    Settings.UserFirstName = ThisUser[0].FirstName;
-                    Settings.UserLastName = ThisUser[0].LastName;
-                    Settings.ImgUrl = ThisUser[0].ImgUrl;
-                    Settings.Email = ThisUser[0].Email;
-                    Settings.Phone = ThisUser[0].Phone;
-                    Settings.Address = ThisUser[0].Address;
-                    Settings.Permission = ThisUser[0].Permission;
+                    Settings.UserId = user.Id;
+                    Settings.UserFirstName = user.FirstName;
+                    Settings.UserLastName = user.LastName;
+                    Settings.ImgUrl = user.ImgUrl;
+                    Settings.Email = user.Email;
+                    Settings.Phone = user.Phone;
+                    Settings.Address = user.Address;
+                    Settings.Permission = user.Permission;
 
-                    await Navigation.PopToRootAsync();
+                    _succcess = true;
+                    await Navigation.PopAsync();
                 }
 
                 else
                 {
-                    // User not registerd
+                    throw new Exception("אימייל שהוזן אינו תקין. נסה שנית.");
                 }
-                
+
             }
-            catch (Exception) {}
+            catch (Exception exc)
+            {
+                await DisplayAlert("", exc.Message, "אישור");
+            }
 
         }
+
         private async void RegBtnClicked(object sender, EventArgs e)
         {
             try
             {
                 await Navigation.PushAsync(new RegisterPage());
             }
-            catch (Exception) {}
+            catch (Exception) { }
+        }
+
+        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                Entry entry = sender as Entry;
+                String val = entry.Text;
+                int len = val.Length;
+
+                if (entry.Placeholder == "אימייל")
+                {
+                    _emailLen = len;
+                }
+                else
+                {
+                    _passwordLen = len;
+                }
+
+                if (_emailLen > 0 && _passwordLen > 0)
+                {
+                    // User can submit
+                    MySubmitBtn.IsEnabled = true;
+                    MySubmitBtn.BackgroundColor = Color.FromHex("00BCD4");
+                }
+                else
+                {
+                    //User can't submit
+                    MySubmitBtn.IsEnabled = false;
+                    MySubmitBtn.BackgroundColor = Color.FromHex("#999999");
+                }
+            }
+
+            catch (Exception) { }
         }
     }
 }

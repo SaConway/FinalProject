@@ -1,21 +1,66 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MsorLi.Views.LoginPage">
-    <ContentPage.Content>
-        <StackLayout>
-            
-            <Label Text="דף התחברות" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-            
-            <Label Text="שם משתמש (אימייל)" HorizontalOptions="End" Margin="5"/>
-            <Entry x:Name="Email" Placeholder="אימייל" HorizontalTextAlignment="End"/>
-            
-            <Label Text="סיסמא" HorizontalOptions="End" Margin="5"/>
-            <Entry x:Name="Password" Placeholder="סיסמא" HorizontalTextAlignment="End"/>
+             x:Class="MsorLi.Views.LoginPage"
+             Title="התחברות">
 
-            <Button Text="התחבר" Clicked="SubmitBtnClicked"/>
-            <Button Text="לא רשום?" Clicked="RegBtnClicked"/>
+    <!--Styles-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="#00BCD4"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="BorderRadius" Value="10"/>
+            </Style>
+
+            <Style x:Key="GrayColorBoxView" TargetType="BoxView">
+                <Setter Property="Color" Value="#999999"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <StackLayout Margin="20,30,20,30">
+
+            <Entry x:Name="Email" Placeholder="אימייל" HorizontalTextAlignment="End" 
+                   TextChanged="Entry_TextChanged" Keyboard="Email" Margin="0,20,0,0"/>
+
+            <Entry x:Name="Password" Placeholder="סיסמא" HorizontalTextAlignment="End" 
+                   TextChanged="Entry_TextChanged" IsPassword="True" Margin="0,20,0,0"/>
+
+            <Grid Margin="0,40,0,0" ColumnSpacing="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
             
+                <Button Grid.Column="0" Text="שכחתי סיסמא"
+                        TextColor="#00BCD4" BorderWidth="0.5" BorderColor="#999999"
+                        BackgroundColor="Transparent" Style="{StaticResource ButtonStyle}"/>
+
+                <Button x:Name="MySubmitBtn" Grid.Column="1" Text="התחבר" 
+                        Clicked="SubmitBtnClicked" BackgroundColor="#999999" 
+                        IsEnabled="False" Style="{StaticResource ButtonStyle}"/>
+
+            </Grid>
+
+            <BoxView Margin="20,60,20,0" HorizontalOptions="FillAndExpand" HeightRequest="1"
+                         Style="{StaticResource GrayColorBoxView}"/>
+
+            <Grid Margin="0,60,0,0" ColumnSpacing="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Text="הירשם" Clicked="RegBtnClicked" Style="{StaticResource ButtonStyle}"/>
+                <Label Grid.Column="1" Text="חדש במסור-לי?" VerticalTextAlignment="Center" FontSize="Large" TextColor="#212121"
+                       HorizontalTextAlignment="Start" HorizontalOptions="CenterAndExpand"/>
+
+            </Grid>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -11,5 +11,6 @@ namespace MsorLi.Models
         public string ItemId { get; set; }
         public string Url { get; set; }
         public bool IsPriorityImage { get; set; }
+        public string UserId { get; set; }
     }
 }

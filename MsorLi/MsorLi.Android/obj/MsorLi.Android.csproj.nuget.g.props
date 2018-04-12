@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
@@ -11,14 +11,14 @@
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/project.assets.json</ProjectAssetsFile>
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/Users/Idan Marciano/.nuget/packages/</NuGetPackageRoot>
     <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/Users/Idan Marciano/.nuget/packages/</NuGetPackageFolders>
->>>>>>> 3a80ec3... ida n good morning
+>>>>>>> 6c5e512... idan profile
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
-    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">4.3.1</NuGetToolVersion>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">4.6.0</NuGetToolVersion>
   </PropertyGroup>
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)xamarin.forms/2.5.1.444934/build/netstandard1.0/Xamarin.Forms.props" Condition="Exists('$(NuGetPackageRoot)xamarin.forms/2.5.1.444934/build/netstandard1.0/Xamarin.Forms.props')" />
+    <Import Project="$(NuGetPackageRoot)xamarin.forms\2.5.1.444934\build\netstandard1.0\Xamarin.Forms.props" Condition="Exists('$(NuGetPackageRoot)xamarin.forms\2.5.1.444934\build\netstandard1.0\Xamarin.Forms.props')" />
   </ImportGroup>
 </Project>

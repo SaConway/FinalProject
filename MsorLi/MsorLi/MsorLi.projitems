@@ -52,8 +52,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureUserService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BlobService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\CategoryStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\EncryptDecrypt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\ImageResizer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\IMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\IShare.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ItemListPage.xaml.cs">
