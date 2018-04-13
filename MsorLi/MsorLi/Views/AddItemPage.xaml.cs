@@ -139,7 +139,7 @@ namespace MsorLi.Views
                 await AzureItemService.DefaultManager.UploadToServer(item, item.Id);
 
                 // Create all item images
-                List<ItemImage> itemImages = CreateItemImages(imageUrls, item.Id);
+                List<ItemImage> itemImages = CreateItemImages(imageUrls, item.Id, item.UserId);
 
                 List<Task> TaskList = new List<Task>();
 
@@ -166,6 +166,7 @@ namespace MsorLi.Views
         // PRIVATE FUNCTIONS
         //---------------------------------------------------
 
+
         private async Task UploadImageToTable(ItemImage itemImage)
         {
             await AzureImageService.DefaultManager.UploadToServer(itemImage, itemImage.Id);
@@ -188,6 +189,9 @@ namespace MsorLi.Views
         }
 
         private List<ItemImage> CreateItemImages(List<string> imageUrls , string id)
+=======
+        private List<ItemImage> CreateItemImages(List<string> imageUrls , string id, string userId)
+>>>>>>> 6c5e512... idan profile
         {
             List<ItemImage> itemImages = new List<ItemImage>();
 
@@ -196,11 +200,11 @@ namespace MsorLi.Views
                 if (i == 0)
                 {
                     // First and Priority image
-                    itemImages.Add(new ItemImage { Url = imageUrls[i], ItemId = id, IsPriorityImage = true });
+                    itemImages.Add(new ItemImage { Url = imageUrls[i], ItemId = id, IsPriorityImage = true ,UserId = userId});
                 }
                 else
                 {
-                    itemImages.Add(new ItemImage { Url = imageUrls[i], ItemId = id, IsPriorityImage = false });
+                    itemImages.Add(new ItemImage { Url = imageUrls[i], ItemId = id, IsPriorityImage = false, UserId = userId});
                 }
             }
 
@@ -220,7 +224,8 @@ namespace MsorLi.Views
                 Date = DateTime.Today.ToString("d"),
                 Time = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString(),
                 ContactName = contactName.Text,
-                ContactNumber = contactNumber.Text
+                ContactNumber = contactNumber.Text,
+                UserId = Settings.UserId
             };
 
             return item;

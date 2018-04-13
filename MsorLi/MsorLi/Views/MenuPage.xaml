@@ -90,7 +90,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label x:Name="logButton" Font="Bold" FontSize="Medium" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="0" Style="{DynamicResource LabelStyle}"/>
-                        <Image Source="logout.png" Grid.Column="1"/>
+                        <Image x:Name="logImg" Grid.Column="1"/>
                     </Grid>
 
                 </StackLayout>

@@ -95,6 +95,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+
             </StackLayout>
 
             <!--Add Button-->
@@ -110,6 +111,12 @@
                 </Button.FontFamily>
             </Button>
 
+
+            <!--Add Button-->
+            <controls:FloatingActionButton AbsoluteLayout.LayoutBounds="1,1,AutoSize, AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional"
+                                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                        Clicked="AddItem_EventClick" Image="add.png" ButtonColor="#CDDC39"/>
+             
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
