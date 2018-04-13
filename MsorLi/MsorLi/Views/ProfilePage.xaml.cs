@@ -56,21 +56,21 @@ namespace MsorLi.Views
         private async Task GetUserItems(){
 
 
-            AllImages = await _azureImageService.GetAllImgByUserId(Settings.UserId);
+            //AllImages = await _azureImageService.GetAllImgByUserId(Settings.UserId);
 
-            if (AllImages != null){
+            //if (AllImages != null){
                     
-                ImagePairs.Clear();
+            //    ImagePairs.Clear();
 
-                for (int i = 0; i < AllImages.Count; i ++)
-                {
-                    string Url = AllImages[i].Url;
-                    string ItemId = AllImages[i].ItemId;
-                    ImagePairs.Add(new Tuple<string, string>(Url, ItemId));
-                }
+            //    for (int i = 0; i < AllImages.Count; i ++)
+            //    {
+            //        string Url = AllImages[i].Url;
+            //        string ItemId = AllImages[i].ItemId;
+            //        ImagePairs.Add(new Tuple<string, string>(Url, ItemId));
+            //    }
 
-                listView_items.ItemsSource = ImagePairs;
-            }
+            //    listView_items.ItemsSource = ImagePairs;
+            //}
 
 
         }

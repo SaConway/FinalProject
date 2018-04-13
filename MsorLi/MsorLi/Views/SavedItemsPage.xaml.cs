@@ -17,12 +17,8 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------
 
-        ObservableCollection<SavedItem> _savedItems = new ObservableCollection<SavedItem>();
-        ObservableCollection<Item> _items = new ObservableCollection<Item>();
-        ObservableCollection<string> _imageURLs = new ObservableCollection<string>();
-
-        ObservableCollection<Tuple<int, string, string, string>> _myCollection =
-                    new ObservableCollection<Tuple<int, string, string, string>>();
+        Dictionary<string, SavedItemsHelper> _dictionary = new Dictionary<string, SavedItemsHelper>();
+        ObservableCollection<SavedItemsHelper> _collection = new ObservableCollection<SavedItemsHelper>();
 
         //---------------------------------
         // FUNCTIONS
@@ -62,14 +58,36 @@ namespace MsorLi.Views
                 }
             });
 
-            MessagingCenter.Subscribe<ItemPage>(this, "Item Deleted", async (sender) => {
+            // Returning from item page, and item was unsaved
+            MessagingCenter.Subscribe<ItemPage, string>(this, "Item Deleted", (sender, key) => {
 
-                MessagingCenter.Unsubscribe<LoginPage>(this, "Item Deleted");
+                MessagingCenter.Unsubscribe<LoginPage, string>(this, "Item Deleted");
 
-                await RefreshItems();
+                try
+                {
+                    // Delete Item from collection and dictionary
+                    _collection.Remove(_dictionary[key]);
+                    _dictionary.Remove(key);
+
+                    MyMainStack.IsVisible = true;
+                    MyMainStack.Opacity = 1;
+
+                    if (_dictionary.Count == 0)
+                    {
+                        listView_items.IsVisible = false;
+                        NoItems.IsVisible = true;
+                    }
+                }
+
+                catch
+                {
+
+                }
+
             });
 
-            MessagingCenter.Subscribe<ItemPage>(this, "Back From Item Page", async (sender) => {
+            // Returning from item page, and item was not unsaved
+            MessagingCenter.Subscribe<ItemPage>(this, "Back From Item Page", (sender) => {
 
                 MessagingCenter.Unsubscribe<LoginPage>(this, "Back From Item Page");
 
@@ -80,18 +98,26 @@ namespace MsorLi.Views
 
         private async Task InitializeAsync()
         {
-            InitializeComponent();
-            listView_items.RowHeight = Constants.ScreenHeight / 5;
+            try
+            {
+                InitializeComponent();
+                listView_items.RowHeight = Constants.ScreenHeight / 5;
 
-            await RefreshItems();
+                await RefreshItems();
 
-            // Disable Selection item
-            listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) => {
-                // don't do anything if we just de-selected the row
-                if (e.Item == null) return;
-                // do something with e.SelectedItem
-                ((ListView)sender).SelectedItem = null; // de-select the row
-            };
+                // Disable Selection item
+                listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) => {
+                    // don't do anything if we just de-selected the row
+                    if (e.Item == null) return;
+                    // do something with e.SelectedItem
+                    ((ListView)sender).SelectedItem = null; // de-select the row
+                };
+            }
+
+            catch
+            {
+
+            }
         }
 
         private async Task RefreshItems()
@@ -105,45 +131,37 @@ namespace MsorLi.Views
             MyActivityIndicator.IsVisible = true;
             MyActivityIndicator.Opacity = 1;
 
-            _savedItems = await AzureSavedItemService.DefaultManager.GetAllSavedOfUser(Settings.UserId);
+            var savedItems = await AzureSavedItemService.DefaultManager.GetAllSavedOfUser(Settings.UserId);
 
-            if (_savedItems.Count == 0)
+            if (savedItems.Count == 0)
             {
                 listView_items.IsVisible = false;
                 NoItems.IsVisible = true;
             }
             else
             {
-                _items.Clear();
-                _imageURLs.Clear();
-
-                for (int i = 0; i < _savedItems.Count; i++)
-                {
-                    _items.Add(null);
-                    _imageURLs.Add(null);
-                }
-
                 List<Task> TaskList = new List<Task>();
-                for (int i = 0; i < _savedItems.Count; i++)
+                for (int i = 0; i < savedItems.Count; i++)
                 {
-                    var task1 = SetItemAsync(_savedItems[i].ItemId, i);
+                    _dictionary.Add(savedItems[i].ItemId, new SavedItemsHelper {
+                        Key = savedItems[i].ItemId, SavedId = savedItems[i].Id
+                    });
+
+                    var task1 = SetItemAsync(savedItems[i].ItemId, savedItems[i].ItemId);
                     TaskList.Add(task1);
 
-                    var task2 = SetImageUrlAsync(_savedItems[i].ItemId, i);
+                    var task2 = SetImageUrlAsync(savedItems[i].ItemId, savedItems[i].ItemId);
                     TaskList.Add(task2);
                 }
 
                 await Task.WhenAll(TaskList);
 
-                _myCollection.Clear();
-
-                for (int i = 0; i < _items.Count; i++)
+                foreach (var item in _dictionary)
                 {
-                    _myCollection.Add(new Tuple<int, string, string, string>
-                            (i, _items[i].Category, _items[i].Location, _imageURLs[i]));
+                    _collection.Add(item.Value);
                 }
 
-                listView_items.ItemsSource = _myCollection;
+                listView_items.ItemsSource = _collection;
             }
 
             // Hide Activity Indicator
@@ -159,16 +177,25 @@ namespace MsorLi.Views
         // EVENT FUNCTIONS
         //----------------------------------------------------------
 
-        private async void DeleteSavedItem(object sender, EventArgs e)
+        private async void DeleteSavedItem(object sender, TappedEventArgs e)
         {
             try
             {
-                TappedEventArgs obj = e as TappedEventArgs;
-                int index = (int)obj.Parameter;
+                string key = (string)e.Parameter;
 
-                DeleteItemFromList(index);
+                // Delete Item from data base
+                await AzureSavedItemService.DefaultManager
+                    .DeleteSavedItem(new SavedItem { Id = _dictionary[key].SavedId });
 
-                await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedItems[index].Id });
+                // Delete Item from collection and dictionary
+                _collection.Remove(_dictionary[key]);
+                _dictionary.Remove(key);
+
+                if (_dictionary.Count == 0)
+                {
+                    listView_items.IsVisible = false;
+                    NoItems.IsVisible = true;
+                }
             }
 
             catch (Exception)
@@ -177,50 +204,37 @@ namespace MsorLi.Views
             }
         }
 
-        private async void GoToItemPage(object sender, EventArgs e)
+        private async void GoToItemPage(object sender, TappedEventArgs e)
         {
-            TappedEventArgs obj = e as TappedEventArgs;
-            int index = (int)obj.Parameter;
+            string id = (string)e.Parameter;
 
-            ItemPage itemPage = new ItemPage(_savedItems[index].ItemId)
+            ItemPage itemPage = new ItemPage(id)
             {
                 _itemWasSaved = true,
                 _saveItem = true,
                 _unSaveItem = false
             };
 
+            await Navigation.PushAsync(itemPage);
+
             MyMainStack.IsVisible = false;
             MyMainStack.Opacity = 0;
-            await Navigation.PushAsync(itemPage);
         }
 
         // PRIVATE FUNCTIONS
         //----------------------------------------------------------
 
-        private void DeleteItemFromList(int index)
-        {
-            _myCollection.Remove(new Tuple<int, string, string, string>
-                    (index, _items[index].Category, _items[index].Location, _imageURLs[index]));
-
-            listView_items.ItemsSource = _myCollection;
-
-            if (_myCollection.Count == 0)
-            {
-                NoItems.IsVisible = true;
-                listView_items.IsVisible = false;
-            }
-        }
-
-        private async Task SetItemAsync(string itemId, int itemIndex)
+        private async Task SetItemAsync(string itemId, string index)
         {
             Item item = await AzureItemService.DefaultManager.GetItemAsync(itemId);
-            _items[itemIndex] = item;
+            _dictionary[index].Category = item.Category;
+            _dictionary[index].Location = item.Location;
         }
 
-        private async Task SetImageUrlAsync(string itemId, int itemIndex)
+        private async Task SetImageUrlAsync(string itemId, string index)
         {
             var imageUrl = await AzureImageService.DefaultManager.GetImageUrl(itemId);
-            _imageURLs[itemIndex] = imageUrl;
+            _dictionary[index].ImageUrl = imageUrl;
         }
     }
 }

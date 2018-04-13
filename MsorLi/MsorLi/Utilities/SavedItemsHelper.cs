@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace MsorLi.Utilities
 {
     class SavedItemsHelper
     {
-        public string _category { get; set; }
-        public string _location { get; set; }
-        public string _imageUrl { get; set; }
-
-
+        public string Key { get; set; }     // ItemId
+        public string SavedId { get; set; }
+        public string Category { get; set; }
+        public string Location { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

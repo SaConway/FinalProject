@@ -133,7 +133,7 @@ namespace MsorLi.Views
             {
                 await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedId });
 
-                MessagingCenter.Send<ItemPage>(this, "Item Deleted");
+                MessagingCenter.Send<ItemPage, string>(this, "Item Deleted", _item.Id);
             }
             else
             {

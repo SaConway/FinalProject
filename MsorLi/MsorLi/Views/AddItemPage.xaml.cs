@@ -188,10 +188,7 @@ namespace MsorLi.Views
             return true;
         }
 
-        private List<ItemImage> CreateItemImages(List<string> imageUrls , string id)
-=======
         private List<ItemImage> CreateItemImages(List<string> imageUrls , string id, string userId)
->>>>>>> 6c5e512... idan profile
         {
             List<ItemImage> itemImages = new List<ItemImage>();
 
