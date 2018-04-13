@@ -126,6 +126,7 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\links
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\linksrc\Xamarin.Forms.Core.dll.mdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\linksrc\Xamarin.Forms.Platform.Android.dll.mdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\linksrc\Xamarin.Forms.Xaml.dll.mdb
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\MsorLi.Android.csprojResolveAssemblyReference.cache
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Release\MsorLi.Android.dll.mdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\android\assets\FormsViewGroup.dll.mdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\android\assets\ImageCircle.Forms.Plugin.Android.dll.mdb

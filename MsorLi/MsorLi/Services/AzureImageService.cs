@@ -62,7 +62,7 @@ namespace MsorLi.Services
             return null;
         }
 
-        public async Task<List<string>> GetImageUrl(string itemId)
+        public async Task<string> GetImageUrl(string itemId)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace MsorLi.Services
                     .Select(i => i.Url)
                     .ToListAsync();
 
-                return imageUrl;
+                return imageUrl[0];
             }
 
             catch (Exception) { }

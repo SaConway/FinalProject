@@ -135,6 +135,10 @@ namespace MsorLi.Views
 
                 MessagingCenter.Send<ItemPage>(this, "Item Deleted");
             }
+            else
+            {
+                MessagingCenter.Send<ItemPage>(this, "Back From Item Page");
+            }
         }
 
         // EVENT FUNCTIONS
@@ -145,7 +149,7 @@ namespace MsorLi.Views
         {
             try
             {
-                if (_userId == "")
+                if (Settings.UserId == "")
                 {
                     // User is Not logedin
                     await Navigation.PushAsync(new LoginPage());

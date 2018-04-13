@@ -28,6 +28,7 @@ namespace MsorLi.Views
         // FUNCTIONS
         //---------------------------------
 
+        // C-tor
         public SavedItemsPage()
         {
             // User has just looged in
@@ -64,18 +65,57 @@ namespace MsorLi.Views
             MessagingCenter.Subscribe<ItemPage>(this, "Item Deleted", async (sender) => {
 
                 MessagingCenter.Unsubscribe<LoginPage>(this, "Item Deleted");
-                //Delete item
 
+                await RefreshItems();
+            });
+
+            MessagingCenter.Subscribe<ItemPage>(this, "Back From Item Page", async (sender) => {
+
+                MessagingCenter.Unsubscribe<LoginPage>(this, "Back From Item Page");
+
+                MyMainStack.IsVisible = true;
+                MyMainStack.Opacity = 1;
             });
         }
 
         private async Task InitializeAsync()
         {
+            InitializeComponent();
+            listView_items.RowHeight = Constants.ScreenHeight / 5;
+
+            await RefreshItems();
+
+            // Disable Selection item
+            listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) => {
+                // don't do anything if we just de-selected the row
+                if (e.Item == null) return;
+                // do something with e.SelectedItem
+                ((ListView)sender).SelectedItem = null; // de-select the row
+            };
+        }
+
+        private async Task RefreshItems()
+        {
+            // Hide View
+            MyMainStack.IsVisible = false;
+            MyMainStack.Opacity = 0;
+
+            // Show Activity Indicator
+            MyActivityIndicator.IsRunning = true;
+            MyActivityIndicator.IsVisible = true;
+            MyActivityIndicator.Opacity = 1;
+
             _savedItems = await AzureSavedItemService.DefaultManager.GetAllSavedOfUser(Settings.UserId);
 
-            if (_savedItems.Count > 0)
+            if (_savedItems.Count == 0)
             {
-                // There Are Saved Items
+                listView_items.IsVisible = false;
+                NoItems.IsVisible = true;
+            }
+            else
+            {
+                _items.Clear();
+                _imageURLs.Clear();
 
                 for (int i = 0; i < _savedItems.Count; i++)
                 {
@@ -94,41 +134,26 @@ namespace MsorLi.Views
                 }
 
                 await Task.WhenAll(TaskList);
+
+                _myCollection.Clear();
+
+                for (int i = 0; i < _items.Count; i++)
+                {
+                    _myCollection.Add(new Tuple<int, string, string, string>
+                            (i, _items[i].Category, _items[i].Location, _imageURLs[i]));
+                }
+
+                listView_items.ItemsSource = _myCollection;
             }
 
-            MyInitializeComponent();
-        }
+            // Hide Activity Indicator
+            await MyActivityIndicator.FadeTo(0, 100);
+            MyActivityIndicator.IsRunning = false;
+            MyActivityIndicator.IsVisible = false;
 
-        private void MyInitializeComponent()
-        {
-            InitializeComponent();
-            
-            // Disable Selection item
-            listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) => {
-                // don't do anything if we just de-selected the row
-                if (e.Item == null) return;
-                // do something with e.SelectedItem
-                ((ListView)sender).SelectedItem = null; // de-select the row
-            };
-
-            if (_savedItems.Count == 0)
-            {
-                NoItems.IsVisible = true;
-                return;
-            }
-
-            listView_items.IsVisible = true;
-            listView_items.RowHeight = Constants.ScreenHeight / 5;
-
-            _myCollection.Clear();
-
-            for (int i = 0; i < _items.Count; i++)
-            {
-                _myCollection.Add(new Tuple<int, string, string, string>
-                        (i, _items[i].Category, _items[i].Location, _imageURLs[i]));
-            }
-
-            listView_items.ItemsSource = _myCollection;
+            // Show View
+            MyMainStack.IsVisible = true;
+            await MyMainStack.FadeTo(1, 100);
         }
 
         // EVENT FUNCTIONS
@@ -157,12 +182,15 @@ namespace MsorLi.Views
             TappedEventArgs obj = e as TappedEventArgs;
             int index = (int)obj.Parameter;
 
-            ItemPage itemPage = new ItemPage(_savedItems[index].ItemId);
-            itemPage._itemWasSaved = true;
-            itemPage._saveItem = true;
-            itemPage._unSaveItem = false;
+            ItemPage itemPage = new ItemPage(_savedItems[index].ItemId)
+            {
+                _itemWasSaved = true,
+                _saveItem = true,
+                _unSaveItem = false
+            };
 
-            //await itemPage.InitializeAsync();
+            MyMainStack.IsVisible = false;
+            MyMainStack.Opacity = 0;
             await Navigation.PushAsync(itemPage);
         }
 
@@ -191,8 +219,8 @@ namespace MsorLi.Views
 
         private async Task SetImageUrlAsync(string itemId, int itemIndex)
         {
-            List<string> imageUrl = await AzureImageService.DefaultManager.GetImageUrl(itemId);
-            _imageURLs[itemIndex] = imageUrl[0];
+            var imageUrl = await AzureImageService.DefaultManager.GetImageUrl(itemId);
+            _imageURLs[itemIndex] = imageUrl;
         }
     }
 }

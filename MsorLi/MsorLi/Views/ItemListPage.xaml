@@ -98,12 +98,6 @@
             </StackLayout>
 
             <!--Add Button-->
-            
-            
-            <!--<controls:FloatingActionButton AbsoluteLayout.LayoutBounds="1,1,-1,-1" AbsoluteLayout.LayoutFlags="PositionProportional"
-                                           Image="add.png" HorizontalOptions="Center" VerticalOptions="Center"
-                                           Clicked="AddItem_EventClick" ButtonColor="#00BCD4"/>-->
-
             <Button BorderRadius="20" AbsoluteLayout.LayoutBounds="0.5,1,-1,-1"
                     AbsoluteLayout.LayoutFlags="PositionProportional"
                     FontAttributes="Bold" FontSize="Medium"

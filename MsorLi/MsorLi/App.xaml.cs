@@ -1,4 +1,6 @@
 ﻿using MsorLi.Views;
+using System;
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
 namespace MsorLi

@@ -11,61 +11,76 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label x:Name="NoItems" IsVisible="False" Text="לא קיימים מוצרים להציג.." VerticalOptions="Start" 
-                    HorizontalOptions="CenterAndExpand" Margin="0,20,0,0" Style="{DynamicResource myBodyStyle}"/>
+        <AbsoluteLayout>
+            <StackLayout x:Name="MyMainStack" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Label x:Name="NoItems" IsVisible="False" Text="לא קיימים מוצרים להציג.." VerticalOptions="Start" 
+                       HorizontalOptions="CenterAndExpand" Margin="0,20,0,0" Style="{DynamicResource myBodyStyle}"/>
 
-            <ListView x:Name="listView_items" IsVisible="False" Margin="5"
-                      HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
+                <ListView x:Name="listView_items" Margin="5"
+                          HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
 
-                            <Grid Margin="10,10,0,10" HorizontalOptions="FillAndExpand">
+                                <Grid Margin="10,10,0,10" HorizontalOptions="FillAndExpand">
 
-                                <Grid.ColumnDefinitions>
+                                    <Grid.ColumnDefinitions>
 
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="2*"/>
 
-                                </Grid.ColumnDefinitions>
+                                    </Grid.ColumnDefinitions>
 
-                                <!--Icons - Delete and Go-To-->
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="StartAndExpand" Grid.Column="0">
+                                    <!--Icons - Delete and Go-To-->
+                                    <StackLayout VerticalOptions="Center" HorizontalOptions="StartAndExpand"
+                                                 Grid.Column="0">
 
-                                    <Image Source="delete.png" Margin="0,0,0,3">
-                                        <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="DeleteSavedItem" CommandParameter="{Binding Item1}"/>
-                                        </Image.GestureRecognizers>
-                                    </Image>
+                                        <Image Source="delete.png" Margin="0,0,0,3">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="DeleteSavedItem" 
+                                                                      CommandParameter="{Binding Item1}"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
 
-                                    <Image Source="go_to.png" Margin="0,3,0,0">
-                                        <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="GoToItemPage" CommandParameter="{Binding Item1}"/>
-                                        </Image.GestureRecognizers>
-                                    </Image>
+                                        <Image Source="go_to.png" Margin="0,3,0,0">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="GoToItemPage" 
+                                                                      CommandParameter="{Binding Item1}"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
 
-                                </StackLayout>
+                                    </StackLayout>
 
-                                <!--Item Details - Category and Location-->
-                                <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Grid.Column="1">
+                                    <!--Item Details - Category and Location-->
+                                    <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" 
+                                                 Grid.Column="1">
 
-                                    <Label Text="{Binding Item2}" Style="{DynamicResource myBodyStyle}"/>
-                                    <Label Text="{Binding Item3}" Style="{DynamicResource myBodyStyle}"/>
+                                        <Label Text="{Binding Item2}" Style="{DynamicResource myBodyStyle}"/>
+                                        <Label Text="{Binding Item3}" Style="{DynamicResource myBodyStyle}"/>
 
-                                </StackLayout>
+                                    </StackLayout>
 
-                                <!--Item Image-->
-                                <Image Source="{Binding Item4}" VerticalOptions="Center"
-                                        HorizontalOptions="EndAndExpand" Grid.Column="2"/>
+                                    <!--Item Image-->
+                                    <Image Source="{Binding Item4}" VerticalOptions="Center"
+                                            HorizontalOptions="EndAndExpand" Grid.Column="2"/>
 
-                            </Grid>
+                                </Grid>
 
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <ActivityIndicator x:Name="MyActivityIndicator"
+                               IsVisible="False"
+                               IsRunning="False"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"
+                               AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"/>
+
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
