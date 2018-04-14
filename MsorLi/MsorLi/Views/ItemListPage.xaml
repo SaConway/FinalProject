@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MsorLi.Views.ItemListPage"
-             xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
-             Title="מסור-לי">
+             x:Class="MsorLi.Views.ItemListPage">
     
     <!-- Padding for ios status bar -->
      <ContentPage.Padding>
@@ -58,11 +56,19 @@
 
                 </Grid>
 
+                <!--Categories-->
+                <ScrollView Orientation="Horizontal" Margin="7,10,7,10"
+                            BackgroundColor="Transparent" HorizontalOptions="End">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="End" 
+                                 BackgroundColor="Transparent" x:Name="StackCategory"/>
+                </ScrollView>
+
+                <!--Activity Indicator-->
                 <ActivityIndicator IsVisible="False" IsEnabled="True" x:Name="syncIndicator"/>
 
                 <!--List Of Images-->
                 <ListView x:Name="listView_items" IsPullToRefreshEnabled="true" Refreshing="OnRefresh"
-                          SeparatorVisibility="None" RowHeight="200">
+                          SeparatorVisibility="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -74,14 +80,14 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Image Grid.Column="0" Aspect="AspectFill" Margin="0,6,3,0" Source="{Binding Item1}">
+                                    <Image Grid.Column="0" Aspect="AspectFill" Margin="0,0,3,6" Source="{Binding Item1}">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="OnSelection" CommandParameter="{Binding Item2}">
                                             </TapGestureRecognizer>
                                         </Image.GestureRecognizers>
                                     </Image>
 
-                                    <Image Grid.Column="1" Aspect="AspectFill" Margin="3,6,0,0" Source="{Binding Item3}">
+                                    <Image Grid.Column="1" Aspect="AspectFill" Margin="3,0,0,6" Source="{Binding Item3}">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="OnSelection" CommandParameter="{Binding Item4}" >
                                             </TapGestureRecognizer>
@@ -99,11 +105,11 @@
             </StackLayout>
 
             <!--Add Button-->
-            <Button BorderRadius="20" AbsoluteLayout.LayoutBounds="0.5,1,-1,-1"
+            <Button BorderRadius="30" AbsoluteLayout.LayoutBounds="0.5,1,-1,-1"
                     AbsoluteLayout.LayoutFlags="PositionProportional"
-                    FontAttributes="Bold" FontSize="Medium"
-                    Text="פרסום מוצר" Clicked="AddItem_EventClick" 
-                    BackgroundColor="#CDDC39" Margin="15" TextColor="White">
+                    FontAttributes="Bold" FontSize="Medium" x:Name="AddBtn"
+                    Clicked="AddItem_EventClick" 
+                    BackgroundColor="#CDDC39" Margin="20" TextColor="White">
                 <Button.FontFamily>
                     <OnPlatform x:TypeArguments="x:String">
                         <On Platform="Android" Value="Arimo-Regular.ttf#Arimo-Regular" />

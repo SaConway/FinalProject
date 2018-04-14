@@ -30,12 +30,11 @@ namespace MsorLi.Services
         // FUNCTIONS
         //---------------------------------
 
-        public async Task<List<string>> GetAllCategories()
+        public async Task<List<ItemCategory>> GetAllCategories()
         {
             try
             {
                 var categories = await _table
-                    .Select(Category => Category.Name)
                     .ToListAsync();
 
                 return categories;

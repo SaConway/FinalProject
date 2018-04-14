@@ -82,7 +82,7 @@ namespace MsorLi.Views
 
             foreach (var c in categories)
             {
-                category.Items.Add(c);
+                category.Items.Add(c.Name);
             }
         }
 

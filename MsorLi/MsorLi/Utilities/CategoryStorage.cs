@@ -10,13 +10,13 @@ namespace MsorLi.Utilities
         // MEMBERS
         //---------------------------------
 
-        private static List<string> _categories = null;
+        private static List<Models.ItemCategory> _categories = null;
 
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
 
-        public static async Task<List<string>> GetCategories()
+        public static async Task<List<Models.ItemCategory>> GetCategories()
         {
             if (_categories == null)
             {
@@ -27,7 +27,7 @@ namespace MsorLi.Utilities
 
         private static async Task LoadCategories()
         {
-            _categories = new List<string>();
+            _categories = new List<Models.ItemCategory>();
             _categories = await AzureCategoryService.DefaultManager.GetAllCategories();
         }
     }

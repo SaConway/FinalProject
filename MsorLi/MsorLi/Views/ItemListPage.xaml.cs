@@ -5,6 +5,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MsorLi.Models;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using MsorLi.Utilities;
+using System.Linq;
 
 namespace MsorLi.Views
 {
@@ -15,8 +18,8 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------
 
-        public ObservableCollection<ItemImage> AllImages = new ObservableCollection<ItemImage>();
-        public ObservableCollection<Tuple<string, string, string, string>> ImagePairs =
+        ObservableCollection<ItemImage> AllImages = new ObservableCollection<ItemImage>();
+        ObservableCollection<Tuple<string, string, string, string>> ImagePairs =
                             new ObservableCollection<Tuple<string, string, string, string>>();
 
         bool _startupRefresh = false;
@@ -24,6 +27,12 @@ namespace MsorLi.Views
         // Two variables for OnSelection function
         Boolean _isRunningItem = false;
         Object _lockObject = new Object();
+
+        // The key is vategory name, the value is boolean value,
+        // depending on the current category selected.
+        // The defult is all items.
+        Dictionary<string, bool> _categoryStatus = new Dictionary<string, bool>();
+        Button _categoryBtn = new Button();
 
         //---------------------------------
         // FUNCTIONS
@@ -45,7 +54,71 @@ namespace MsorLi.Views
                 ((ListView)sender).SelectedItem = null; // de-select the row
             };
 
-            listView_items.RowHeight = Utilities.Constants.ScreenWidth / 2;
+            AddBtn.Text = "פרסום" + Environment.NewLine + "מוצר";
+            listView_items.RowHeight = Constants.ScreenWidth / 2;
+        }
+
+        private async Task CreateCategories()
+        {
+            var task = CategoryStorage.GetCategories();
+            await Task.WhenAll(task);
+            var categories = task.Result;
+
+            // Add categoris to dictionary
+            _categoryStatus.Add("הכל", true);
+            foreach (var c in categories)
+            {
+                _categoryStatus.Add(c.Name, false);
+            }
+
+            // Create buttons for each category
+
+            for (int i = categories.Count - 1; i >= 0; i--)
+            {
+                var btn = new Button
+                {
+                    BackgroundColor = Color.Transparent,
+                    Text = categories[i].Name,
+                    BorderColor = Color.FromHex("212121"),
+                    BorderWidth = 1,
+                    TextColor = Color.FromHex("212121"),
+                    CornerRadius = 15,
+                };
+                btn.Clicked += OnCategoryBtnClicked;
+
+                StackCategory.Children.Add(btn);
+            }
+
+            // Create button for all items
+            var button = new Button
+            {
+                BackgroundColor = Color.FromHex("00BCD4"),
+                Text = "הכל",
+                BorderColor = Color.FromHex("212121"),
+                BorderWidth = 1,
+                TextColor = Color.FromHex("212121"),
+                CornerRadius = 15,
+            };
+            button.Clicked += OnCategoryBtnClicked;
+
+            _categoryBtn = button;
+
+            StackCategory.Children.Add(button);
+        }
+
+        private void OnCategoryBtnClicked(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            var category = btn.Text;
+
+            var CurrentCategory = _categoryStatus.FirstOrDefault(x => x.Value == true).Key;
+
+            _categoryStatus[CurrentCategory] = false;
+            _categoryStatus[category] = true;
+
+            btn.BackgroundColor = Color.FromHex("00BCD4");
+            _categoryBtn.BackgroundColor = Color.Transparent;
+            _categoryBtn = btn;
         }
 
         protected async override void OnAppearing()
@@ -56,6 +129,8 @@ namespace MsorLi.Views
 
                 if (!_startupRefresh)
                 {
+                    await CreateCategories();
+
                     await RefreshItems(true, syncItems: true);
                     _startupRefresh = true;
                 }
@@ -66,7 +141,7 @@ namespace MsorLi.Views
             }
         }
 
-        public async void OnRefresh(object sender, EventArgs e)
+        private async void OnRefresh(object sender, EventArgs e)
         {
             var list = (ListView)sender;
             Exception error = null;
@@ -94,7 +169,7 @@ namespace MsorLi.Views
             }
         }
 
-        public async void OnSyncItems(object sender, EventArgs e)
+        private async void OnSyncItems(object sender, EventArgs e)
         {
             await RefreshItems(true, true);
         }
@@ -105,6 +180,8 @@ namespace MsorLi.Views
             {
                 using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
                 {
+                    var category = _categoryStatus.FirstOrDefault(x => x.Value == true).Key;
+
                     AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages();
                     if (AllImages != null)
                     {
@@ -123,7 +200,7 @@ namespace MsorLi.Views
             }
         }
 
-        async void OnSelection(object sender, TappedEventArgs e)
+        private async void OnSelection(object sender, TappedEventArgs e)
         {
             try
             {
