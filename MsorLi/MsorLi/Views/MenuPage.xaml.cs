@@ -9,7 +9,7 @@ namespace MsorLi.Views
         public MenuPage()
         {
             InitializeComponent();
-            if (Settings.UserId != "")
+            if (Session.IsLogged())
             {
                 UserName.Text = "שלום " + Settings.UserFirstName;
                 UserImg.Source = Settings.ImgUrl;
@@ -29,8 +29,25 @@ namespace MsorLi.Views
         {
             try
             {
-                await Navigation.PushAsync(new SavedItemsPage());
-                MessagingCenter.Send<MenuPage>(this, "FirstApearing");
+                if(Session.IsLogged())
+                {
+                    var x = Settings.UserId;
+                    await Navigation.PushAsync(new SavedItemsPage());
+                    MessagingCenter.Send<MenuPage>(this, "FirstApearing");
+                }
+                else
+                {
+                    await Navigation.PushAsync(new LoginPage());
+
+                    //when login is finish with success load save item page
+                    MessagingCenter.Subscribe<LoginPage>(this, "Success", async (send) => {
+
+                        MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
+                        await Navigation.PushAsync(new SavedItemsPage());
+                        MessagingCenter.Send<MenuPage>(this, "FirstApearing");
+                    });
+
+                }
             }
 
             catch (Exception)
@@ -62,7 +79,24 @@ namespace MsorLi.Views
         {
             try
             {
-               await Navigation.PushAsync(new ProfilePage());
+               //await Navigation.PushAsync(new ProfilePage());
+                if (Session.IsLogged())
+                {
+                    var x = Settings.UserId;
+                    await Navigation.PushAsync(new ProfilePage());
+                }
+                else
+                {
+                    await Navigation.PushAsync(new LoginPage());
+
+                    //when login is finish with success load save item page
+                    MessagingCenter.Subscribe<LoginPage>(this, "Success", async (send) => {
+
+                        MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
+                        await Navigation.PushAsync(new ProfilePage());
+                    });
+
+                }
             }
             catch (Exception)
             {

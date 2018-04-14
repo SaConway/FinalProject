@@ -21,6 +21,7 @@ namespace MsorLi.Droid
             Utilities.Constants.ScreenWidth = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            FFImageLoading.Forms.Droid.CachedImageRenderer.Init(true);
             //init for the circle image plugin
             ImageCircle.Forms.Plugin.Droid.ImageCircleRenderer.Init();
 

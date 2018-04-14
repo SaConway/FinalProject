@@ -105,7 +105,8 @@
             </StackLayout>
 
             <!--Add Button-->
-            <Button BorderRadius="30" AbsoluteLayout.LayoutBounds="0.5,1,-1,-1"
+
+            <Button BorderRadius="20" AbsoluteLayout.LayoutBounds="0.5,1,-1,-1"
                     AbsoluteLayout.LayoutFlags="PositionProportional"
                     FontAttributes="Bold" FontSize="Medium" x:Name="AddBtn"
                     Clicked="OnAddItemClick" BorderWidth="1" BorderColor="#212121"
