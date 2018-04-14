@@ -12,7 +12,7 @@ namespace MsorLi.Models
         public string Address { get; set; }
         public string Permission { get; set; }
         public string ImgUrl { get; set; }
-        public string NumOfItems { get; set; }
-        public string NumOfItemsUserLike { get; set; }
+        public int NumOfItems { get; set; }
+        public int NumOfItemsUserLike { get; set; }
     }
 }

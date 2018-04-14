@@ -4,77 +4,104 @@
              x:Class="MsorLi.Views.ProfilePage"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
              xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
-             >
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    
 	<ContentPage.Content>
-        <Grid>
+        
+        <Grid RowSpacing="0" >
 
-        <Grid.RowDefinitions>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="6*"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
+            
+            <!--top Cover area-->
+            <BoxView Grid.Row="0" BackgroundColor="#00BCD4"/>
+            <Image Grid.Row="0" Source="CurvedMask.png" VerticalOptions="End" Aspect="Fill" Margin="0,-1"/>
 
-
-
-            <StackLayout Grid.Row="0" BackgroundColor="#00BCD4">
-                <StackLayout VerticalOptions="CenterAndExpand">
-                    <controls:CircleImage x:Name="UserImg" BorderColor="White" BorderThickness="2" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="140" HeightRequest="140"/>
-                    <Label x:Name="UserName" Font="Bold" HorizontalOptions="Center" Margin="0,0,0,0" VerticalOptions="End" />
-                </StackLayout>
+            <!--User Name-->
+            <StackLayout Grid.Row="1" Padding="0,60,0,0">
+                <Label x:Name="UserName" Style="{StaticResource ProfileNameLabel}"/>
             </StackLayout>
-
-
-                <Grid BackgroundColor="Silver" Grid.Row="1">
-                    
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <Label Grid.Column="0" Text="מוצרים שפרסמתי" HorizontalOptions="Center" VerticalOptions="Center"/>
-                    <Label Grid.Column="1" Text="מוצרים שאהבתי" HorizontalOptions="Center" VerticalOptions="Center"/>
-                </Grid>
-
             
-            <ScrollView Grid.Row="2" Orientation="Horizontal">
-                <ListView x:Name="listView_items" Rotation="270" SeparatorVisibility="None">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Image Rotation="-270" Source="{Binding Item1}">
-                                    
-                                </Image>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                    
-                </ListView>
-              <!--    <StackLayout Orientation="Horizontal">
-                  
-                    <Image Grid.Column="0" Aspect="AspectFill" Margin="0,4,2,0" Source="{Binding Item1}">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnSelection" CommandParameter="{Binding Item2}">
-                                </TapGestureRecognizer>
-                            </Image.GestureRecognizers>
-                    </Image>
-                    
-                </StackLayout>-->
-            </ScrollView>
+            <!--User Picture-->
+            <controls:CircleImage TranslationY="60" x:Name="UserImg" BorderColor="White" BorderThickness="2" HorizontalOptions="Center"
+                                  VerticalOptions="End" WidthRequest="120" HeightRequest="120"/>
 
+            <!--Button area -->
+            <Grid Margin="5,20,5,20" Grid.Row="2" ColumnSpacing="15">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
             
+                <Button x:Name="EditInfoBtn" Grid.Column="0" Text="ערוך פרטים" BorderWidth="0.5" BorderColor="#999999" Style="{StaticResource ButtonStyle}"/>
+
+                <Button x:Name="LikedItemBtn" Grid.Column="1" Text="מוצרים שאהבתי" BorderColor="#999999" Style="{StaticResource ButtonStyle}"/>
+
+            </Grid>
+
+            <!--Counters area -->
+            <Grid Grid.Row="3" ColumnSpacing="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                
+                <StackLayout Grid.Column="0">
+                    <Label x:Name="myItemCounter" Style="{StaticResource StatsNumberLabel}" />
+                    <Label Text="מוצרים שפרסמתי" Style="{StaticResource StatsCaptionLabel}"/>
+                </StackLayout>
+
+                <StackLayout Grid.Column="1">
+                    <Label x:Name="ItemUserLikeCounter" Style="{StaticResource StatsNumberLabel}"/>
+                    <Label Text="מוצרים שאהבתי" Style="{StaticResource StatsCaptionLabel}"/>
+                </StackLayout>
+            </Grid>
 
 
-            
-            
-
-
-
-            
+            <!--horizontal List area -->
+            <Frame Grid.Row="4" HasShadow="false" Padding="0,0">
+                <RelativeLayout>
+                    <ListView x:Name="listView_items" SeparatorVisibility="None" AnchorX="0" AnchorY="0" RowHeight="170"
+                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=0}"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=1}"
+                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1}"
+                            Rotation="270" HorizontalOptions="Center" VerticalOptions="StartAndExpand">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ContentView Margin="5,5" Rotation="90" HorizontalOptions="CenterAndExpand" IsClippedToBounds="True" VerticalOptions="CenterAndExpand">
+                                        
+                                        <ffimageloading:CachedImage HorizontalOptions="Center" VerticalOptions="Center"
+                                            LoadingPlaceholder="loading.png" ErrorPlaceholder="error.png" DownsampleToViewSize="true"
+                                            Aspect="AspectFit" HeightRequest="150" WidthRequest="150" Source="{Binding Item1}">
+                                            
+                                            <ffimageloading:CachedImage.Transformations>
+                                                <fftransformations:RoundedTransformation Radius="30"/>
+                                            </ffimageloading:CachedImage.Transformations>
+                                            
+                                            <ffimageloading:CachedImage.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnItemSelection" CommandParameter="{Binding Item2}">
+                                                </TapGestureRecognizer>
+                                            </ffimageloading:CachedImage.GestureRecognizers>
+                                            
+                                        </ffimageloading:CachedImage>
+                                        
+                                    </ContentView>         
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </RelativeLayout>
+            </Frame>
         </Grid>
-
 	</ContentPage.Content>
 </ContentPage>

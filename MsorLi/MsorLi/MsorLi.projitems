@@ -96,6 +96,8 @@
       <DependentUpon>ItemPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\CircleImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\HorizontalListview.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\Session.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ItemListPage.xaml">

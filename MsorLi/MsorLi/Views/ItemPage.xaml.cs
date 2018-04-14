@@ -125,20 +125,36 @@ namespace MsorLi.Views
         // Override OnDisappearing
         protected async override void OnDisappearing()
         {
+            //Save Item
             if (_saveItem && !_itemWasSaved)
             {
                 await AzureSavedItemService.DefaultManager.UploadToServer(new SavedItem { ItemId = _item.Id, UserId = _userId }, null);
+                UpdateLikeCounter(1);
             }
+            //Unsave Item
             else if (_unSaveItem && _itemWasSaved)
             {
                 await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedId });
+<<<<<<< HEAD
 
                 MessagingCenter.Send<ItemPage, string>(this, "Item Deleted", _item.Id);
             }
             else
             {
                 MessagingCenter.Send<ItemPage>(this, "Back From Item Page");
+=======
+                UpdateLikeCounter(-1);
+>>>>>>> 10a6c45... idan profile
             }
+        }
+
+        // Update liked items counter
+        private async void UpdateLikeCounter(int prefix)
+        {
+            int _numOfLikedItem = await AzureUserService.DefaultManager.UpdateNumOfItemsLiked(Settings.UserId, prefix);
+            Settings.NumOfItemsUserLike = _numOfLikedItem.ToString();
+            MessagingCenter.Send<ItemPage>(this, "Update Like Counter");
+
         }
 
         // EVENT FUNCTIONS
@@ -151,7 +167,7 @@ namespace MsorLi.Views
             {
                 if (Settings.UserId == "")
                 {
-                    // User is Not logedin
+                    // User is Not loged in
                     await Navigation.PushAsync(new LoginPage());
                 }
                 else

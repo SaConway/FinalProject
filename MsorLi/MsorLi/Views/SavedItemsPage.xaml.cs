@@ -27,37 +27,32 @@ namespace MsorLi.Views
         // C-tor
         public SavedItemsPage()
         {
-            // User has just looged in
-            MessagingCenter.Subscribe<LoginPage>(this, "Success", async (sender) => {
 
-                MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
-                await InitializeAsync();
-            });
 
-            // User is not logged in and he is back from log in page
-            MessagingCenter.Subscribe<LoginPage>(this, "NotSuccess", async (sender) => {
+            //// User has just looged in
+            ////MessagingCenter.Subscribe<LoginPage>(this, "Success", async (sender) => {
 
-                MessagingCenter.Unsubscribe<LoginPage>(this, "NotSuccess");
-                await Navigation.PopAsync();
+            ////    MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
+            ////    await InitializeAsync();
+            ////});
 
-            });
+            //// User is not logged in and he is back from log in page
+            //MessagingCenter.Subscribe<LoginPage>(this, "NotSuccess", async (sender) => {
+
+            //    MessagingCenter.Unsubscribe<LoginPage>(this, "NotSuccess");
+            //    await Navigation.PopAsync();
+
+            //});
 
             MessagingCenter.Subscribe<MenuPage>(this, "FirstApearing", async (sender) => {
 
                 MessagingCenter.Unsubscribe<MenuPage>(this, "FirstApearing");
 
-                if (Settings.UserId != "")
-                {
-                    // User is looged in and its his first appearing
-                    await InitializeAsync();
-                }
-                else
-                {
-                    // User is not logged in
-                    await Navigation.PushAsync(new LoginPage());
-                }
+                // User is looged in and its his first appearing
+                await InitializeAsync();
             });
 
+<<<<<<< HEAD
             // Returning from item page, and item was unsaved
             MessagingCenter.Subscribe<ItemPage, string>(this, "Item Deleted", (sender, key) => {
 
@@ -94,6 +89,14 @@ namespace MsorLi.Views
                 MyMainStack.IsVisible = true;
                 MyMainStack.Opacity = 1;
             });
+=======
+            //MessagingCenter.Subscribe<ItemPage>(this, "Item Deleted", async (sender) => {
+
+            //    MessagingCenter.Unsubscribe<LoginPage>(this, "Item Deleted");
+            //    //Delete item
+
+            //});
+>>>>>>> 10a6c45... idan profile
         }
 
         private async Task InitializeAsync()

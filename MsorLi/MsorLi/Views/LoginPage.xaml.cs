@@ -71,6 +71,8 @@ namespace MsorLi.Views
                     Settings.Phone = user.Phone;
                     Settings.Address = user.Address;
                     Settings.Permission = user.Permission;
+                    Settings.NumOfItems = user.NumOfItems.ToString();
+                    Settings.NumOfItemsUserLike = user.NumOfItemsUserLike.ToString();
 
                     _succcess = true;
                     await Navigation.PopAsync();

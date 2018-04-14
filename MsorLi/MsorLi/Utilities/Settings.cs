@@ -66,6 +66,16 @@ namespace MsorLi.Utilities
             get => _AppSettings.GetValueOrDefault(nameof(Permission), _SettingsDefault, "Settings.txt");
             set => _AppSettings.AddOrUpdateValue(nameof(Permission), value, "Settings.txt");
         }
+        public static string NumOfItems
+        {
+            get => _AppSettings.GetValueOrDefault(nameof(NumOfItems), _SettingsDefault, "Settings.txt");
+            set => _AppSettings.AddOrUpdateValue(nameof(NumOfItems), value, "Settings.txt");
+        }
+        public static string NumOfItemsUserLike
+        {
+            get => _AppSettings.GetValueOrDefault(nameof(NumOfItemsUserLike), _SettingsDefault, "Settings.txt");
+            set => _AppSettings.AddOrUpdateValue(nameof(NumOfItemsUserLike), value, "Settings.txt");
+        }
 
         public static void ClearUserData(){
             _AppSettings.Clear("Settings.txt");

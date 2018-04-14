@@ -45,7 +45,9 @@ namespace MsorLi.Views
                     Password = Utilities.EncryptDecrypt.Encrypt(password.Text),
                     Phone = phoneNumber.Text,
                     Address = address.Text.Length > 0 ? city.Text + ", " + address.Text : city.Text,
-                    Permission = "1"
+                    Permission = "1",
+                    NumOfItems = 0,
+                    NumOfItemsUserLike = 0
                 };
 
                 await AzureUserService.DefaultManager.UploadToServer(new_user, new_user.Id);
