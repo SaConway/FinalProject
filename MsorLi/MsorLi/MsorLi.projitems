@@ -98,6 +98,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\CircleImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\HorizontalListview.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Session.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\ImageUpload.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ItemListPage.xaml">

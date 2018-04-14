@@ -61,14 +61,24 @@ namespace MsorLi.Views
             try
             {
                 //if user is looged and pressed logout
-                if (Settings.UserId != ""){
-                    Settings.UserId = "";
-					await Navigation.PopToRootAsync();
+                if (Session.IsLogged())
+                {
+                    //Settings.UserId = "";
+                    await Navigation.PopToRootAsync();
                     DependencyService.Get<IMessage>().LongAlert("בוצעה התנתקות מהמערכת");
                     Settings.ClearUserData();
                 }
                 else
+                {
                     await Navigation.PushAsync(new LoginPage());
+                    //user loged in success event
+                    MessagingCenter.Subscribe<LoginPage>(this, "Success", (send) => {
+
+                        MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
+                        UserImg.Source = Settings.ImgUrl;
+                        UserName.Text = Settings.UserFirstName + Settings.UserLastName;
+                    });
+                }
             }
             catch (Exception)
             {

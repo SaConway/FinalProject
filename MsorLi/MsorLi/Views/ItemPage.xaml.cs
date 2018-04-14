@@ -151,7 +151,6 @@ namespace MsorLi.Views
             int _numOfLikedItem = await AzureUserService.DefaultManager.UpdateNumOfItemsLiked(Settings.UserId, prefix);
             Settings.NumOfItemsUserLike = _numOfLikedItem.ToString();
             MessagingCenter.Send<ItemPage>(this, "Update Like Counter");
-
         }
 
         // EVENT FUNCTIONS

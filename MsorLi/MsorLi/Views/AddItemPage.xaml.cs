@@ -101,7 +101,7 @@ namespace MsorLi.Views
 
                 if (imageStream != null)
                 {
-                    _byteData.Add(ReadFully(imageStream));
+                    _byteData.Add(ImageUpload.ReadFully(imageStream));
                     ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(_byteData[_byteData.Count - 1]));
 
                     if (_images.Count == 0)
@@ -113,7 +113,7 @@ namespace MsorLi.Views
                     imagesView.ItemsSource = _images;
                 }
 
-                pickPictureButton.IsEnabled = _images.Count == 4 ? false : true;
+                pickPictureButton.IsEnabled = _images.Count == Constants.MAX_NUM_OF_IMAGES ? false : true;
             }
             catch (Exception) {}
         }
@@ -130,7 +130,7 @@ namespace MsorLi.Views
                 }
 
                 // Save images in blob
-                List<string> imageUrls = await SaveImagesInDB();
+                List<string> imageUrls = await BlobService.SaveImagesInDB(_byteData);
 
                 // Create new item
                 Item item = CreateNewItem(imageUrls.Count);
@@ -176,6 +176,13 @@ namespace MsorLi.Views
         private async Task UploadImageToTable(ItemImage itemImage)
         {
             await AzureImageService.DefaultManager.UploadToServer(itemImage, itemImage.Id);
+        }
+
+        private void InitializeCarouselView()
+        {
+            // Update CarouselView attributes
+            imagesView.Margin = new Thickness(5, 60, 5, 0);
+            imagesView.HeightRequest = 300;
         }
 
         private bool Validation()
@@ -239,38 +246,9 @@ namespace MsorLi.Views
             return item;
         }
 
-        private async Task<List<string>> SaveImagesInDB()
-        {
-            List<string> imageUrls = new List<string>();
 
-            foreach (var imageData in _byteData)
-            {
-                byte[] resizedImage = ImageResizer.ResizeImage(imageData, 400, 400);
 
-                //Insert Image to Blob server
-                var imageUrl = await BlobService.UploadFileAsync(new MemoryStream(resizedImage));
-                imageUrls.Add("https://msorli.blob.core.windows.net/images/" + imageUrl);
-            }
 
-            return imageUrls;
-        }
-
-        private void InitializeCarouselView()
-        {
-            // Update CarouselView attributes
-            imagesView.Margin = new Thickness(5, 60, 5, 0);
-            imagesView.HeightRequest = 300;
-        }
-
-        //Convert from Stream to array of bytes
-        private byte[] ReadFully(Stream input)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                input.CopyTo(ms);
-                return ms.ToArray();
-            }
-        }
 
         //If user inserted new info to one of the entries, make the label visable
         private void NameTextChangedEvent(object sender, EventArgs e)

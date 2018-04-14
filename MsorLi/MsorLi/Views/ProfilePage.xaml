@@ -16,6 +16,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             
@@ -65,9 +66,9 @@
                 </StackLayout>
             </Grid>
 
-
+            <Label Grid.Row="4" Text="מוצרים שפירסמתי" Margin="0,20,0,0" Style="{StaticResource StatsCaptionLabel}" HorizontalOptions="Center"/>
             <!--horizontal List area -->
-            <Frame Grid.Row="4" HasShadow="false" Padding="0,0">
+            <Frame Grid.Row="5" HasShadow="false" Padding="0,0">
                 <RelativeLayout>
                     <ListView x:Name="listView_items" SeparatorVisibility="None" AnchorX="0" AnchorY="0" RowHeight="170"
                             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=0}"
