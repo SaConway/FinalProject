@@ -47,7 +47,7 @@
                         <Image HorizontalOptions="Center" VerticalOptions="Center"
                             Source="menu.png">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OpenMenu">
+                                <TapGestureRecognizer Tapped="OnMenuClick">
                                 </TapGestureRecognizer>
                             </Image.GestureRecognizers>
                         </Image>
@@ -82,14 +82,14 @@
 
                                     <Image Grid.Column="0" Aspect="AspectFill" Margin="0,0,3,6" Source="{Binding Item1}">
                                         <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnSelection" CommandParameter="{Binding Item2}">
+                                            <TapGestureRecognizer Tapped="OnItemClick" CommandParameter="{Binding Item2}">
                                             </TapGestureRecognizer>
                                         </Image.GestureRecognizers>
                                     </Image>
 
                                     <Image Grid.Column="1" Aspect="AspectFill" Margin="3,0,0,6" Source="{Binding Item3}">
                                         <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnSelection" CommandParameter="{Binding Item4}" >
+                                            <TapGestureRecognizer Tapped="OnItemClick" CommandParameter="{Binding Item4}" >
                                             </TapGestureRecognizer>
                                         </Image.GestureRecognizers>
                                     </Image>
@@ -108,7 +108,7 @@
             <Button BorderRadius="30" AbsoluteLayout.LayoutBounds="0.5,1,-1,-1"
                     AbsoluteLayout.LayoutFlags="PositionProportional"
                     FontAttributes="Bold" FontSize="Medium" x:Name="AddBtn"
-                    Clicked="AddItem_EventClick" 
+                    Clicked="OnAddItemClick" BorderWidth="1" BorderColor="#212121"
                     BackgroundColor="#CDDC39" Margin="20" TextColor="White">
                 <Button.FontFamily>
                     <OnPlatform x:TypeArguments="x:String">

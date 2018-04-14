@@ -197,7 +197,12 @@ namespace MsorLi.Views
                 if (i == 0)
                 {
                     // First and Priority image
-                    itemImages.Add(new ItemImage { Url = imageUrls[i], ItemId = id, IsPriorityImage = true ,UserId = userId});
+                    itemImages.Add(new ItemImage {
+                        Url = imageUrls[i],
+                        ItemId = id,
+                        IsPriorityImage = true 
+                        ,UserId = userId
+                    });
                 }
                 else
                 {
