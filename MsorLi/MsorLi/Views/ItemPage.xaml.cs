@@ -135,16 +135,13 @@ namespace MsorLi.Views
             else if (_unSaveItem && _itemWasSaved)
             {
                 await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedId });
-<<<<<<< HEAD
 
                 MessagingCenter.Send<ItemPage, string>(this, "Item Deleted", _item.Id);
             }
             else
             {
                 MessagingCenter.Send<ItemPage>(this, "Back From Item Page");
-=======
                 UpdateLikeCounter(-1);
->>>>>>> 10a6c45... idan profile
             }
         }
 

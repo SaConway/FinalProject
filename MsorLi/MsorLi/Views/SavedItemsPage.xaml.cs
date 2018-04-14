@@ -52,7 +52,6 @@ namespace MsorLi.Views
                 await InitializeAsync();
             });
 
-<<<<<<< HEAD
             // Returning from item page, and item was unsaved
             MessagingCenter.Subscribe<ItemPage, string>(this, "Item Deleted", (sender, key) => {
 
@@ -89,14 +88,12 @@ namespace MsorLi.Views
                 MyMainStack.IsVisible = true;
                 MyMainStack.Opacity = 1;
             });
-=======
             //MessagingCenter.Subscribe<ItemPage>(this, "Item Deleted", async (sender) => {
 
             //    MessagingCenter.Unsubscribe<LoginPage>(this, "Item Deleted");
             //    //Delete item
 
             //});
->>>>>>> 10a6c45... idan profile
         }
 
         private async Task InitializeAsync()

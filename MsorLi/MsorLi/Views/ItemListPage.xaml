@@ -105,12 +105,8 @@
             </StackLayout>
 
             <!--Add Button-->
-<<<<<<< HEAD
-            <Button BorderRadius="30" AbsoluteLayout.LayoutBounds="0.5,1,-1,-1"
-=======
 
             <Button BorderRadius="20" AbsoluteLayout.LayoutBounds="0.5,1,-1,-1"
->>>>>>> 10a6c45... idan profile
                     AbsoluteLayout.LayoutFlags="PositionProportional"
                     FontAttributes="Bold" FontSize="Medium" x:Name="AddBtn"
                     Clicked="AddItem_EventClick" 
