@@ -41,17 +41,13 @@ namespace MsorLi.Views
                 //MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
                 ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
             });
-
-
         }
 
         async protected override void OnAppearing()
         {
-
             try
             {
                 await GetUserItems();
-
             }
             catch (Exception)
             {
@@ -62,8 +58,6 @@ namespace MsorLi.Views
 
         private async Task GetUserItems(){
             
-
-
             AllImages = await _azureImageService.GetAllImgByUserId(Settings.UserId);
 
             if (AllImages != null){
@@ -79,9 +73,8 @@ namespace MsorLi.Views
 
                 listView_items.ItemsSource = ImagePairs;
             }
-
-
         }
+
         async void OnItemSelection(object sender, TappedEventArgs e)
         {
             try
@@ -102,14 +95,10 @@ namespace MsorLi.Views
 
                 _isRunningItem = false;
             }
-
             catch (Exception)
             {
                 await DisplayAlert("שגיאה", "לא ניתן לטעון עמוד מבוקש.", "אישור");
             }
         }
-
-
-
     }
 }

@@ -135,6 +135,7 @@ namespace MsorLi.Views
             else if (_unSaveItem && _itemWasSaved)
             {
                 await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedId });
+                UpdateLikeCounter(-1);
 
                 MessagingCenter.Send<ItemPage, string>(this, "Item Deleted", _item.Id);
                 UpdateLikeCounter(-1);
@@ -151,7 +152,6 @@ namespace MsorLi.Views
             int _numOfLikedItem = await AzureUserService.DefaultManager.UpdateNumOfItemsLiked(Settings.UserId, prefix);
             Settings.NumOfItemsUserLike = _numOfLikedItem.ToString();
             MessagingCenter.Send<ItemPage>(this, "Update Like Counter");
-
         }
 
         // EVENT FUNCTIONS

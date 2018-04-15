@@ -2,9 +2,13 @@
 using MsorLi.Services;
 using System;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Text.RegularExpressions;
+using System.IO;
+using MsorLi.Utilities;
 
 namespace MsorLi.Views
 {
@@ -14,7 +18,8 @@ namespace MsorLi.Views
         //---------------------------------------------------
         // MEMBERS
         //---------------------------------------------------
-
+        List<byte[]> _byteData = new List<byte[]>();
+        ObservableCollection<ImageSource> _profileImage = new ObservableCollection<ImageSource>();
 
         //---------------------------------------------------
         // FUNCTIONS
@@ -30,6 +35,9 @@ namespace MsorLi.Views
             try
             {
                 bool IsValid = await Validation();
+
+                // Save images in blob
+                List<string> imageUrls = await BlobService.SaveImagesInDB(_byteData);
 
                 if (IsValid == false)
                 {
@@ -47,7 +55,8 @@ namespace MsorLi.Views
                     Address = address.Text.Length > 0 ? city.Text + ", " + address.Text : city.Text,
                     Permission = "1",
                     NumOfItems = 0,
-                    NumOfItemsUserLike = 0
+                    NumOfItemsUserLike = 0,
+                    ImgUrl = imageUrls[0]
                 };
 
                 await AzureUserService.DefaultManager.UploadToServer(new_user, new_user.Id);
@@ -162,6 +171,42 @@ namespace MsorLi.Views
             {
                 return false;
             }
+        }
+
+        public async void PickImageButton_Event(object sender, System.EventArgs e)
+        {
+            try
+            {
+                if (_profileImage.Count == Constants.MAX_NUM_OF_PROFILE_IMAGES) return;
+
+                pickPictureButton.IsEnabled = false;
+                Stream imageStream = await DependencyService.Get<IPicturePicker>().GetImageStreamAsync();
+
+                if (imageStream != null)
+                {
+                    _byteData.Add(ImageUpload.ReadFully(imageStream));
+                    ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(_byteData[_byteData.Count - 1]));
+
+                    if (_profileImage.Count == 0)
+                    {
+                        InitializeCarouselView();
+                    }
+
+                    _profileImage.Add(imageSource);
+                    imagesView.ItemsSource = _profileImage;
+                }
+
+                pickPictureButton.IsEnabled = _profileImage.Count == Constants.MAX_NUM_OF_PROFILE_IMAGES ? false : true;
+            }
+            catch (Exception) { }
+        }
+
+
+        private void InitializeCarouselView()
+        {
+            // Update CarouselView attributes
+            imagesView.Margin = new Thickness(5, 60, 5, 0);
+            imagesView.HeightRequest = 300;
         }
     }
 }
