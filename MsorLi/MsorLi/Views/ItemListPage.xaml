@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MsorLi.Views.ItemListPage">
+             x:Class="MsorLi.Views.ItemListPage" 
+             IsVisible="False">
     
     <!-- Padding for ios status bar -->
      <ContentPage.Padding>
@@ -57,12 +58,15 @@
                 </Grid>
 
                 <!--Categories-->
-                <ScrollView Orientation="Horizontal" Margin="7,10,7,10"
+                <ScrollView Orientation="Horizontal" Margin="7,10,7,0"
                             BackgroundColor="Transparent" HorizontalOptions="End">
                     <StackLayout Orientation="Horizontal" HorizontalOptions="End" 
                                  BackgroundColor="Transparent" x:Name="StackCategory"/>
                 </ScrollView>
 
+                <BoxView Margin="10" HorizontalOptions="FillAndExpand"
+                             HeightRequest="1" BackgroundColor="#BDBDBD"/>
+                
                 <!--Activity Indicator-->
                 <ActivityIndicator IsVisible="False" IsEnabled="True" x:Name="syncIndicator"/>
 
@@ -105,12 +109,12 @@
             </StackLayout>
 
             <!--Add Button-->
-
-            <Button BorderRadius="20" AbsoluteLayout.LayoutBounds="0.5,1,-1,-1"
+            <Button AbsoluteLayout.LayoutBounds="1,1,-1,-1"
                     AbsoluteLayout.LayoutFlags="PositionProportional"
                     FontAttributes="Bold" FontSize="Medium" x:Name="AddBtn"
+                    WidthRequest="100" HeightRequest="100" BorderRadius="50"
                     Clicked="OnAddItemClick" BorderWidth="1" BorderColor="#212121"
-                    BackgroundColor="#CDDC39" Margin="20" TextColor="White">
+                    BackgroundColor="#CDDC39" Margin="15" TextColor="White">
                 <Button.FontFamily>
                     <OnPlatform x:TypeArguments="x:String">
                         <On Platform="Android" Value="Arimo-Regular.ttf#Arimo-Regular" />

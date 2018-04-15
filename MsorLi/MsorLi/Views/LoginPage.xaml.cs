@@ -100,6 +100,11 @@ namespace MsorLi.Views
             catch (Exception) { }
         }
 
+        private void OnFacebookClick(object sender, EventArgs e)
+        {
+            
+        }
+
         private void Entry_TextChanged(object sender, TextChangedEventArgs e)
         {
             try

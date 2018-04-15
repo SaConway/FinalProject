@@ -137,11 +137,11 @@ namespace MsorLi.Views
                 await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedId });
 
                 MessagingCenter.Send<ItemPage, string>(this, "Item Deleted", _item.Id);
+                UpdateLikeCounter(-1);
             }
             else
             {
                 MessagingCenter.Send<ItemPage>(this, "Back From Item Page");
-                UpdateLikeCounter(-1);
             }
         }
 

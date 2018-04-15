@@ -58,6 +58,7 @@ namespace MsorLi.Views
             };
 
             AddBtn.Text = "פרסום" + Environment.NewLine + "מוצר";
+
             listView_items.RowHeight = Constants.ScreenWidth / 2;
         }
 
@@ -74,6 +75,8 @@ namespace MsorLi.Views
                     await CreateCategories();
 
                     await RefreshItems(true, syncItems: true);
+                    
+                    IsVisible = true;
                 }
             }
             catch
@@ -114,10 +117,12 @@ namespace MsorLi.Views
             }
         }
 
-        private void OnCategoryClick(object sender, EventArgs e)
+        private async void OnCategoryClick(object sender, EventArgs e)
         {
             Button btn = sender as Button;
             var category = btn.Text;
+
+            if (category == _categoryBtn.Text) return;  // Clicked on the selected category btn
 
             var CurrentCategory = _categoryStatus.FirstOrDefault(x => x.Value == true).Key;
 
@@ -127,6 +132,8 @@ namespace MsorLi.Views
             btn.BackgroundColor = Color.FromHex("00BCD4");
             _categoryBtn.BackgroundColor = Color.Transparent;
             _categoryBtn = btn;
+
+            await RefreshItems(true, syncItems: true);
         }
 
         private async void OnSyncItems(object sender, EventArgs e)
@@ -196,7 +203,7 @@ namespace MsorLi.Views
                 {
                     var category = _categoryStatus.FirstOrDefault(x => x.Value == true).Key;
 
-                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages();
+                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages(category);
                     if (AllImages != null)
                     {
                         CreateImagePairs();
@@ -261,7 +268,7 @@ namespace MsorLi.Views
                 {
                     BackgroundColor = Color.Transparent,
                     Text = categories[i].Name,
-                    BorderColor = Color.FromHex("212121"),
+                    BorderColor = Color.FromHex("BDBDBD"),
                     BorderWidth = 1,
                     TextColor = Color.FromHex("212121"),
                     CornerRadius = 15,
@@ -276,7 +283,7 @@ namespace MsorLi.Views
             {
                 BackgroundColor = Color.FromHex("00BCD4"),
                 Text = "הכל",
-                BorderColor = Color.FromHex("212121"),
+                BorderColor = Color.FromHex("BDBDBD"),
                 BorderWidth = 1,
                 TextColor = Color.FromHex("212121"),
                 CornerRadius = 15,

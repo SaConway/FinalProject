@@ -135,14 +135,12 @@ namespace MsorLi.Views
                 // Create new item
                 Item item = CreateNewItem(imageUrls.Count);
 
-
                 // Upload item to data base
                 await AzureItemService.DefaultManager.UploadToServer(item, item.Id);
 
                 // Update item counter
                 int _numOfItems = await AzureUserService.DefaultManager.UpdateNumOfItems(Settings.UserId, 1);
                 Settings.NumOfItems = _numOfItems.ToString();
-
 
                 // Create all item images
                 List<ItemImage> itemImages = CreateItemImages(imageUrls, item.Id, item.UserId);
@@ -206,8 +204,9 @@ namespace MsorLi.Views
                     itemImages.Add(new ItemImage {
                         Url = imageUrls[i],
                         ItemId = id,
-                        IsPriorityImage = true 
-                        ,UserId = userId
+                        IsPriorityImage = true,
+                        UserId = userId,
+                        Category = category.Items[category.SelectedIndex]
                     });
                 }
                 else
