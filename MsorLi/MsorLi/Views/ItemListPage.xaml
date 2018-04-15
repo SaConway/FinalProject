@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MsorLi.Views.ItemListPage"
-             xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
-             Title="מסור-לי">
+             x:Class="MsorLi.Views.ItemListPage" 
+             IsVisible="False">
     
     <!-- Padding for ios status bar -->
      <ContentPage.Padding>
@@ -49,7 +48,7 @@
                         <Image HorizontalOptions="Center" VerticalOptions="Center"
                             Source="menu.png">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OpenMenu">
+                                <TapGestureRecognizer Tapped="OnMenuClick">
                                 </TapGestureRecognizer>
                             </Image.GestureRecognizers>
                         </Image>
@@ -58,11 +57,22 @@
 
                 </Grid>
 
+                <!--Categories-->
+                <ScrollView Orientation="Horizontal" Margin="7,10,7,0"
+                            BackgroundColor="Transparent" HorizontalOptions="End">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="End" 
+                                 BackgroundColor="Transparent" x:Name="StackCategory"/>
+                </ScrollView>
+
+                <BoxView Margin="10" HorizontalOptions="FillAndExpand"
+                             HeightRequest="1" BackgroundColor="#BDBDBD"/>
+                
+                <!--Activity Indicator-->
                 <ActivityIndicator IsVisible="False" IsEnabled="True" x:Name="syncIndicator"/>
 
                 <!--List Of Images-->
                 <ListView x:Name="listView_items" IsPullToRefreshEnabled="true" Refreshing="OnRefresh"
-                          SeparatorVisibility="None" RowHeight="200">
+                          SeparatorVisibility="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -74,16 +84,16 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Image Grid.Column="0" Aspect="AspectFill" Margin="0,6,3,0" Source="{Binding Item1}">
+                                    <Image Grid.Column="0" Aspect="AspectFill" Margin="0,0,3,6" Source="{Binding Item1}">
                                         <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnSelection" CommandParameter="{Binding Item2}">
+                                            <TapGestureRecognizer Tapped="OnItemClick" CommandParameter="{Binding Item2}">
                                             </TapGestureRecognizer>
                                         </Image.GestureRecognizers>
                                     </Image>
 
-                                    <Image Grid.Column="1" Aspect="AspectFill" Margin="3,6,0,0" Source="{Binding Item3}">
+                                    <Image Grid.Column="1" Aspect="AspectFill" Margin="3,0,0,6" Source="{Binding Item3}">
                                         <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnSelection" CommandParameter="{Binding Item4}" >
+                                            <TapGestureRecognizer Tapped="OnItemClick" CommandParameter="{Binding Item4}" >
                                             </TapGestureRecognizer>
                                         </Image.GestureRecognizers>
                                     </Image>
@@ -99,16 +109,11 @@
             </StackLayout>
 
             <!--Add Button-->
-            
-            
-            <!--<controls:FloatingActionButton AbsoluteLayout.LayoutBounds="1,1,-1,-1" AbsoluteLayout.LayoutFlags="PositionProportional"
-                                           Image="add.png" HorizontalOptions="Center" VerticalOptions="Center"
-                                           Clicked="AddItem_EventClick" ButtonColor="#00BCD4"/>-->
-
-            <Button BorderRadius="20" AbsoluteLayout.LayoutBounds="0.5,1,-1,-1"
+            <Button AbsoluteLayout.LayoutBounds="1,1,-1,-1"
                     AbsoluteLayout.LayoutFlags="PositionProportional"
-                    FontAttributes="Bold" FontSize="Medium"
-                    Text="פרסום מוצר" Clicked="AddItem_EventClick" 
+                    FontAttributes="Bold" FontSize="Medium" x:Name="AddBtn"
+                    WidthRequest="100" HeightRequest="100" BorderRadius="50"
+                    Clicked="OnAddItemClick" BorderWidth="1" BorderColor="#212121"
                     BackgroundColor="#CDDC39" Margin="15" TextColor="White">
                 <Button.FontFamily>
                     <OnPlatform x:TypeArguments="x:String">
@@ -117,12 +122,6 @@
                 </Button.FontFamily>
             </Button>
 
-
-            <!--Add Button-->
-            <controls:FloatingActionButton AbsoluteLayout.LayoutBounds="1,1,AutoSize, AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional"
-                                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
-                                        Clicked="AddItem_EventClick" Image="add.png" ButtonColor="#CDDC39"/>
-             
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

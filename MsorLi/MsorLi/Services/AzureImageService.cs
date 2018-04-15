@@ -46,16 +46,29 @@ namespace MsorLi.Services
             return null;
         }
 
-        public async Task<ObservableCollection<ItemImage>> GetAllPriorityImages()
+        public async Task<ObservableCollection<ItemImage>> GetAllPriorityImages(string category)
         {
             try
             {
-                IEnumerable<ItemImage> images = await _table
+                IEnumerable<ItemImage> images = null;
+
+                if (category == "הכל")
+                {
+                    images = await _table
                     .OrderByDescending(ItemImage => ItemImage.CreatedAt)
                     .Where(itemImage => itemImage.IsPriorityImage == true)
                     .ToEnumerableAsync();
+                }
+                else
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true && itemImage.Category == category)
+                    .ToEnumerableAsync();
+                }
+                
 
-                return new ObservableCollection<ItemImage>(images);
+                return images != null ? new ObservableCollection<ItemImage>(images) : null;
             }
 
             catch (Exception) { }
@@ -78,7 +91,7 @@ namespace MsorLi.Services
             return null;
         }
 
-        public async Task<List<string>> GetImageUrl(string itemId)
+        public async Task<string> GetImageUrl(string itemId)
         {
             try
             {
@@ -87,11 +100,12 @@ namespace MsorLi.Services
                     .Select(i => i.Url)
                     .ToListAsync();
 
-                return imageUrl;
+                return imageUrl[0];
             }
 
             catch (Exception) { }
             return null;
+        
         }
     }
 }

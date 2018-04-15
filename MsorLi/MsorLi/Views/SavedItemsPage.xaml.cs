@@ -17,133 +17,185 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------
 
-        ObservableCollection<SavedItem> _savedItems = new ObservableCollection<SavedItem>();
-        ObservableCollection<Item> _items = new ObservableCollection<Item>();
-        ObservableCollection<string> _imageURLs = new ObservableCollection<string>();
-
-        ObservableCollection<Tuple<int, string, string, string>> _myCollection =
-                    new ObservableCollection<Tuple<int, string, string, string>>();
+        Dictionary<string, SavedItemsHelper> _dictionary = new Dictionary<string, SavedItemsHelper>();
+        ObservableCollection<SavedItemsHelper> _collection = new ObservableCollection<SavedItemsHelper>();
 
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
 
+        // C-tor
         public SavedItemsPage()
         {
-            // User has just looged in
-            MessagingCenter.Subscribe<LoginPage>(this, "Success", async (sender) => {
 
-                MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
-                await InitializeAsync();
-            });
 
-            // User is not logged in and he is back from log in page
-            MessagingCenter.Subscribe<LoginPage>(this, "NotSuccess", async (sender) => {
+            //// User has just looged in
+            ////MessagingCenter.Subscribe<LoginPage>(this, "Success", async (sender) => {
 
-                MessagingCenter.Unsubscribe<LoginPage>(this, "NotSuccess");
-                await Navigation.PopAsync();
+            ////    MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
+            ////    await InitializeAsync();
+            ////});
 
-            });
+            //// User is not logged in and he is back from log in page
+            //MessagingCenter.Subscribe<LoginPage>(this, "NotSuccess", async (sender) => {
+
+            //    MessagingCenter.Unsubscribe<LoginPage>(this, "NotSuccess");
+            //    await Navigation.PopAsync();
+
+            //});
 
             MessagingCenter.Subscribe<MenuPage>(this, "FirstApearing", async (sender) => {
 
                 MessagingCenter.Unsubscribe<MenuPage>(this, "FirstApearing");
 
-                if (Settings.UserId != "")
-                {
-                    // User is looged in and its his first appearing
-                    await InitializeAsync();
-                }
-                else
-                {
-                    // User is not logged in
-                    await Navigation.PushAsync(new LoginPage());
-                }
+                // User is looged in and its his first appearing
+                await InitializeAsync();
             });
 
-            MessagingCenter.Subscribe<ItemPage>(this, "Item Deleted", async (sender) => {
+            // Returning from item page, and item was unsaved
+            MessagingCenter.Subscribe<ItemPage, string>(this, "Item Deleted", (sender, key) => {
 
-                MessagingCenter.Unsubscribe<LoginPage>(this, "Item Deleted");
-                //Delete item
+                MessagingCenter.Unsubscribe<LoginPage, string>(this, "Item Deleted");
+
+                try
+                {
+                    // Delete Item from collection and dictionary
+                    _collection.Remove(_dictionary[key]);
+                    _dictionary.Remove(key);
+
+                    MyMainStack.IsVisible = true;
+                    MyMainStack.Opacity = 1;
+
+                    if (_dictionary.Count == 0)
+                    {
+                        listView_items.IsVisible = false;
+                        NoItems.IsVisible = true;
+                    }
+                }
+
+                catch
+                {
+
+                }
 
             });
+
+            // Returning from item page, and item was not unsaved
+            MessagingCenter.Subscribe<ItemPage>(this, "Back From Item Page", (sender) => {
+
+                MessagingCenter.Unsubscribe<LoginPage>(this, "Back From Item Page");
+
+                MyMainStack.IsVisible = true;
+                MyMainStack.Opacity = 1;
+            });
+            //MessagingCenter.Subscribe<ItemPage>(this, "Item Deleted", async (sender) => {
+
+            //    MessagingCenter.Unsubscribe<LoginPage>(this, "Item Deleted");
+            //    //Delete item
+
+            //});
         }
 
         private async Task InitializeAsync()
         {
-            _savedItems = await AzureSavedItemService.DefaultManager.GetAllSavedOfUser(Settings.UserId);
-
-            if (_savedItems.Count > 0)
+            try
             {
-                // There Are Saved Items
+                InitializeComponent();
+                listView_items.RowHeight = Constants.ScreenHeight / 5;
 
-                for (int i = 0; i < _savedItems.Count; i++)
-                {
-                    _items.Add(null);
-                    _imageURLs.Add(null);
-                }
+                await RefreshItems();
 
+                // Disable Selection item
+                listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) => {
+                    // don't do anything if we just de-selected the row
+                    if (e.Item == null) return;
+                    // do something with e.SelectedItem
+                    ((ListView)sender).SelectedItem = null; // de-select the row
+                };
+            }
+
+            catch
+            {
+
+            }
+        }
+
+        private async Task RefreshItems()
+        {
+            // Hide View
+            MyMainStack.IsVisible = false;
+            MyMainStack.Opacity = 0;
+
+            // Show Activity Indicator
+            MyActivityIndicator.IsRunning = true;
+            MyActivityIndicator.IsVisible = true;
+            MyActivityIndicator.Opacity = 1;
+
+            var savedItems = await AzureSavedItemService.DefaultManager.GetAllSavedOfUser(Settings.UserId);
+
+            if (savedItems.Count == 0)
+            {
+                listView_items.IsVisible = false;
+                NoItems.IsVisible = true;
+            }
+            else
+            {
                 List<Task> TaskList = new List<Task>();
-                for (int i = 0; i < _savedItems.Count; i++)
+                for (int i = 0; i < savedItems.Count; i++)
                 {
-                    var task1 = SetItemAsync(_savedItems[i].ItemId, i);
+                    _dictionary.Add(savedItems[i].ItemId, new SavedItemsHelper {
+                        Key = savedItems[i].ItemId, SavedId = savedItems[i].Id
+                    });
+
+                    var task1 = SetItemAsync(savedItems[i].ItemId, savedItems[i].ItemId);
                     TaskList.Add(task1);
 
-                    var task2 = SetImageUrlAsync(_savedItems[i].ItemId, i);
+                    var task2 = SetImageUrlAsync(savedItems[i].ItemId, savedItems[i].ItemId);
                     TaskList.Add(task2);
                 }
 
                 await Task.WhenAll(TaskList);
+
+                foreach (var item in _dictionary)
+                {
+                    _collection.Add(item.Value);
+                }
+
+                listView_items.ItemsSource = _collection;
             }
 
-            MyInitializeComponent();
-        }
+            // Hide Activity Indicator
+            await MyActivityIndicator.FadeTo(0, 100);
+            MyActivityIndicator.IsRunning = false;
+            MyActivityIndicator.IsVisible = false;
 
-        private void MyInitializeComponent()
-        {
-            InitializeComponent();
-            
-            // Disable Selection item
-            listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) => {
-                // don't do anything if we just de-selected the row
-                if (e.Item == null) return;
-                // do something with e.SelectedItem
-                ((ListView)sender).SelectedItem = null; // de-select the row
-            };
-
-            if (_savedItems.Count == 0)
-            {
-                NoItems.IsVisible = true;
-                return;
-            }
-
-            listView_items.IsVisible = true;
-            listView_items.RowHeight = Constants.ScreenHeight / 5;
-
-            _myCollection.Clear();
-
-            for (int i = 0; i < _items.Count; i++)
-            {
-                _myCollection.Add(new Tuple<int, string, string, string>
-                        (i, _items[i].Category, _items[i].Location, _imageURLs[i]));
-            }
-
-            listView_items.ItemsSource = _myCollection;
+            // Show View
+            MyMainStack.IsVisible = true;
+            await MyMainStack.FadeTo(1, 100);
         }
 
         // EVENT FUNCTIONS
         //----------------------------------------------------------
 
-        private async void DeleteSavedItem(object sender, EventArgs e)
+        private async void DeleteSavedItem(object sender, TappedEventArgs e)
         {
             try
             {
-                TappedEventArgs obj = e as TappedEventArgs;
-                int index = (int)obj.Parameter;
+                string key = (string)e.Parameter;
 
-                DeleteItemFromList(index);
+                // Delete Item from data base
+                await AzureSavedItemService.DefaultManager
+                    .DeleteSavedItem(new SavedItem { Id = _dictionary[key].SavedId });
 
-                await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedItems[index].Id });
+                // Delete Item from collection and dictionary
+                _collection.Remove(_dictionary[key]);
+                _dictionary.Remove(key);
+
+                if (_dictionary.Count == 0)
+                {
+                    listView_items.IsVisible = false;
+                    NoItems.IsVisible = true;
+                }
             }
 
             catch (Exception)
@@ -152,47 +204,37 @@ namespace MsorLi.Views
             }
         }
 
-        private async void GoToItemPage(object sender, EventArgs e)
+        private async void GoToItemPage(object sender, TappedEventArgs e)
         {
-            TappedEventArgs obj = e as TappedEventArgs;
-            int index = (int)obj.Parameter;
+            string id = (string)e.Parameter;
 
-            ItemPage itemPage = new ItemPage(_savedItems[index].ItemId);
-            itemPage._itemWasSaved = true;
-            itemPage._saveItem = true;
-            itemPage._unSaveItem = false;
+            ItemPage itemPage = new ItemPage(id)
+            {
+                _itemWasSaved = true,
+                _saveItem = true,
+                _unSaveItem = false
+            };
 
-            //await itemPage.InitializeAsync();
             await Navigation.PushAsync(itemPage);
+
+            MyMainStack.IsVisible = false;
+            MyMainStack.Opacity = 0;
         }
 
         // PRIVATE FUNCTIONS
         //----------------------------------------------------------
 
-        private void DeleteItemFromList(int index)
-        {
-            _myCollection.Remove(new Tuple<int, string, string, string>
-                    (index, _items[index].Category, _items[index].Location, _imageURLs[index]));
-
-            listView_items.ItemsSource = _myCollection;
-
-            if (_myCollection.Count == 0)
-            {
-                NoItems.IsVisible = true;
-                listView_items.IsVisible = false;
-            }
-        }
-
-        private async Task SetItemAsync(string itemId, int itemIndex)
+        private async Task SetItemAsync(string itemId, string index)
         {
             Item item = await AzureItemService.DefaultManager.GetItemAsync(itemId);
-            _items[itemIndex] = item;
+            _dictionary[index].Category = item.Category;
+            _dictionary[index].Location = item.Location;
         }
 
-        private async Task SetImageUrlAsync(string itemId, int itemIndex)
+        private async Task SetImageUrlAsync(string itemId, string index)
         {
-            List<string> imageUrl = await AzureImageService.DefaultManager.GetImageUrl(itemId);
-            _imageURLs[itemIndex] = imageUrl[0];
+            var imageUrl = await AzureImageService.DefaultManager.GetImageUrl(itemId);
+            _dictionary[index].ImageUrl = imageUrl;
         }
     }
 }

@@ -5,6 +5,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MsorLi.Models;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using MsorLi.Utilities;
+using System.Linq;
 
 namespace MsorLi.Views
 {
@@ -15,8 +18,8 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------
 
-        public ObservableCollection<ItemImage> AllImages = new ObservableCollection<ItemImage>();
-        public ObservableCollection<Tuple<string, string, string, string>> ImagePairs =
+        ObservableCollection<ItemImage> AllImages = new ObservableCollection<ItemImage>();
+        ObservableCollection<Tuple<string, string, string, string>> ImagePairs =
                             new ObservableCollection<Tuple<string, string, string, string>>();
 
         bool _startupRefresh = false;
@@ -24,6 +27,15 @@ namespace MsorLi.Views
         // Two variables for OnSelection function
         Boolean _isRunningItem = false;
         Object _lockObject = new Object();
+
+        // The key is category name, the value is boolean,
+        // depending on the current category selected.
+        // i.e., only one value will be true, the rest false.
+        // The defult true value is all items.
+        Dictionary<string, bool> _categoryStatus = new Dictionary<string, bool>();
+
+        // The category button that is currently selected
+        Button _categoryBtn = new Button();
 
         //---------------------------------
         // FUNCTIONS
@@ -45,7 +57,9 @@ namespace MsorLi.Views
                 ((ListView)sender).SelectedItem = null; // de-select the row
             };
 
-            listView_items.RowHeight = Utilities.Constants.ScreenWidth / 2;
+            AddBtn.Text = "פרסום" + Environment.NewLine + "מוצר";
+
+            listView_items.RowHeight = Constants.ScreenWidth / 2;
         }
 
         protected async override void OnAppearing()
@@ -56,8 +70,13 @@ namespace MsorLi.Views
 
                 if (!_startupRefresh)
                 {
-                    await RefreshItems(true, syncItems: true);
                     _startupRefresh = true;
+
+                    await CreateCategories();
+
+                    await RefreshItems(true, syncItems: true);
+                    
+                    IsVisible = true;
                 }
             }
             catch
@@ -66,7 +85,11 @@ namespace MsorLi.Views
             }
         }
 
-        public async void OnRefresh(object sender, EventArgs e)
+        //---------------------------------
+        // Event Functions
+        //---------------------------------
+
+        private async void OnRefresh(object sender, EventArgs e)
         {
             var list = (ListView)sender;
             Exception error = null;
@@ -94,36 +117,31 @@ namespace MsorLi.Views
             }
         }
 
-        public async void OnSyncItems(object sender, EventArgs e)
+        private async void OnCategoryClick(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            var category = btn.Text;
+
+            if (category == _categoryBtn.Text) return;  // Clicked on the selected category btn
+
+            var CurrentCategory = _categoryStatus.FirstOrDefault(x => x.Value == true).Key;
+
+            _categoryStatus[CurrentCategory] = false;
+            _categoryStatus[category] = true;
+
+            btn.BackgroundColor = Color.FromHex("00BCD4");
+            _categoryBtn.BackgroundColor = Color.Transparent;
+            _categoryBtn = btn;
+
+            await RefreshItems(true, syncItems: true);
+        }
+
+        private async void OnSyncItems(object sender, EventArgs e)
         {
             await RefreshItems(true, true);
         }
 
-        private async Task RefreshItems(bool showActivityIndicator, bool syncItems)
-        {
-            try
-            {
-                using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
-                {
-                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages();
-                    if (AllImages != null)
-                    {
-                        CreateImagePairs();
-
-                        if (ImagePairs != null)
-                        {
-                            listView_items.ItemsSource = ImagePairs;
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים.", "אישור");
-            }
-        }
-
-        async void OnSelection(object sender, TappedEventArgs e)
+        private async void OnItemClick(object sender, TappedEventArgs e)
         {
             try
             {
@@ -150,6 +168,59 @@ namespace MsorLi.Views
             }
         }
 
+        private async void OnMenuClick(object sender, SelectedItemChangedEventArgs e)
+        {
+            try
+            {
+                await Navigation.PushAsync(new MenuPage());
+            }
+
+            catch (Exception) { }
+        }
+
+        private async void OnAddItemClick(object sender, EventArgs e)
+        {
+            try
+            {
+                await Navigation.PushAsync(new AddItemPage());
+                MessagingCenter.Send<ItemListPage>(this, "FirstApearing");
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        //---------------------------------
+        // Private functions
+        //---------------------------------
+
+        private async Task RefreshItems(bool showActivityIndicator, bool syncItems)
+        {
+            try
+            {
+                using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
+                {
+                    var category = _categoryStatus.FirstOrDefault(x => x.Value == true).Key;
+
+                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages(category);
+                    if (AllImages != null)
+                    {
+                        CreateImagePairs();
+
+                        if (ImagePairs != null)
+                        {
+                            listView_items.ItemsSource = ImagePairs;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים.", "אישור");
+            }
+        }
+
         private void CreateImagePairs()
         {
             try
@@ -173,27 +244,56 @@ namespace MsorLi.Views
             }
         }
 
-        private async void OpenMenu(object sender, SelectedItemChangedEventArgs e)
+        private async Task CreateCategories()
         {
-            try
+            var task = CategoryStorage.GetCategories();
+            await Task.WhenAll(task);
+            var categories = task.Result;
+
+            // Add categoris to dictionary
+
+            // First add category "הכל"
+            _categoryStatus.Add("הכל", true);
+
+            // Then add the categories from the db
+            foreach (var c in categories)
             {
-                await Navigation.PushAsync(new MenuPage());
+                _categoryStatus.Add(c.Name, false);
             }
 
-            catch (Exception) { }
-        }
-
-        private async void AddItem_EventClick(object sender, EventArgs e)
-        {
-            try
+            // Create button for each category
+            for (int i = categories.Count - 1; i >= 0; i--)
             {
-                await Navigation.PushAsync(new AddItemPage());
-                MessagingCenter.Send<ItemListPage>(this, "FirstApearing");
-            }
-            catch (Exception)
-            {
+                var btn = new Button
+                {
+                    BackgroundColor = Color.Transparent,
+                    Text = categories[i].Name,
+                    BorderColor = Color.FromHex("BDBDBD"),
+                    BorderWidth = 1,
+                    TextColor = Color.FromHex("212121"),
+                    CornerRadius = 15,
+                };
+                btn.Clicked += OnCategoryClick;
 
+                StackCategory.Children.Add(btn);
             }
+
+            // Create button for all items
+            var button = new Button
+            {
+                BackgroundColor = Color.FromHex("00BCD4"),
+                Text = "הכל",
+                BorderColor = Color.FromHex("BDBDBD"),
+                BorderWidth = 1,
+                TextColor = Color.FromHex("212121"),
+                CornerRadius = 15,
+            };
+            button.Clicked += OnCategoryClick;
+
+            // Update current btn to be "הכל" category
+            _categoryBtn = button;
+
+            StackCategory.Children.Add(button);
         }
 
         //---------------------------------

@@ -17,8 +17,12 @@ namespace MsorLi.Views
 
         AzureImageService _azureImageService = AzureImageService.DefaultManager;
         public ObservableCollection<ItemImage> AllImages = new ObservableCollection<ItemImage>();
-        public ObservableCollection<Tuple<string, string>> ImagePairs =
-                    new ObservableCollection<Tuple<string, string>>();
+        public ObservableCollection<Tuple<string, string>> ImagePairs = new ObservableCollection<Tuple<string, string>>();
+
+        // Two variables for OnItemSelection function
+        Boolean _isRunningItem = false;
+        Object _lockObject = new Object();
+
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
@@ -26,26 +30,24 @@ namespace MsorLi.Views
         {
 
             InitializeComponent();
-            if (Settings.UserId != "")
-            {
-                UserName.Text = "שלום " + Settings.UserFirstName;
-                UserImg.Source = Settings.ImgUrl;
-            }
 
+            UserName.Text = Settings.UserFirstName;
+            UserImg.Source = Settings.ImgUrl;
+            myItemCounter.Text = Settings.NumOfItems;
+            ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
+
+
+            MessagingCenter.Subscribe<ItemPage>(this, "Update Like Counter", (sender) => {
+                //MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
+                ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
+            });
         }
+
         async protected override void OnAppearing()
         {
-
             try
             {
-                //if the user is not logged
-                if (Settings.UserId == "")
-                {
-                    await Navigation.PushAsync(new LoginPage());
-                }
                 await GetUserItems();
-
-
             }
             catch (Exception)
             {
@@ -53,9 +55,9 @@ namespace MsorLi.Views
             }
 
         }
+
         private async Task GetUserItems(){
-
-
+            
             AllImages = await _azureImageService.GetAllImgByUserId(Settings.UserId);
 
             if (AllImages != null){
@@ -71,11 +73,32 @@ namespace MsorLi.Views
 
                 listView_items.ItemsSource = ImagePairs;
             }
-
-
         }
 
+        async void OnItemSelection(object sender, TappedEventArgs e)
+        {
+            try
+            {
+                // To prevent double tap on images
+                lock (_lockObject)
+                {
+                    if (_isRunningItem)
+                        return;
+                    else
+                        _isRunningItem = true;
+                }
 
+                var itemId = e.Parameter.ToString();
 
+                if (itemId != "")
+                    await Navigation.PushAsync(new ItemPage(itemId));
+
+                _isRunningItem = false;
+            }
+            catch (Exception)
+            {
+                await DisplayAlert("שגיאה", "לא ניתן לטעון עמוד מבוקש.", "אישור");
+            }
+        }
     }
 }

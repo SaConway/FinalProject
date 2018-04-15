@@ -9,7 +9,7 @@ namespace MsorLi.Views
         public MenuPage()
         {
             InitializeComponent();
-            if (Settings.UserId != "")
+            if (Session.IsLogged())
             {
                 UserName.Text = "שלום " + Settings.UserFirstName;
                 UserImg.Source = Settings.ImgUrl;
@@ -29,8 +29,25 @@ namespace MsorLi.Views
         {
             try
             {
-                await Navigation.PushAsync(new SavedItemsPage());
-                MessagingCenter.Send<MenuPage>(this, "FirstApearing");
+                if(Session.IsLogged())
+                {
+                    var x = Settings.UserId;
+                    await Navigation.PushAsync(new SavedItemsPage());
+                    MessagingCenter.Send<MenuPage>(this, "FirstApearing");
+                }
+                else
+                {
+                    await Navigation.PushAsync(new LoginPage());
+
+                    //when login is finish with success load save item page
+                    MessagingCenter.Subscribe<LoginPage>(this, "Success", async (send) => {
+
+                        MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
+                        await Navigation.PushAsync(new SavedItemsPage());
+                        MessagingCenter.Send<MenuPage>(this, "FirstApearing");
+                    });
+
+                }
             }
 
             catch (Exception)
@@ -44,14 +61,24 @@ namespace MsorLi.Views
             try
             {
                 //if user is looged and pressed logout
-                if (Settings.UserId != ""){
-                    Settings.UserId = "";
-					await Navigation.PopToRootAsync();
+                if (Session.IsLogged())
+                {
+                    //Settings.UserId = "";
+                    await Navigation.PopToRootAsync();
                     DependencyService.Get<IMessage>().LongAlert("בוצעה התנתקות מהמערכת");
                     Settings.ClearUserData();
                 }
                 else
+                {
                     await Navigation.PushAsync(new LoginPage());
+                    //user loged in success event
+                    MessagingCenter.Subscribe<LoginPage>(this, "Success", (send) => {
+
+                        MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
+                        UserImg.Source = Settings.ImgUrl;
+                        UserName.Text = Settings.UserFirstName + Settings.UserLastName;
+                    });
+                }
             }
             catch (Exception)
             {
@@ -62,7 +89,24 @@ namespace MsorLi.Views
         {
             try
             {
-               await Navigation.PushAsync(new ProfilePage());
+               //await Navigation.PushAsync(new ProfilePage());
+                if (Session.IsLogged())
+                {
+                    var x = Settings.UserId;
+                    await Navigation.PushAsync(new ProfilePage());
+                }
+                else
+                {
+                    await Navigation.PushAsync(new LoginPage());
+
+                    //when login is finish with success load save item page
+                    MessagingCenter.Subscribe<LoginPage>(this, "Success", async (send) => {
+
+                        MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
+                        await Navigation.PushAsync(new ProfilePage());
+                    });
+
+                }
             }
             catch (Exception)
             {

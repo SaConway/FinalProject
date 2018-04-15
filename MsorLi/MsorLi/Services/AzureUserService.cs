@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using MsorLi.Models;
+using MsorLi.Utilities;
 
 namespace MsorLi.Services
 {
@@ -60,6 +61,62 @@ namespace MsorLi.Services
 
             }
             return false;
+        }
+
+        public async Task<int> UpdateNumOfItems(string userId, int prefix)
+        {
+            try
+            {
+                var user = await _table
+                    .LookupAsync(userId);
+
+                user.NumOfItems += prefix;
+
+                await UploadToServer(user, user.Id);
+
+                return user.NumOfItems;
+
+            }
+            catch(Exception)
+            {
+                return Int32.Parse(Settings.NumOfItems);
+            }
+        }
+
+        public async Task<int> UpdateNumOfItemsLiked(string userId, int prefix)
+        {
+            try
+            {
+                var user = await _table
+                    .LookupAsync(userId);
+
+                user.NumOfItemsUserLike += prefix;
+
+                await UploadToServer(user, user.Id);
+
+                return user.NumOfItemsUserLike;
+
+            }
+            catch (Exception)
+            {
+                return Int32.Parse(Settings.NumOfItemsUserLike);
+            }
+        }
+
+        public async Task<int> getNumOfItems(string userId)
+        {
+            try
+            {
+                var user = await _table
+                    .LookupAsync(userId);
+
+                return user.NumOfItems;
+
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using MsorLi.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,6 +31,22 @@ namespace MsorLi.Services
             await fileBlob.UploadFromStreamAsync(stream);
 
             return name;
+        }
+
+        public static async Task<List<string>> SaveImagesInDB(List<byte[]> byteData)
+        {
+            List<string> imageUrls = new List<string>();
+
+            foreach (var imageData in byteData)
+            {
+                byte[] resizedImage = ImageResizer.ResizeImage(imageData, 400, 400);
+
+                //Insert Image to Blob server
+                var imageUrl = await BlobService.UploadFileAsync(new MemoryStream(resizedImage));
+                imageUrls.Add("https://msorli.blob.core.windows.net/images/" + imageUrl);
+            }
+
+            return imageUrls;
         }
     }
 }

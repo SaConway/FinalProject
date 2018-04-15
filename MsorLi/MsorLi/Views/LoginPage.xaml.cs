@@ -71,6 +71,8 @@ namespace MsorLi.Views
                     Settings.Phone = user.Phone;
                     Settings.Address = user.Address;
                     Settings.Permission = user.Permission;
+                    Settings.NumOfItems = user.NumOfItems.ToString();
+                    Settings.NumOfItemsUserLike = user.NumOfItemsUserLike.ToString();
 
                     _succcess = true;
                     await Navigation.PopAsync();
@@ -96,6 +98,11 @@ namespace MsorLi.Views
                 await Navigation.PushAsync(new RegisterPage());
             }
             catch (Exception) { }
+        }
+
+        private void OnFacebookClick(object sender, EventArgs e)
+        {
+            
         }
 
         private void Entry_TextChanged(object sender, TextChangedEventArgs e)

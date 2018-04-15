@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 
 namespace MsorLi.Models
 {
@@ -12,5 +10,6 @@ namespace MsorLi.Models
         public string Url { get; set; }
         public bool IsPriorityImage { get; set; }
         public string UserId { get; set; }
+        public string Category { get; set; }
     }
 }

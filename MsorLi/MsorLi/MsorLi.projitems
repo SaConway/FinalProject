@@ -58,6 +58,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\ImageResizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\IMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\IShare.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\SavedItemsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ItemListPage.xaml.cs">
       <DependentUpon>ItemListPage.xaml</DependentUpon>
@@ -95,6 +96,9 @@
       <DependentUpon>ItemPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\CircleImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\HorizontalListview.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\Session.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\ImageUpload.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ItemListPage.xaml">

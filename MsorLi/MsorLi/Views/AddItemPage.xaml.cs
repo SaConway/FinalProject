@@ -82,7 +82,7 @@ namespace MsorLi.Views
 
             foreach (var c in categories)
             {
-                category.Items.Add(c);
+                category.Items.Add(c.Name);
             }
         }
 
@@ -101,7 +101,7 @@ namespace MsorLi.Views
 
                 if (imageStream != null)
                 {
-                    _byteData.Add(ReadFully(imageStream));
+                    _byteData.Add(ImageUpload.ReadFully(imageStream));
                     ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(_byteData[_byteData.Count - 1]));
 
                     if (_images.Count == 0)
@@ -113,7 +113,7 @@ namespace MsorLi.Views
                     imagesView.ItemsSource = _images;
                 }
 
-                pickPictureButton.IsEnabled = _images.Count == 4 ? false : true;
+                pickPictureButton.IsEnabled = _images.Count == Constants.MAX_NUM_OF_IMAGES ? false : true;
             }
             catch (Exception) {}
         }
@@ -130,13 +130,17 @@ namespace MsorLi.Views
                 }
 
                 // Save images in blob
-                List<string> imageUrls = await SaveImagesInDB();
+                List<string> imageUrls = await BlobService.SaveImagesInDB(_byteData);
 
                 // Create new item
                 Item item = CreateNewItem(imageUrls.Count);
 
                 // Upload item to data base
                 await AzureItemService.DefaultManager.UploadToServer(item, item.Id);
+
+                // Update item counter
+                int _numOfItems = await AzureUserService.DefaultManager.UpdateNumOfItems(Settings.UserId, 1);
+                Settings.NumOfItems = _numOfItems.ToString();
 
                 // Create all item images
                 List<ItemImage> itemImages = CreateItemImages(imageUrls, item.Id, item.UserId);
@@ -172,6 +176,13 @@ namespace MsorLi.Views
             await AzureImageService.DefaultManager.UploadToServer(itemImage, itemImage.Id);
         }
 
+        private void InitializeCarouselView()
+        {
+            // Update CarouselView attributes
+            imagesView.Margin = new Thickness(5, 60, 5, 0);
+            imagesView.HeightRequest = 300;
+        }
+
         private bool Validation()
         {
             if (category.SelectedIndex == -1 ||
@@ -188,10 +199,7 @@ namespace MsorLi.Views
             return true;
         }
 
-        private List<ItemImage> CreateItemImages(List<string> imageUrls , string id)
-=======
         private List<ItemImage> CreateItemImages(List<string> imageUrls , string id, string userId)
->>>>>>> 6c5e512... idan profile
         {
             List<ItemImage> itemImages = new List<ItemImage>();
 
@@ -200,7 +208,13 @@ namespace MsorLi.Views
                 if (i == 0)
                 {
                     // First and Priority image
-                    itemImages.Add(new ItemImage { Url = imageUrls[i], ItemId = id, IsPriorityImage = true ,UserId = userId});
+                    itemImages.Add(new ItemImage {
+                        Url = imageUrls[i],
+                        ItemId = id,
+                        IsPriorityImage = true,
+                        UserId = userId,
+                        Category = category.Items[category.SelectedIndex]
+                    });
                 }
                 else
                 {
@@ -231,38 +245,9 @@ namespace MsorLi.Views
             return item;
         }
 
-        private async Task<List<string>> SaveImagesInDB()
-        {
-            List<string> imageUrls = new List<string>();
 
-            foreach (var imageData in _byteData)
-            {
-                byte[] resizedImage = ImageResizer.ResizeImage(imageData, 400, 400);
 
-                //Insert Image to Blob server
-                var imageUrl = await BlobService.UploadFileAsync(new MemoryStream(resizedImage));
-                imageUrls.Add("https://msorli.blob.core.windows.net/images/" + imageUrl);
-            }
 
-            return imageUrls;
-        }
-
-        private void InitializeCarouselView()
-        {
-            // Update CarouselView attributes
-            imagesView.Margin = new Thickness(5, 60, 5, 0);
-            imagesView.HeightRequest = 300;
-        }
-
-        //Convert from Stream to array of bytes
-        private byte[] ReadFully(Stream input)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                input.CopyTo(ms);
-                return ms.ToArray();
-            }
-        }
 
         //If user inserted new info to one of the entries, make the label visable
         private void NameTextChangedEvent(object sender, EventArgs e)
