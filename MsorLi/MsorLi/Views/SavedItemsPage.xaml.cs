@@ -29,21 +29,6 @@ namespace MsorLi.Views
         {
 
 
-            //// User has just looged in
-            ////MessagingCenter.Subscribe<LoginPage>(this, "Success", async (sender) => {
-
-            ////    MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
-            ////    await InitializeAsync();
-            ////});
-
-            //// User is not logged in and he is back from log in page
-            //MessagingCenter.Subscribe<LoginPage>(this, "NotSuccess", async (sender) => {
-
-            //    MessagingCenter.Unsubscribe<LoginPage>(this, "NotSuccess");
-            //    await Navigation.PopAsync();
-
-            //});
-
             MessagingCenter.Subscribe<MenuPage>(this, "FirstApearing", async (sender) => {
 
                 MessagingCenter.Unsubscribe<MenuPage>(this, "FirstApearing");

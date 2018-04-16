@@ -86,7 +86,7 @@
                                             Aspect="AspectFit" HeightRequest="150" WidthRequest="150" Source="{Binding Item1}">
                                             
                                             <ffimageloading:CachedImage.Transformations>
-                                                <fftransformations:RoundedTransformation Radius="30"/>
+                                                <fftransformations:RoundedTransformation Radius="15"/>
                                             </ffimageloading:CachedImage.Transformations>
                                             
                                             <ffimageloading:CachedImage.GestureRecognizers>

@@ -112,6 +112,10 @@
     <BundleResource Include="Resources\love_empty.png" />
     <BundleResource Include="Resources\go_to.png" />
     <BundleResource Include="Resources\delete.png" />
+    <Compile Include="iOSButtonRenderer.cs" />
+    <Compile Include="PickerRenderer.cs" />
+    <Compile Include="ScrollViewEXRenderer.cs" />
+    <Compile Include="NoLineNavigationRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />

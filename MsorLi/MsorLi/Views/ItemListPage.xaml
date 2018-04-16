@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MsorLi.Views.ItemListPage" 
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              IsVisible="False">
     
     <!-- Padding for ios status bar -->
@@ -84,7 +86,21 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Image Grid.Column="0" Aspect="AspectFill" Margin="0,0,3,6" Source="{Binding Item1}">
+                                        <ffimageloading:CachedImage Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"
+                                            LoadingPlaceholder="loading.png" ErrorPlaceholder="error.png" DownsampleToViewSize="true"
+                                            Aspect="AspectFit" WidthRequest="200" HeightRequest="200" Source="{Binding Item1}" Margin="0,0,3,6">
+                                            
+                                            <ffimageloading:CachedImage.Transformations>
+                                                <fftransformations:RoundedTransformation Radius="15"/>
+                                            </ffimageloading:CachedImage.Transformations>
+                                            
+                                            <ffimageloading:CachedImage.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnItemClick" CommandParameter="{Binding Item2}">
+                                                </TapGestureRecognizer>
+                                            </ffimageloading:CachedImage.GestureRecognizers>
+                                        </ffimageloading:CachedImage>
+                                        
+  <!--                                  <Image Grid.Column="0" Aspect="AspectFill" Margin="0,0,3,6" Source="{Binding Item1}">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="OnItemClick" CommandParameter="{Binding Item2}">
                                             </TapGestureRecognizer>
@@ -96,7 +112,21 @@
                                             <TapGestureRecognizer Tapped="OnItemClick" CommandParameter="{Binding Item4}" >
                                             </TapGestureRecognizer>
                                         </Image.GestureRecognizers>
-                                    </Image>
+                                    </Image>-->
+                                            <ffimageloading:CachedImage WidthRequest="200" HeightRequest="200" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center"
+                                            LoadingPlaceholder="loading.png" ErrorPlaceholder="error.png" DownsampleToViewSize="true"
+                                            Aspect="AspectFit" Source="{Binding Item3}" Margin="3,0,0,6">
+                                            
+                                            <ffimageloading:CachedImage.Transformations>
+                                                <fftransformations:RoundedTransformation Radius="15"/>
+                                            </ffimageloading:CachedImage.Transformations>
+                                            
+                                            <ffimageloading:CachedImage.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnItemClick" CommandParameter="{Binding Item4}">
+                                                </TapGestureRecognizer>
+                                            </ffimageloading:CachedImage.GestureRecognizers>
+                                        </ffimageloading:CachedImage>
+                                        
 
                                 </Grid>
 
@@ -112,7 +142,7 @@
             <Button AbsoluteLayout.LayoutBounds="1,1,-1,-1"
                     AbsoluteLayout.LayoutFlags="PositionProportional"
                     FontAttributes="Bold" FontSize="Medium" x:Name="AddBtn"
-                    WidthRequest="100" HeightRequest="100" BorderRadius="50"
+                    WidthRequest="65" HeightRequest="65" BorderRadius="32"
                     Clicked="OnAddItemClick" BorderWidth="1" BorderColor="#212121"
                     BackgroundColor="#CDDC39" Margin="15" TextColor="White">
                 <Button.FontFamily>

@@ -29,10 +29,10 @@
                 </StackLayout>
             </StackLayout>
             
-            <StackLayout Grid.Row="1" Margin="0,20,20,0" >
+            <StackLayout Grid.Row="1" Margin="0,20,20,0"  >
 
                 <!--Profile button-->
-                <StackLayout Margin="0,25,0,0">
+                <StackLayout Margin="0,25,0,0" >
 
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="ProfileClickEvent">
@@ -46,7 +46,10 @@
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Text="פרופיל" Font="Bold" FontSize="Medium" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="0" Style="{DynamicResource LabelStyle}"/>
+                        <Label Text="פרופיל" Font="Bold" FontSize="Medium" 
+                               HorizontalOptions="End" VerticalOptions="Center"
+                               Grid.Column="0" Style="{DynamicResource LabelStyle}"
+                               Margin="10,0,10,0"/>
                         <Image Source="profile.png" Grid.Column="1" />
                     </Grid>
 
@@ -67,7 +70,9 @@
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Text="מוצרים שאהבתי" Font="Bold" FontSize="Medium" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="0" Style="{DynamicResource LabelStyle}"/>
+                        <Label Text="מוצרים שאהבתי" Font="Bold" 
+                               Margin="10,0,10,0"
+                               FontSize="Medium" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="0" Style="{DynamicResource LabelStyle}"/>
                         <Image Source="love_icon.png" Grid.Column="1" />
                     </Grid>
 
@@ -89,7 +94,8 @@
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label x:Name="logButton" Font="Bold" FontSize="Medium" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="0" Style="{DynamicResource LabelStyle}"/>
+                        <Label x:Name="logButton" Font="Bold" Margin="10,0,10,0"
+                               FontSize="Medium" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="0" Style="{DynamicResource LabelStyle}"/>
                         <Image x:Name="logImg" Grid.Column="1"/>
                     </Grid>
 

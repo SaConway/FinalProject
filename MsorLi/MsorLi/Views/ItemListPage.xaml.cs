@@ -182,8 +182,21 @@ namespace MsorLi.Views
         {
             try
             {
-                await Navigation.PushAsync(new AddItemPage());
-                MessagingCenter.Send<ItemListPage>(this, "FirstApearing");
+                if(Session.IsLogged()){
+                    await Navigation.PushAsync(new AddItemPage());
+                }
+                else
+                {
+                    await Navigation.PushAsync(new LoginPage());
+
+                    //when login is finish with success load save item page
+                    MessagingCenter.Subscribe<LoginPage>(this, "Success", async (send) => {
+
+                        MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
+                        await Navigation.PushAsync(new AddItemPage());
+                    });
+                }
+
             }
             catch (Exception)
             {
@@ -273,9 +286,22 @@ namespace MsorLi.Views
                     TextColor = Color.FromHex("212121"),
                     CornerRadius = 15,
                 };
+
+
                 btn.Clicked += OnCategoryClick;
 
                 StackCategory.Children.Add(btn);
+
+        
+            }
+
+            foreach (Button btn in StackCategory.Children){
+                
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+                  //  btn.WidthRequest = btn.Width + 2;
+                }
+                
             }
 
             // Create button for all items
