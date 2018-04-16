@@ -106,6 +106,12 @@
     <Compile Include="HorizontalListviewRendererIos.cs" />
     <BundleResource Include="Resources\CurvedMask.png" />
     <Compile Include="ViewCellRenderer.cs" />
+    <BundleResource Include="Resources\share.png" />
+    <BundleResource Include="Resources\search.png" />
+    <BundleResource Include="Resources\love_full.png" />
+    <BundleResource Include="Resources\love_empty.png" />
+    <BundleResource Include="Resources\go_to.png" />
+    <BundleResource Include="Resources\delete.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
