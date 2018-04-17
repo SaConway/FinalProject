@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using MsorLi;
-using MsorLi.Droid;
+﻿using System.ComponentModel;
 using MsorLi.Utilities;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -10,6 +7,7 @@ using Xamarin.Forms.Platform.Android;
 
 namespace MsorLi.Droid.Renderers
 {
+#pragma warning disable CS0618 // Type or member is obsolete
     public class HorizontalListviewRendererAndroid : ScrollViewRenderer
     {
         protected override void OnElementChanged(VisualElementChangedEventArgs e)
@@ -28,11 +26,9 @@ namespace MsorLi.Droid.Renderers
 
         protected void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (ChildCount > 0)
-            {
-                GetChildAt(0).HorizontalScrollBarEnabled = false;
-                GetChildAt(0).VerticalScrollBarEnabled = false;
-            }
+            this.HorizontalScrollBarEnabled = false;
+            this.VerticalScrollBarEnabled = false;
         }
     }
+#pragma warning restore CS0618 // Type or member is obsolete
 }

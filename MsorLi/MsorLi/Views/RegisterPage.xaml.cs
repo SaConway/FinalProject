@@ -35,9 +35,11 @@ namespace MsorLi.Views
             try
             {
                 bool IsValid = await Validation();
+                List<string> imageUrls = null;
 
-                // Save images in blob
-                List<string> imageUrls = await BlobService.SaveImagesInDB(_byteData);
+                // Save image in blob
+                if (_profileImage.Count != 0)
+                    imageUrls = await BlobService.SaveImagesInDB(_byteData);
 
                 if (IsValid == false)
                 {
@@ -50,21 +52,21 @@ namespace MsorLi.Views
                     FirstName = firstName.Text,
                     LastName = lastName.Text,
                     Email = email.Text,
-                    Password = Utilities.EncryptDecrypt.Encrypt(password.Text),
+                    Password = EncryptDecrypt.Encrypt(password.Text),
                     Phone = phoneNumber.Text,
                     Address = address.Text.Length > 0 ? city.Text + ", " + address.Text : city.Text,
                     Permission = "1",
                     NumOfItems = 0,
                     NumOfItemsUserLike = 0,
-                    ImgUrl = imageUrls[0]
+                    ImgUrl = imageUrls == null ? "" : imageUrls[0]
                 };
 
                 await AzureUserService.DefaultManager.UploadToServer(new_user, new_user.Id);
                 await Navigation.PopToRootAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                await DisplayAlert("", ex.Message, "אישור");
             }
         }
 
@@ -173,7 +175,7 @@ namespace MsorLi.Views
             }
         }
 
-        public async void PickImageButton_Event(object sender, System.EventArgs e)
+        public async void PickImageButton_Event(object sender, EventArgs e)
         {
             try
             {
@@ -200,7 +202,6 @@ namespace MsorLi.Views
             }
             catch (Exception) { }
         }
-
 
         private void InitializeCarouselView()
         {

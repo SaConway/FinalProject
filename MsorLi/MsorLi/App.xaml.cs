@@ -10,5 +10,5 @@ namespace MsorLi
             InitializeComponent();
             MainPage = new NavigationPage(new ItemListPage());
         }
-	}
+    }
 }

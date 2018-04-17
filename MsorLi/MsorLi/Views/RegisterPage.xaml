@@ -95,7 +95,7 @@
 
                 </Grid>
 
-                                <!--תמונות-->
+                <!--תמונות-->
                 <control:CarouselView x:Name="imagesView" HeightRequest="0">
                     <control:CarouselView.ItemTemplate>
                         <DataTemplate>

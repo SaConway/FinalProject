@@ -15,9 +15,9 @@
 
     <ContentPage.Content>
 
-        <ScrollView>
+        <ScrollView Margin="20,30,20,30">
 
-            <StackLayout Margin="20,30,20,30">
+            <StackLayout>
 
                 <!--Email-->
                 <Entry x:Name="Email" Placeholder="אימייל" HorizontalTextAlignment="End" 
@@ -45,13 +45,13 @@
 
                 </Grid>
 
-                <Label Text="או" HorizontalOptions="Center" VerticalOptions="Center"
-                       HorizontalTextAlignment="Center" Margin="0,40,0,0" FontSize="Medium"/>
+                <!--<Label Text="או" HorizontalOptions="Center" VerticalOptions="Center"
+                       HorizontalTextAlignment="Center" Margin="0,40,0,0" FontSize="Medium"/>-->
 
                 <!--Facebook-->
-                <Button Image="facebook.png" Text="התחבר עם פייסבוק" TextColor="White"
+                <!--<Button Image="facebook.png" Text="התחבר עם פייסבוק" TextColor="White"
                         BackgroundColor="#4267b2" Margin="0,40,0,0" BorderRadius="10"
-                        FontSize="Medium" Clicked="OnFacebookClick"/>
+                        FontSize="Medium" Clicked="OnFacebookClick"/>-->
 
                 <!--Seperator Line-->
                 <BoxView Margin="20,60,20,0" HorizontalOptions="FillAndExpand" HeightRequest="1"

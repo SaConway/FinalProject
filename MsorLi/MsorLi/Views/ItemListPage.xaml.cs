@@ -73,10 +73,8 @@ namespace MsorLi.Views
                     _startupRefresh = true;
 
                     await CreateCategories();
-
-                    await RefreshItems(true, syncItems: true);
                     
-                    IsVisible = true;
+                    await RefreshItems(true, syncItems: true);
                 }
             }
             catch
@@ -294,6 +292,9 @@ namespace MsorLi.Views
             _categoryBtn = button;
 
             StackCategory.Children.Add(button);
+
+            // Scroll to the right.
+            await CategoryScroll.ScrollToAsync(_categoryBtn, ScrollToPosition.MakeVisible, false);
         }
 
         //---------------------------------
