@@ -9,6 +9,8 @@ namespace MsorLi
 		{
             InitializeComponent();
             MainPage = new NavigationPage(new ItemListPage());
+            MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, "#00BCD4");
+            MainPage.SetValue(NavigationPage.BarTextColorProperty, Color.White);
         }
     }
 }

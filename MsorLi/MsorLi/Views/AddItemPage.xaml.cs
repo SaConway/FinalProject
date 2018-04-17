@@ -27,42 +27,7 @@ namespace MsorLi.Views
 
         public AddItemPage()
         {
-            // User has just looged in
-            MessagingCenter.Subscribe<LoginPage>(this, "Success", async (sender) => {
-
-                MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
-                await InitializeAsync();
-            });
-
-            // User is not logged in and he is back from log in page
-            MessagingCenter.Subscribe<LoginPage>(this, "NotSuccess", async (sender) => {
-
-                MessagingCenter.Unsubscribe<LoginPage>(this, "NotSuccess");
-                await Navigation.PopAsync();
-
-            });
-
-            MessagingCenter.Subscribe<ItemListPage>(this, "FirstApearing", async (sender) => {
-
-                MessagingCenter.Unsubscribe<ItemListPage>(this, "FirstApearing");
-
-                if (Settings.UserId != "")
-                {
-                    // User is looged in and its his first appearing
-                    await InitializeAsync();
-                }
-                else
-                {
-                    // User is not logged in
-                    await Navigation.PushAsync(new LoginPage());
-                }
-            });
-        }
-
-        private async Task InitializeAsync()
-        {
-            var task = CategoryStorage.GetCategories();
-
+            
             InitializeComponent();
 
             city.Text = Settings.Address;
@@ -77,14 +42,15 @@ namespace MsorLi.Views
             contactNameLabel.IsVisible = true;
             contactNumberLabel.IsVisible = true;
 
-            await Task.WhenAll(task);
-            var categories = task.Result;
+            var categories = CategoryStorage.GetCategories().Result;
 
             foreach (var c in categories)
             {
                 category.Items.Add(c.Name);
             }
+
         }
+
 
         //---------------------------------------------------
         // EVENT FUNCTIONS

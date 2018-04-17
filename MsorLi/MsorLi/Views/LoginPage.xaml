@@ -59,8 +59,8 @@
 
                 <Grid Margin="0,60,0,0" ColumnSpacing="15">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
                     <!--Register-->

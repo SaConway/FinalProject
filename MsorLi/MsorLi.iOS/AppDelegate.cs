@@ -30,9 +30,17 @@ namespace MsorLi.iOS
 
             FloatingActionButtonRenderer.InitRenderer();
 
+            var statusBar = UIApplication.SharedApplication.ValueForKey(new NSString("statusBar")) as UIView;
+            if (statusBar.RespondsToSelector(new ObjCRuntime.Selector("setBackgroundColor:")))
+            {
+                statusBar.BackgroundColor = UIColor.FromRGB(0, 151, 167);
+                statusBar.TintColor = UIColor.White;
+            }
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
         }
     }
+
 }
