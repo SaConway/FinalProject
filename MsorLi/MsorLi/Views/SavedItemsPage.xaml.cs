@@ -176,7 +176,7 @@ namespace MsorLi.Views
             }
         }
 
-        private async void OnSavedItemClick(object sender, TappedEventArgs e)
+        private async void OnItemClick(object sender, TappedEventArgs e)
         {
             string id = (string)e.Parameter;
 

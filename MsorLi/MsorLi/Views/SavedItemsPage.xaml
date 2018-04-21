@@ -18,6 +18,11 @@
 
                                 <Grid Margin="10,10,0,10" HorizontalOptions="FillAndExpand">
 
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnItemClick" 
+                                                              CommandParameter="{Binding Key}"/>
+                                    </Grid.GestureRecognizers>
+
                                     <Grid.ColumnDefinitions>
 
                                         <ColumnDefinition Width="*"/>
@@ -26,24 +31,16 @@
 
                                     </Grid.ColumnDefinitions>
 
-                                    <!--Icons - Delete and Go-To-->
+                                    <!--Delete-->
                                     <StackLayout VerticalOptions="Center" HorizontalOptions="StartAndExpand"
                                                  Grid.Column="0">
 
-                                        <Image Source="delete.png" Margin="0,0,0,3">
+                                        <Image Source="delete.png">
                                             <Image.GestureRecognizers>
                                                 <TapGestureRecognizer Tapped="OnDeleteSavedItemClick" 
                                                                       CommandParameter="{Binding Key}"/>
                                             </Image.GestureRecognizers>
                                         </Image>
-
-                                        <Image Source="go_to.png" Margin="0,3,0,0">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="OnSavedItemClick" 
-                                                                      CommandParameter="{Binding Key}"/>
-                                            </Image.GestureRecognizers>
-                                        </Image>
-
                                     </StackLayout>
 
                                     <!--Item Details - Category and Location-->

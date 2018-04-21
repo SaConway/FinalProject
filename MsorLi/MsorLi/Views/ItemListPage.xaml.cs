@@ -310,7 +310,7 @@ namespace MsorLi.Views
             StackCategory.Children.Add(button);
 
             // Scroll to the right.
-            //await CategoryScroll.ScrollToAsync(_categoryBtn, ScrollToPosition.MakeVisible, false);
+            await CategoryScroll.ScrollToAsync(_categoryBtn, ScrollToPosition.MakeVisible, false);
         }
 
         //---------------------------------
