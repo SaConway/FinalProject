@@ -7,6 +7,7 @@ using Xamarin.Forms.Xaml;
 using MsorLi.Utilities;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace MsorLi.Views
 {
@@ -72,6 +73,12 @@ namespace MsorLi.Views
 
         async void MyInitializeComponent()
         {
+            if (_item.Id == null)
+            {
+                MessagingCenter.Send<ItemPage, string>(this, "Item was not found", _item.Id);
+                await Navigation.PopAsync();
+            }
+
             // Update item images
 
             imagesView.HeightRequest = (double)(Constants.ScreenHeight / 2.5);
@@ -112,6 +119,43 @@ namespace MsorLi.Views
             contact_number.Text = _item.ContactNumber;
             date.Text = _item.Date;
 
+            // Show Delete item btn ?
+
+            if (_userId == _item.UserId)
+            {
+                ToolbarItems.Add(new ToolbarItem("מחק מודעה", "", async () =>
+                {
+                    try
+                    {
+                        List<Task> list = new List<Task>();
+                        var task1 = AzureItemService.DefaultManager.DeleteItem(_item);
+                        list.Add(task1);
+
+                        foreach (var img in _images)
+                        {
+                            var task2 = AzureImageService.DefaultManager.DeleteImage(img);
+                            list.Add(task2);
+
+                            string toBeSearched = "https://msorli.blob.core.windows.net/images/";
+                            string blob = img.Url.Substring(img.Url.IndexOf(toBeSearched) + toBeSearched.Length);
+
+                            var task3 = BlobService.DeleteImage(blob);
+                            list.Add(task3);
+                        }
+
+                        await Task.WhenAll(list);
+
+                        await Navigation.PopAsync();
+                        MessagingCenter.Send<ItemPage, string>(this, "Item Deleted", _item.Id);
+                        DependencyService.Get<IMessage>().LongAlert("המודעה נמחקה");
+                    }
+                    catch (Exception)
+                    {
+                        await DisplayAlert("שגיאה", "לא ניתן להשלים את הפעולה. נסה שנית.", "אישור");
+                    }
+                }));
+            }
+
             // Hide Activity Indicator
             await MyActivityIndicator.FadeTo(0, 100);
             MyActivityIndicator.IsRunning = false;
@@ -126,13 +170,13 @@ namespace MsorLi.Views
         protected async override void OnDisappearing()
         {
             //Save Item
-            if (_saveItem && !_itemWasSaved)
+            if (_saveItem && !_itemWasSaved && _item.Id != null)
             {
                 await AzureSavedItemService.DefaultManager.UploadToServer(new SavedItem { ItemId = _item.Id, UserId = _userId }, null);
                 UpdateLikeCounter(1);
             }
             //Unsave Item
-            else if (_unSaveItem && _itemWasSaved)
+            else if (_unSaveItem && _itemWasSaved && _item.Id != null)
             {
                 await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedId });
                 UpdateLikeCounter(-1);
@@ -219,6 +263,19 @@ namespace MsorLi.Views
                      + "למגוון מוצרים נוספים אנא הורד את אפליקציית מסור-לי.",
                     _images[0].Url
                 );
+        }
+
+        // Report Button
+        private async void OnReportClick(object sender, EventArgs e)
+        {
+            try
+            {
+                await Navigation.PushAsync(new ReportItemPage(_item.Id));
+            }
+            catch
+            {
+
+            }
         }
 
         // PRIVATE FUNCTIONS

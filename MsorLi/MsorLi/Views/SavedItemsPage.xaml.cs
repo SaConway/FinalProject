@@ -27,8 +27,6 @@ namespace MsorLi.Views
         // C-tor
         public SavedItemsPage()
         {
-
-
             MessagingCenter.Subscribe<MenuPage>(this, "FirstApearing", async (sender) => {
 
                 MessagingCenter.Unsubscribe<MenuPage>(this, "FirstApearing");
@@ -73,12 +71,6 @@ namespace MsorLi.Views
                 MyMainStack.IsVisible = true;
                 MyMainStack.Opacity = 1;
             });
-            //MessagingCenter.Subscribe<ItemPage>(this, "Item Deleted", async (sender) => {
-
-            //    MessagingCenter.Unsubscribe<LoginPage>(this, "Item Deleted");
-            //    //Delete item
-
-            //});
         }
 
         private async Task InitializeAsync()
@@ -132,7 +124,7 @@ namespace MsorLi.Views
                         Key = savedItems[i].ItemId, SavedId = savedItems[i].Id
                     });
 
-                    var task1 = SetItemAsync(savedItems[i].ItemId, savedItems[i].ItemId);
+                    var task1 = SetItemAsync(savedItems[i].ItemId, savedItems[i].ItemId, savedItems[i]);
                     TaskList.Add(task1);
 
                     var task2 = SetImageUrlAsync(savedItems[i].ItemId, savedItems[i].ItemId);
@@ -143,7 +135,8 @@ namespace MsorLi.Views
 
                 foreach (var item in _dictionary)
                 {
-                    _collection.Add(item.Value);
+                    if (item.Value.Category != null && item.Value.Location != null && item.Value.ImageUrl != null)
+                        _collection.Add(item.Value);
                 }
 
                 listView_items.ItemsSource = _collection;
@@ -162,19 +155,13 @@ namespace MsorLi.Views
         // EVENT FUNCTIONS
         //----------------------------------------------------------
 
-        private async void DeleteSavedItem(object sender, TappedEventArgs e)
+        private async void OnDeleteSavedItemClick(object sender, TappedEventArgs e)
         {
             try
             {
                 string key = (string)e.Parameter;
 
-                // Delete Item from data base
-                await AzureSavedItemService.DefaultManager
-                    .DeleteSavedItem(new SavedItem { Id = _dictionary[key].SavedId });
-
-                // Delete Item from collection and dictionary
-                _collection.Remove(_dictionary[key]);
-                _dictionary.Remove(key);
+                await DeleteSaved(key);
 
                 if (_dictionary.Count == 0)
                 {
@@ -189,7 +176,7 @@ namespace MsorLi.Views
             }
         }
 
-        private async void GoToItemPage(object sender, TappedEventArgs e)
+        private async void OnSavedItemClick(object sender, TappedEventArgs e)
         {
             string id = (string)e.Parameter;
 
@@ -209,17 +196,50 @@ namespace MsorLi.Views
         // PRIVATE FUNCTIONS
         //----------------------------------------------------------
 
-        private async Task SetItemAsync(string itemId, string index)
+        private async Task<bool> DeleteSaved(string itemId)
+        {
+            try
+            {
+                // Delete Item from data base
+                await AzureSavedItemService.DefaultManager
+                    .DeleteSavedItem(new SavedItem { Id = _dictionary[itemId].SavedId });
+
+                // Delete Item from collection and dictionary
+                _collection.Remove(_dictionary[itemId]);
+                _dictionary.Remove(itemId);
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        private async Task SetItemAsync(string itemId, string index, SavedItem saved)
         {
             Item item = await AzureItemService.DefaultManager.GetItemAsync(itemId);
-            _dictionary[index].Category = item.Category;
-            _dictionary[index].Location = item.Location;
+
+            if (item == null)
+            {
+                // Item was deleted, so delete from saved table
+                await AzureSavedItemService.DefaultManager.DeleteSavedItem(saved);
+
+                _dictionary.Remove(itemId);
+            }
+            else
+            {
+                _dictionary[index].Category = item.Category;
+                _dictionary[index].Location = item.Location;
+            }
         }
 
         private async Task SetImageUrlAsync(string itemId, string index)
         {
             var imageUrl = await AzureImageService.DefaultManager.GetImageUrl(itemId);
-            _dictionary[index].ImageUrl = imageUrl;
+
+            if (imageUrl != null)
+                _dictionary[index].ImageUrl = imageUrl;
         }
     }
 }

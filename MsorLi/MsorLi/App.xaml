@@ -32,7 +32,6 @@
 
             <Style x:Key="StatsCaptionLabel" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource BodyTextColor}" />
-<!--                <Setter Property="Margin" Value="0,-5,0,0" />-->
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="FontSize" Value="{StaticResource StatsCaptionFontSize}" />
             </Style>
@@ -48,6 +47,16 @@
                 <Setter Property="BackgroundColor" Value="#00BCD4"/>
                 <Setter Property="FontSize" Value="Medium"/>
                 <Setter Property="BorderRadius" Value="10"/>
+            </Style>
+
+            <Style x:Key="GrayColorBoxView" TargetType="BoxView">
+                <Setter Property="Color" Value="#999999"/>
+            </Style>
+
+            <Style x:Key="myBodyStyle" TargetType="Label" BaseResourceKey="BodyStyle"/>
+
+            <Style x:Key="mySubtitleStyle" TargetType="Label" BaseResourceKey="SubtitleStyle">
+                <Setter Property="TextColor" Value="#212121"/>
             </Style>
             
         </ResourceDictionary>

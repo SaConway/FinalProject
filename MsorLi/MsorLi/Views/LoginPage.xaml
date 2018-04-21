@@ -4,15 +4,6 @@
              x:Class="MsorLi.Views.LoginPage"
              Title="התחברות">
 
-    <!--Styles-->
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="GrayColorBoxView" TargetType="BoxView">
-                <Setter Property="Color" Value="#999999"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ContentPage.Content>
 
         <ScrollView Margin="20,30,20,30">

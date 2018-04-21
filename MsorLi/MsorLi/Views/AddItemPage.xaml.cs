@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
 using MsorLi.Utilities;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MsorLi.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddItemPage : ContentPage
     {
         //---------------------------------------------------

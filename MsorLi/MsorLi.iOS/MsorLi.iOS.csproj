@@ -243,6 +243,15 @@
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\report.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\report%402x.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\report%403x.jpg" />
+  </ItemGroup>
   <Import Project="..\MsorLi\MsorLi.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

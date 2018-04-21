@@ -48,5 +48,13 @@ namespace MsorLi.Services
 
             return imageUrls;
         }
+
+        public static async Task DeleteImage(string imageId) // Name in the container
+        {
+            var container = GetContainer();
+            
+            var fileBlob = container.GetBlockBlobReference(imageId);
+            await fileBlob.DeleteAsync();
+        }
     }
 }

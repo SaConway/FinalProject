@@ -4,12 +4,6 @@
              x:Class="MsorLi.Views.SavedItemsPage"
              Title="מוצרים שאהבתי">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="myBodyStyle" TargetType="Label" BaseResourceKey="BodyStyle"/>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout x:Name="MyMainStack" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
@@ -38,14 +32,14 @@
 
                                         <Image Source="delete.png" Margin="0,0,0,3">
                                             <Image.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="DeleteSavedItem" 
+                                                <TapGestureRecognizer Tapped="OnDeleteSavedItemClick" 
                                                                       CommandParameter="{Binding Key}"/>
                                             </Image.GestureRecognizers>
                                         </Image>
 
                                         <Image Source="go_to.png" Margin="0,3,0,0">
                                             <Image.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="GoToItemPage" 
+                                                <TapGestureRecognizer Tapped="OnSavedItemClick" 
                                                                       CommandParameter="{Binding Key}"/>
                                             </Image.GestureRecognizers>
                                         </Image>

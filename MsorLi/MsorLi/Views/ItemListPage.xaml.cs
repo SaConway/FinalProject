@@ -57,7 +57,7 @@ namespace MsorLi.Views
                 ((ListView)sender).SelectedItem = null; // de-select the row
             };
 
-            AddBtn.Text = "פרסום" + Environment.NewLine + "מוצר";
+            AddBtn.Text = "+";
 
             listView_items.RowHeight = Constants.ScreenWidth / 2;
         }
@@ -72,9 +72,11 @@ namespace MsorLi.Views
                 {
                     _startupRefresh = true;
 
-                    await CreateCategories();
-                    
-                    await RefreshItems(true, syncItems: true);
+                    Task t1 = CreateCategories();
+
+                    Task t2 = RefreshItems(true, syncItems: true);
+
+                    await Task.WhenAll(t1, t2);
                 }
             }
             catch
@@ -285,21 +287,9 @@ namespace MsorLi.Views
                     CornerRadius = 15,
                 };
 
-
                 btn.Clicked += OnCategoryClick;
 
                 StackCategory.Children.Add(btn);
-
-        
-            }
-
-            foreach (Button btn in StackCategory.Children){
-                
-                if (Device.RuntimePlatform == Device.iOS)
-                {
-                  //  btn.WidthRequest = btn.Width + 2;
-                }
-                
             }
 
             // Create button for all items
@@ -320,7 +310,7 @@ namespace MsorLi.Views
             StackCategory.Children.Add(button);
 
             // Scroll to the right.
-            await CategoryScroll.ScrollToAsync(_categoryBtn, ScrollToPosition.MakeVisible, false);
+            //await CategoryScroll.ScrollToAsync(_categoryBtn, ScrollToPosition.MakeVisible, false);
         }
 
         //---------------------------------

@@ -6,20 +6,10 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style x:Key="GrayColorBoxView" TargetType="BoxView">
-                <Setter Property="Color" Value="#999999"/>
-            </Style>
-
             <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="BackgroundColor" Value="#2196F3"/>
             </Style>
-
-            <Style x:Key="mySubtitleStyle" TargetType="Label" BaseResourceKey="SubtitleStyle">
-                <Setter Property="TextColor" Value="#212121"/>
-            </Style>
-
-            <Style x:Key="myBodyStyle" TargetType="Label" BaseResourceKey="BodyStyle"/>
 
             <Style x:Key="myGrayBodyStyle" TargetType="Label" BaseResourceKey="BodyStyle">
                 <Setter Property="TextColor" Value="#999999"/>
@@ -73,7 +63,7 @@
                     </control:CarouselView>
 
                     <!--כפתורים-->
-                    <Grid Margin="5,30,5,0">
+                    <Grid Margin="5,20,5,0">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -124,7 +114,7 @@
                     </Grid>
 
                     <!--קו מפריד-->
-                    <BoxView Margin="20,30,20,0" HorizontalOptions="FillAndExpand"
+                    <BoxView Margin="20,10,20,0" HorizontalOptions="FillAndExpand"
                              HeightRequest="1"
                              Style="{StaticResource GrayColorBoxView}"/>
 
@@ -200,6 +190,19 @@
                                Style="{DynamicResource myBodyStyle}" HorizontalOptions="End"/>
                     </Grid>
 
+                    <!--קו מפריד-->
+                    <BoxView Margin="20,20,20,0" HorizontalOptions="FillAndExpand"
+                             HeightRequest="1"
+                             Style="{StaticResource GrayColorBoxView}"/>
+
+                    <!--Report Item-->
+                    <Label Text="דווח על מוצר" Style="{DynamicResource myBodyStyle}"
+                           HorizontalTextAlignment="End" Margin="0,10,25,0">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnReportClick"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
                 </StackLayout>
             </ScrollView>
 

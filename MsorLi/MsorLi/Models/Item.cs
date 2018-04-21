@@ -14,5 +14,6 @@
         public string Date { get; set; }
         public string Time { get; set; }
         public string UserId { get; set; }
+        public bool Deleted { get; set; }
     }
 }

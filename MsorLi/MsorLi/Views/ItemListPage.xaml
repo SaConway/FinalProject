@@ -4,7 +4,7 @@
              x:Class="MsorLi.Views.ItemListPage" 
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             IsVisible="False">
+             IsVisible="True">
     
     <!-- Padding for ios status bar -->
      <ContentPage.Padding>
@@ -20,6 +20,10 @@
                 <!--ToolBar-->
                 <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#00BCD4" Padding="10">
 
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -60,13 +64,13 @@
                 </Grid>
 
                 <!--Categories-->
-                <ScrollView Orientation="Horizontal" Margin="7,10,7,0"
+                <ScrollView Orientation="Horizontal" Margin="0,10,0,0" x:Name="CategoryScroll" Padding="5,0,5,0"
                             BackgroundColor="Transparent" HorizontalOptions="End">
                     <StackLayout Orientation="Horizontal" HorizontalOptions="End" 
                                  BackgroundColor="Transparent" x:Name="StackCategory"/>
                 </ScrollView>
 
-                <BoxView Margin="10" HorizontalOptions="FillAndExpand"
+                <BoxView Margin="0,10" HorizontalOptions="FillAndExpand"
                              HeightRequest="1" BackgroundColor="#BDBDBD"/>
                 
                 <!--Activity Indicator-->
@@ -86,35 +90,20 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
 
-                                        <ffimageloading:CachedImage Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"
-                                            LoadingPlaceholder="loading.png" ErrorPlaceholder="error.png" DownsampleToViewSize="true"
-                                            Aspect="AspectFit" WidthRequest="200" HeightRequest="200" Source="{Binding Item1}" Margin="0,0,3,6">
-                                            
-                                            <ffimageloading:CachedImage.Transformations>
-                                                <fftransformations:RoundedTransformation Radius="15"/>
-                                            </ffimageloading:CachedImage.Transformations>
-                                            
-                                            <ffimageloading:CachedImage.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="OnItemClick" CommandParameter="{Binding Item2}">
-                                                </TapGestureRecognizer>
-                                            </ffimageloading:CachedImage.GestureRecognizers>
-                                        </ffimageloading:CachedImage>
-                                        
-  <!--                                  <Image Grid.Column="0" Aspect="AspectFill" Margin="0,0,3,6" Source="{Binding Item1}">
-                                        <Image.GestureRecognizers>
+                                    <ffimageloading:CachedImage Grid.Column="0" DownsampleToViewSize="true"
+                                            Aspect="AspectFit" Source="{Binding Item1}" Margin="0,0,3,6">
+
+                                        <ffimageloading:CachedImage.Transformations>
+                                            <fftransformations:RoundedTransformation Radius="15"/>
+                                        </ffimageloading:CachedImage.Transformations>
+
+                                        <ffimageloading:CachedImage.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="OnItemClick" CommandParameter="{Binding Item2}">
                                             </TapGestureRecognizer>
-                                        </Image.GestureRecognizers>
-                                    </Image>
-
-                                    <Image Grid.Column="1" Aspect="AspectFill" Margin="3,0,0,6" Source="{Binding Item3}">
-                                        <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnItemClick" CommandParameter="{Binding Item4}" >
-                                            </TapGestureRecognizer>
-                                        </Image.GestureRecognizers>
-                                    </Image>-->
-                                            <ffimageloading:CachedImage WidthRequest="200" HeightRequest="200" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center"
-                                            LoadingPlaceholder="loading.png" ErrorPlaceholder="error.png" DownsampleToViewSize="true"
+                                        </ffimageloading:CachedImage.GestureRecognizers>
+                                    </ffimageloading:CachedImage>
+                                    
+                                    <ffimageloading:CachedImage Grid.Column="1" DownsampleToViewSize="true"
                                             Aspect="AspectFit" Source="{Binding Item3}" Margin="3,0,0,6">
                                             
                                             <ffimageloading:CachedImage.Transformations>
@@ -126,12 +115,9 @@
                                                 </TapGestureRecognizer>
                                             </ffimageloading:CachedImage.GestureRecognizers>
                                         </ffimageloading:CachedImage>
-                                        
 
                                 </Grid>
-
                             </ViewCell>
-
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

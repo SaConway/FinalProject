@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MsorLi.Views.ReportItemPage"
+             Title="דיווח על מוצר">
+    
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                         Grid.Row="0" Margin="10">
+
+                <Image Source="report.jpg" HorizontalOptions="Center" Margin="40"/>
+
+                <Picker x:Name="picker" Margin="10,20" Title="בחר סיבת דיווח">
+                    <Picker.Items>
+                        <x:String>זהו ספאם</x:String>
+                        <x:String>התמונות לא תואמות לתיאור</x:String>
+                        <x:String>מכיל תוכן אלים ו/או מיני</x:String>
+                        <x:String>המוצר אינו למסירה</x:String>
+                    </Picker.Items>
+                </Picker>
+                
+            </StackLayout>
+
+            <Button Grid.Row="1" x:Name="reportBtn" Text="דיווח" BackgroundColor="#00BCD4"
+                    IsEnabled="False" FontSize="Medium" Clicked="OnReportClick"
+                    TextColor="White" HorizontalOptions="FillAndExpand"/>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

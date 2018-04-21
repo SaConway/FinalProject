@@ -42,5 +42,10 @@ namespace MsorLi.Services
             catch (Exception) { }
             return null;
         }
+
+        public async Task DeleteItem(Item item)
+        {
+            await _table.DeleteAsync(item);
+        }
     }
 }

@@ -100,12 +100,18 @@ namespace MsorLi.Services
                     .Select(i => i.Url)
                     .ToListAsync();
 
+                if (imageUrl.Count == 0) return null;
                 return imageUrl[0];
             }
 
             catch (Exception) { }
             return null;
         
+        }
+
+        public async Task DeleteImage(ItemImage itemImage)
+        {
+            await _table.DeleteAsync(itemImage);
         }
     }
 }
