@@ -11,7 +11,6 @@
             <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="BackgroundColor" Value="#00BCD4"/>
-                <Setter Property="BorderRadius" Value="10"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -82,8 +81,9 @@
                         HorizontalOptions="Center" x:Name="pickPictureButton" Clicked="PickImageButton_Event"/>
 
                 <!--כפתור פרסום מוצר-->
-                <Button Text="פרסום מוצר" Clicked="OnAdd_Event" FontSize="Medium" 
-                        HorizontalOptions="FillAndExpand" Margin="30,50,30,30" Style="{StaticResource ButtonStyle}"/>
+                <Button Text="פרסום מוצר" Clicked="OnAdd_Event" 
+                        HorizontalOptions="FillAndExpand" Margin="20,50,20,20" 
+                        Style="{StaticResource ButtonStyle}"/>
 
             </StackLayout>
         </ScrollView>

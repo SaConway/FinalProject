@@ -52,7 +52,7 @@
 
                         <!--Menu-->
                         <Image HorizontalOptions="Center" VerticalOptions="Center"
-                            Source="menu.png">
+                            Source="menu.png" Margin="0,0,5,0">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnMenuClick">
                                 </TapGestureRecognizer>
@@ -64,13 +64,13 @@
                 </Grid>
 
                 <!--Categories-->
-                <ScrollView Orientation="Horizontal" Margin="0,10,0,0" x:Name="CategoryScroll" Padding="5,0,5,0"
+                <ScrollView Orientation="Horizontal" Margin="0,10,0,0" x:Name="CategoryScroll"
                             BackgroundColor="Transparent" HorizontalOptions="End">
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="End" 
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="End"
                                  BackgroundColor="Transparent" x:Name="StackCategory"/>
                 </ScrollView>
 
-                <BoxView Margin="0,10" HorizontalOptions="FillAndExpand"
+                <BoxView Margin="0,0,0,10" HorizontalOptions="FillAndExpand"
                              HeightRequest="1" BackgroundColor="#BDBDBD"/>
                 
                 <!--Activity Indicator-->
@@ -98,7 +98,8 @@
                                         </ffimageloading:CachedImage.Transformations>
 
                                         <ffimageloading:CachedImage.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnItemClick" CommandParameter="{Binding Item2}">
+                                            <TapGestureRecognizer Tapped="OnItemClick"  
+                                                                  CommandParameter="{Binding Item2}">
                                             </TapGestureRecognizer>
                                         </ffimageloading:CachedImage.GestureRecognizers>
                                     </ffimageloading:CachedImage>
@@ -106,15 +107,16 @@
                                     <ffimageloading:CachedImage Grid.Column="1" DownsampleToViewSize="true"
                                             Aspect="AspectFit" Source="{Binding Item3}" Margin="3,0,0,6">
                                             
-                                            <ffimageloading:CachedImage.Transformations>
-                                                <fftransformations:RoundedTransformation Radius="15"/>
-                                            </ffimageloading:CachedImage.Transformations>
-                                            
-                                            <ffimageloading:CachedImage.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="OnItemClick" CommandParameter="{Binding Item4}">
-                                                </TapGestureRecognizer>
-                                            </ffimageloading:CachedImage.GestureRecognizers>
-                                        </ffimageloading:CachedImage>
+                                        <ffimageloading:CachedImage.Transformations>
+                                            <fftransformations:RoundedTransformation Radius="15"/>
+                                        </ffimageloading:CachedImage.Transformations>
+
+                                        <ffimageloading:CachedImage.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnItemClick" 
+                                                                  CommandParameter="{Binding Item4}">
+                                            </TapGestureRecognizer>
+                                        </ffimageloading:CachedImage.GestureRecognizers>
+                                    </ffimageloading:CachedImage>
 
                                 </Grid>
                             </ViewCell>
@@ -130,7 +132,8 @@
                     FontAttributes="Bold" FontSize="Medium" x:Name="AddBtn"
                     WidthRequest="65" HeightRequest="65" BorderRadius="32"
                     Clicked="OnAddItemClick" BorderWidth="1" BorderColor="#212121"
-                    BackgroundColor="#CDDC39" Margin="15" TextColor="White">
+                    BackgroundColor="#CDDC39" Margin="15" TextColor="White"
+                    Image="plus.png">
                 <Button.FontFamily>
                     <OnPlatform x:TypeArguments="x:String">
                         <On Platform="Android" Value="Arimo-Regular.ttf#Arimo-Regular" />

@@ -121,7 +121,7 @@ namespace MsorLi.Views
 
             // Show Delete item btn ?
 
-            if (_userId == _item.UserId)
+            if (_userId == _item.UserId || Settings.Permission == "Admin")
             {
                 ToolbarItems.Add(new ToolbarItem("מחק מודעה", "", async () =>
                 {
@@ -276,6 +276,12 @@ namespace MsorLi.Views
             {
 
             }
+        }
+
+        // Waze Buuton
+        private void OnWazeClick(object sender, EventArgs e)
+        {
+            DependencyService.Get<IWaze>().Navigate(_item.Location);
         }
 
         // PRIVATE FUNCTIONS

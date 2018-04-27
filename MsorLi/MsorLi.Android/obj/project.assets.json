@@ -898,10 +898,10 @@
           "build/MonoAndroid70/Xamarin.Android.Support.Core.Utils.targets": {}
         }
       },
-      "Xamarin.Android.Support.CustomTabs/23.3.0": {
+      "Xamarin.Android.Support.CustomTabs/23.4.0.1": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Android.Support.v4": "[23.3.0]"
+          "Xamarin.Android.Support.v4": "[23.4.0.1]"
         },
         "compile": {
           "lib/MonoAndroid403/Xamarin.Android.Support.CustomTabs.dll": {}
@@ -4512,13 +4512,13 @@
         "xamarin.android.support.core.utils.nuspec"
       ]
     },
-    "Xamarin.Android.Support.CustomTabs/23.3.0": {
-      "sha512": "OQ/Uj2FDEWi8CD2AXXeNOOvy47z2QHywdGsMnGtf5n+nXATZvpg9+Xx/p1JLefccDM4Q0KRC0gO4QpQkDyuZ8A==",
+    "Xamarin.Android.Support.CustomTabs/23.4.0.1": {
+      "sha512": "M+xGNMyshEVM0oNlNr6cDulBkMAZDAdflAHJITek3MCYwYqpEK4cABFyC0sGgkqkRv2dqFN/WlwrGJUrukwWyQ==",
       "type": "package",
-      "path": "xamarin.android.support.customtabs/23.3.0",
+      "path": "xamarin.android.support.customtabs/23.4.0.1",
       "files": [
         "lib/MonoAndroid403/Xamarin.Android.Support.CustomTabs.dll",
-        "xamarin.android.support.customtabs.23.3.0.nupkg.sha512",
+        "xamarin.android.support.customtabs.23.4.0.1.nupkg.sha512",
         "xamarin.android.support.customtabs.nuspec"
       ]
     },
@@ -5031,7 +5031,7 @@
       "WindowsAzure.Storage >= 9.1.0",
       "Xam.Plugins.Forms.ImageCircle >= 2.0.2",
       "Xam.Plugins.Settings >= 3.1.1",
-      "Xamarin.Android.Support.CustomTabs >= 23.3.0",
+      "Xamarin.Android.Support.CustomTabs >= 23.4.0.1",
       "Xamarin.Android.Support.v4 >= 25.4.0.2",
       "Xamarin.FFImageLoading >= 2.3.6",
       "Xamarin.FFImageLoading.Forms >= 2.3.6",
@@ -5108,7 +5108,7 @@
           },
           "Xamarin.Android.Support.CustomTabs": {
             "target": "Package",
-            "version": "[23.3.0, )"
+            "version": "[23.4.0.1, )"
           },
           "Xamarin.Android.Support.v4": {
             "target": "Package",
@@ -5143,7 +5143,7 @@
       "code": "NU1608",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: Xamarin.Android.Support.CustomTabs 23.3.0 requires Xamarin.Android.Support.v4 (= 23.3.0) but version Xamarin.Android.Support.v4 25.4.0.2 was resolved.",
+      "message": "Detected package version outside of dependency constraint: Xamarin.Android.Support.CustomTabs 23.4.0.1 requires Xamarin.Android.Support.v4 (= 23.4.0.1) but version Xamarin.Android.Support.v4 25.4.0.2 was resolved.",
       "libraryId": "Xamarin.Android.Support.v4",
       "targetGraphs": [
         "MonoAndroid,Version=v8.1"

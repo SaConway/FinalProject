@@ -1,7 +1,6 @@
 ﻿using Android.Widget;
 using MsorLi.Droid;
 using Xamarin.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 [assembly: Dependency(typeof(MessageAndroid))]
 namespace MsorLi.Droid

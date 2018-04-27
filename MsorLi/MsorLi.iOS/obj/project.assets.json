@@ -757,7 +757,7 @@
           "lib/Xamarin.iOS10/WebP.Touch.dll": {}
         }
       },
-      "WindowsAzure.Storage/9.1.0": {
+      "WindowsAzure.Storage/9.1.1": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -1668,7 +1668,7 @@
           "lib/Xamarin.iOS10/WebP.Touch.dll": {}
         }
       },
-      "WindowsAzure.Storage/9.1.0": {
+      "WindowsAzure.Storage/9.1.1": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -2579,7 +2579,7 @@
           "lib/Xamarin.iOS10/WebP.Touch.dll": {}
         }
       },
-      "WindowsAzure.Storage/9.1.0": {
+      "WindowsAzure.Storage/9.1.1": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -3490,7 +3490,7 @@
           "lib/Xamarin.iOS10/WebP.Touch.dll": {}
         }
       },
-      "WindowsAzure.Storage/9.1.0": {
+      "WindowsAzure.Storage/9.1.1": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -6837,10 +6837,10 @@
         "webp.touch.nuspec"
       ]
     },
-    "WindowsAzure.Storage/9.1.0": {
-      "sha512": "fkDFm7yE7QLpHhIucjrdL8T9tGC6iz66BtOjWvWzY73GnuoXg22KYJq34XXayUnPIdFdqzl8vIiCxGnDpkbJJg==",
+    "WindowsAzure.Storage/9.1.1": {
+      "sha512": "81JkWbWpFIAYaheDazee3xNKzmgeTBO9cuUNJNUsTBTwmcmtPacRivw/8VDAv8ykoV+jol/xWnGr33MF1tqBvA==",
       "type": "package",
-      "path": "windowsazure.storage/9.1.0",
+      "path": "windowsazure.storage/9.1.1",
       "files": [
         "lib/net45/Microsoft.WindowsAzure.Storage.dll",
         "lib/net45/Microsoft.WindowsAzure.Storage.pdb",
@@ -6848,7 +6848,6 @@
         "lib/netstandard1.0/Microsoft.WindowsAzure.Storage.dll",
         "lib/netstandard1.0/Microsoft.WindowsAzure.Storage.pdb",
         "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll",
-        "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll.mdb",
         "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.pdb",
         "lib/win8/Microsoft.WindowsAzure.Storage.dll",
         "lib/win8/Microsoft.WindowsAzure.Storage.pdb",
@@ -6856,7 +6855,7 @@
         "lib/wp8/Microsoft.WindowsAzure.Storage.pdb",
         "lib/wpa/Microsoft.WindowsAzure.Storage.dll",
         "lib/wpa/Microsoft.WindowsAzure.Storage.pdb",
-        "windowsazure.storage.9.1.0.nupkg.sha512",
+        "windowsazure.storage.9.1.1.nupkg.sha512",
         "windowsazure.storage.nuspec"
       ]
     },
@@ -7321,7 +7320,7 @@
       "Microsoft.Azure.Mobile.Client >= 4.0.2",
       "Microsoft.Azure.Mobile.Client.SQLiteStore >= 4.0.2",
       "SuaveControls.FloatingActionButton >= 2018.1.5",
-      "WindowsAzure.Storage >= 9.1.0",
+      "WindowsAzure.Storage >= 9.1.1",
       "Xam.Plugins.Forms.ImageCircle >= 2.0.2",
       "Xam.Plugins.Settings >= 3.1.1",
       "Xamarin.FFImageLoading >= 2.3.6",
@@ -7387,7 +7386,7 @@
           },
           "WindowsAzure.Storage": {
             "target": "Package",
-            "version": "[9.1.0, )"
+            "version": "[9.1.1, )"
           },
           "Xam.Plugins.Forms.ImageCircle": {
             "target": "Package",

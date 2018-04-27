@@ -195,6 +195,14 @@
                              HeightRequest="1"
                              Style="{StaticResource GrayColorBoxView}"/>
 
+                    <!--Waze-->
+                    <Label Text="נווט עם וויז" Style="{DynamicResource myBodyStyle}"
+                           HorizontalTextAlignment="End" Margin="0,10,25,0">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnWazeClick"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
                     <!--Report Item-->
                     <Label Text="דווח על מוצר" Style="{DynamicResource myBodyStyle}"
                            HorizontalTextAlignment="End" Margin="0,10,25,0">

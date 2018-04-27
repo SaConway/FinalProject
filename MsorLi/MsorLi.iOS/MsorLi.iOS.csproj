@@ -95,6 +95,7 @@
     <Compile Include="IShareService.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="WazeIOS.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="MessageIOS.cs" />
@@ -155,7 +156,7 @@
       <Version>2018.1.5</Version>
     </PackageReference>
     <PackageReference Include="WindowsAzure.Storage">
-      <Version>9.1.0</Version>
+      <Version>9.1.1</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
@@ -251,6 +252,21 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\report%403x.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\all.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\electronic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fashion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pingpong.png" />
   </ItemGroup>
   <Import Project="..\MsorLi\MsorLi.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

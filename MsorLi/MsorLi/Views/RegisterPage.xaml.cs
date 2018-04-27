@@ -55,7 +55,7 @@ namespace MsorLi.Views
                     Password = EncryptDecrypt.Encrypt(password.Text),
                     Phone = phoneNumber.Text,
                     Address = address.Text.Length > 0 ? city.Text + ", " + address.Text : city.Text,
-                    Permission = "1",
+                    Permission = "User",
                     NumOfItems = 0,
                     NumOfItemsUserLike = 0,
                     ImgUrl = imageUrls == null ? "" : imageUrls[0]
@@ -66,7 +66,6 @@ namespace MsorLi.Views
             }
             catch (Exception ex)
             {
-                await DisplayAlert("", ex.Message, "אישור");
             }
         }
 

@@ -52,7 +52,7 @@ namespace MsorLi.Services
             {
                 IEnumerable<ItemImage> images = null;
 
-                if (category == "הכל")
+                if (category == "כל המוצרים")
                 {
                     images = await _table
                     .OrderByDescending(ItemImage => ItemImage.CreatedAt)

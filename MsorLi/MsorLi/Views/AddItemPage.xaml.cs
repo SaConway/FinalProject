@@ -136,7 +136,6 @@ namespace MsorLi.Views
         // PRIVATE FUNCTIONS
         //---------------------------------------------------
 
-
         private async Task UploadImageToTable(ItemImage itemImage)
         {
             await AzureImageService.DefaultManager.UploadToServer(itemImage, itemImage.Id);
@@ -210,10 +209,6 @@ namespace MsorLi.Views
 
             return item;
         }
-
-
-
-
 
         //If user inserted new info to one of the entries, make the label visable
         private void NameTextChangedEvent(object sender, EventArgs e)

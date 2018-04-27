@@ -49,7 +49,7 @@ namespace MsorLi.Views
                     MyMainStack.IsVisible = true;
                     MyMainStack.Opacity = 1;
 
-                    if (_dictionary.Count == 0)
+                    if (_collection.Count == 0)
                     {
                         listView_items.IsVisible = false;
                         NoItems.IsVisible = true;
@@ -163,7 +163,7 @@ namespace MsorLi.Views
 
                 await DeleteSaved(key);
 
-                if (_dictionary.Count == 0)
+                if (_collection.Count == 0)
                 {
                     listView_items.IsVisible = false;
                     NoItems.IsVisible = true;

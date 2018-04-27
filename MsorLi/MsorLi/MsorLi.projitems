@@ -56,6 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\IShare.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\SavedItemsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\Waze.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ItemListPage.xaml.cs">
       <DependentUpon>ItemListPage.xaml</DependentUpon>
       <SubType>Code</SubType>

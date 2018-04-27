@@ -42,13 +42,13 @@ namespace MsorLi.Views
 #pragma warning disable CS0618 // Type or member is obsolete
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 #pragma warning restore CS0618 // Type or member is obsolete
-                mail.From = new MailAddress("sageeconway@gmail.com");
-                mail.To.Add("sageeconway@gmail.com");
+                mail.From = new MailAddress("msorli.app@gmail.com");
+                mail.To.Add("msorli.app@gmail.com");
                 mail.Subject = subject;
                 mail.Body = _itemId;
 
                 SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("sageeconway@gmail.com", "takitaki123");
+                SmtpServer.Credentials = new NetworkCredential("msorli.app@gmail.com", "Si123456");
                 SmtpServer.EnableSsl = true;
                 ServicePointManager.ServerCertificateValidationCallback = delegate (object sender, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors) {
                     return true;
