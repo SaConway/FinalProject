@@ -1,4 +1,5 @@
-﻿using Plugin.Settings;
+﻿using MsorLi.Models;
+using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
 namespace MsorLi.Utilities
@@ -76,9 +77,29 @@ namespace MsorLi.Utilities
             get => _AppSettings.GetValueOrDefault(nameof(NumOfItemsUserLike), _SettingsDefault, "Settings.txt");
             set => _AppSettings.AddOrUpdateValue(nameof(NumOfItemsUserLike), value, "Settings.txt");
         }
+        public static string Password
+        {
+            get => _AppSettings.GetValueOrDefault(nameof(Password), _SettingsDefault, "Settings.txt");
+            set => _AppSettings.AddOrUpdateValue(nameof(Password), value, "Settings.txt");
+        }
 
         public static void ClearUserData(){
             _AppSettings.Clear("Settings.txt");
+        }
+
+        public static void UpdateUserInfo(User user)
+        {
+            Settings.UserId = user.Id;
+            Settings.UserFirstName = user.FirstName;
+            Settings.UserLastName = user.LastName;
+            Settings.ImgUrl = user.ImgUrl;
+            Settings.Email = user.Email;
+            Settings.Phone = user.Phone;
+            Settings.Address = user.Address;
+            Settings.Permission = user.Permission;
+            Settings.NumOfItems = user.NumOfItems.ToString();
+            Settings.NumOfItemsUserLike = user.NumOfItemsUserLike.ToString();
+            Settings.Password = user.Password;
         }
     }
 }

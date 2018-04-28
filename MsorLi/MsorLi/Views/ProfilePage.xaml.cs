@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using FFImageLoading.Forms;
+using FFImageLoading.Transformations;
 using MsorLi.Models;
 using MsorLi.Services;
 using MsorLi.Utilities;
@@ -28,7 +30,6 @@ namespace MsorLi.Views
         //---------------------------------
         public ProfilePage()
         {
-
             InitializeComponent();
 
             UserName.Text = Settings.UserFirstName;
@@ -41,19 +42,23 @@ namespace MsorLi.Views
                 //MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
                 ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
             });
+
+
+
         }
 
         async protected override void OnAppearing()
         {
             try
             {
+                UserName.Text = Settings.UserFirstName;
+                UserImg.Source = Settings.ImgUrl;
                 await GetUserItems();
             }
             catch (Exception)
             {
-
+                await DisplayAlert("שגיאה", "שגיאה בטעינת נתונים", "אישור");
             }
-
         }
 
         private async Task GetUserItems(){
@@ -66,39 +71,60 @@ namespace MsorLi.Views
 
                 for (int i = 0; i < AllImages.Count; i ++)
                 {
-                    string Url = AllImages[i].Url;
-                    string ItemId = AllImages[i].ItemId;
-                    ImagePairs.Add(new Tuple<string, string>(Url, ItemId));
-                }
+                    var image = new CachedImage
+                    {
+                        Source = AllImages[i].Url
+                                       
+                    };
 
-                listView_items.ItemsSource = ImagePairs;
+                    image.Transformations.Add(new RoundedTransformation(15));
+                    var tap = new TapGestureRecognizer();
+                    tap.CommandParameter = AllImages[i].ItemId;
+
+                    //image tap function loading the item page 
+                    tap.Tapped += async (s, e) => {
+                        try
+                        {
+                            var item = (CachedImage)s;
+                            var gets = item.GestureRecognizers;
+                            // To prevent double tap on images
+                            lock (_lockObject)
+                            {
+                                if (_isRunningItem)
+                                    return;
+                                else
+                                    _isRunningItem = true;
+                            }
+
+                            string itemId = (string)((TapGestureRecognizer)gets[0]).CommandParameter;
+
+                            if (itemId != "")
+                                await Navigation.PushAsync(new ItemPage(itemId));
+
+                            _isRunningItem = false;
+                        }
+                        catch (Exception)
+                        {
+                            await DisplayAlert("שגיאה", "לא ניתן לטעון עמוד מבוקש.", "אישור");
+                        }
+                    };
+
+                    image.GestureRecognizers.Add(tap);
+
+                    StackCategory.Children.Add(image);
+                }
             }
         }
 
-        async void OnItemSelection(object sender, TappedEventArgs e)
+        private async void LikeBtnClick()
         {
-            try
-            {
-                // To prevent double tap on images
-                lock (_lockObject)
-                {
-                    if (_isRunningItem)
-                        return;
-                    else
-                        _isRunningItem = true;
-                }
-
-                var itemId = e.Parameter.ToString();
-
-                if (itemId != "")
-                    await Navigation.PushAsync(new ItemPage(itemId));
-
-                _isRunningItem = false;
-            }
-            catch (Exception)
-            {
-                await DisplayAlert("שגיאה", "לא ניתן לטעון עמוד מבוקש.", "אישור");
-            }
+            await Navigation.PushAsync(new SavedItemsPage());
+            MessagingCenter.Send<ProfilePage>(this, "FirstApearing");
         }
+        private async void EditBtnClicked()
+        {
+            await Navigation.PushAsync(new EditUserInfoPage());
+        }
+
     }
 }

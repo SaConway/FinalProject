@@ -8,101 +8,69 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     
 	<ContentPage.Content>
-        
-        <Grid RowSpacing="0" >
+        <ScrollView>
+            <Grid RowSpacing="0" >
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="3*"/>
-            </Grid.RowDefinitions>
-            
-            <!--top Cover area-->
-            <BoxView Grid.Row="0" BackgroundColor="#00BCD4"/>
-            <Image Grid.Row="0" Source="CurvedMask.png" VerticalOptions="End" Aspect="Fill" Margin="0,-1"/>
-
-            <!--User Name-->
-            <StackLayout Grid.Row="1" Padding="0,60,0,0">
-                <Label x:Name="UserName" Style="{StaticResource ProfileNameLabel}"/>
-            </StackLayout>
-            
-            <!--User Picture-->
-            <controls:CircleImage TranslationY="60" x:Name="UserImg" BorderColor="White" BorderThickness="2" HorizontalOptions="Center"
-                                  VerticalOptions="End" WidthRequest="120" HeightRequest="120"/>
-
-            <!--Button area -->
-            <Grid Margin="5,20,5,20" Grid.Row="2" ColumnSpacing="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
                 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-            
-                <Button x:Name="EditInfoBtn" Grid.Column="0" Text="ערוך פרטים" BorderWidth="0.5" BorderColor="#999999" Style="{StaticResource ButtonStyle}"/>
+                <!--top Cover area-->
+                <BoxView Grid.Row="0" BackgroundColor="#00BCD4"/>
+                <Image Grid.Row="0" Source="CurvedMask.png" VerticalOptions="End" Aspect="Fill" Margin="0,-1"/>
 
-                <Button x:Name="LikedItemBtn" Grid.Column="1" Text="מוצרים שאהבתי" BorderColor="#999999" Style="{StaticResource ButtonStyle}"/>
-
-            </Grid>
-
-            <!--Counters area -->
-            <Grid Grid.Row="3" ColumnSpacing="0" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
+                <!--User Name-->
+                <StackLayout Grid.Row="1" Padding="0,60,0,0">
+                    <Label x:Name="UserName" Style="{StaticResource ProfileNameLabel}"/>
+                </StackLayout>
                 
-                <StackLayout Grid.Column="0">
-                    <Label x:Name="myItemCounter" Style="{StaticResource StatsNumberLabel}" />
-                    <Label Text="מוצרים שפרסמתי" Style="{StaticResource StatsCaptionLabel}"/>
-                </StackLayout>
+                <!--User Picture-->
+                <controls:CircleImage TranslationY="60" x:Name="UserImg" BorderColor="White" BorderThickness="2" HorizontalOptions="Center"
+                                      VerticalOptions="End" WidthRequest="120" HeightRequest="120"/>
 
-                <StackLayout Grid.Column="1">
-                    <Label x:Name="ItemUserLikeCounter" Style="{StaticResource StatsNumberLabel}"/>
-                    <Label Text="מוצרים שאהבתי" Style="{StaticResource StatsCaptionLabel}"/>
-                </StackLayout>
+                <!--Button area -->
+                <Grid Margin="5,20,5,20" Grid.Row="2" ColumnSpacing="15">
+                    
+                    <Button x:Name="EditInfoBtn" Grid.Column="0" Text="עדכון פרטים" Clicked="EditBtnClicked" BorderWidth="0.5" BorderColor="#999999" Style="{StaticResource ButtonStyle}"/>
+                    <Button x:Name="LikedItemBtn" Grid.Column="1" Text="מוצרים שאהבתי"  Clicked="LikeBtnClick" BorderColor="#999999" Style="{StaticResource ButtonStyle}"/>
+
+                </Grid>
+
+                <!--Counters area -->
+                <Grid Grid.Row="3" ColumnSpacing="0" >
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    
+                    <StackLayout Grid.Column="0">
+                        <Label x:Name="myItemCounter" Style="{StaticResource StatsNumberLabel}" />
+                        <Label Text="מוצרים שפרסמתי" Style="{StaticResource StatsCaptionLabel}"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Label x:Name="ItemUserLikeCounter" Style="{StaticResource StatsNumberLabel}"/>
+                        <Label Text="מוצרים שאהבתי" Style="{StaticResource StatsCaptionLabel}"/>
+                    </StackLayout>
+                    
+                </Grid>
+
+                <Label Grid.Row="4" Text="מוצרים שפירסמתי" Margin="0,20,0,0" Style="{StaticResource StatsCaptionLabel}" HorizontalOptions="Center"/>
+
+                   <ScrollView  Grid.Row="5" Orientation="Horizontal" Margin="7,10,7,0"
+                            BackgroundColor="Transparent" HorizontalOptions="End">
+                    <StackLayout  Orientation="Horizontal" HorizontalOptions="End" 
+                                 BackgroundColor="Transparent" x:Name="StackCategory"/>
+                </ScrollView>
+                
             </Grid>
-
-            <Label Grid.Row="4" Text="מוצרים שפירסמתי" Margin="0,20,0,0" Style="{StaticResource StatsCaptionLabel}" HorizontalOptions="Center"/>
-            <!--horizontal List area -->
-            <Frame Grid.Row="5" HasShadow="false" Padding="0,0">
-                <RelativeLayout>
-                    <ListView x:Name="listView_items" SeparatorVisibility="None" AnchorX="0" AnchorY="0" RowHeight="170"
-                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=0}"
-                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=1}"
-                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"
-                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1}"
-                            Rotation="270" HorizontalOptions="Center" VerticalOptions="StartAndExpand">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <ContentView Margin="5,5" Rotation="90" HorizontalOptions="CenterAndExpand" IsClippedToBounds="True" VerticalOptions="CenterAndExpand">
-                                        
-                                        <ffimageloading:CachedImage HorizontalOptions="Center" VerticalOptions="Center"
-                                            LoadingPlaceholder="loading.png" ErrorPlaceholder="error.png" DownsampleToViewSize="true"
-                                            Aspect="AspectFit" HeightRequest="150" WidthRequest="150" Source="{Binding Item1}">
-                                            
-                                            <ffimageloading:CachedImage.Transformations>
-                                                <fftransformations:RoundedTransformation Radius="15"/>
-                                            </ffimageloading:CachedImage.Transformations>
-                                            
-                                            <ffimageloading:CachedImage.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="OnItemSelection" CommandParameter="{Binding Item2}">
-                                                </TapGestureRecognizer>
-                                            </ffimageloading:CachedImage.GestureRecognizers>
-                                            
-                                        </ffimageloading:CachedImage>
-                                        
-                                    </ContentView>         
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </RelativeLayout>
-            </Frame>
-        </Grid>
+        </ScrollView>
 	</ContentPage.Content>
 </ContentPage>
