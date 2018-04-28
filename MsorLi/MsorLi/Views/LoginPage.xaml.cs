@@ -63,17 +63,8 @@ namespace MsorLi.Views
                         throw new Exception("סיסמה שהוזנה אינה תקינה. נסה שנית.");
                     }
 
-                    Settings.UserId = user.Id;
-                    Settings.UserFirstName = user.FirstName;
-                    Settings.UserLastName = user.LastName;
-                    Settings.ImgUrl = user.ImgUrl;
-                    Settings.Email = user.Email;
-                    Settings.Phone = user.Phone;
-                    Settings.Address = user.Address;
-                    Settings.Permission = user.Permission;
-                    Settings.NumOfItems = user.NumOfItems.ToString();
-                    Settings.NumOfItemsUserLike = user.NumOfItemsUserLike.ToString();
-
+                    Settings.UpdateUserInfo(user);
+     
                     _succcess = true;
                     await Navigation.PopAsync();
                 }

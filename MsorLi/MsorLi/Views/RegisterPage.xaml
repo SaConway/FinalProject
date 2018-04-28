@@ -5,16 +5,7 @@
              x:Class="MsorLi.Views.RegisterPage"
              Title="רישום">
 
-    <!--Styles-->
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="ButtonStyle" TargetType="Button">
-                <Setter Property="TextColor" Value="White"/>
-                <Setter Property="BackgroundColor" Value="#00BCD4"/>
-                <Setter Property="BorderRadius" Value="10"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+ 
 
     <!--Content-->
     <ContentPage.Content>

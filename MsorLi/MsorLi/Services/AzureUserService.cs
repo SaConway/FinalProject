@@ -118,5 +118,24 @@ namespace MsorLi.Services
                 return 0;
             }
         }
+
+        public async Task<User> UpdateUser(User newUser)
+        {
+            try
+            {
+                await UploadToServer(newUser, newUser.Id);
+
+
+                var user = await _table
+                    .LookupAsync(newUser.Id);
+
+                return user;
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 }
