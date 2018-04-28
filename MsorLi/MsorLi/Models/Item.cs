@@ -4,6 +4,7 @@
     {
         public string Id { get; set; }
         public string Category { get; set; }
+        public string SubCategory { get; set; }
         public int NumOfImages { get; set; }
         public string Description { get; set; }
         public string Condition { get; set; }
@@ -14,6 +15,5 @@
         public string Date { get; set; }
         public string Time { get; set; }
         public string UserId { get; set; }
-        public bool Deleted { get; set; }
     }
 }

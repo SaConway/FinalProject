@@ -220,14 +220,15 @@
     <Compile Include="Controllers\ItemCategoryController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ItemImageController.cs" />
+    <Compile Include="Controllers\ItemSubCategoryController.cs" />
     <Compile Include="Controllers\SavedItemController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataObjects\Item.cs" />
     <Compile Include="DataObjects\ItemCategory.cs" />
     <Compile Include="DataObjects\ItemImage.cs" />
+    <Compile Include="DataObjects\ItemSubCategory.cs" />
     <Compile Include="DataObjects\SavedItem.cs" />
     <Compile Include="DataObjects\User.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Models\MsorLiContext.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -235,10 +236,6 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

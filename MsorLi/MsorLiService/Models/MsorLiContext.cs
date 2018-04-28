@@ -18,6 +18,7 @@ namespace MsorLiService.Models
         public DbSet<ItemImage> ItemImages { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<ItemCategory> ItemCategories { get; set; }
+        public DbSet<ItemSubCategory> ItemSubCategories { get; set; }
         public DbSet<SavedItem> SavedItems { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

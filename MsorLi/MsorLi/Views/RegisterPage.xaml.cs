@@ -35,36 +35,38 @@ namespace MsorLi.Views
             try
             {
                 bool IsValid = await Validation();
-                List<string> imageUrls = null;
-
-                // Save image in blob
-                if (_profileImage.Count != 0)
-                    imageUrls = await BlobService.SaveImagesInDB(_byteData);
-
                 if (IsValid == false)
                 {
                     await DisplayAlert("", "אימייל לא תקין. נסה שנית.", "אישור");
                     return;
                 }
 
-                User new_user = new User
+                string profileURL = "";
+
+                // Save image in blob
+                if (_profileImage.Count != 0)
                 {
-                    FirstName = firstName.Text,
-                    LastName = lastName.Text,
-                    Email = email.Text,
-                    Password = EncryptDecrypt.Encrypt(password.Text),
-                    Phone = phoneNumber.Text,
-                    Address = address.Text.Length > 0 ? city.Text + ", " + address.Text : city.Text,
-                    Permission = "User",
-                    NumOfItems = 0,
-                    NumOfItemsUserLike = 0,
-                    ImgUrl = imageUrls == null ? "" : imageUrls[0]
-                };
+                    var v = await BlobService.SaveImagesInDB(_byteData);
+                    if (v != null && v.Count > 0)
+                        profileURL = v[0];
+                }
+
+                User new_user = new User();
+                new_user.FirstName = firstName.Text;
+                new_user.LastName = lastName.Text;
+                new_user.Email = email.Text;
+                new_user.Password = EncryptDecrypt.Encrypt(password.Text);
+                new_user.Phone = phoneNumber.Text;
+                new_user.Address = ( address.Text != null && address.Text.Length > 0 ) ? city.Text + ", " + address.Text : city.Text;
+                new_user.Permission = "User";
+                new_user.NumOfItems = 0;
+                new_user.NumOfItemsUserLike = 0;
+                new_user.ImgUrl = profileURL;
 
                 await AzureUserService.DefaultManager.UploadToServer(new_user, new_user.Id);
                 await Navigation.PopToRootAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }

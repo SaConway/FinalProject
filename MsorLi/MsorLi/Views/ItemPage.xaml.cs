@@ -112,6 +112,7 @@ namespace MsorLi.Views
             // Update item details
 
             title.Text = _item.Category;
+            subCategory.Text = _item.SubCategory;
             description.Text = _item.Description;
             condition.Text = _item.Condition;
             location.Text = _item.Location;

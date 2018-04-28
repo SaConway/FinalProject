@@ -50,8 +50,6 @@ namespace MsorLi.Views
                 ((ListView)sender).SelectedItem = null; // de-select the row
             };
 
-            //AddBtn.Text = "+";
-
             listView_items.RowHeight = Constants.ScreenWidth / 2;
 
             // Add catwgory icon sources
@@ -119,14 +117,14 @@ namespace MsorLi.Views
         {
             var category = (e as TappedEventArgs).Parameter.ToString();
 
+            // Update old category
+            (_currentCategoryStackLayout.Children[1] as Label).TextColor = Color.FromHex("212121");
+            (_currentCategoryStackLayout.Children[2] as BoxView).IsVisible = false;
+            
             // Update new category
             var s = sender as StackLayout;
             (s.Children[1] as Label).TextColor = Color.FromHex("00BCD4");
             (s.Children[2] as BoxView).IsVisible = true;
-
-            // Update old category
-            (_currentCategoryStackLayout.Children[1] as Label).TextColor = Color.FromHex("212121");
-            (_currentCategoryStackLayout.Children[2] as BoxView).IsVisible = false;
 
             _currentCategoryStackLayout = s;
 

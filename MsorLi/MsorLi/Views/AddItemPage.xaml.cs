@@ -27,20 +27,11 @@ namespace MsorLi.Views
 
         public AddItemPage()
         {
-            
             InitializeComponent();
 
             city.Text = Settings.Address;
             contactName.Text = Settings.UserFirstName + " " + Settings.UserLastName;
             contactNumber.Text = Settings.Phone;
-
-            city.Margin = new Thickness(25, 15, 25, 0);
-            contactName.Margin = new Thickness(25, 15, 25, 0);
-            contactNumber.Margin = new Thickness(25, 15, 25, 0);
-
-            cityLabel.IsVisible = true;
-            contactNameLabel.IsVisible = true;
-            contactNumberLabel.IsVisible = true;
 
             var categories = CategoryStorage.GetCategories().Result;
 
@@ -48,15 +39,13 @@ namespace MsorLi.Views
             {
                 category.Items.Add(c.Name);
             }
-
         }
-
 
         //---------------------------------------------------
         // EVENT FUNCTIONS
         //---------------------------------------------------
 
-        public async void PickImageButton_Event(object sender, System.EventArgs e)
+        public async void OnAddImageClick(object sender, EventArgs e)
         {
             try
             {
@@ -84,8 +73,7 @@ namespace MsorLi.Views
             catch (Exception) {}
         }
 
-        //Add Item button operation
-        public async void OnAdd_Event(object sender, EventArgs e)
+        public async void OnAddItemClick(object sender, EventArgs e)
         {
             try
             {
@@ -129,6 +117,21 @@ namespace MsorLi.Views
             {
                 await DisplayAlert("שגיאה", "לא ניתן להשלים את פעולת פרסום המוצר. נסה/י שנית מאוחר יותר.", "אישור");
                 await Navigation.PopAsync();
+            }
+        }
+
+        public async void OnCategoryChanged(object sender, EventArgs e)
+        {
+            subCategory.IsEnabled = true;
+
+            var mainCategory = category.Items[category.SelectedIndex];
+
+            var SubCategories = await SubCategoryStorage.GetSubCategories(mainCategory);
+
+            subCategory.Items.Clear();
+            foreach (var item in SubCategories)
+            {
+                subCategory.Items.Add(item.Name);
             }
         }
 
@@ -195,6 +198,7 @@ namespace MsorLi.Views
             var item = new Item
             {
                 Category = category.Items[category.SelectedIndex],
+                SubCategory = subCategory.Items[subCategory.SelectedIndex],
                 NumOfImages = numOfUrls,
                 Description = description.Text,
                 Condition = condition.SelectedItem.ToString(),
@@ -210,7 +214,7 @@ namespace MsorLi.Views
             return item;
         }
 
-        //If user inserted new info to one of the entries, make the label visable
+        // If user inserted new info to one of the entries, make the label visable
         private void NameTextChangedEvent(object sender, EventArgs e)
         {
             Entry entry = sender as Entry;
