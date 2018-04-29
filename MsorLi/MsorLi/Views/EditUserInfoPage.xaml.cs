@@ -42,12 +42,7 @@ namespace MsorLi.Views
             {
                 bool IsValid = await Validation();
                 List<string> imageUrl = null;
-                // Save images in blob
-                if (_profileImage.Count > 0)
-                {
-                    imageUrl = await BlobService.SaveImagesInDB(_byteData);
-                    // TODO delete photo from blob
-                }
+        
 
                 if (IsValid == false)
                 {
@@ -60,6 +55,16 @@ namespace MsorLi.Views
                     await DisplayAlert("", "סיסמא לא תקינה. נסה שנית.", "אישור");
                     _password_change = false;
                     return;
+                }
+
+                // Save images in blob
+                if (_profileImage.Count > 0)
+                {
+                    //add new photo to blob
+                    imageUrl = await BlobService.SaveImagesInDB(_byteData);
+                    //delete old photo
+
+                    await BlobService.DeleteImage(Settings.ImgUrl);
                 }
 
                 User new_user = new User
@@ -88,7 +93,7 @@ namespace MsorLi.Views
             }
             catch (Exception)
             {
-
+                await DisplayAlert("שגיאה", "לא ניתן להשלים את הפעולה. נסה שנית.", "אישור");
             }
         }
 

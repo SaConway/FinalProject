@@ -117,6 +117,9 @@
     <Compile Include="PickerRenderer.cs" />
     <Compile Include="ScrollViewEXRenderer.cs" />
     <Compile Include="NoLineNavigationRenderer.cs" />
+    <BundleResource Include="Resources\like.png" />
+    <BundleResource Include="Resources\edit.png" />
+    <BundleResource Include="Resources\add_item.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -180,6 +183,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Forms">
       <Version>2.3.6</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Auth">
+      <Version>1.6.0.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

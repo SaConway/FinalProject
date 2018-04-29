@@ -46,10 +46,8 @@ namespace MsorLi.Views
                         await Navigation.PushAsync(new SavedItemsPage());
                         MessagingCenter.Send<MenuPage>(this, "FirstApearing");
                     });
-
                 }
             }
-
             catch (Exception)
             {
                 await DisplayAlert("שגיאה", "לא ניתן לטעון מוצרים. נסה שנית מאוחר יותר.", "אישור");

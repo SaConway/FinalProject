@@ -107,6 +107,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\EditUserInfoPage.xaml.cs">
       <DependentUpon>EditUserInfoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Services\FacebookServices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\FacebookProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ItemListPage.xaml">

@@ -153,17 +153,33 @@ namespace MsorLi.Views
 
         private bool Validation()
         {
-            if (category.SelectedIndex == -1 ||
-                _images.Count == 0 ||
-                description.Text.Length == 0 ||
-                condition.SelectedIndex == -1 ||
-                city.Text.Length == 0 ||
-                contactName.Text.Length == 0 ||
-                contactNumber.Text.Length == 0)
-            {
-                return false;
-            }
+            //if (category.SelectedIndex == -1 ||
+            //    _images.Count == 0 ||
+            //    description.Text.Length == 0 ||
+            //    condition.SelectedIndex == -1 ||
+            //    city.Text.Length == 0 ||
+            //    contactName.Text.Length == 0 ||
+            //    contactNumber.Text.Length == 0)
+            //{
+            //    return false;
+            //}
 
+
+            if (category.SelectedIndex == -1)
+                return false;
+            if (_images.Count == 0)
+                return false;
+            if (description.Text.Length == 0)
+                return false;
+            if (condition.SelectedIndex == -1)
+                return false;
+            if (city.Text.Length == 0)
+                return false;
+            if (contactName.Text.Length == 0)
+                return false;
+            if (contactNumber.Text.Length == 0)
+                return false;
+            
             return true;
         }
 
@@ -189,7 +205,6 @@ namespace MsorLi.Views
                     itemImages.Add(new ItemImage { Url = imageUrls[i], ItemId = id, IsPriorityImage = false, UserId = userId});
                 }
             }
-
             return itemImages;
         }
 

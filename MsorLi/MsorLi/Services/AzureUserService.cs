@@ -57,10 +57,24 @@ namespace MsorLi.Services
             }
 
             catch (Exception)
-            {
-
-            }
+            {}
             return false;
+        }
+
+        public async Task<User> IsFacebookIdExistAsync(string facebookId)
+        {
+            try
+            {
+                var user = await _table
+                    .Where(User => User.FacebookId == facebookId)
+                    .ToListAsync();
+
+                return user.Count != 0 ? user[0] : null;
+            }
+
+            catch (Exception)
+            {}
+            return null;
         }
 
         public async Task<int> UpdateNumOfItems(string userId, int prefix)
@@ -125,12 +139,10 @@ namespace MsorLi.Services
             {
                 await UploadToServer(newUser, newUser.Id);
 
-
                 var user = await _table
                     .LookupAsync(newUser.Id);
 
                 return user;
-
             }
             catch (Exception)
             {

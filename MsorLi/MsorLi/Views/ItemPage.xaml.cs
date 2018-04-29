@@ -137,12 +137,12 @@ namespace MsorLi.Views
                             var task2 = AzureImageService.DefaultManager.DeleteImage(img);
                             list.Add(task2);
 
-                            string toBeSearched = "https://msorli.blob.core.windows.net/images/";
-                            string blob = img.Url.Substring(img.Url.IndexOf(toBeSearched) + toBeSearched.Length);
-
-                            var task3 = BlobService.DeleteImage(blob);
+                            var task3 = BlobService.DeleteImage(img.Url);
                             list.Add(task3);
                         }
+
+                        int num_of_items = await AzureUserService.DefaultManager.UpdateNumOfItems(Settings.UserId, -1);
+                        Settings.NumOfItems =  num_of_items.ToString();
 
                         await Task.WhenAll(list);
 
@@ -181,9 +181,7 @@ namespace MsorLi.Views
             {
                 await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedId });
                 UpdateLikeCounter(-1);
-
                 MessagingCenter.Send<ItemPage, string>(this, "Item Deleted", _item.Id);
-                UpdateLikeCounter(-1);
             }
             else
             {

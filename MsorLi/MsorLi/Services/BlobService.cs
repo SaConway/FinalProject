@@ -12,11 +12,12 @@ namespace MsorLi.Services
 {
     class BlobService
     {
-        const string connectionString = "DefaultEndpointsProtocol=https;AccountName=msorli;AccountKey=kVtnQ844mpRHshb0ZKu7WiNf4n6WS2ZqVa/3Yd/COZrHFhKgoMwqKgBg1PLGuacCfZVZbDHTsBvlN6V04BlmqA==;EndpointSuffix=core.windows.net";
+        const string CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=msorli;AccountKey=kVtnQ844mpRHshb0ZKu7WiNf4n6WS2ZqVa/3Yd/COZrHFhKgoMwqKgBg1PLGuacCfZVZbDHTsBvlN6V04BlmqA==;EndpointSuffix=core.windows.net";
+        const string BLOB_URL = "https://msorli.blob.core.windows.net/images/";
 
         static CloudBlobContainer GetContainer()
         {
-            var account = CloudStorageAccount.Parse(connectionString);
+            var account = CloudStorageAccount.Parse(CONNECTION_STRING);
             var client = account.CreateCloudBlobClient();
             return client.GetContainerReference("images");
         }
@@ -43,18 +44,28 @@ namespace MsorLi.Services
 
                 //Insert Image to Blob server
                 var imageUrl = await BlobService.UploadFileAsync(new MemoryStream(resizedImage));
-                imageUrls.Add("https://msorli.blob.core.windows.net/images/" + imageUrl);
+                imageUrls.Add(BLOB_URL + imageUrl);
             }
 
             return imageUrls;
         }
 
-        public static async Task DeleteImage(string imageId) // Name in the container
+        public static async Task DeleteImage(string image) // Name in the container
         {
-            var container = GetContainer();
-            
-            var fileBlob = container.GetBlockBlobReference(imageId);
-            await fileBlob.DeleteAsync();
+            try
+            {
+                string toBeSearched = BLOB_URL;
+                string imageIdToDelete = image.Substring(image.IndexOf(toBeSearched, StringComparison.CurrentCulture) + toBeSearched.Length);
+                var container = GetContainer();
+
+                var fileBlob = container.GetBlockBlobReference(imageIdToDelete);
+                await fileBlob.DeleteAsync();
+            }
+            catch(Exception)
+            {
+                
+            }
         }
+
     }
 }

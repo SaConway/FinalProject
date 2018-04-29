@@ -799,6 +799,18 @@
           "lib/Xamarin.iOS10/Plugin.Settings.dll": {}
         }
       },
+      "Xamarin.Auth/1.6.0.2": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.Json"
+        ],
+        "compile": {
+          "lib/Xamarin.iOS10/Xamarin.Auth.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Xamarin.Auth.dll": {}
+        }
+      },
       "Xamarin.FFImageLoading/2.3.6": {
         "type": "package",
         "dependencies": {
@@ -1708,6 +1720,18 @@
         "runtime": {
           "lib/Xamarin.iOS10/Plugin.Settings.Abstractions.dll": {},
           "lib/Xamarin.iOS10/Plugin.Settings.dll": {}
+        }
+      },
+      "Xamarin.Auth/1.6.0.2": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.Json"
+        ],
+        "compile": {
+          "lib/Xamarin.iOS10/Xamarin.Auth.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Xamarin.Auth.dll": {}
         }
       },
       "Xamarin.FFImageLoading/2.3.6": {
@@ -2621,6 +2645,18 @@
           "lib/Xamarin.iOS10/Plugin.Settings.dll": {}
         }
       },
+      "Xamarin.Auth/1.6.0.2": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.Json"
+        ],
+        "compile": {
+          "lib/Xamarin.iOS10/Xamarin.Auth.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Xamarin.Auth.dll": {}
+        }
+      },
       "Xamarin.FFImageLoading/2.3.6": {
         "type": "package",
         "dependencies": {
@@ -3530,6 +3566,18 @@
         "runtime": {
           "lib/Xamarin.iOS10/Plugin.Settings.Abstractions.dll": {},
           "lib/Xamarin.iOS10/Plugin.Settings.dll": {}
+        }
+      },
+      "Xamarin.Auth/1.6.0.2": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.Json"
+        ],
+        "compile": {
+          "lib/Xamarin.iOS10/Xamarin.Auth.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Xamarin.Auth.dll": {}
         }
       },
       "Xamarin.FFImageLoading/2.3.6": {
@@ -6959,6 +7007,34 @@
         "xam.plugins.settings.nuspec"
       ]
     },
+    "Xamarin.Auth/1.6.0.2": {
+      "sha512": "tSRTHDKTLK+YC7JGX8M8jca5RE9PcHZpamLXkPP2TGmoQULIjtwy/gxlaUFb9cAGFbSvTMCm65IAi+8GvvcQ+g==",
+      "type": "package",
+      "path": "xamarin.auth/1.6.0.2",
+      "files": [
+        "lib/MonoAndroid10/Xamarin.Auth.dll",
+        "lib/Xamarin.iOS10/Xamarin.Auth.dll",
+        "lib/netstandard1.0/Xamarin.Auth.dll",
+        "lib/netstandard1.6/Xamarin.Auth.dll",
+        "lib/portable-net45 wp8 wpa81 win8 MonoAndroid10 MonoTouch10 XamarinIOS10/Xamarin.Auth.dll",
+        "lib/uap10.0/Xamarin.Auth.dll",
+        "lib/uap10.0/Xamarin.Auth.pri",
+        "lib/uap10.0/Xamarin.Auth/Xamarin.Auth.xr.xml",
+        "lib/win81/Xamarin.Auth.dll",
+        "lib/win81/Xamarin.Auth.pri",
+        "lib/win81/Xamarin.Auth/WebAuthenticatorPage.xaml",
+        "lib/win81/Xamarin.Auth/WebAuthenticatorPage.xbf",
+        "lib/win81/Xamarin.Auth/Xamarin.Auth.xr.xml",
+        "lib/wp8/Xamarin.Auth.dll",
+        "lib/wpa81/Xamarin.Auth.dll",
+        "lib/wpa81/Xamarin.Auth.pri",
+        "lib/wpa81/Xamarin.Auth/WebAuthenticatorPage.xaml",
+        "lib/wpa81/Xamarin.Auth/WebAuthenticatorPage.xbf",
+        "lib/wpa81/Xamarin.Auth/Xamarin.Auth.xr.xml",
+        "xamarin.auth.1.6.0.2.nupkg.sha512",
+        "xamarin.auth.nuspec"
+      ]
+    },
     "Xamarin.FFImageLoading/2.3.6": {
       "sha512": "0Qyom6ayQYuMPJSOh+asmuuaiCkP5lIG8tybnDfvQ14bZEfoXPuiy2k3JYIZwH4HZRP3DOk9oSyk6QLwbRdPDg==",
       "type": "package",
@@ -7323,6 +7399,7 @@
       "WindowsAzure.Storage >= 9.1.1",
       "Xam.Plugins.Forms.ImageCircle >= 2.0.2",
       "Xam.Plugins.Settings >= 3.1.1",
+      "Xamarin.Auth >= 1.6.0.2",
       "Xamarin.FFImageLoading >= 2.3.6",
       "Xamarin.FFImageLoading.Forms >= 2.3.6",
       "Xamarin.FFImageLoading.Transformations >= 2.3.6",
@@ -7331,32 +7408,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sagee\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {}
+    "/Users/Idan Marciano/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.iOS\\MsorLi.iOS.csproj",
+      "projectUniqueName": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.iOS/MsorLi.iOS.csproj",
       "projectName": "MsorLi.iOS",
-      "projectPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.iOS\\MsorLi.iOS.csproj",
-      "packagesPath": "C:\\Users\\sagee\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.iOS\\obj\\",
+      "projectPath": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.iOS/MsorLi.iOS.csproj",
+      "packagesPath": "/Users/Idan Marciano/.nuget/packages/",
+      "outputPath": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.iOS/obj",
       "projectStyle": "PackageReference",
-      "skipContentFileWrite": true,
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\sagee\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "/Users/Idan Marciano/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "xamarinios10"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7370,51 +7439,55 @@
         "dependencies": {
           "CarouselView.FormsPlugin": {
             "target": "Package",
-            "version": "[5.2.0, )"
-          },
-          "Microsoft.Azure.Mobile.Client": {
-            "target": "Package",
-            "version": "[4.0.2, )"
-          },
-          "Microsoft.Azure.Mobile.Client.SQLiteStore": {
-            "target": "Package",
-            "version": "[4.0.2, )"
+            "version": "5.2.0"
           },
           "SuaveControls.FloatingActionButton": {
             "target": "Package",
-            "version": "[2018.1.5, )"
+            "version": "2018.1.5"
           },
           "WindowsAzure.Storage": {
             "target": "Package",
-            "version": "[9.1.1, )"
-          },
-          "Xam.Plugins.Forms.ImageCircle": {
-            "target": "Package",
-            "version": "[2.0.2, )"
+            "version": "9.1.1"
           },
           "Xam.Plugins.Settings": {
             "target": "Package",
-            "version": "[3.1.1, )"
+            "version": "3.1.1"
           },
-          "Xamarin.FFImageLoading": {
+          "Microsoft.Azure.Mobile.Client": {
             "target": "Package",
-            "version": "[2.3.6, )"
+            "version": "4.0.2"
           },
-          "Xamarin.FFImageLoading.Forms": {
+          "Microsoft.Azure.Mobile.Client.SQLiteStore": {
             "target": "Package",
-            "version": "[2.3.6, )"
-          },
-          "Xamarin.FFImageLoading.Transformations": {
-            "target": "Package",
-            "version": "[2.3.6, )"
+            "version": "4.0.2"
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[2.5.1.444934, )"
+            "version": "2.5.1.444934"
           },
           "Xamarin.Forms.CarouselView": {
             "target": "Package",
-            "version": "[2.3.0-pre2, )"
+            "version": "2.3.0-pre2"
+          },
+          "Xam.Plugins.Forms.ImageCircle": {
+            "target": "Package",
+            "version": "2.0.2"
+          },
+          "Xamarin.FFImageLoading.Transformations": {
+            "target": "Package",
+            "version": "2.3.6"
+          },
+          "Xamarin.FFImageLoading": {
+            "target": "Package",
+            "version": "2.3.6"
+          },
+          "Xamarin.FFImageLoading.Forms": {
+            "target": "Package",
+            "version": "2.3.6"
+          },
+          "Xamarin.Auth": {
+            "target": "Package",
+            "version": "1.6.0.2"
           }
         }
       }

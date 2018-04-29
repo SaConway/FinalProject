@@ -34,6 +34,13 @@ namespace MsorLi.Views
                 // User is looged in and its his first appearing
                 await InitializeAsync();
             });
+            MessagingCenter.Subscribe<ProfilePage>(this, "FirstApearing", async (sender) => {
+
+                MessagingCenter.Unsubscribe<ProfilePage>(this, "FirstApearing");
+
+                // User is looged in and its his first appearing
+                await InitializeAsync();
+            });
 
             // Returning from item page, and item was unsaved
             MessagingCenter.Subscribe<ItemPage, string>(this, "Item Deleted", (sender, key) => {
