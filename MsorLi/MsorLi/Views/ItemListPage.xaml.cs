@@ -45,7 +45,8 @@ namespace MsorLi.Views
             InitializeComponent();
 
             // Disable Selection item
-            listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) => {
+            listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) =>
+            {
                 if (e.Item == null) return;
                 ((ListView)sender).SelectedItem = null; // de-select the row
             };
@@ -192,6 +193,18 @@ namespace MsorLi.Views
                     });
                 }
 
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private async void OnSearchClick(object sender, EventArgs e)
+        {
+            try
+            {
+                await Navigation.PushAsync(new SearchPage());
             }
             catch (Exception)
             {

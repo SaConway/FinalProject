@@ -2,18 +2,27 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="MsorLi.Views.SearchPage"
-    Title="Search">
-	<ContentPage.Content>
+    Title="חיפוש">
+    
+    <ContentPage.Content>
+        <ScrollView>
 
-          <StackLayout Orientation="Vertical">
+            <StackLayout Margin="20,0,20,20" HorizontalOptions="Center" VerticalOptions="Center">
+
+                <Image Source="look_for.png" Margin="60,0"/>
+
+                <Picker Title="בחר קטגוריה" Margin="10,50,10,0" x:Name="CategoryPicker"
+                        HorizontalOptions="FillAndExpand" SelectedIndexChanged="OnCategoryChanged"/>
+                <Picker Title="בחר תת קטגוריה" IsEnabled="False" x:Name="SubCategoryPicker"
+                        Margin="10,30,10,0" HorizontalOptions="FillAndExpand"/>
+
+                <Button Text="חפש" HorizontalOptions="Center" IsEnabled="False"
+                        x:Name="SearchBtn" Clicked="OnSearchClick"
+                        Margin="0,60,0,0" Style="{StaticResource ButtonStyle}"/>
+
+
+            </StackLayout>
             
-            <StackLayout Orientation = "Horizontal" >        
-                <Label Text="Search:"/>
-                <Entry x:Name= "search" Placeholder = "enter item name here" />   
-            </StackLayout >
-                   
-            <Button Text="Search" />
-            
-        </StackLayout>
-	</ContentPage.Content>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

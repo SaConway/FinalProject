@@ -30,10 +30,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\UpdateUserInfoPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\EditUserInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -108,9 +104,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\HorizontalListview.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Session.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\ImageUpload.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\UpdateUserInfoPage.xaml.cs">
-      <DependentUpon>UpdateUserInfoPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\EditUserInfoPage.xaml.cs">
       <DependentUpon>EditUserInfoPage.xaml</DependentUpon>
     </Compile>

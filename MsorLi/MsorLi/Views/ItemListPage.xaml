@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MsorLi.Views.ItemListPage" 
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             IsVisible="True">
+             xmlns:local="clr-namespace:MsorLi.Views;assembly=MsorLi.Android"
+             x:Class="MsorLi.Views.ItemListPage">
     
     <!-- Padding for ios status bar -->
      <ContentPage.Padding>
@@ -33,8 +33,7 @@
                     <Image Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"
                             Source="search.png">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer>
-                            </TapGestureRecognizer>
+                            <TapGestureRecognizer Tapped="OnSearchClick"/>
                         </Image.GestureRecognizers>
                     </Image>
 
@@ -103,10 +102,10 @@
                                             </TapGestureRecognizer>
                                         </ffimageloading:CachedImage.GestureRecognizers>
                                     </ffimageloading:CachedImage>
-                                    
+
                                     <ffimageloading:CachedImage Grid.Column="1" DownsampleToViewSize="true"
                                             Aspect="AspectFit" Source="{Binding Item3}" Margin="3,0,0,6">
-                                            
+
                                         <ffimageloading:CachedImage.Transformations>
                                             <fftransformations:RoundedTransformation Radius="15"/>
                                         </ffimageloading:CachedImage.Transformations>
