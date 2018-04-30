@@ -46,7 +46,7 @@ namespace MsorLi.Views
 
             InitializeComponent();
 
-            // Disable Selection item
+            // Disable Selection Item
             listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) => {
                 if (e.Item == null) return;
                 ((ListView)sender).SelectedItem = null;

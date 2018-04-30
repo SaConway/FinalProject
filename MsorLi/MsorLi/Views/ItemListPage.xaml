@@ -167,7 +167,7 @@
             </StackLayout>
 
             <!--Add Button-->
-            <Button AbsoluteLayout.LayoutBounds="1,1,-1,-1"
+            <Button AbsoluteLayout.LayoutBounds="1,1,-1,-1"  
                     AbsoluteLayout.LayoutFlags="PositionProportional"
                     x:Name="AddBtn" Image="plus.png" Margin="15"
                     WidthRequest="60" HeightRequest="60" BorderRadius="30"
