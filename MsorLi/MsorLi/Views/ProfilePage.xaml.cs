@@ -31,28 +31,19 @@ namespace MsorLi.Views
         public ProfilePage()
         {
             InitializeComponent();
+            MyItemLabel.IsVisible = NoItemLabel.IsVisible = false;
 
-            UserName.Text = Settings.UserFirstName;
-            UserImg.Source = Settings.ImgUrl;
-            myItemCounter.Text = Settings.NumOfItems;
-            ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
-
-
+            UpdateUserData();
             MessagingCenter.Subscribe<ItemPage>(this, "Update Like Counter", (sender) => {
-                //MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
                 ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
             });
-
-
-
         }
 
         async protected override void OnAppearing()
         {
             try
             {
-                UserName.Text = Settings.UserFirstName;
-                UserImg.Source = Settings.ImgUrl;
+                UpdateUserData();
                 await GetUserItems();
             }
             catch (Exception)
@@ -61,69 +52,100 @@ namespace MsorLi.Views
             }
         }
 
-        private async Task GetUserItems(){
+        private void UpdateUserData()
+        {
+                UserName.Text = Settings.UserFirstName;
+                UserImg.Source = Settings.ImgUrl;
+                myItemCounter.Text = Settings.NumOfItems;
+                ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
             
+        }
+        private async Task GetUserItems()
+        {
+
             AllImages = await _azureImageService.GetAllImgByUserId(Settings.UserId);
 
-            if (AllImages != null){
-                    
-                ImagePairs.Clear();
-
-                for (int i = 0; i < AllImages.Count; i ++)
-                {
-                    var image = new CachedImage
-                    {
-                        Source = AllImages[i].Url
-                                       
-                    };
-
-                    image.Transformations.Add(new RoundedTransformation(15));
-                    var tap = new TapGestureRecognizer();
-                    tap.CommandParameter = AllImages[i].ItemId;
-
-                    //image tap function loading the item page 
-                    tap.Tapped += async (s, e) => {
-                        try
-                        {
-                            var item = (CachedImage)s;
-                            var gets = item.GestureRecognizers;
-                            // To prevent double tap on images
-                            lock (_lockObject)
-                            {
-                                if (_isRunningItem)
-                                    return;
-                                else
-                                    _isRunningItem = true;
-                            }
-
-                            string itemId = (string)((TapGestureRecognizer)gets[0]).CommandParameter;
-
-                            if (itemId != "")
-                                await Navigation.PushAsync(new ItemPage(itemId));
-
-                            _isRunningItem = false;
-                        }
-                        catch (Exception)
-                        {
-                            await DisplayAlert("שגיאה", "לא ניתן לטעון עמוד מבוקש.", "אישור");
-                        }
-                    };
-
-                    image.GestureRecognizers.Add(tap);
-
-                    StackCategory.Children.Add(image);
-                }
+            if (AllImages.Count > 0)
+            {
+                MyItemLabel.IsVisible = true;
+                ItemList.IsVisible = true;
+                ShowImages();
+            }
+            else
+            {
+                ItemList.IsVisible = false;
+                MyItemLabel.IsVisible = false;
+                NoItemLabel.IsVisible = true;
             }
         }
 
-        private async void LikeBtnClick()
+        private void ShowImages()
+        {
+            ImagePairs.Clear();
+            StackCategory.Children.Clear();
+            for (int i = 0; i < AllImages.Count; i++)
+            {
+                var image = new CachedImage
+                {
+                    Source = AllImages[i].Url,
+                    WidthRequest = Utilities.Constants.ScreenWidth / 2.5,
+                    HeightRequest = Utilities.Constants.ScreenWidth / 2.5
+
+                };
+
+                image.Transformations.Add(new RoundedTransformation(15));
+                var tap = new TapGestureRecognizer();
+                tap.CommandParameter = AllImages[i].ItemId;
+
+                //image tap function loading the item page 
+                tap.Tapped += async (s, e) =>
+                {
+                    try
+                    {
+                        var item = (CachedImage)s;
+                        var gets = item.GestureRecognizers;
+                        // To prevent double tap on images
+                        lock (_lockObject)
+                        {
+                            if (_isRunningItem)
+                                return;
+                            else
+                                _isRunningItem = true;
+                        }
+
+                        string itemId = (string)((TapGestureRecognizer)gets[0]).CommandParameter;
+
+                        if (itemId != "")
+                            await Navigation.PushAsync(new ItemPage(itemId));
+
+                        _isRunningItem = false;
+                    }
+                    catch (Exception)
+                    {
+                        await DisplayAlert("שגיאה", "לא ניתן לטעון עמוד מבוקש.", "אישור");
+                    }
+                };
+
+                image.GestureRecognizers.Add(tap);
+                StackCategory.Children.Add(image);
+
+            }
+        }
+
+        private async void LikeBtnClick(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SavedItemsPage());
             MessagingCenter.Send<ProfilePage>(this, "FirstApearing");
         }
-        private async void EditBtnClicked()
+
+        private async void EditBtnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new EditUserInfoPage());
+        }
+
+        private async void AddNewItemClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddItemPage());
         }
 
     }

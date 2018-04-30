@@ -34,11 +34,42 @@
                                       VerticalOptions="End" WidthRequest="120" HeightRequest="120"/>
 
                 <!--Button area -->
-                <Grid Margin="5,20,5,20" Grid.Row="2" ColumnSpacing="15">
-                    
-                    <Button x:Name="EditInfoBtn" Grid.Column="0" Text="עדכון פרטים" Clicked="EditBtnClicked" BorderWidth="0.5" BorderColor="#999999" Style="{StaticResource ButtonStyle}"/>
-                    <Button x:Name="LikedItemBtn" Grid.Column="1" Text="מוצרים שאהבתי"  Clicked="LikeBtnClick" BorderColor="#999999" Style="{StaticResource ButtonStyle}"/>
 
+                <Grid Grid.Row="2" Margin="0,20">
+                    
+                    <StackLayout Grid.Row="0" Grid.Column="0">
+                        
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="EditBtnClicked"/>
+                        </StackLayout.GestureRecognizers>
+                        
+                        <Image Source="edit.png"/>
+                        <Label Style="{StaticResource StatsCaptionLabel}"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="0" Text="ערוך פרטים"/>
+
+                    </StackLayout>
+                    
+                    <StackLayout Grid.Column="1" Grid.Row="0" >
+                        
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LikeBtnClick"/>
+                        </StackLayout.GestureRecognizers>
+
+                        <Image  Source="like.png"/>
+                        <Label Style="{StaticResource StatsCaptionLabel}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="1" Text="מוצרים שאהבתי"/>
+
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="0" Grid.Column="2">
+                        
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="AddNewItemClicked"/>
+                        </StackLayout.GestureRecognizers>
+                        
+                        <Image  Source="add_item.png"/>
+                        <Label Style="{StaticResource StatsCaptionLabel}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="2" Text="פרסם מוצר"/>
+
+                    </StackLayout>
+                    
                 </Grid>
 
                 <!--Counters area -->
@@ -52,22 +83,20 @@
                     
                     <StackLayout Grid.Column="0">
                         <Label x:Name="myItemCounter" Style="{StaticResource StatsNumberLabel}" />
-                        <Label Text="מוצרים שפרסמתי" Style="{StaticResource StatsCaptionLabel}"/>
+                        <Label Text="מספר מודעות" Style="{StaticResource StatsCaptionLabel}"/>
                     </StackLayout>
 
                     <StackLayout Grid.Column="1">
                         <Label x:Name="ItemUserLikeCounter" Style="{StaticResource StatsNumberLabel}"/>
                         <Label Text="מוצרים שאהבתי" Style="{StaticResource StatsCaptionLabel}"/>
                     </StackLayout>
-                    
                 </Grid>
 
-                <Label Grid.Row="4" Text="מוצרים שפירסמתי" Margin="0,20,0,0" Style="{StaticResource StatsCaptionLabel}" HorizontalOptions="Center"/>
+                <Label x:Name="MyItemLabel"  Grid.Row="4" Text="מוצרים שפירסמתי" Margin="0,20,0,0" Style="{StaticResource StatsCaptionLabel}" HorizontalOptions="Center"/>
+                <Label x:Name="NoItemLabel" Grid.Row="5" Text="לא פרסמתי מוצרים" Margin="0,20,0,0" Style="{StaticResource StatsCaptionLabel}" VerticalOptions="Center" HorizontalOptions="Center"/>
 
-                   <ScrollView  Grid.Row="5" Orientation="Horizontal" Margin="7,10,7,0"
-                            BackgroundColor="Transparent" HorizontalOptions="End">
-                    <StackLayout  Orientation="Horizontal" HorizontalOptions="End" 
-                                 BackgroundColor="Transparent" x:Name="StackCategory"/>
+                <ScrollView x:Name="ItemList" BackgroundColor="Transparent" Grid.Row="5" Orientation="Horizontal" Margin="7,0,7,20" HorizontalOptions="CenterAndExpand">
+                        <StackLayout x:Name="StackCategory" BackgroundColor="Transparent" Orientation="Horizontal" HorizontalOptions="End" />
                 </ScrollView>
                 
             </Grid>
