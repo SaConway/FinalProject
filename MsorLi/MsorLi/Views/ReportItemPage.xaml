@@ -27,8 +27,8 @@
                 
             </StackLayout>
 
-            <Button Grid.Row="1" x:Name="reportBtn" Text="דיווח" BackgroundColor="#00BCD4"
-                    IsEnabled="False" FontSize="Medium" Clicked="OnReportClick"
+            <Button Grid.Row="1" x:Name="reportBtn" Text="דיווח"
+                    IsEnabled="False" Clicked="OnReportClick"
                     TextColor="White" HorizontalOptions="FillAndExpand"
                     Style="{StaticResource ButtonStyle}" Margin="20"/>
 

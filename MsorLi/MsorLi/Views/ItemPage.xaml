@@ -124,7 +124,7 @@
 
                     <!--Item Details-->
                     <Label HorizontalTextAlignment="End" Margin="0,30,25,0" Text="פרטים על המוצר"
-                           Style="{StaticResource mySubtitleStyle}"/>
+                           Style="{DynamicResource mySubtitleStyle}"/>
 
                     <Grid Margin="0,10,0,0" HorizontalOptions="End">
 
@@ -141,19 +141,19 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Text="קטגוריה" Grid.Row="0" Grid.Column="1" Style="{StaticResource LabelKeyStyle}"/>
-                        <Label Text="תת קטגוריה" Grid.Row="1" Grid.Column="1" Style="{StaticResource LabelKeyStyle}"/>
-                        <Label Text="מצב מוצר" Grid.Row="2" Grid.Column="1" Style="{StaticResource LabelKeyStyle}"/>
-                        <Label Text="מיקום" Grid.Row="3" Grid.Column="1" Style="{StaticResource LabelKeyStyle}"/>
-                        <Label Text="תאריך פרסום" Grid.Row="4" Grid.Column="1" Style="{StaticResource LabelKeyStyle}"/>
-                        <Label Text="תיאור המוצר" Grid.Row="5" Grid.Column="1" Style="{StaticResource LabelKeyStyle}"/>
+                        <Label Text="קטגוריה" Grid.Row="0" Grid.Column="1" Style="{DynamicResource LabelKeyStyle}"/>
+                        <Label Text="תת קטגוריה" Grid.Row="1" Grid.Column="1" Style="{DynamicResource LabelKeyStyle}"/>
+                        <Label Text="מצב מוצר" Grid.Row="2" Grid.Column="1" Style="{DynamicResource LabelKeyStyle}"/>
+                        <Label Text="מיקום" Grid.Row="3" Grid.Column="1" Style="{DynamicResource LabelKeyStyle}"/>
+                        <Label Text="תאריך פרסום" Grid.Row="4" Grid.Column="1" Style="{DynamicResource LabelKeyStyle}"/>
+                        <Label Text="תיאור המוצר" Grid.Row="5" Grid.Column="1" Style="{DynamicResource LabelKeyStyle}"/>
 
-                        <Label x:Name="title" Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelValueStyle}"/>
-                        <Label x:Name="subCategory" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelValueStyle}"/>
-                        <Label x:Name="condition" Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelValueStyle}"/>
-                        <Label x:Name="location" Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelValueStyle}"/>
-                        <Label x:Name="date" Grid.Row="4" Grid.Column="0" Style="{StaticResource LabelValueStyle}"/>
-                        <Label x:Name="description" Grid.Row="5" Grid.Column="0" Style="{StaticResource LabelValueStyle}"/>
+                        <Label x:Name="title" Grid.Row="0" Grid.Column="0" Style="{DynamicResource LabelValueStyle}"/>
+                        <Label x:Name="subCategory" Grid.Row="1" Grid.Column="0" Style="{DynamicResource LabelValueStyle}"/>
+                        <Label x:Name="condition" Grid.Row="2" Grid.Column="0" Style="{DynamicResource LabelValueStyle}"/>
+                        <Label x:Name="location" Grid.Row="3" Grid.Column="0" Style="{DynamicResource LabelValueStyle}"/>
+                        <Label x:Name="date" Grid.Row="4" Grid.Column="0" Style="{DynamicResource LabelValueStyle}"/>
+                        <Label x:Name="description" Grid.Row="5" Grid.Column="0" Style="{DynamicResource LabelValueStyle}"/>
                     </Grid>
 
                     <!--Contact Details-->
@@ -172,11 +172,11 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Text="שם" Grid.Row="0" Grid.Column="1" Style="{StaticResource LabelKeyStyle}"/>
-                        <Label Text="טלפון" Grid.Row="1" Grid.Column="1" Style="{StaticResource LabelKeyStyle}"/>
+                        <Label Text="שם" Grid.Row="0" Grid.Column="1" Style="{DynamicResource LabelKeyStyle}"/>
+                        <Label Text="טלפון" Grid.Row="1" Grid.Column="1" Style="{DynamicResource LabelKeyStyle}"/>
 
-                        <Label x:Name="contact_name" Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelValueStyle}"/>
-                        <Label x:Name="contact_number" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelValueStyle}"/>
+                        <Label x:Name="contact_name" Grid.Row="0" Grid.Column="0" Style="{DynamicResource LabelValueStyle}"/>
+                        <Label x:Name="contact_number" Grid.Row="1" Grid.Column="0" Style="{DynamicResource LabelValueStyle}"/>
                     </Grid>
 
                     <!--Line-->

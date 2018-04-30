@@ -7,7 +7,6 @@ using MsorLi.Models;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using MsorLi.Utilities;
-using System.Linq;
 
 namespace MsorLi.Views
 {
@@ -24,13 +23,16 @@ namespace MsorLi.Views
 
         bool _startupRefresh = false;
 
-        // Two variables for OnSelection function
+        // Two variables for OnItemClick function
         Boolean _isRunningItem = false;
         Object _lockObject = new Object();
 
         StackLayout _currentCategoryStackLayout = new StackLayout();
 
         List<string> _categoryIconSources = new List<string>();
+
+        string _currentCategory = "כל המוצרים";
+        string _currentSubCategory = "";
 
         //---------------------------------
         // FUNCTIONS
@@ -39,16 +41,15 @@ namespace MsorLi.Views
         // Contrusctor
         public ItemListPage()
         {
-            // Disable Navigation Bar
+            // Hide Navigation Bar
             NavigationPage.SetHasNavigationBar(this, false);
 
             InitializeComponent();
 
             // Disable Selection item
-            listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) =>
-            {
+            listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) => {
                 if (e.Item == null) return;
-                ((ListView)sender).SelectedItem = null; // de-select the row
+                ((ListView)sender).SelectedItem = null;
             };
 
             listView_items.RowHeight = Constants.ScreenWidth / 2;
@@ -59,6 +60,21 @@ namespace MsorLi.Views
             _categoryIconSources.Add("picture.png");
             _categoryIconSources.Add("pingpong.png");
             _categoryIconSources.Add("all.png");
+
+            // Listen to filters
+            MessagingCenter.Subscribe<FilterPage, Tuple<string, string>>(this, "Back From Filter", async (sender, filterResult) => 
+            {
+                // Update filter results
+                _currentCategory = filterResult.Item1;
+                _currentSubCategory = filterResult.Item2;
+
+                // Hide categories
+                CategoryMainStack.IsVisible = false;
+                FilterCategoryLabel.Text = _currentSubCategory != "" ? filterResult.Item1 + ", " + filterResult.Item2 : filterResult.Item1;
+                FilterMainStack.IsVisible = true;
+
+                await RefreshItems(true, true);
+            });
         }
 
         protected async override void OnAppearing()
@@ -69,9 +85,19 @@ namespace MsorLi.Views
 
                 if (!_startupRefresh)
                 {
+                    CategoryMainStack.IsVisible = false;
+                    CategoryMainStack.IsEnabled = false;
+
                     Task t1 = CreateCategories();
-                    Task t2 = RefreshItems(true, syncItems: true);
+                    Task t2 = RefreshItems(true, true);
                     await Task.WhenAll(t1, t2);
+
+                    CategoryMainStack.IsVisible = true;
+
+                    // Scroll to the right.
+                    await CategoryScroll.ScrollToAsync(StackCategory.Children[StackCategory.Children.Count - 1], ScrollToPosition.MakeVisible, true); CategoryMainStack.IsEnabled = true;
+
+                    CategoryMainStack.IsEnabled = true;
 
                     _startupRefresh = true;
                 }
@@ -93,18 +119,18 @@ namespace MsorLi.Views
 
             try
             {
+                //string category = (_currentCategoryStackLayout.Children[1] as Label).Text;
                 await RefreshItems(false, true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                error = ex;
+
             }
             finally
             {
                 if (list != null)
                 {
                     list.EndRefresh();
-
                 }
             }
 
@@ -118,6 +144,8 @@ namespace MsorLi.Views
         {
             var category = (e as TappedEventArgs).Parameter.ToString();
 
+            _currentCategory = category;
+
             // Update old category
             (_currentCategoryStackLayout.Children[1] as Label).TextColor = Color.FromHex("212121");
             (_currentCategoryStackLayout.Children[2] as BoxView).IsVisible = false;
@@ -129,11 +157,6 @@ namespace MsorLi.Views
 
             _currentCategoryStackLayout = s;
 
-            await RefreshItems(true, syncItems: true);
-        }
-
-        private async void OnSyncItems(object sender, EventArgs e)
-        {
             await RefreshItems(true, true);
         }
 
@@ -200,11 +223,31 @@ namespace MsorLi.Views
             }
         }
 
-        private async void OnSearchClick(object sender, EventArgs e)
+        private async void OnFilterClick(object sender, EventArgs e)
         {
             try
             {
-                await Navigation.PushAsync(new SearchPage());
+                await Navigation.PushAsync(new FilterPage(_currentCategory, _currentSubCategory));
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private async void OnRemoveFilterClick(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentCategory = "כל המוצרים";
+                _currentSubCategory = "";
+
+                CategoryMainStack.IsVisible = true;
+                FilterMainStack.IsVisible = false;
+
+                _currentCategoryStackLayout = (StackLayout)StackCategory.Children[StackCategory.Children.Count - 1];
+
+                await RefreshItems(true, true);
             }
             catch (Exception)
             {
@@ -222,17 +265,7 @@ namespace MsorLi.Views
             {
                 using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
                 {
-                    string category = null;
-                    try
-                    {
-                        category = (_currentCategoryStackLayout.Children[1] as Label).Text;
-                    }
-                    catch
-                    {
-                        category = "כל המוצרים";
-                    }
-
-                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages(category);
+                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages(_currentCategory, _currentSubCategory);
 
                     if (AllImages != null)
                     {
@@ -288,9 +321,6 @@ namespace MsorLi.Views
             CreateCategory("כל המוצרים",
                 _categoryIconSources[_categoryIconSources.Count - 1],
                 defultCategory : true);
-
-            // Scroll to the right.
-            await CategoryScroll.ScrollToAsync(StackCategory.Children[StackCategory.Children.Count - 1], ScrollToPosition.MakeVisible, true);
         }
 
         void CreateCategory(string categoryName, string categoryIconSource, bool defultCategory = false)
@@ -307,7 +337,9 @@ namespace MsorLi.Views
             var img = new Xamarin.Forms.Image
             {
                 Source = categoryIconSource,
-                 HorizontalOptions = LayoutOptions.Center,
+                HorizontalOptions = LayoutOptions.Center,
+                HeightRequest = 24,
+                WidthRequest = 24
             };
 
             var box = new BoxView {

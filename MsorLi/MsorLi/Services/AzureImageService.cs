@@ -46,19 +46,37 @@ namespace MsorLi.Services
             return null;
         }
 
-        public async Task<ObservableCollection<ItemImage>> GetAllPriorityImages(string category)
+        public async Task<ObservableCollection<ItemImage>> GetAllPriorityImages(string category, string subCategory)
         {
             try
             {
                 IEnumerable<ItemImage> images = null;
 
-                if (category == "כל המוצרים")
+                // All items
+                if (category == "כל המוצרים" | (category == "כל המוצרים" && subCategory == ""))
                 {
                     images = await _table
                     .OrderByDescending(ItemImage => ItemImage.CreatedAt)
                     .Where(itemImage => itemImage.IsPriorityImage == true)
                     .ToEnumerableAsync();
                 }
+                // All items with sub category
+                else if (category == "כל המוצרים" && subCategory != "")
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true && itemImage.SubCategory == subCategory)
+                    .ToEnumerableAsync();
+                }
+                // Category with sub category
+                else if (category != "כל המוצרים" && subCategory != "")
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true && itemImage.Category == category && itemImage.SubCategory == subCategory)
+                    .ToEnumerableAsync();
+                }
+                // Only category
                 else
                 {
                     images = await _table
@@ -66,13 +84,14 @@ namespace MsorLi.Services
                     .Where(itemImage => itemImage.IsPriorityImage == true && itemImage.Category == category)
                     .ToEnumerableAsync();
                 }
-                
 
                 return images != null ? new ObservableCollection<ItemImage>(images) : null;
             }
 
-            catch (Exception) { }
-            return null;
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public async Task<ObservableCollection<ItemImage>> GetAllImgByUserId(string userId)

@@ -181,7 +181,8 @@ namespace MsorLi.Views
                         ItemId = id,
                         IsPriorityImage = true,
                         UserId = userId,
-                        Category = category.Items[category.SelectedIndex]
+                        Category = category.Items[category.SelectedIndex],
+                        SubCategory = subCategory.Items[subCategory.SelectedIndex],
                     });
                 }
                 else
