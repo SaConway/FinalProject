@@ -23,7 +23,6 @@ namespace MsorLi.Views
 
         bool _startupRefresh = false;
 
-        // Two variables for OnItemClick function
         Boolean _isRunningItem = false;
         Object _lockObject = new Object();
 
@@ -85,6 +84,8 @@ namespace MsorLi.Views
 
                 if (!_startupRefresh)
                 {
+                    _startupRefresh = true;
+
                     CategoryMainStack.IsVisible = false;
                     CategoryMainStack.IsEnabled = false;
 
@@ -98,8 +99,6 @@ namespace MsorLi.Views
                     await CategoryScroll.ScrollToAsync(StackCategory.Children[StackCategory.Children.Count - 1], ScrollToPosition.MakeVisible, true); CategoryMainStack.IsEnabled = true;
 
                     CategoryMainStack.IsEnabled = true;
-
-                    _startupRefresh = true;
                 }
             }
             catch
@@ -157,6 +156,9 @@ namespace MsorLi.Views
 
             _currentCategoryStackLayout = s;
 
+            // Scroll to current category
+            await CategoryScroll.ScrollToAsync(_currentCategoryStackLayout, ScrollToPosition.MakeVisible, true); CategoryMainStack.IsEnabled = true;
+
             await RefreshItems(true, true);
         }
 
@@ -191,7 +193,17 @@ namespace MsorLi.Views
         {
             try
             {
+                lock (_lockObject)
+                {
+                    if (_isRunningItem)
+                        return;
+                    else
+                        _isRunningItem = true;
+                }
+
                 await Navigation.PushAsync(new MenuPage());
+
+                _isRunningItem = false;
             }
 
             catch (Exception) { }
@@ -201,33 +213,50 @@ namespace MsorLi.Views
         {
             try
             {
-                if(Session.IsLogged()){
+                lock (_lockObject)
+                {
+                    if (_isRunningItem)
+                        return;
+                    else
+                        _isRunningItem = true;
+                }
+
+                if (Session.IsLogged())
+                {
                     await Navigation.PushAsync(new AddItemPage());
                 }
                 else
                 {
                     await Navigation.PushAsync(new LoginPage());
 
-                    //when login is finish with success load save item page
-                    MessagingCenter.Subscribe<LoginPage>(this, "Success", async (send) => {
-
+                    // If login is finish with success, load add item page
+                    MessagingCenter.Subscribe<LoginPage>(this, "Success", async (send) =>
+                    {
                         MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
                         await Navigation.PushAsync(new AddItemPage());
                     });
                 }
 
+                _isRunningItem = false;
             }
-            catch (Exception)
-            {
-
-            }
+            catch (Exception) { }
         }
 
         private async void OnFilterClick(object sender, EventArgs e)
         {
             try
             {
+                lock (_lockObject)
+                {
+                    if (_isRunningItem)
+                        return;
+                    else
+                        _isRunningItem = true;
+                }
+
                 await Navigation.PushAsync(new FilterPage(_currentCategory, _currentSubCategory));
+
+                _isRunningItem = false;
             }
             catch (Exception)
             {
@@ -242,12 +271,43 @@ namespace MsorLi.Views
                 _currentCategory = "כל המוצרים";
                 _currentSubCategory = "";
 
+                // Update old category
+                (_currentCategoryStackLayout.Children[1] as Label).TextColor = Color.FromHex("212121");
+                (_currentCategoryStackLayout.Children[2] as BoxView).IsVisible = false;
+                
+                _currentCategoryStackLayout = (StackLayout)StackCategory.Children[StackCategory.Children.Count - 1];
+
+                // Update new category
+                StackLayout sl = (StackLayout)StackCategory.Children[StackCategory.Children.Count - 1];
+                (sl.Children[1] as Label).TextColor = Color.FromHex("212121");
+                (sl.Children[2] as BoxView).IsVisible = true;
+
                 CategoryMainStack.IsVisible = true;
                 FilterMainStack.IsVisible = false;
 
-                _currentCategoryStackLayout = (StackLayout)StackCategory.Children[StackCategory.Children.Count - 1];
-
                 await RefreshItems(true, true);
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private async void OnFilterEreaClick(object sender, EventArgs e)
+        {
+            try
+            {
+                lock (_lockObject)
+                {
+                    if (_isRunningItem)
+                        return;
+                    else
+                        _isRunningItem = true;
+                }
+
+                await Navigation.PushAsync(new FilterPage(_currentCategory, _currentSubCategory));
+
+                _isRunningItem = false;
             }
             catch (Exception)
             {
@@ -367,7 +427,6 @@ namespace MsorLi.Views
             tapGestureRecognizer.CommandParameter = categoryName;
 
             stack.GestureRecognizers.Add(tapGestureRecognizer);
-
 
             StackCategory.Children.Add(stack);
 

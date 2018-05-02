@@ -11,7 +11,6 @@
     </ContentPage.Padding>
     
     <ContentPage.Content>
-
         <AbsoluteLayout>
             
             <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Spacing="0">
@@ -106,6 +105,10 @@
                                        HeightRequest="24" WidthRequest="24"/>
                             </StackLayout>
 
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnFilterEreaClick"/>
+                            </Grid.GestureRecognizers>
+
                         </Grid>
                     </ScrollView>
 
@@ -171,7 +174,7 @@
                     AbsoluteLayout.LayoutFlags="PositionProportional"
                     x:Name="AddBtn" Image="plus.png" Margin="15"
                     WidthRequest="60" HeightRequest="60" BorderRadius="30"
-                    Clicked="OnAddItemClick" BackgroundColor="#CDDC39"/>
+                    Clicked="OnAddItemClick" BackgroundColor="#00BCD4"/>
 
         </AbsoluteLayout>
     </ContentPage.Content>
