@@ -37,6 +37,10 @@ namespace MsorLi.Views
             MessagingCenter.Subscribe<ItemPage>(this, "Update Like Counter", (sender) => {
                 ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
             });
+            if(Settings.FacebookId != null){
+                EditBtn.IsEnabled = false;
+            }
+
         }
 
         async protected override void OnAppearing()

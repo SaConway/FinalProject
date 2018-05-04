@@ -37,7 +37,7 @@
 
                 <Grid Grid.Row="2" Margin="0,20">
                     
-                    <StackLayout Grid.Row="0" Grid.Column="0">
+                    <StackLayout x:Name="EditBtn" Grid.Row="0" Grid.Column="0">
                         
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="EditBtnClicked"/>
