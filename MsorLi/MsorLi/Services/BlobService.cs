@@ -50,6 +50,15 @@ namespace MsorLi.Services
             return imageUrls;
         }
 
+        public static async Task<string> SaveImageInBlob(byte[] byteData)
+        {
+            byte[] resizedImage = ImageResizer.ResizeImage(byteData, 400, 400);
+            var imageUrl = await BlobService.UploadFileAsync(new MemoryStream(resizedImage));
+            imageUrl = BLOB_URL + imageUrl;
+
+            return imageUrl;
+        }
+
         public static async Task DeleteImage(string image) // Name in the container
         {
             try

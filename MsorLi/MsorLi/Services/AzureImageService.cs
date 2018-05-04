@@ -38,6 +38,7 @@ namespace MsorLi.Services
             {
                 IEnumerable<ItemImage> images = await _table
                     .Where(itemImage => itemImage.ItemId == itemId)
+                    .OrderByDescending(ItemImage => ItemImage.IsPriorityImage)
                     .ToEnumerableAsync();
                 return new ObservableCollection<ItemImage>(images);
             }

@@ -27,7 +27,7 @@ namespace MsorLi.Views
         ObservableCollection<ItemImage> _images = new ObservableCollection<ItemImage>();
         string _savedId = "";
 
-        bool _firstAppearing = true;
+        bool _DoInitialization = true;
 
         //---------------------------------
         // FUNCTIONS
@@ -40,13 +40,26 @@ namespace MsorLi.Views
         public ItemPage(string itemId)
         {
             _item.Id = itemId;
+
+            MessagingCenter.Subscribe<AddItemPage>(this, "Updated Item", async (sender) => {
+
+                MessagingCenter.Unsubscribe<AddItemPage>(this, "Updated Item");
+
+                var task1 = SetItemAsync();
+                var task2 = SetItemImagesAsync();
+
+                await Task.WhenAll(task1, task2);
+
+                UpdateItemDetails();
+                UpdateItemImages();
+            });
         }
 
         protected override async void OnAppearing()
         {
-            if (_firstAppearing)
+            if (_DoInitialization)
             {
-                _firstAppearing = false;
+                _DoInitialization = false;
 
                 InitializeComponent();
 
@@ -73,25 +86,11 @@ namespace MsorLi.Views
 
         async void MyInitializeComponent()
         {
-            if (_item.Id == null)
-            {
-                MessagingCenter.Send<ItemPage, string>(this, "Item was not found", _item.Id);
-                await Navigation.PopAsync();
-            }
-
             // Update item images
 
             imagesView.HeightRequest = (double)(Constants.ScreenHeight / 2.5);
 
-            ObservableCollection<Models.Image> images = new ObservableCollection<Models.Image>();
-
-            for (int i = 0; i < _images.Count; ++i)
-            {
-                Models.Image image = new Models.Image { ImageUrl = _images[i].Url, ImageNumber = (i + 1).ToString() + " מתוך " + _images.Count.ToString() };
-                images.Add(image);
-            }
-
-            imagesView.ItemsSource = images;
+            UpdateItemImages();
 
             // Update saved item details
 
@@ -110,50 +109,20 @@ namespace MsorLi.Views
             }
 
             // Update item details
+            UpdateItemDetails();
 
-            title.Text = _item.Category;
-            subCategory.Text = _item.SubCategory;
-            description.Text = _item.Description;
-            condition.Text = _item.Condition;
-            location.Text = _item.Location;
-            contact_name.Text = _item.ContactName;
-            contact_number.Text = _item.ContactNumber;
-            date.Text = _item.Date;
-
-            // Show Delete item btn ?
+            // Show Delete item btn and Update item ?
 
             if (_userId == _item.UserId || Settings.Permission == "Admin")
             {
+                ToolbarItems.Add(new ToolbarItem("ערוך מודעה", "", async () =>
+                {
+                    await UpdateItem();
+                }));
+
                 ToolbarItems.Add(new ToolbarItem("מחק מודעה", "", async () =>
                 {
-                    try
-                    {
-                        List<Task> list = new List<Task>();
-                        var task1 = AzureItemService.DefaultManager.DeleteItem(_item);
-                        list.Add(task1);
-
-                        foreach (var img in _images)
-                        {
-                            var task2 = AzureImageService.DefaultManager.DeleteImage(img);
-                            list.Add(task2);
-
-                            var task3 = BlobService.DeleteImage(img.Url);
-                            list.Add(task3);
-                        }
-
-                        int num_of_items = await AzureUserService.DefaultManager.UpdateNumOfItems(Settings.UserId, -1);
-                        Settings.NumOfItems =  num_of_items.ToString();
-
-                        await Task.WhenAll(list);
-
-                        await Navigation.PopAsync();
-                        MessagingCenter.Send<ItemPage, string>(this, "Item Deleted", _item.Id);
-                        DependencyService.Get<IMessage>().LongAlert("המודעה נמחקה");
-                    }
-                    catch (Exception)
-                    {
-                        await DisplayAlert("שגיאה", "לא ניתן להשלים את הפעולה. נסה שנית.", "אישור");
-                    }
+                    await DeleteItem();
                 }));
             }
 
@@ -285,6 +254,77 @@ namespace MsorLi.Views
 
         // PRIVATE FUNCTIONS
         //----------------------------------------------------------
+
+        private async Task DeleteItem()
+        {
+            try
+            {
+                List<Task> list = new List<Task>();
+                var task1 = AzureItemService.DefaultManager.DeleteItem(_item);
+                list.Add(task1);
+
+                foreach (var img in _images)
+                {
+                    var task2 = AzureImageService.DefaultManager.DeleteImage(img);
+                    list.Add(task2);
+
+                    var task3 = BlobService.DeleteImage(img.Url);
+                    list.Add(task3);
+                }
+
+                int num_of_items = await AzureUserService.DefaultManager.UpdateNumOfItems(Settings.UserId, -1);
+                Settings.NumOfItems = num_of_items.ToString();
+
+                await Task.WhenAll(list);
+
+                await Navigation.PopAsync();
+                MessagingCenter.Send<ItemPage, string>(this, "Item Deleted", _item.Id);
+                DependencyService.Get<IMessage>().LongAlert("המודעה נמחקה");
+            }
+            catch (Exception)
+            {
+                await DisplayAlert("שגיאה", "לא ניתן להשלים את הפעולה. נסה שנית.", "אישור");
+            }
+        }
+
+        private async Task UpdateItem()
+        {
+            try
+            {
+                AddItemPage addItemPage = new AddItemPage(_item.Id);
+                await Navigation.PushAsync(addItemPage);
+                await addItemPage.UpdateItemInit(_item, _images);
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void UpdateItemImages()
+        {
+            ObservableCollection<Models.Image> images = new ObservableCollection<Models.Image>();
+
+            for (int i = 0; i < _images.Count; ++i)
+            {
+                Models.Image image = new Models.Image { ImageUrl = _images[i].Url, ImageNumber = (i + 1).ToString() + " מתוך " + _images.Count.ToString() };
+                images.Add(image);
+            }
+
+            imagesView.ItemsSource = images;
+        }
+
+        private void UpdateItemDetails()
+        {
+            title.Text = _item.Category;
+            subCategory.Text = _item.SubCategory;
+            description.Text = _item.Description;
+            condition.Text = _item.Condition;
+            location.Text = _item.Location;
+            contact_name.Text = _item.ContactName;
+            contact_number.Text = _item.ContactNumber;
+            date.Text = _item.Date;
+        }
 
         private async Task SetItemAsync()
         {

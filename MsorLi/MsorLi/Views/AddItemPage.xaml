@@ -7,91 +7,119 @@
 
     <!--Content-->
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout> 
+        <AbsoluteLayout>
+
+            <ScrollView x:Name="MyScrollView"
+                AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout> 
                 
-                <!--Category-->
-                <Label Text="קטגוריה" HorizontalOptions="FillAndExpand" 
-                       Margin="25,50,25,0" HorizontalTextAlignment="End"/>
-                <Picker x:Name="category" HorizontalOptions="FillAndExpand" Margin="25,5,25,0" 
-                        Title="בחר קטגוריה" SelectedIndexChanged="OnCategoryChanged"/>
+                    <!--Category-->
+                    <Label Text="קטגוריה" HorizontalOptions="FillAndExpand" 
+                           Margin="25,50,25,0" HorizontalTextAlignment="End"/>
+                    <Picker x:Name="category" HorizontalOptions="FillAndExpand" Margin="25,5,25,0" 
+                            Title="בחר קטגוריה" SelectedIndexChanged="OnCategoryChanged"/>
 
-                <!--Sub Category-->
-                <Label Text="תת קטגוריה" HorizontalOptions="FillAndExpand" 
-                       Margin="25,50,25,0" HorizontalTextAlignment="End"/>
-                <Picker x:Name="subCategory" HorizontalOptions="FillAndExpand"
-                        Margin="25,5,25,0" IsEnabled="False" Title="בחר תת קטגוריה"/>
+                    <!--Sub Category-->
+                    <Label Text="תת קטגוריה" HorizontalOptions="FillAndExpand" 
+                           Margin="25,50,25,0" HorizontalTextAlignment="End"/>
+                    <Picker x:Name="subCategory" HorizontalOptions="FillAndExpand"
+                            Margin="25,5,25,0" IsEnabled="False" Title="בחר תת קטגוריה"/>
                 
-                <!--Discription-->
-                <Label IsVisible="False" Text="תיאור מוצר" x:Name="descriptionLabel" 
-                       HorizontalOptions="FillAndExpand"
-                       Margin="25,50,25,0" HorizontalTextAlignment="End"/>
-                <Entry x:Name="description" TextChanged="NameTextChangedEvent" Placeholder="תיאור מוצר" 
-                       PlaceholderColor="#999999" HorizontalOptions="FillAndExpand"
-                       Margin="25,50,25,0" HorizontalTextAlignment="End"/>
+                    <!--Discription-->
+                    <Label IsVisible="False" Text="תיאור מוצר" x:Name="descriptionLabel" 
+                           HorizontalOptions="FillAndExpand"
+                           Margin="25,50,25,0" HorizontalTextAlignment="End"/>
+                    <Entry x:Name="description" TextChanged="NameTextChangedEvent" Placeholder="תיאור מוצר" 
+                           PlaceholderColor="#999999" HorizontalOptions="FillAndExpand"
+                           Margin="25,50,25,0" HorizontalTextAlignment="End"/>
 
-                <!--Condition-->
-                <Label Text="מצב מוצר" HorizontalOptions="FillAndExpand" Margin="25,50,25,0"
-                       HorizontalTextAlignment="End"/>
-                <Picker x:Name="condition"  HorizontalOptions="FillAndExpand" Margin="25,5,25,0">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>כמו חדש</x:String>
-                            <x:String>משומש</x:String>
-                            <x:String>דרוש תיקון/שיפוץ</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
+                    <!--Condition-->
+                    <Label Text="מצב מוצר" HorizontalOptions="FillAndExpand" Margin="25,50,25,0"
+                           HorizontalTextAlignment="End"/>
+                    <Picker x:Name="condition" HorizontalOptions="FillAndExpand" Margin="25,5,25,0">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>כמו חדש</x:String>
+                                <x:String>משומש</x:String>
+                                <x:String>דרוש תיקון/שיפוץ</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
 
-                <!--City-->
-                <Label Text="עיר מגורים" x:Name="cityLabel" HorizontalOptions="FillAndExpand"
-                       Margin="25,50,25,0" HorizontalTextAlignment="End"/>
-                <Entry x:Name="city" TextChanged="NameTextChangedEvent" Placeholder="עיר מגורים" 
-                       PlaceholderColor="#999999" HorizontalOptions="FillAndExpand"
-                       Margin="25,50,25,0" HorizontalTextAlignment="End"/>
+                    <!--City-->
+                    <Label Text="עיר מגורים" x:Name="cityLabel" HorizontalOptions="FillAndExpand"
+                           Margin="25,50,25,0" HorizontalTextAlignment="End"/>
+                    <Entry x:Name="city" TextChanged="NameTextChangedEvent" Placeholder="עיר מגורים" 
+                           PlaceholderColor="#999999" HorizontalOptions="FillAndExpand"
+                           Margin="25,50,25,0" HorizontalTextAlignment="End"/>
 
-                <!--Street-->
-                <Label IsVisible="False" Text="רחוב" x:Name="streetLabel" HorizontalOptions="FillAndExpand" 
-                       Margin="25,50,25,0" HorizontalTextAlignment="End"/>
-                <Entry x:Name="street" TextChanged="NameTextChangedEvent" Placeholder="רחוב (אופציונלי)" 
-                       PlaceholderColor="#999999" HorizontalOptions="FillAndExpand" 
-                       Margin="25,50,25,0" HorizontalTextAlignment="End"/>
+                    <!--Street-->
+                    <Label IsVisible="False" Text="רחוב" x:Name="streetLabel" HorizontalOptions="FillAndExpand" 
+                           Margin="25,50,25,0" HorizontalTextAlignment="End"/>
+                    <Entry x:Name="street" TextChanged="NameTextChangedEvent" Placeholder="רחוב (אופציונלי)" 
+                           PlaceholderColor="#999999" HorizontalOptions="FillAndExpand" 
+                           Margin="25,50,25,0" HorizontalTextAlignment="End"/>
 
-                <!--Name-->
-                <Label Text="שם איש קשר" x:Name="contactNameLabel" HorizontalOptions="FillAndExpand" 
-                       Margin="25,50,25,0" HorizontalTextAlignment="End"/>
-                <Entry x:Name="contactName" TextChanged="NameTextChangedEvent" Placeholder="שם איש קשר"
-                       PlaceholderColor="#999999" HorizontalOptions="FillAndExpand" 
-                       Margin="25,50,25,0" HorizontalTextAlignment="End"/>
+                    <!--Name-->
+                    <Label Text="שם איש קשר" x:Name="contactNameLabel" HorizontalOptions="FillAndExpand" 
+                           Margin="25,50,25,0" HorizontalTextAlignment="End"/>
+                    <Entry x:Name="contactName" TextChanged="NameTextChangedEvent" Placeholder="שם איש קשר"
+                           PlaceholderColor="#999999" HorizontalOptions="FillAndExpand" 
+                           Margin="25,50,25,0" HorizontalTextAlignment="End"/>
 
-                <!--Number-->
-                <Label Text="טלפון ליצירת קשר" x:Name="contactNumberLabel"
-                       HorizontalOptions="FillAndExpand" 
-                       Margin="25,50,25,0" HorizontalTextAlignment="End"/>
-                <Entry x:Name="contactNumber" Keyboard="Telephone" TextChanged="NameTextChangedEvent" 
-                       Placeholder="טלפון ליצירת קשר" PlaceholderColor="#999999" HorizontalOptions="FillAndExpand"
-                       Margin="25,50,25,0" HorizontalTextAlignment="End"/>
+                    <!--Number-->
+                    <Label Text="טלפון ליצירת קשר" x:Name="contactNumberLabel"
+                           HorizontalOptions="FillAndExpand" 
+                           Margin="25,50,25,0" HorizontalTextAlignment="End"/>
+                    <Entry x:Name="contactNumber" Keyboard="Telephone" TextChanged="NameTextChangedEvent" 
+                           Placeholder="טלפון ליצירת קשר" PlaceholderColor="#999999" HorizontalOptions="FillAndExpand"
+                           Margin="25,50,25,0" HorizontalTextAlignment="End"/>
 
-                <!--Images-->
-                <control:CarouselView x:Name="imagesView" HeightRequest="0">
-                    <control:CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <Image Aspect="AspectFill" Source="{Binding .}"/>
-                        </DataTemplate>
-                    </control:CarouselView.ItemTemplate>
-                </control:CarouselView>
+                    <!--Images-->
+                    <control:CarouselView x:Name="imagesView" HeightRequest="0">
+                        <control:CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding .}"/>
+                                        <StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
+
+                                            <Label Text="מחק" BackgroundColor="#80000000" TextColor="White" FontSize="Medium"
+                                               HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnDeleteImg" CommandParameter="{Binding .}"/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                        </StackLayout>
+                                    </Grid>
+                                </DataTemplate>
+                        </control:CarouselView.ItemTemplate>
+                    </control:CarouselView>
                     
-                <!--Btn Img-->
-                <Button Text="בחירת תמונות" Margin="0,50,0,0" FontSize="Medium"
-                        BackgroundColor="Transparent" TextColor="#00BCD4"
-                        HorizontalOptions="Center" x:Name="pickPictureButton" Clicked="OnAddImageClick"/>
+                    <!--Btn Img-->
+                    <Button Text="בחירת תמונות" Margin="0,50,0,0" FontSize="Medium"
+                            BackgroundColor="Transparent" TextColor="#00BCD4"
+                            HorizontalOptions="Center" x:Name="pickPictureButton" Clicked="OnAddImageClick"/>
 
-                <!--Btn Submit-->
-                <Button Text="פרסום מוצר" Clicked="OnAddItemClick" 
-                        HorizontalOptions="FillAndExpand" Margin="20,50,20,20" 
-                        Style="{StaticResource ButtonStyle}"/>
+                    <!--Btn Submit-->
+                    <Button Text="פרסום מוצר" Clicked="OnAddItemClick" 
+                            HorizontalOptions="FillAndExpand" Margin="20,50,20,20" 
+                            Style="{StaticResource ButtonStyle}"/>
 
-            </StackLayout>
-        </ScrollView>
+                </StackLayout>
+            </ScrollView>
+
+            <Frame x:Name="MyFrame" IsVisible="False"
+                   OutlineColor="#212121"
+                   AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                   VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+                <Label TextColor="#212121" Margin="15,10">אנא המתן..</Label>
+            </Frame>
+
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

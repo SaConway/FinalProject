@@ -19,32 +19,60 @@
           "lib/MonoAndroid/CarouselView.FormsPlugin.Android.dll": {}
         }
       },
-      "Microsoft.Azure.Mobile.Client/4.0.2": {
+      "Microsoft.Azure.Mobile.Client/3.1.0": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "9.0.1",
-          "PCLCrypto": "2.0.147",
-          "Xamarin.Android.Support.CustomTabs": "23.3.0"
+          "Microsoft.Bcl": "1.1.10",
+          "Microsoft.Bcl.Build": "1.0.21",
+          "Microsoft.Net.Http": "2.2.29",
+          "Newtonsoft.Json": "6.0.4"
         },
+        "frameworkAssemblies": [
+          "System.Net.Http"
+        ],
         "compile": {
-          "lib/monoandroid70/Microsoft.Azure.Mobile.Client.dll": {}
+          "lib/monoandroid/Microsoft.WindowsAzure.Mobile.Ext.dll": {},
+          "lib/monoandroid/Microsoft.WindowsAzure.Mobile.dll": {}
         },
         "runtime": {
-          "lib/monoandroid70/Microsoft.Azure.Mobile.Client.dll": {}
+          "lib/monoandroid/Microsoft.WindowsAzure.Mobile.Ext.dll": {},
+          "lib/monoandroid/Microsoft.WindowsAzure.Mobile.dll": {}
         }
       },
-      "Microsoft.Azure.Mobile.Client.SQLiteStore/4.0.2": {
+      "Microsoft.Azure.Mobile.Client.SQLiteStore/3.1.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Azure.Mobile.Client": "4.0.2",
-          "NETStandard.Library": "1.6.1",
-          "SQLitePCLRaw.bundle_green": "1.1.2"
+          "Microsoft.Azure.Mobile.Client": "3.1.0",
+          "Microsoft.Bcl": "1.1.10",
+          "Microsoft.Bcl.Build": "1.0.21",
+          "Microsoft.Net.Http": "2.2.29",
+          "Newtonsoft.Json": "6.0.4",
+          "SQLitePCLRaw.bundle_green": "1.1.2",
+          "SQLitePCLRaw.core": "1.1.2"
         },
         "compile": {
-          "lib/netstandard1.4/Microsoft.Azure.Mobile.Client.SQLiteStore.dll": {}
+          "lib/portable-win+net45+wp8+wpa81+monotouch10+monoandroid10+xamarinios10/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.4/Microsoft.Azure.Mobile.Client.SQLiteStore.dll": {}
+          "lib/portable-win+net45+wp8+wpa81+monotouch10+monoandroid10+xamarinios10/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll": {}
+        }
+      },
+      "Microsoft.Bcl/1.1.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/monoandroid/_._": {}
+        },
+        "runtime": {
+          "lib/monoandroid/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.21": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Bcl.Build.targets": {}
         }
       },
       "Microsoft.CSharp/4.3.0": {
@@ -57,6 +85,24 @@
         },
         "runtime": {
           "lib/MonoAndroid10/_._": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.29": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "frameworkAssemblies": [
+          "System.Net.Http"
+        ],
+        "compile": {
+          "lib/monoandroid/System.Net.Http.Extensions.dll": {},
+          "lib/monoandroid/System.Net.Http.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid/System.Net.Http.Extensions.dll": {},
+          "lib/monoandroid/System.Net.Http.Primitives.dll": {}
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {
@@ -141,66 +187,6 @@
         },
         "runtime": {
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
-        }
-      },
-      "PCLCrypto/2.0.147": {
-        "type": "package",
-        "dependencies": {
-          "PInvoke.NCrypt": "0.3.2",
-          "Validation": "2.2.8"
-        },
-        "compile": {
-          "lib/MonoAndroid23/PCLCrypto.dll": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid23/PCLCrypto.dll": {}
-        }
-      },
-      "PInvoke.BCrypt/0.3.2": {
-        "type": "package",
-        "dependencies": {
-          "PInvoke.Kernel32": "0.3.2",
-          "PInvoke.Windows.Core": "0.3.2"
-        },
-        "compile": {
-          "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.BCrypt.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.BCrypt.dll": {}
-        }
-      },
-      "PInvoke.Kernel32/0.3.2": {
-        "type": "package",
-        "dependencies": {
-          "PInvoke.Windows.Core": "0.3.2"
-        },
-        "compile": {
-          "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Kernel32.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Kernel32.dll": {}
-        }
-      },
-      "PInvoke.NCrypt/0.3.2": {
-        "type": "package",
-        "dependencies": {
-          "PInvoke.BCrypt": "0.3.2",
-          "PInvoke.Windows.Core": "0.3.2"
-        },
-        "compile": {
-          "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.NCrypt.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.NCrypt.dll": {}
-        }
-      },
-      "PInvoke.Windows.Core/0.3.2": {
-        "type": "package",
-        "compile": {
-          "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
         }
       },
       "SQLitePCLRaw.bundle_green/1.1.2": {
@@ -766,15 +752,6 @@
           "lib/MonoAndroid10/_._": {}
         }
       },
-      "Validation/2.2.8": {
-        "type": "package",
-        "compile": {
-          "lib/dotnet/Validation.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/Validation.dll": {}
-        }
-      },
       "WindowsAzure.Storage/9.1.0": {
         "type": "package",
         "dependencies": {
@@ -898,16 +875,19 @@
           "build/MonoAndroid70/Xamarin.Android.Support.Core.Utils.targets": {}
         }
       },
-      "Xamarin.Android.Support.CustomTabs/23.4.0.1": {
+      "Xamarin.Android.Support.CustomTabs/25.4.0.2": {
         "type": "package",
         "dependencies": {
-          "Xamarin.Android.Support.v4": "[23.4.0.1]"
+          "Xamarin.Android.Support.Compat": "[25.4.0.2]"
         },
         "compile": {
-          "lib/MonoAndroid403/Xamarin.Android.Support.CustomTabs.dll": {}
+          "lib/MonoAndroid70/Xamarin.Android.Support.CustomTabs.dll": {}
         },
         "runtime": {
-          "lib/MonoAndroid403/Xamarin.Android.Support.CustomTabs.dll": {}
+          "lib/MonoAndroid70/Xamarin.Android.Support.CustomTabs.dll": {}
+        },
+        "build": {
+          "build/MonoAndroid70/Xamarin.Android.Support.CustomTabs.targets": {}
         }
       },
       "Xamarin.Android.Support.Design/25.4.0.2": {
@@ -1215,41 +1195,159 @@
         "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid10+Xamarin.iOS10/CarouselView.FormsPlugin.Abstractions.dll"
       ]
     },
-    "Microsoft.Azure.Mobile.Client/4.0.2": {
-      "sha512": "FFHBqESmv/wKOz6rJh1cCT+jByny56nQ3u1LA8TEc21L1DxYga/CR7b/yx7100+4EQXTdkzLc0E5ScLcYNKhTQ==",
+    "Microsoft.Azure.Mobile.Client/3.1.0": {
+      "sha512": "L/RF/9A/mMFifQsTBRmSPV3UpvG11LR+0vsm7KKkOW7pLeRmsAWFtfKRUKoEfgdi2XoOFSLkXk88w8jVXV5uJA==",
       "type": "package",
-      "path": "microsoft.azure.mobile.client/4.0.2",
+      "path": "microsoft.azure.mobile.client/3.1.0",
       "files": [
-        "lib/monoandroid70/Microsoft.Azure.Mobile.Client.dll",
-        "lib/monoandroid70/Microsoft.Azure.Mobile.Client.xml",
-        "lib/net45/Microsoft.Azure.Mobile.Client.dll",
-        "lib/net45/Microsoft.Azure.Mobile.Client.xml",
-        "lib/netstandard1.4/Microsoft.Azure.Mobile.Client.dll",
-        "lib/netstandard1.4/Microsoft.Azure.Mobile.Client.xml",
-        "lib/portable-net45+win8+wp8+wpa81/Microsoft.Azure.Mobile.Client.dll",
-        "lib/portable-net45+win8+wp8+wpa81/Microsoft.Azure.Mobile.Client.xml",
-        "lib/uap10.0/Microsoft.Azure.Mobile.Client.dll",
-        "lib/uap10.0/Microsoft.Azure.Mobile.Client.pri",
-        "lib/uap10.0/Microsoft.Azure.Mobile.Client.xml",
-        "lib/xamarinios10/Microsoft.Azure.Mobile.Client.dll",
-        "lib/xamarinios10/Microsoft.Azure.Mobile.Client.xml",
-        "microsoft.azure.mobile.client.4.0.2.nupkg.sha512",
+        "lib/Xamarin.iOS10/Microsoft.WindowsAzure.Mobile.Ext.dll",
+        "lib/Xamarin.iOS10/Microsoft.WindowsAzure.Mobile.Ext.xml",
+        "lib/Xamarin.iOS10/Microsoft.WindowsAzure.Mobile.dll",
+        "lib/Xamarin.iOS10/Microsoft.WindowsAzure.Mobile.xml",
+        "lib/monoandroid/Microsoft.WindowsAzure.Mobile.Ext.dll",
+        "lib/monoandroid/Microsoft.WindowsAzure.Mobile.Ext.xml",
+        "lib/monoandroid/Microsoft.WindowsAzure.Mobile.dll",
+        "lib/monoandroid/Microsoft.WindowsAzure.Mobile.xml",
+        "lib/monotouch/Microsoft.WindowsAzure.Mobile.Ext.dll",
+        "lib/monotouch/Microsoft.WindowsAzure.Mobile.Ext.xml",
+        "lib/monotouch/Microsoft.WindowsAzure.Mobile.dll",
+        "lib/monotouch/Microsoft.WindowsAzure.Mobile.xml",
+        "lib/net45/Microsoft.WindowsAzure.Mobile.Ext.XML",
+        "lib/net45/Microsoft.WindowsAzure.Mobile.Ext.dll",
+        "lib/net45/Microsoft.WindowsAzure.Mobile.dll",
+        "lib/net45/Microsoft.WindowsAzure.Mobile.xml",
+        "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll",
+        "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.pri",
+        "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.xml",
+        "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll",
+        "lib/netcore45/Microsoft.WindowsAzure.Mobile.xml",
+        "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.dll",
+        "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.xml",
+        "lib/wp8/Microsoft.WindowsAzure.Mobile.Ext.dll",
+        "lib/wp8/Microsoft.WindowsAzure.Mobile.Ext.xml",
+        "lib/wp8/Microsoft.WindowsAzure.Mobile.UI.dll",
+        "lib/wp8/Microsoft.WindowsAzure.Mobile.UI.xml",
+        "lib/wp8/Microsoft.WindowsAzure.Mobile.dll",
+        "lib/wp8/Microsoft.WindowsAzure.Mobile.xml",
+        "lib/wpa81/Microsoft.WindowsAzure.Mobile.Ext.dll",
+        "lib/wpa81/Microsoft.WindowsAzure.Mobile.Ext.xml",
+        "lib/wpa81/Microsoft.WindowsAzure.Mobile.dll",
+        "lib/wpa81/Microsoft.WindowsAzure.Mobile.xml",
+        "microsoft.azure.mobile.client.3.1.0.nupkg.sha512",
         "microsoft.azure.mobile.client.nuspec"
       ]
     },
-    "Microsoft.Azure.Mobile.Client.SQLiteStore/4.0.2": {
-      "sha512": "Xm6Sy2U03+67QzSQqYbhK35dxfb3am0/81PLFjyTz7wYxdrjI/ZfTNrJCQ69QhitDnCnTg+/UngXVpkYQ6+Orw==",
+    "Microsoft.Azure.Mobile.Client.SQLiteStore/3.1.0": {
+      "sha512": "UHBdSCsofsd45Pk8OBD4Wja9d+doYL3/4BindcRMYngX5jTDZPn872Z+42rt4RV1JOUirWRQ7QqmK4ampTeOgg==",
       "type": "package",
-      "path": "microsoft.azure.mobile.client.sqlitestore/4.0.2",
+      "path": "microsoft.azure.mobile.client.sqlitestore/3.1.0",
       "files": [
-        "lib/net45/Microsoft.Azure.Mobile.Client.SQLiteStore.dll",
-        "lib/net45/Microsoft.Azure.Mobile.Client.SQLiteStore.xml",
-        "lib/netstandard1.4/Microsoft.Azure.Mobile.Client.SQLiteStore.dll",
-        "lib/netstandard1.4/Microsoft.Azure.Mobile.Client.SQLiteStore.xml",
-        "lib/portable-net45+win8+wp8+wpa81/Microsoft.Azure.Mobile.Client.SQLiteStore.dll",
-        "lib/portable-net45+win8+wp8+wpa81/Microsoft.Azure.Mobile.Client.SQLiteStore.xml",
-        "microsoft.azure.mobile.client.sqlitestore.4.0.2.nupkg.sha512",
+        "lib/portable-win+net45+wp8+wpa81+monotouch10+monoandroid10+xamarinios10/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll",
+        "lib/portable-win+net45+wp8+wpa81+monotouch10+monoandroid10+xamarinios10/Microsoft.WindowsAzure.Mobile.SQLiteStore.xml",
+        "microsoft.azure.mobile.client.sqlitestore.3.1.0.nupkg.sha512",
         "microsoft.azure.mobile.client.sqlitestore.nuspec"
+      ]
+    },
+    "Microsoft.Bcl/1.1.10": {
+      "sha512": "+tTqoh/M1pyL8El3qLy30EcwnAtyvFoDZJtdG9Cbg/WdFbh4N8kyrq198XHuEL7lnJbeD0DRO8jcX5IIOh05cQ==",
+      "type": "package",
+      "path": "microsoft.bcl/1.1.10",
+      "files": [
+        "License-Stable.rtf",
+        "lib/Xamarin.iOS10/_._",
+        "lib/monoandroid/_._",
+        "lib/monotouch/_._",
+        "lib/net40/System.IO.dll",
+        "lib/net40/System.IO.xml",
+        "lib/net40/System.Runtime.dll",
+        "lib/net40/System.Runtime.xml",
+        "lib/net40/System.Threading.Tasks.dll",
+        "lib/net40/System.Threading.Tasks.xml",
+        "lib/net40/ensureRedirect.xml",
+        "lib/net45/_._",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.IO.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.IO.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Runtime.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Runtime.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Threading.Tasks.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Threading.Tasks.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/ensureRedirect.xml",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.IO.dll",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.IO.xml",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.Runtime.dll",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.Runtime.xml",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.Threading.Tasks.dll",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.Threading.Tasks.xml",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/ensureRedirect.xml",
+        "lib/portable-net40+sl4+win8/System.IO.dll",
+        "lib/portable-net40+sl4+win8/System.IO.xml",
+        "lib/portable-net40+sl4+win8/System.Runtime.dll",
+        "lib/portable-net40+sl4+win8/System.Runtime.xml",
+        "lib/portable-net40+sl4+win8/System.Threading.Tasks.dll",
+        "lib/portable-net40+sl4+win8/System.Threading.Tasks.xml",
+        "lib/portable-net40+sl4+win8/ensureRedirect.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.IO.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.IO.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.Runtime.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.Runtime.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.Threading.Tasks.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.Threading.Tasks.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/ensureRedirect.xml",
+        "lib/portable-net40+win8+wp8+wpa81/System.IO.dll",
+        "lib/portable-net40+win8+wp8+wpa81/System.IO.xml",
+        "lib/portable-net40+win8+wp8+wpa81/System.Runtime.dll",
+        "lib/portable-net40+win8+wp8+wpa81/System.Runtime.xml",
+        "lib/portable-net40+win8+wp8+wpa81/System.Threading.Tasks.dll",
+        "lib/portable-net40+win8+wp8+wpa81/System.Threading.Tasks.xml",
+        "lib/portable-net40+win8+wp8+wpa81/ensureRedirect.xml",
+        "lib/portable-net40+win8/System.IO.dll",
+        "lib/portable-net40+win8/System.IO.xml",
+        "lib/portable-net40+win8/System.Runtime.dll",
+        "lib/portable-net40+win8/System.Runtime.xml",
+        "lib/portable-net40+win8/System.Threading.Tasks.dll",
+        "lib/portable-net40+win8/System.Threading.Tasks.xml",
+        "lib/portable-net40+win8/ensureRedirect.xml",
+        "lib/portable-net45+win8+wp8+wpa81/_._",
+        "lib/portable-net45+win8+wpa81/_._",
+        "lib/portable-net451+win81+wpa81/_._",
+        "lib/portable-net451+win81/_._",
+        "lib/portable-win81+wp81+wpa81/_._",
+        "lib/sl4-windowsphone71/System.IO.dll",
+        "lib/sl4-windowsphone71/System.IO.xml",
+        "lib/sl4-windowsphone71/System.Runtime.dll",
+        "lib/sl4-windowsphone71/System.Runtime.xml",
+        "lib/sl4-windowsphone71/System.Threading.Tasks.dll",
+        "lib/sl4-windowsphone71/System.Threading.Tasks.xml",
+        "lib/sl4-windowsphone71/ensureRedirect.xml",
+        "lib/sl4/System.IO.dll",
+        "lib/sl4/System.IO.xml",
+        "lib/sl4/System.Runtime.dll",
+        "lib/sl4/System.Runtime.xml",
+        "lib/sl4/System.Threading.Tasks.dll",
+        "lib/sl4/System.Threading.Tasks.xml",
+        "lib/sl5/System.IO.dll",
+        "lib/sl5/System.IO.xml",
+        "lib/sl5/System.Runtime.dll",
+        "lib/sl5/System.Runtime.xml",
+        "lib/sl5/System.Threading.Tasks.dll",
+        "lib/sl5/System.Threading.Tasks.xml",
+        "lib/win8/_._",
+        "lib/wp8/_._",
+        "lib/wpa81/_._",
+        "microsoft.bcl.1.1.10.nupkg.sha512",
+        "microsoft.bcl.nuspec"
+      ]
+    },
+    "Microsoft.Bcl.Build/1.0.21": {
+      "sha512": "sgHu4mIt0+NVGyI12Bj4hLPypNK55UOH+ologj2LqDCjxq3EbIxe/uAtHjY+fEwbE1dtsAHG8SXHf+V/EYbKTg==",
+      "type": "package",
+      "path": "microsoft.bcl.build/1.0.21",
+      "files": [
+        "License-Stable.rtf",
+        "build/Microsoft.Bcl.Build.Tasks.dll",
+        "build/Microsoft.Bcl.Build.targets",
+        "microsoft.bcl.build.1.0.21.nupkg.sha512",
+        "microsoft.bcl.build.nuspec"
       ]
     },
     "Microsoft.CSharp/4.3.0": {
@@ -1307,6 +1405,73 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
+      ]
+    },
+    "Microsoft.Net.Http/2.2.29": {
+      "sha512": "fc4CPEewJ30Xgal+fSq1lYIBt582A7eKlAL7O4HXiYAiTp2VTnA4osSvk7T2n8aS4xTCPVJusQk3yKLT0XSpkg==",
+      "type": "package",
+      "path": "microsoft.net.http/2.2.29",
+      "files": [
+        "License-Stable.rtf",
+        "lib/Xamarin.iOS10/System.Net.Http.Extensions.XML",
+        "lib/Xamarin.iOS10/System.Net.Http.Extensions.dll",
+        "lib/Xamarin.iOS10/System.Net.Http.Primitives.dll",
+        "lib/Xamarin.iOS10/System.Net.Http.Primitives.xml",
+        "lib/monoandroid/System.Net.Http.Extensions.XML",
+        "lib/monoandroid/System.Net.Http.Extensions.dll",
+        "lib/monoandroid/System.Net.Http.Primitives.dll",
+        "lib/monoandroid/System.Net.Http.Primitives.xml",
+        "lib/monotouch/System.Net.Http.Extensions.XML",
+        "lib/monotouch/System.Net.Http.Extensions.dll",
+        "lib/monotouch/System.Net.Http.Primitives.dll",
+        "lib/monotouch/System.Net.Http.Primitives.xml",
+        "lib/net40/System.Net.Http.Extensions.XML",
+        "lib/net40/System.Net.Http.Extensions.dll",
+        "lib/net40/System.Net.Http.Primitives.dll",
+        "lib/net40/System.Net.Http.Primitives.xml",
+        "lib/net40/System.Net.Http.WebRequest.dll",
+        "lib/net40/System.Net.Http.WebRequest.xml",
+        "lib/net40/System.Net.Http.dll",
+        "lib/net40/System.Net.Http.xml",
+        "lib/net40/ensureRedirect.xml",
+        "lib/net45/System.Net.Http.Extensions.XML",
+        "lib/net45/System.Net.Http.Extensions.dll",
+        "lib/net45/System.Net.Http.Primitives.dll",
+        "lib/net45/System.Net.Http.Primitives.xml",
+        "lib/net45/ensureRedirect.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Extensions.XML",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Extensions.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Primitives.XML",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Primitives.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/ensureRedirect.xml",
+        "lib/portable-net45+win8+wpa81/System.Net.Http.Extensions.XML",
+        "lib/portable-net45+win8+wpa81/System.Net.Http.Extensions.dll",
+        "lib/portable-net45+win8+wpa81/System.Net.Http.Primitives.dll",
+        "lib/portable-net45+win8+wpa81/System.Net.Http.Primitives.xml",
+        "lib/portable-net45+win8+wpa81/ensureRedirect.xml",
+        "lib/portable-net45+win8/System.Net.Http.Extensions.XML",
+        "lib/portable-net45+win8/System.Net.Http.Extensions.dll",
+        "lib/portable-net45+win8/System.Net.Http.Primitives.dll",
+        "lib/portable-net45+win8/System.Net.Http.Primitives.xml",
+        "lib/portable-net45+win8/ensureRedirect.xml",
+        "lib/sl4-windowsphone71/System.Net.Http.Extensions.XML",
+        "lib/sl4-windowsphone71/System.Net.Http.Extensions.dll",
+        "lib/sl4-windowsphone71/System.Net.Http.Primitives.XML",
+        "lib/sl4-windowsphone71/System.Net.Http.Primitives.dll",
+        "lib/sl4-windowsphone71/System.Net.Http.dll",
+        "lib/sl4-windowsphone71/System.Net.Http.xml",
+        "lib/win8/System.Net.Http.Extensions.XML",
+        "lib/win8/System.Net.Http.Extensions.dll",
+        "lib/win8/System.Net.Http.Primitives.dll",
+        "lib/win8/System.Net.Http.Primitives.xml",
+        "lib/wpa81/System.Net.Http.Extensions.XML",
+        "lib/wpa81/System.Net.Http.Extensions.dll",
+        "lib/wpa81/System.Net.Http.Primitives.dll",
+        "lib/wpa81/System.Net.Http.Primitives.xml",
+        "microsoft.net.http.2.2.29.nupkg.sha512",
+        "microsoft.net.http.nuspec"
       ]
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
@@ -1394,87 +1559,6 @@
         "newtonsoft.json.10.0.2.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "tools/install.ps1"
-      ]
-    },
-    "PCLCrypto/2.0.147": {
-      "sha512": "OFNDBjhP+qPukqB8PiGbWDo70gHsEzSKupL47JisjYFQaGwlPPCnN8ah59QCzIvsg9IUr2AecGKXF3ONpyFL9g==",
-      "type": "package",
-      "path": "pclcrypto/2.0.147",
-      "files": [
-        "lib/MonoAndroid23/PCLCrypto.dll",
-        "lib/MonoAndroid23/PCLCrypto.xml",
-        "lib/MonoTouch10/PCLCrypto.dll",
-        "lib/MonoTouch10/PCLCrypto.xml",
-        "lib/net45/PCLCrypto.dll",
-        "lib/net45/PCLCrypto.xml",
-        "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/PCLCrypto.dll",
-        "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/PCLCrypto.xml",
-        "lib/portable-win81+wpa81/PCLCrypto.dll",
-        "lib/portable-win81+wpa81/PCLCrypto.xml",
-        "lib/wp80/PCLCrypto.dll",
-        "lib/wp80/PCLCrypto.xml",
-        "lib/xamarinios10/PCLCrypto.dll",
-        "lib/xamarinios10/PCLCrypto.xml",
-        "pclcrypto.2.0.147.nupkg.sha512",
-        "pclcrypto.nuspec"
-      ]
-    },
-    "PInvoke.BCrypt/0.3.2": {
-      "sha512": "6nSjPx88F+dcQgxfbM/lkYhi/zQWxwBcGAS3de/Q7YmPr5QdLNv5ZMk2UEFpMQhlFNya4TdUy5i3HKA12uMa7Q==",
-      "type": "package",
-      "path": "pinvoke.bcrypt/0.3.2",
-      "files": [
-        "lib/net40/PInvoke.BCrypt.dll",
-        "lib/net40/PInvoke.BCrypt.xml",
-        "lib/portable-net40+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.BCrypt.dll",
-        "lib/portable-net40+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.BCrypt.xml",
-        "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.BCrypt.dll",
-        "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.BCrypt.xml",
-        "pinvoke.bcrypt.0.3.2.nupkg.sha512",
-        "pinvoke.bcrypt.nuspec"
-      ]
-    },
-    "PInvoke.Kernel32/0.3.2": {
-      "sha512": "zkd5Vc5AQ9B489GMNlmd0wdKnRoLl1B/TnouwcjtaqWbDJ17TQSvBRnV7xjVEpBHQtL/248EaUTcDprJe9bZMA==",
-      "type": "package",
-      "path": "pinvoke.kernel32/0.3.2",
-      "files": [
-        "lib/net40/PInvoke.Kernel32.dll",
-        "lib/net40/PInvoke.Kernel32.xml",
-        "lib/portable-net40+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Kernel32.dll",
-        "lib/portable-net40+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Kernel32.xml",
-        "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Kernel32.dll",
-        "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Kernel32.xml",
-        "pinvoke.kernel32.0.3.2.nupkg.sha512",
-        "pinvoke.kernel32.nuspec"
-      ]
-    },
-    "PInvoke.NCrypt/0.3.2": {
-      "sha512": "s7SIBXlr3qolZaM5mGEXG2sKBY4yFVHTWBlwhRC93le08Aj+n/IaFVnB9LBFv6mpCCivXdzad+9EX6HHds4PyQ==",
-      "type": "package",
-      "path": "pinvoke.ncrypt/0.3.2",
-      "files": [
-        "lib/net40/PInvoke.NCrypt.dll",
-        "lib/net40/PInvoke.NCrypt.xml",
-        "lib/portable-net40+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.NCrypt.dll",
-        "lib/portable-net40+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.NCrypt.xml",
-        "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.NCrypt.dll",
-        "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.NCrypt.xml",
-        "pinvoke.ncrypt.0.3.2.nupkg.sha512",
-        "pinvoke.ncrypt.nuspec"
-      ]
-    },
-    "PInvoke.Windows.Core/0.3.2": {
-      "sha512": "cLG8L2mBqeM6mwKxYg34uZnW5A4cAqyWY4nh+ogxon6BOPLcuQ2QSK/b1IKduUIQg6mDgf06rZUVbuVVPi9+fg==",
-      "type": "package",
-      "path": "pinvoke.windows.core/0.3.2",
-      "files": [
-        "lib/portable-net40+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll",
-        "lib/portable-net40+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.xml",
-        "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll",
-        "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.xml",
-        "pinvoke.windows.core.0.3.2.nupkg.sha512",
-        "pinvoke.windows.core.nuspec"
       ]
     },
     "SQLitePCLRaw.bundle_green/1.1.2": {
@@ -4296,28 +4380,6 @@
         "system.xml.xmldocument.nuspec"
       ]
     },
-    "Validation/2.2.8": {
-      "sha512": "DMNc7JhPlgRwnR+NNb+ldoluObL+RBw96aMoiZae/Looa4vgaAnIysmle/bV2OKqDNW9oUBDckPyfa2+sX6JdA==",
-      "type": "package",
-      "path": "validation/2.2.8",
-      "files": [
-        "README.md",
-        "lib/dotnet/Validation.dll",
-        "lib/dotnet/Validation.xml",
-        "lib/portable-net40+sl50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/Validation.dll",
-        "lib/portable-net40+sl50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/Validation.xml",
-        "lib/portable-net45+dnxcore50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/Validation.dll",
-        "lib/portable-net45+dnxcore50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/Validation.xml",
-        "tools/2013/RequiresNotNull.snippet",
-        "tools/2013/RequiresNotNullOrEmpty.snippet",
-        "tools/2015/RequiresNotNull.snippet",
-        "tools/2015/RequiresNotNullOrEmpty.snippet",
-        "tools/install_snippets.cmd",
-        "tools/uninstall_snippets.cmd",
-        "validation.2.2.8.nupkg.sha512",
-        "validation.nuspec"
-      ]
-    },
     "WindowsAzure.Storage/9.1.0": {
       "sha512": "fkDFm7yE7QLpHhIucjrdL8T9tGC6iz66BtOjWvWzY73GnuoXg22KYJq34XXayUnPIdFdqzl8vIiCxGnDpkbJJg==",
       "type": "package",
@@ -4512,13 +4574,15 @@
         "xamarin.android.support.core.utils.nuspec"
       ]
     },
-    "Xamarin.Android.Support.CustomTabs/23.4.0.1": {
-      "sha512": "M+xGNMyshEVM0oNlNr6cDulBkMAZDAdflAHJITek3MCYwYqpEK4cABFyC0sGgkqkRv2dqFN/WlwrGJUrukwWyQ==",
+    "Xamarin.Android.Support.CustomTabs/25.4.0.2": {
+      "sha512": "Hj/PWWFQpOrIrRDz857tMpdmaHi3r+aSlyHrMGeS3D1dUu/6Wi1XIZdIOGYv+C/cyzBHZf0npifbtQN78mWJVA==",
       "type": "package",
-      "path": "xamarin.android.support.customtabs/23.4.0.1",
+      "path": "xamarin.android.support.customtabs/25.4.0.2",
       "files": [
-        "lib/MonoAndroid403/Xamarin.Android.Support.CustomTabs.dll",
-        "xamarin.android.support.customtabs.23.4.0.1.nupkg.sha512",
+        "THIRD-PARTY-NOTICES.txt",
+        "build/MonoAndroid70/Xamarin.Android.Support.CustomTabs.targets",
+        "lib/MonoAndroid70/Xamarin.Android.Support.CustomTabs.dll",
+        "xamarin.android.support.customtabs.25.4.0.2.nupkg.sha512",
         "xamarin.android.support.customtabs.nuspec"
       ]
     },
@@ -5025,14 +5089,15 @@
   "projectFileDependencyGroups": {
     "MonoAndroid,Version=v8.1": [
       "CarouselView.FormsPlugin >= 5.2.0",
-      "Microsoft.Azure.Mobile.Client >= 4.0.2",
-      "Microsoft.Azure.Mobile.Client.SQLiteStore >= 4.0.2",
+      "Microsoft.Azure.Mobile.Client >= 3.1.0",
+      "Microsoft.Azure.Mobile.Client.SQLiteStore >= 3.1.0",
       "SuaveControls.FloatingActionButton >= 2018.1.5",
       "WindowsAzure.Storage >= 9.1.0",
       "Xam.Plugins.Forms.ImageCircle >= 2.0.2",
       "Xam.Plugins.Settings >= 3.1.1",
-      "Xamarin.Android.Support.CustomTabs >= 23.4.0.1",
+      "Xamarin.Android.Support.CustomTabs >= 25.4.0.2",
       "Xamarin.Android.Support.v4 >= 25.4.0.2",
+      "Xamarin.Android.Support.v7.AppCompat >= 25.4.0.2",
       "Xamarin.FFImageLoading >= 2.3.6",
       "Xamarin.FFImageLoading.Forms >= 2.3.6",
       "Xamarin.FFImageLoading.Transformations >= 2.3.6",
@@ -5084,11 +5149,11 @@
           },
           "Microsoft.Azure.Mobile.Client": {
             "target": "Package",
-            "version": "[4.0.2, )"
+            "version": "[3.1.0, )"
           },
           "Microsoft.Azure.Mobile.Client.SQLiteStore": {
             "target": "Package",
-            "version": "[4.0.2, )"
+            "version": "[3.1.0, )"
           },
           "SuaveControls.FloatingActionButton": {
             "target": "Package",
@@ -5108,9 +5173,13 @@
           },
           "Xamarin.Android.Support.CustomTabs": {
             "target": "Package",
-            "version": "[23.4.0.1, )"
+            "version": "[25.4.0.2, )"
           },
           "Xamarin.Android.Support.v4": {
+            "target": "Package",
+            "version": "[25.4.0.2, )"
+          },
+          "Xamarin.Android.Support.v7.AppCompat": {
             "target": "Package",
             "version": "[25.4.0.2, )"
           },
@@ -5137,17 +5206,5 @@
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1608",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: Xamarin.Android.Support.CustomTabs 23.4.0.1 requires Xamarin.Android.Support.v4 (= 23.4.0.1) but version Xamarin.Android.Support.v4 25.4.0.2 was resolved.",
-      "libraryId": "Xamarin.Android.Support.v4",
-      "targetGraphs": [
-        "MonoAndroid,Version=v8.1"
-      ]
-    }
-  ]
+  }
 }

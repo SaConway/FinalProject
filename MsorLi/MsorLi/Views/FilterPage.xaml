@@ -25,11 +25,11 @@
 
                     <!--Sub Category-->
                     <Label Text="תת קטגוריה" HorizontalOptions="FillAndExpand"
-                           HorizontalTextAlignment="End" Margin="0,40,0,0"/>
+                           HorizontalTextAlignment="End" Margin="0,40,0,0"
+                           Style="{DynamicResource myBodyStyle}"/>
 
                     <Picker Title="בחר תת קטגוריה" IsEnabled="False" x:Name="SubCategoryPicker"
-                            Margin="0,10,0,0" HorizontalOptions="FillAndExpand"
-                            Style="{DynamicResource myBodyStyle}"/>
+                            Margin="0,10,0,0" HorizontalOptions="FillAndExpand"/>
 
                 </StackLayout>
 

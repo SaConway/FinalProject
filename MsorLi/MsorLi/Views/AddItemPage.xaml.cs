@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
 using MsorLi.Utilities;
+using System.Text;
 
 namespace MsorLi.Views
 {
@@ -18,99 +19,160 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------------------------
 
-        List<byte[]> _byteData = new List<byte[]>();
-        ObservableCollection<ImageSource> _images = new ObservableCollection<ImageSource>();
-        
+        bool _isUpdatingItem = false;
+
+        Dictionary<ImageSource, Tuple<ItemImage, byte[]>> _keyValues = new Dictionary<ImageSource, Tuple<ItemImage, byte[]>>();
+        Item _item = new Item();
+
         //---------------------------------------------------
         // FUNCTIONS
         //---------------------------------------------------
 
         public AddItemPage()
         {
-            InitializeComponent();
-
-            city.Text = Settings.Address;
-            contactName.Text = Settings.UserFirstName + " " + Settings.UserLastName;
-            contactNumber.Text = Settings.Phone;
-
-            var categories = CategoryStorage.GetCategories().Result;
-
-            foreach (var c in categories)
+            try
             {
-                category.Items.Add(c.Name);
+                InitializeComponent();
+
+                city.Text = Settings.Address;
+                contactName.Text = Settings.UserFirstName + " " + Settings.UserLastName;
+                contactNumber.Text = Settings.Phone;
+
+                var categories = CategoryStorage.GetCategories().Result;
+
+                category.Items.Clear();
+                foreach (var c in categories)
+                {
+                    if (!category.Items.Contains(c.Name))
+                        category.Items.Add(c.Name);
+                }
             }
+            catch { }
+        }
+
+        public AddItemPage(string itemId)
+        {
+            _item.Id = itemId;
+        }
+
+        public async Task UpdateItemInit(Item item, ObservableCollection<ItemImage> images)
+        {
+            try
+            {
+                _isUpdatingItem = true;
+                InitializeComponent();
+                InitializeCarouselView();
+
+                var categories = await CategoryStorage.GetCategories();
+                await ShowSubCategories(item.Category);
+
+                category.Items.Clear();
+                foreach (var c in categories)
+                {
+                    if (!category.Items.Contains(c.Name))
+                        category.Items.Add(c.Name);
+                }
+
+                // Update item details
+
+                category.SelectedItem = item.Category;
+                description.Text = item.Description;
+                condition.SelectedItem = item.Condition;
+                city.Text = item.Location;
+                contactName.Text = item.ContactName;
+                contactNumber.Text = item.ContactNumber;
+
+                foreach (var img in images)
+                {
+                    _keyValues.Add(img.Url, new Tuple<ItemImage, byte[]>(img, null));
+                }
+
+                imagesView.ItemsSource = _keyValues.Keys;
+
+                pickPictureButton.IsEnabled = _keyValues.Count == Constants.MAX_NUM_OF_IMAGES ? false : true;
+
+                subCategory.SelectedItem = item.SubCategory;
+            }
+            catch (Exception) { }
         }
 
         //---------------------------------------------------
         // EVENT FUNCTIONS
         //---------------------------------------------------
 
-        public async void OnAddImageClick(object sender, EventArgs e)
+        private async void OnAddImageClick(object sender, EventArgs e)
         {
             try
             {
-                if (_images.Count == Constants.MAX_NUM_OF_IMAGES) return;
+                if (_keyValues.Count == Constants.MAX_NUM_OF_IMAGES) return;
 
                 pickPictureButton.IsEnabled = false;
                 Stream imageStream = await DependencyService.Get<IPicturePicker>().GetImageStreamAsync();
 
                 if (imageStream != null)
                 {
-                    _byteData.Add(ImageUpload.ReadFully(imageStream));
-                    ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(_byteData[_byteData.Count - 1]));
+                    var byt = ImageUpload.ReadFully(imageStream);
+                    ImageSource imageSource = ImageSource.FromStream(() => new MemoryStream(byt));
 
-                    if (_images.Count == 0)
+                    if (_keyValues.Count == 0)
                     {
                         InitializeCarouselView();
+
+                        _keyValues.Add(imageSource, new Tuple<ItemImage, byte[]>(new ItemImage { IsPriorityImage = true }, byt));
+                    }
+                    else
+                    {
+                        _keyValues.Add(imageSource, new Tuple<ItemImage, byte[]>(new ItemImage { IsPriorityImage = false }, byt));
                     }
 
-                    _images.Add(imageSource);
-                    imagesView.ItemsSource = _images;
+                    imagesView.ItemsSource = _keyValues.Keys;
                 }
 
-                pickPictureButton.IsEnabled = _images.Count == Constants.MAX_NUM_OF_IMAGES ? false : true;
+                pickPictureButton.IsEnabled = _keyValues.Count == Constants.MAX_NUM_OF_IMAGES ? false : true;
             }
             catch (Exception) {}
         }
 
-        public async void OnAddItemClick(object sender, EventArgs e)
+        private async void OnAddItemClick(object sender, EventArgs e)
         {
             try
             {
-                if (Validation() == false)
+                if (!Validation())
                 {
                     await DisplayAlert("", "אחד או יותר משדות החובה לא מולאו. יש למלא את כולן ולנסות בשנית.", "אישור");
                     return;
                 }
 
-                // Save images in blob
-                List<string> imageUrls = await BlobService.SaveImagesInDB(_byteData);
+                MyScrollView.IsEnabled = false;
+                MyScrollView.Opacity = 0.5;
+                MyFrame.IsVisible = true;
 
-                // Create new item
-                Item item = CreateNewItem(imageUrls.Count);
+                var t1 = UploadItem();
+                var t2 = UploadImages();
 
-                // Upload item to data base
-                await AzureItemService.DefaultManager.UploadToServer(item, item.Id);
-
-                // Update item counter
-                int _numOfItems = await AzureUserService.DefaultManager.UpdateNumOfItems(Settings.UserId, 1);
-                Settings.NumOfItems = _numOfItems.ToString();
-
-                // Create all item images
-                List<ItemImage> itemImages = CreateItemImages(imageUrls, item.Id, item.UserId);
-
-                List<Task> TaskList = new List<Task>();
-
-                // Upload item images to data base
-                foreach (var itemImage in itemImages)
+                await Task.WhenAll(t1, t2);
+                
+                if (!_isUpdatingItem)
                 {
-                    var task = UploadImageToTable(itemImage);
-                    TaskList.Add(task);
+                    // Update item counter
+
+                    int _numOfItems = await AzureUserService.DefaultManager.UpdateNumOfItems(Settings.UserId, 1);
+                    Settings.NumOfItems = _numOfItems.ToString();
                 }
-                await Task.WhenAll(TaskList);
+
+                if (_isUpdatingItem)
+                {
+                    MessagingCenter.Send<AddItemPage>(this, "Updated Item");
+                }
+
+                MyFrame.IsVisible = false;
+
+                if (_isUpdatingItem)
+                    DependencyService.Get<IMessage>().LongAlert("עדכון המוצר בוצע בהצלחה");
+                else
+                    DependencyService.Get<IMessage>().LongAlert("פרסום המוצר בוצע בהצלחה");
 
                 await Navigation.PopAsync();
-                DependencyService.Get<IMessage>().LongAlert("פרסום המוצר בוצע בהצלחה");
             }
 
             catch (Exception)
@@ -120,18 +182,63 @@ namespace MsorLi.Views
             }
         }
 
-        public async void OnCategoryChanged(object sender, EventArgs e)
+        private async void OnCategoryChanged(object sender, EventArgs e)
         {
-            subCategory.IsEnabled = true;
+            string Category = category.Items[category.SelectedIndex];
+            await ShowSubCategories(Category);
+        }
 
-            var mainCategory = category.Items[category.SelectedIndex];
-
-            var SubCategories = await SubCategoryStorage.GetSubCategories(mainCategory);
-
-            subCategory.Items.Clear();
-            foreach (var item in SubCategories)
+        private async void OnDeleteImg(object sender, TappedEventArgs e)
+        {
+            try
             {
-                subCategory.Items.Add(item.Name);
+                ImageSource key = (ImageSource)e.Parameter;
+
+                var tuple = _keyValues[key];
+
+                if (tuple.Item2 == null)
+                {
+                    // Image was uploaded to DB and Blob,
+                    // so we need to delete..
+
+                    var t1 = AzureImageService.DefaultManager.DeleteImage(tuple.Item1);
+                    var t2 = BlobService.DeleteImage(tuple.Item1.Url);
+
+                    await Task.WhenAll(t1, t2);
+                }
+
+                _keyValues.Remove(key);
+
+                var imgs = new ObservableCollection<ImageSource>();
+                foreach (var item in _keyValues.Keys)
+                {
+                    imgs.Add(item);
+                }
+
+                imagesView.ItemsSource = imgs;
+
+                if (_keyValues.Count == 0)
+                {
+                    // Hide images view
+
+                    imagesView.Margin = new Thickness(0, 0, 0, 0);
+                    imagesView.HeightRequest = 0;
+                }
+                else if (_keyValues.Count == 1)
+                {
+                    // Update the img to be priority
+
+                    foreach (var item in _keyValues.Values)
+                    {
+                        item.Item1.IsPriorityImage = true;
+                    }
+                }
+
+                pickPictureButton.IsEnabled = _keyValues.Count == Constants.MAX_NUM_OF_IMAGES ? false : true;
+            }
+            catch (Exception)
+            {
+                await DisplayAlert("שגיאה", "לא ניתן להשלים את הפעולה. נסה שנית.", "אישור");
             }
         }
 
@@ -139,7 +246,53 @@ namespace MsorLi.Views
         // PRIVATE FUNCTIONS
         //---------------------------------------------------
 
-        private async Task UploadImageToTable(ItemImage itemImage)
+        private async Task UploadImages()
+        {
+            var tList = new List<Task>();
+            foreach (var item in _keyValues)
+            {
+                var ByteData = item.Value.Item2;
+
+                if (ByteData != null)
+                {
+                    // A New Image
+
+                    var Url = await BlobService.SaveImageInBlob(ByteData);
+
+                    item.Value.Item1.Url = Url;
+                    item.Value.Item1.ItemId = _item.Id;
+                    item.Value.Item1.UserId = Settings.UserId;
+                }
+
+                item.Value.Item1.Category = category.Items[category.SelectedIndex];
+                item.Value.Item1.SubCategory = subCategory.Items[subCategory.SelectedIndex];
+
+                var t = UploadImageToDB(item.Value.Item1);
+                tList.Add(t);
+            }
+
+            await Task.WhenAll(tList);
+        }
+
+        private async Task UploadItem()
+        {
+            _item.Category = category.Items[category.SelectedIndex];
+            _item.SubCategory = subCategory.Items[subCategory.SelectedIndex];
+            _item.NumOfImages = _keyValues.Count;
+            _item.Description = description.Text;
+            _item.Condition = condition.SelectedItem.ToString();
+            _item.Location = city.Text + ", " + street.Text;
+            _item.ViewCounter = 0;
+            _item.Date = DateTime.Today.ToString("d");
+            _item.Time = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString();
+            _item.ContactName = contactName.Text;
+            _item.ContactNumber = contactNumber.Text;
+            _item.UserId = Settings.UserId;
+
+            await AzureItemService.DefaultManager.UploadToServer(_item, _item.Id);
+        }
+
+        private async Task UploadImageToDB(ItemImage itemImage)
         {
             await AzureImageService.DefaultManager.UploadToServer(itemImage, itemImage.Id);
         }
@@ -153,84 +306,15 @@ namespace MsorLi.Views
 
         private bool Validation()
         {
-            //if (category.SelectedIndex == -1 ||
-            //    _images.Count == 0 ||
-            //    description.Text.Length == 0 ||
-            //    condition.SelectedIndex == -1 ||
-            //    city.Text.Length == 0 ||
-            //    contactName.Text.Length == 0 ||
-            //    contactNumber.Text.Length == 0)
-            //{
-            //    return false;
-            //}
+            if (category.SelectedIndex == -1 || _keyValues.Count == 0 ||
+                description.Text.Length == 0 || condition.SelectedIndex == -1 ||
+                city.Text.Length == 0 || contactName.Text.Length == 0 ||
+                contactNumber.Text.Length == 0)
+                return false;
 
-
-            if (category.SelectedIndex == -1)
-                return false;
-            if (_images.Count == 0)
-                return false;
-            if (description.Text.Length == 0)
-                return false;
-            if (condition.SelectedIndex == -1)
-                return false;
-            if (city.Text.Length == 0)
-                return false;
-            if (contactName.Text.Length == 0)
-                return false;
-            if (contactNumber.Text.Length == 0)
-                return false;
-            
             return true;
         }
 
-        private List<ItemImage> CreateItemImages(List<string> imageUrls , string id, string userId)
-        {
-            List<ItemImage> itemImages = new List<ItemImage>();
-
-            for (int i = 0; i < imageUrls.Count; ++i)
-            {
-                if (i == 0)
-                {
-                    // First and Priority image
-                    itemImages.Add(new ItemImage {
-                        Url = imageUrls[i],
-                        ItemId = id,
-                        IsPriorityImage = true,
-                        UserId = userId,
-                        Category = category.Items[category.SelectedIndex],
-                        SubCategory = subCategory.Items[subCategory.SelectedIndex],
-                    });
-                }
-                else
-                {
-                    itemImages.Add(new ItemImage { Url = imageUrls[i], ItemId = id, IsPriorityImage = false, UserId = userId});
-                }
-            }
-            return itemImages;
-        }
-
-        private Item CreateNewItem(int numOfUrls)
-        {
-            var item = new Item
-            {
-                Category = category.Items[category.SelectedIndex],
-                SubCategory = subCategory.Items[subCategory.SelectedIndex],
-                NumOfImages = numOfUrls,
-                Description = description.Text,
-                Condition = condition.SelectedItem.ToString(),
-                Location = city.Text + ", " + street.Text,
-                ViewCounter = 0,
-                Date = DateTime.Today.ToString("d"),
-                Time = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString(),
-                ContactName = contactName.Text,
-                ContactNumber = contactNumber.Text,
-                UserId = Settings.UserId
-            };
-
-            return item;
-        }
-
-        // If user inserted new info to one of the entries, make the label visable
         private void NameTextChangedEvent(object sender, EventArgs e)
         {
             Entry entry = sender as Entry;
@@ -267,6 +351,19 @@ namespace MsorLi.Views
             else if (entry.Placeholder.ToString() == "טלפון ליצירת קשר")
             {
                 contactNumberLabel.IsVisible = IsVisable;
+            }
+        }
+
+        private async Task ShowSubCategories(string category)
+        {
+            subCategory.IsEnabled = true;
+
+            var SubCategories = await SubCategoryStorage.GetSubCategories(category);
+
+            subCategory.Items.Clear();
+            foreach (var item in SubCategories)
+            {
+                subCategory.Items.Add(item.Name);
             }
         }
     }
