@@ -14,5 +14,6 @@ namespace MsorLiService.DataObjects
         public string ImgUrl { get; set; }
         public int NumOfItems { get; set; }
         public int NumOfItemsUserLike { get; set; }
+        public string FacebookId { get; set; }
     }
 }
