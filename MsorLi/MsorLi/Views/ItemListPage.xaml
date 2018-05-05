@@ -176,6 +176,14 @@
                     WidthRequest="60" HeightRequest="60" BorderRadius="30"
                     Clicked="OnAddItemClick" BackgroundColor="#00BCD4"/>
 
+            <!--No Items-->
+            <Label x:Name="NoItemsLabel" IsVisible="False" 
+                   AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"  
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                   FontSize="Medium"
+                   Text="לא קיימים מוצרים להציג.." VerticalOptions="Center" 
+                   HorizontalOptions="CenterAndExpand"/>
+
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

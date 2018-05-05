@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
 using MsorLi.Utilities;
-using System.Text;
 
 namespace MsorLi.Views
 {
@@ -33,6 +32,7 @@ namespace MsorLi.Views
             try
             {
                 InitializeComponent();
+                this.Title = "הוספת מודעה";
 
                 city.Text = Settings.Address;
                 contactName.Text = Settings.UserFirstName + " " + Settings.UserLastName;
@@ -61,6 +61,8 @@ namespace MsorLi.Views
             {
                 _isUpdatingItem = true;
                 InitializeComponent();
+                this.Title = "עריכת מודעה";
+
                 InitializeCarouselView();
 
                 var categories = await CategoryStorage.GetCategories();
@@ -87,7 +89,8 @@ namespace MsorLi.Views
                     _keyValues.Add(img.Url, new Tuple<ItemImage, byte[]>(img, null));
                 }
 
-                imagesView.ItemsSource = _keyValues.Keys;
+                var keyList = new List<ImageSource>(_keyValues.Keys);
+                imagesView.ItemsSource = keyList;
 
                 pickPictureButton.IsEnabled = _keyValues.Count == Constants.MAX_NUM_OF_IMAGES ? false : true;
 
@@ -125,7 +128,8 @@ namespace MsorLi.Views
                         _keyValues.Add(imageSource, new Tuple<ItemImage, byte[]>(new ItemImage { IsPriorityImage = false }, byt));
                     }
 
-                    imagesView.ItemsSource = _keyValues.Keys;
+                    var keyList = new List<ImageSource>(_keyValues.Keys);
+                    imagesView.ItemsSource = keyList;
                 }
 
                 pickPictureButton.IsEnabled = _keyValues.Count == Constants.MAX_NUM_OF_IMAGES ? false : true;
@@ -158,21 +162,26 @@ namespace MsorLi.Views
 
                     int _numOfItems = await AzureUserService.DefaultManager.UpdateNumOfItems(Settings.UserId, 1);
                     Settings.NumOfItems = _numOfItems.ToString();
+
+                    DependencyService.Get<IMessage>().LongAlert("פרסום המוצר בוצע בהצלחה");
+
+                    await Navigation.PopAsync();
                 }
 
                 if (_isUpdatingItem)
                 {
                     MessagingCenter.Send<AddItemPage>(this, "Updated Item");
+
+                    MessagingCenter.Subscribe<ItemPage>(this, "Finished To Updated Item", async (s) => {
+
+                        MessagingCenter.Unsubscribe<ItemPage>(this, "Finished To Updated Item");
+
+                        MyFrame.IsVisible = false;
+                        DependencyService.Get<IMessage>().LongAlert("עדכון המוצר בוצע בהצלחה");
+                        await Navigation.PopAsync();
+
+                    });
                 }
-
-                MyFrame.IsVisible = false;
-
-                if (_isUpdatingItem)
-                    DependencyService.Get<IMessage>().LongAlert("עדכון המוצר בוצע בהצלחה");
-                else
-                    DependencyService.Get<IMessage>().LongAlert("פרסום המוצר בוצע בהצלחה");
-
-                await Navigation.PopAsync();
             }
 
             catch (Exception)
@@ -281,7 +290,7 @@ namespace MsorLi.Views
             _item.NumOfImages = _keyValues.Count;
             _item.Description = description.Text;
             _item.Condition = condition.SelectedItem.ToString();
-            _item.Location = city.Text + ", " + street.Text;
+            _item.Location = (street.Text != null && street.Text.Length > 0) ? city.Text + ", " + street.Text : city.Text;
             _item.ViewCounter = 0;
             _item.Date = DateTime.Today.ToString("d");
             _item.Time = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString();

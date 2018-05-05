@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MsorLi.Views.AddItemPage"
-             Title="הוספת מודעה" >
+             x:Class="MsorLi.Views.AddItemPage">
 
     <!--Content-->
     <ContentPage.Content>
@@ -87,8 +86,10 @@
                                         <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding .}"/>
                                         <StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
 
-                                            <Label Text="מחק" BackgroundColor="#80000000" TextColor="White" FontSize="Medium"
-                                               HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                                            <Label Text="מחק" BackgroundColor="Transparent" 
+                                                   TextColor="White" FontSize="Medium"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="CenterAndExpand">
                                                 <Label.GestureRecognizers>
                                                     <TapGestureRecognizer Tapped="OnDeleteImg" CommandParameter="{Binding .}"/>
                                                 </Label.GestureRecognizers>

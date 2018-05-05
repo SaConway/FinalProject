@@ -325,6 +325,8 @@ namespace MsorLi.Views
             {
                 using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
                 {
+                    NoItemsLabel.IsVisible = false;
+
                     AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages(_currentCategory, _currentSubCategory);
 
                     if (AllImages != null)
@@ -333,7 +335,14 @@ namespace MsorLi.Views
 
                         if (ImagePairs != null)
                         {
-                            listView_items.ItemsSource = ImagePairs;
+                            if (ImagePairs.Count == 0)
+                            {
+                                NoItemsLabel.IsVisible = true;
+                            }
+                            else
+                            {
+                                listView_items.ItemsSource = ImagePairs;
+                            }
                         }
                     }
                 }

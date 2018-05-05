@@ -7,9 +7,7 @@
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout x:Name="MyMainStack" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
-                <Label x:Name="NoItems" IsVisible="False" Text="לא קיימים מוצרים להציג.." VerticalOptions="Start" 
-                       HorizontalOptions="CenterAndExpand" Margin="0,20,0,0" Style="{DynamicResource myBodyStyle}"/>
-
+                
                 <ListView x:Name="listView_items" Margin="5"
                           HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
                     <ListView.ItemTemplate>
@@ -71,6 +69,14 @@
                                VerticalOptions="CenterAndExpand"
                                AbsoluteLayout.LayoutFlags="PositionProportional"
                                AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"/>
+
+            <!--No Items-->
+            <Label x:Name="NoItems" IsVisible="False" 
+                   AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"  
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                   FontSize="Medium"
+                   Text="לא קיימים מוצרים להציג.." VerticalOptions="Center" 
+                   HorizontalOptions="CenterAndExpand"/>
 
         </AbsoluteLayout>
     </ContentPage.Content>

@@ -17,23 +17,30 @@ namespace MsorLi.Droid
         }
 
         // Launches the startup task
-        protected override void OnResume()
+        protected async override void OnResume()
         {
             base.OnResume();
-            Task startupWork = new Task(() => { SimulateStartup(); });
-            startupWork.Start();
-        }
 
-        // Simulates background work that happens behind the splash screen
-        async void SimulateStartup()
-        {
             Task t1 = Task1();
             Task t2 = Task2();
+
+            Constants.ScreenHeight = (int)(Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
+            Constants.ScreenWidth = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
+
+            FFImageLoading.Forms.Droid.CachedImageRenderer.Init(true);
+            ImageCircle.Forms.Plugin.Droid.ImageCircleRenderer.Init();
+            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 
             await Task.WhenAll(t1, t2);
 
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
+
+        // Simulates background work that happens behind the splash screen
+        //async void SimulateStartup()
+        //{
+            
+        //}
 
         async Task Task1()
         {

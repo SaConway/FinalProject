@@ -4,13 +4,11 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
-using Android.Views;
-using MsorLi.Services;
-using MsorLi.Utilities;
 
 namespace MsorLi.Droid
 {
-    [Activity(Label = "מסור-לי", Icon = "@drawable/icon", Theme = "@style/MainTheme",
+    [Activity(Label = "מסור-לי", Icon = "@drawable/icon", Theme = "@style/Splash",
+        MainLauncher = false,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
         ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
@@ -19,20 +17,12 @@ namespace MsorLi.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
-            base.OnCreate(bundle);
-
-            Constants.ScreenHeight = (int)(Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
-            Constants.ScreenWidth = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
-
-            FFImageLoading.Forms.Droid.CachedImageRenderer.Init(true);
-            ImageCircle.Forms.Plugin.Droid.ImageCircleRenderer.Init();
-            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
             global::Xamarin.Forms.Forms.Init(this, bundle);
-
+            base.SetTheme(Resource.Style.MainTheme);
+            base.OnCreate(bundle);
             LoadApplication(new App());
         }
-
+        
         //--------------------------------------------
         // PICTURE HANDLE
 

@@ -52,6 +52,9 @@ namespace MsorLi.Views
 
                 UpdateItemDetails();
                 UpdateItemImages();
+
+                MessagingCenter.Send<ItemPage>(this, "Finished To Updated Item");
+
             });
         }
 
@@ -115,12 +118,12 @@ namespace MsorLi.Views
 
             if (_userId == _item.UserId || Settings.Permission == "Admin")
             {
-                ToolbarItems.Add(new ToolbarItem("ערוך מודעה", "", async () =>
+                ToolbarItems.Add(new ToolbarItem("", "edit.png", async () =>
                 {
                     await UpdateItem();
                 }));
 
-                ToolbarItems.Add(new ToolbarItem("מחק מודעה", "", async () =>
+                ToolbarItems.Add(new ToolbarItem("", "delete_item.png", async () =>
                 {
                     await DeleteItem();
                 }));
