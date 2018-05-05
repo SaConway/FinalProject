@@ -1,7 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MsorLi.Views.SavedItemsPage"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              Title="מוצרים שאהבתי">
 
     <ContentPage.Content>
@@ -9,7 +11,7 @@
             <StackLayout x:Name="MyMainStack" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
                 
                 <ListView x:Name="listView_items" Margin="5"
-                          HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                          HorizontalOptions="CenterAndExpand" SeparatorVisibility="None" VerticalOptions="Center">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -51,9 +53,16 @@
                                     </StackLayout>
 
                                     <!--Item Image-->
-                                    <Image Source="{Binding ImageUrl}" VerticalOptions="Center"
-                                            HorizontalOptions="EndAndExpand" Grid.Column="2"/>
 
+                                    
+                                    <ffimageloading:CachedImage Grid.Column="2" VerticalOptions="Center"
+                                            Aspect="AspectFit"  HorizontalOptions="EndAndExpand" Source="{Binding ImageUrl}">
+
+                                        <ffimageloading:CachedImage.Transformations>
+                                            <fftransformations:RoundedTransformation Radius="15"/>
+                                        </ffimageloading:CachedImage.Transformations>
+
+                                    </ffimageloading:CachedImage>
                                 </Grid>
 
                             </ViewCell>

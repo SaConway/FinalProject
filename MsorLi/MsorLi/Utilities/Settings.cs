@@ -82,6 +82,12 @@ namespace MsorLi.Utilities
             get => _AppSettings.GetValueOrDefault(nameof(Password), _SettingsDefault, "Settings.txt");
             set => _AppSettings.AddOrUpdateValue(nameof(Password), value, "Settings.txt");
         }
+        public static string FacebookId
+        {
+            get => _AppSettings.GetValueOrDefault(nameof(FacebookId), _SettingsDefault, "Settings.txt");
+            set => _AppSettings.AddOrUpdateValue(nameof(FacebookId), value, "Settings.txt");
+        }
+
 
         public static void ClearUserData(){
             _AppSettings.Clear("Settings.txt");
@@ -100,6 +106,7 @@ namespace MsorLi.Utilities
             Settings.NumOfItems = user.NumOfItems.ToString();
             Settings.NumOfItemsUserLike = user.NumOfItemsUserLike.ToString();
             Settings.Password = user.Password;
+            Settings.FacebookId = user.FacebookId;
         }
     }
 }
