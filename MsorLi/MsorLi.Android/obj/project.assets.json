@@ -5139,27 +5139,31 @@
             "target": "Package",
             "version": "5.2.0"
           },
+          "Microsoft.Azure.Mobile.Client": {
+            "target": "Package",
+            "version": "3.1.0"
+          },
+          "Microsoft.Azure.Mobile.Client.SQLiteStore": {
+            "target": "Package",
+            "version": "3.1.0"
+          },
           "SuaveControls.FloatingActionButton": {
             "target": "Package",
-<<<<<<< HEAD
-            "version": "[3.1.0, )"
-=======
             "version": "2018.1.5"
->>>>>>> 1b23d83... facebook bugs and edit
           },
           "Xam.Plugins.Settings": {
             "target": "Package",
-<<<<<<< HEAD
-            "version": "[3.1.0, )"
-=======
             "version": "3.1.1"
->>>>>>> 1b23d83... facebook bugs and edit
           },
           "Xamarin.Android.Support.CustomTabs": {
             "target": "Package",
-            "version": "23.4.0.1"
+            "version": "25.4.0.2"
           },
           "Xamarin.Android.Support.v4": {
+            "target": "Package",
+            "version": "25.4.0.2"
+          },
+          "Xamarin.Android.Support.v7.AppCompat": {
             "target": "Package",
             "version": "25.4.0.2"
           },
@@ -5167,31 +5171,11 @@
             "target": "Package",
             "version": "2.5.1.444934"
           },
-          "Microsoft.Azure.Mobile.Client": {
-            "target": "Package",
-            "version": "4.0.2"
-          },
-          "Microsoft.Azure.Mobile.Client.SQLiteStore": {
-            "target": "Package",
-<<<<<<< HEAD
-            "version": "[25.4.0.2, )"
-=======
-            "version": "4.0.2"
->>>>>>> 1b23d83... facebook bugs and edit
-          },
           "WindowsAzure.Storage": {
             "target": "Package",
             "version": "9.1.0"
           },
-<<<<<<< HEAD
-          "Xamarin.Android.Support.v7.AppCompat": {
-            "target": "Package",
-            "version": "[25.4.0.2, )"
-          },
-          "Xamarin.FFImageLoading": {
-=======
           "Xamarin.Forms.CarouselView": {
->>>>>>> 1b23d83... facebook bugs and edit
             "target": "Package",
             "version": "2.3.0-pre2"
           },
