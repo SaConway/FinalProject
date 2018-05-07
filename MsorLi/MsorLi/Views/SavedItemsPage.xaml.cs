@@ -45,7 +45,7 @@ namespace MsorLi.Views
             // Returning from item page, and item was unsaved
             MessagingCenter.Subscribe<ItemPage, string>(this, "Item Deleted", (sender, key) => {
 
-                MessagingCenter.Unsubscribe<LoginPage, string>(this, "Item Deleted");
+                MessagingCenter.Unsubscribe<ItemPage, string>(this, "Item Deleted");
 
                 try
                 {

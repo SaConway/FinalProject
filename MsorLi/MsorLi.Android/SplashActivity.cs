@@ -8,18 +8,12 @@ using MsorLi.Utilities;
 
 namespace MsorLi.Droid
 {
-    [Activity(Label = "מסור-לי", Theme = "@style/Splash", MainLauncher = true, NoHistory = true)]
+    [Activity(Label = "מסור-לי", Theme = "@style/Splash", MainLauncher = false, NoHistory = true)]
     public class SplashActivity : AppCompatActivity
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-        }
-
-        // Launches the startup task
-        protected async override void OnResume()
-        {
-            base.OnResume();
 
             Task t1 = Task1();
             Task t2 = Task2();
@@ -33,8 +27,22 @@ namespace MsorLi.Droid
 
             await Task.WhenAll(t1, t2);
 
-            StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+            var intent = new Intent(this, typeof(MainActivity));
+            intent.AddFlags(ActivityFlags.ClearTop);
+            intent.AddFlags(ActivityFlags.SingleTop);
+            StartActivity(intent);
+            Finish();
+
+            //StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
+
+        // Launches the startup task
+        //protected async override void OnResume()
+        //{
+        //    base.OnResume();
+
+            
+        //}
 
         // Simulates background work that happens behind the splash screen
         //async void SimulateStartup()

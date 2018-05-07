@@ -262,6 +262,13 @@ namespace MsorLi.Views
         {
             try
             {
+                var answer = await DisplayAlert("", "האם ברצונך למחוק מודעה זו?", "כן", "לא");
+
+                if (!answer)
+                {
+                    return;
+                }
+
                 List<Task> list = new List<Task>();
                 var task1 = AzureItemService.DefaultManager.DeleteItem(_item);
                 list.Add(task1);
@@ -296,7 +303,7 @@ namespace MsorLi.Views
             {
                 AddItemPage addItemPage = new AddItemPage(_item.Id);
                 await Navigation.PushAsync(addItemPage);
-                await addItemPage.UpdateItemInit(_item, _images);
+                await addItemPage.EditItemInit(_item, _images);
             }
             catch (Exception)
             {

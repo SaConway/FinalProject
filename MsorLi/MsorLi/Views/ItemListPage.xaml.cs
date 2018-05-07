@@ -74,6 +74,17 @@ namespace MsorLi.Views
 
                 await RefreshItems(true, true);
             });
+
+            // Returning from item page, and item was deleted
+            MessagingCenter.Subscribe<ItemPage, string>(this, "Item Deleted", async (sender, key) => {
+                MessagingCenter.Unsubscribe<ItemPage, string>(this, "Item Deleted");
+
+                try
+                {
+                    await RefreshItems(true, true);
+                }
+                catch {}
+            });
         }
 
         protected async override void OnAppearing()
@@ -113,27 +124,11 @@ namespace MsorLi.Views
 
         private async void OnRefresh(object sender, EventArgs e)
         {
-            var list = (ListView)sender;
-            Exception error = null;
-
             try
             {
-                //string category = (_currentCategoryStackLayout.Children[1] as Label).Text;
-                await RefreshItems(false, true);
+                await RefreshItems(true, true);
             }
             catch (Exception)
-            {
-
-            }
-            finally
-            {
-                if (list != null)
-                {
-                    list.EndRefresh();
-                }
-            }
-
-            if (error != null)
             {
                 await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים.", "אישור");
             }
@@ -157,7 +152,7 @@ namespace MsorLi.Views
             _currentCategoryStackLayout = s;
 
             // Scroll to current category
-            await CategoryScroll.ScrollToAsync(_currentCategoryStackLayout, ScrollToPosition.MakeVisible, true); CategoryMainStack.IsEnabled = true;
+            //await CategoryScroll.ScrollToAsync(_currentCategoryStackLayout, ScrollToPosition.MakeVisible, true); CategoryMainStack.IsEnabled = true;
 
             await RefreshItems(true, true);
         }
@@ -323,32 +318,33 @@ namespace MsorLi.Views
         {
             try
             {
-                using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
+                listView_items.IsRefreshing = true;
+
+                AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages(_currentCategory, _currentSubCategory);
+
+                listView_items.IsRefreshing = false;
+
+                if (AllImages != null)
                 {
-                    NoItemsLabel.IsVisible = false;
+                    CreateImagePairs();
 
-                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages(_currentCategory, _currentSubCategory);
-
-                    if (AllImages != null)
+                    if (ImagePairs != null)
                     {
-                        CreateImagePairs();
-
-                        if (ImagePairs != null)
+                        if (ImagePairs.Count == 0)
                         {
-                            if (ImagePairs.Count == 0)
-                            {
-                                NoItemsLabel.IsVisible = true;
-                            }
-                            else
-                            {
-                                listView_items.ItemsSource = ImagePairs;
-                            }
+                            NoItemsLabel.IsVisible = true;
+                        }
+                        else
+                        {
+                            NoItemsLabel.IsVisible = false;
+                            listView_items.ItemsSource = ImagePairs;
                         }
                     }
                 }
             }
             catch
             {
+                listView_items.IsRefreshing = false;
                 await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים.", "אישור");
             }
         }

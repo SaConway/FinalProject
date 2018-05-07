@@ -43,20 +43,17 @@
 
                                     <Frame CornerRadius="7"
                                            Padding="5"
+                                           HasShadow="False"
                                            Margin="0,5,5,0"
                                            BackgroundColor="#80000000"
                                            AbsoluteLayout.LayoutFlags="PositionProportional"
                                            AbsoluteLayout.LayoutBounds="1,0,AutoSize,AutoSize">
 
-                                        <StackLayout Spacing="0">
-
-                                            <Label HorizontalTextAlignment="Center"
-                                                   VerticalTextAlignment="Center"
-                                                   TextColor="White" 
-                                                   Text="{Binding ImageNumber}"
-                                                   Style="{DynamicResource myBodyStyle}"/>
-
-                                        </StackLayout>
+                                        <Label HorizontalTextAlignment="Center"
+                                            VerticalTextAlignment="Center"
+                                            TextColor="White" 
+                                            Text="{Binding ImageNumber}"
+                                            Style="{DynamicResource myBodyStyle}"/>
 
                                     </Frame>
 

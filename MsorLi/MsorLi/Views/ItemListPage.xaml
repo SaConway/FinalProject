@@ -120,7 +120,7 @@
                 <ActivityIndicator IsVisible="False" IsEnabled="True" x:Name="syncIndicator"/>
 
                 <!--List Of Images-->
-                <ListView x:Name="listView_items" IsPullToRefreshEnabled="true" Refreshing="OnRefresh"
+                <ListView x:Name="listView_items" Refreshing="OnRefresh" IsPullToRefreshEnabled="True"
                           SeparatorVisibility="None" Margin="0,3,0,0">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -133,8 +133,13 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
 
-                                    <ffimageloading:CachedImage Grid.Column="0"
-                                            Aspect="AspectFit" Source="{Binding Item1}" Margin="0,0,0,3">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <ffimageloading:CachedImage Grid.Column="0" Aspect="AspectFit" Grid.RowSpan="2"
+                                                                Source="{Binding Item1}" Margin="0,0,0,3">
 
                                         <ffimageloading:CachedImage.Transformations>
                                             <fftransformations:RoundedTransformation Radius="15"/>
@@ -147,8 +152,28 @@
                                         </ffimageloading:CachedImage.GestureRecognizers>
                                     </ffimageloading:CachedImage>
 
-                                    <ffimageloading:CachedImage Grid.Column="1"
-                                            Aspect="AspectFit" Source="{Binding Item3}" Margin="0,0,0,3">
+
+                                    <Frame CornerRadius="10" Grid.Column="0" Grid.Row="1"
+                                           HasShadow="False"
+                                           VerticalOptions="Center" HorizontalOptions="FillAndExpand"
+                                          BackgroundColor="#80000000" Padding="12" Margin="2,4">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Text="דימונה" BackgroundColor="Transparent" 
+                                                   TextColor="White" Grid.Column="0" HorizontalOptions="End"
+                                                   Style="{DynamicResource myBodyStyle}" VerticalOptions="Center"/>
+                                            <Image Source="location.png" HorizontalOptions="Start" 
+                                                   VerticalOptions="Center" Grid.Column="1"
+                                                   HeightRequest="24" WidthRequest="24"/>
+                                        </Grid>
+                                    </Frame>
+
+                                    <ffimageloading:CachedImage Grid.Column="1" Aspect="AspectFit" Grid.RowSpan="2"
+                                                                Source="{Binding Item3}" Margin="0,0,0,3">
 
                                         <ffimageloading:CachedImage.Transformations>
                                             <fftransformations:RoundedTransformation Radius="15"/>
@@ -160,6 +185,25 @@
                                             </TapGestureRecognizer>
                                         </ffimageloading:CachedImage.GestureRecognizers>
                                     </ffimageloading:CachedImage>
+
+                                    <Frame CornerRadius="10" Grid.Column="1" Grid.Row="1"
+                                           HasShadow="False"
+                                          VerticalOptions="Center" HorizontalOptions="FillAndExpand"
+                                          BackgroundColor="#80000000" Padding="12" Margin="2,4">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Text="דימונה" BackgroundColor="Transparent" 
+                                                   TextColor="White" Grid.Column="0" HorizontalOptions="End"
+                                                   Style="{DynamicResource myBodyStyle}" VerticalOptions="Center"/>
+                                            <Image Source="location.png" HorizontalOptions="Start" 
+                                                   VerticalOptions="Center" Grid.Column="1"
+                                                   HeightRequest="24" WidthRequest="24"/>
+                                        </Grid>
+                                    </Frame>
 
                                 </Grid>
                             </ViewCell>

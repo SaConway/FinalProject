@@ -18,7 +18,7 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------------------------
 
-        bool _isUpdatingItem = false;
+        bool _isEditingItem = false;
 
         Dictionary<ImageSource, Tuple<ItemImage, byte[]>> _keyValues = new Dictionary<ImageSource, Tuple<ItemImage, byte[]>>();
         Item _item = new Item();
@@ -55,13 +55,15 @@ namespace MsorLi.Views
             _item.Id = itemId;
         }
 
-        public async Task UpdateItemInit(Item item, ObservableCollection<ItemImage> images)
+        public async Task EditItemInit(Item item, ObservableCollection<ItemImage> images)
         {
             try
             {
-                _isUpdatingItem = true;
+                _isEditingItem = true;
                 InitializeComponent();
                 this.Title = "עריכת מודעה";
+
+                _item = item;
 
                 InitializeCarouselView();
 
@@ -128,8 +130,13 @@ namespace MsorLi.Views
                         _keyValues.Add(imageSource, new Tuple<ItemImage, byte[]>(new ItemImage { IsPriorityImage = false }, byt));
                     }
 
-                    var keyList = new List<ImageSource>(_keyValues.Keys);
-                    imagesView.ItemsSource = keyList;
+                    //var keyList = new List<ImageSource>(_keyValues.Keys);
+                    var collection = new ObservableCollection<ImageSource>();
+                    foreach (var img in _keyValues.Keys)
+                    {
+                        collection.Add(img);
+                    }
+                    imagesView.ItemsSource = collection;
                 }
 
                 pickPictureButton.IsEnabled = _keyValues.Count == Constants.MAX_NUM_OF_IMAGES ? false : true;
@@ -156,7 +163,7 @@ namespace MsorLi.Views
 
                 await Task.WhenAll(t1, t2);
                 
-                if (!_isUpdatingItem)
+                if (!_isEditingItem)
                 {
                     // Update item counter
 
@@ -168,7 +175,7 @@ namespace MsorLi.Views
                     await Navigation.PopAsync();
                 }
 
-                if (_isUpdatingItem)
+                if (_isEditingItem)
                 {
                     MessagingCenter.Send<AddItemPage>(this, "Updated Item");
 
@@ -292,11 +299,15 @@ namespace MsorLi.Views
             _item.Condition = condition.SelectedItem.ToString();
             _item.Location = (street.Text != null && street.Text.Length > 0) ? city.Text + ", " + street.Text : city.Text;
             _item.ViewCounter = 0;
-            _item.Date = DateTime.Today.ToString("d");
-            _item.Time = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString();
             _item.ContactName = contactName.Text;
             _item.ContactNumber = contactNumber.Text;
             _item.UserId = Settings.UserId;
+
+            if (!_isEditingItem)
+            {
+                _item.Date = DateTime.Today.ToString("d");
+                _item.Time = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString();
+            }
 
             await AzureItemService.DefaultManager.UploadToServer(_item, _item.Id);
         }
@@ -318,7 +329,7 @@ namespace MsorLi.Views
             if (category.SelectedIndex == -1 || _keyValues.Count == 0 ||
                 description.Text.Length == 0 || condition.SelectedIndex == -1 ||
                 city.Text.Length == 0 || contactName.Text.Length == 0 ||
-                contactNumber.Text.Length == 0)
+                contactNumber.Text.Length == 0 || subCategory.SelectedIndex == -1)
                 return false;
 
             return true;
