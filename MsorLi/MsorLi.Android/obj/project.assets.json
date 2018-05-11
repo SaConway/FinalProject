@@ -1171,6 +1171,19 @@
         "runtime": {
           "lib/MonoAndroid10/Xamarin.Forms.CarouselView.dll": {}
         }
+      },
+      "Xamarin.Forms.Extended.InfiniteScrolling/1.0.0-preview2": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Xamarin.Forms": "2.4.0.280"
+        },
+        "compile": {
+          "lib/netstandard1.0/Xamarin.Forms.Extended.InfiniteScrolling.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Xamarin.Forms.Extended.InfiniteScrolling.dll": {}
+        }
       }
     }
   },
@@ -5084,6 +5097,17 @@
         "xamarin.forms.carouselview.2.3.0-pre2.nupkg.sha512",
         "xamarin.forms.carouselview.nuspec"
       ]
+    },
+    "Xamarin.Forms.Extended.InfiniteScrolling/1.0.0-preview2": {
+      "sha512": "q3MleY9BqDnVKUiXSvYETV++mg70CVXt7h2jqd3etdq5HHrRTYJdjZUdAEBYg5OozfABV7m5QtISU1XheV83XQ==",
+      "type": "package",
+      "path": "xamarin.forms.extended.infinitescrolling/1.0.0-preview2",
+      "files": [
+        "lib/netstandard1.0/Xamarin.Forms.Extended.InfiniteScrolling.dll",
+        "lib/netstandard1.0/Xamarin.Forms.Extended.InfiniteScrolling.xml",
+        "xamarin.forms.extended.infinitescrolling.1.0.0-preview2.nupkg.sha512",
+        "xamarin.forms.extended.infinitescrolling.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -5102,36 +5126,29 @@
       "Xamarin.FFImageLoading.Forms >= 2.3.6",
       "Xamarin.FFImageLoading.Transformations >= 2.3.6",
       "Xamarin.Forms >= 2.5.1.444934",
-      "Xamarin.Forms.CarouselView >= 2.3.0-pre2"
+      "Xamarin.Forms.CarouselView >= 2.3.0-pre2",
+      "Xamarin.Forms.Extended.InfiniteScrolling >= 1.0.0-preview2"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sagee\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {}
+    "/Users/Idan Marciano/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.Android\\MsorLi.Android.csproj",
+      "projectUniqueName": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/MsorLi.Android.csproj",
       "projectName": "MsorLi.Android",
-      "projectPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.Android\\MsorLi.Android.csproj",
-      "packagesPath": "C:\\Users\\sagee\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.Android\\obj\\",
+      "projectPath": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/MsorLi.Android.csproj",
+      "packagesPath": "/Users/Idan Marciano/.nuget/packages/",
+      "outputPath": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj",
       "projectStyle": "PackageReference",
-      "skipContentFileWrite": true,
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\sagee\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "/Users/Idan Marciano/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "monoandroid81"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5145,63 +5162,67 @@
         "dependencies": {
           "CarouselView.FormsPlugin": {
             "target": "Package",
-            "version": "[5.2.0, )"
+            "version": "5.2.0"
           },
           "Microsoft.Azure.Mobile.Client": {
             "target": "Package",
-            "version": "[3.1.0, )"
+            "version": "3.1.0"
           },
           "Microsoft.Azure.Mobile.Client.SQLiteStore": {
             "target": "Package",
-            "version": "[3.1.0, )"
+            "version": "3.1.0"
           },
           "SuaveControls.FloatingActionButton": {
             "target": "Package",
-            "version": "[2018.1.5, )"
-          },
-          "WindowsAzure.Storage": {
-            "target": "Package",
-            "version": "[9.1.0, )"
-          },
-          "Xam.Plugins.Forms.ImageCircle": {
-            "target": "Package",
-            "version": "[2.0.2, )"
+            "version": "2018.1.5"
           },
           "Xam.Plugins.Settings": {
             "target": "Package",
-            "version": "[3.1.1, )"
+            "version": "3.1.1"
           },
           "Xamarin.Android.Support.CustomTabs": {
             "target": "Package",
-            "version": "[25.4.0.2, )"
+            "version": "25.4.0.2"
           },
           "Xamarin.Android.Support.v4": {
             "target": "Package",
-            "version": "[25.4.0.2, )"
+            "version": "25.4.0.2"
           },
           "Xamarin.Android.Support.v7.AppCompat": {
             "target": "Package",
-            "version": "[25.4.0.2, )"
-          },
-          "Xamarin.FFImageLoading": {
-            "target": "Package",
-            "version": "[2.3.6, )"
-          },
-          "Xamarin.FFImageLoading.Forms": {
-            "target": "Package",
-            "version": "[2.3.6, )"
-          },
-          "Xamarin.FFImageLoading.Transformations": {
-            "target": "Package",
-            "version": "[2.3.6, )"
+            "version": "25.4.0.2"
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[2.5.1.444934, )"
+            "version": "2.5.1.444934"
+          },
+          "WindowsAzure.Storage": {
+            "target": "Package",
+            "version": "9.1.0"
           },
           "Xamarin.Forms.CarouselView": {
             "target": "Package",
-            "version": "[2.3.0-pre2, )"
+            "version": "2.3.0-pre2"
+          },
+          "Xam.Plugins.Forms.ImageCircle": {
+            "target": "Package",
+            "version": "2.0.2"
+          },
+          "Xamarin.FFImageLoading.Transformations": {
+            "target": "Package",
+            "version": "2.3.6"
+          },
+          "Xamarin.FFImageLoading": {
+            "target": "Package",
+            "version": "2.3.6"
+          },
+          "Xamarin.FFImageLoading.Forms": {
+            "target": "Package",
+            "version": "2.3.6"
+          },
+          "Xamarin.Forms.Extended.InfiniteScrolling": {
+            "target": "Package",
+            "version": "1.0.0-preview2"
           }
         }
       }

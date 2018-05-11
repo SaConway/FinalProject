@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:extended="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling" 
              x:Class="MsorLi.Views.ItemListPage">
     
     <!-- Padding for ios status bar -->
@@ -122,11 +123,14 @@
                 <!--List Of Images-->
                 <ListView x:Name="listView_items" Refreshing="OnRefresh" IsPullToRefreshEnabled="True"
                           SeparatorVisibility="None" Margin="0,3,0,0">
+
+                    <ListView.Behaviors>
+                <extended:InfiniteScrollBehavior IsLoadingMore="{Binding Is_Busy}" />
+            </ListView.Behaviors>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-
-                                <Grid RowSpacing="0" ColumnSpacing="0">
+                               <Grid RowSpacing="0" ColumnSpacing="0">
 
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
@@ -209,8 +213,36 @@
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView>
 
+
+
+                        <ListView.Footer>
+                        <StackLayout>
+                            <Grid x:Name="Footer1" Padding="6" >
+                                <!-- set the footer to have a zero height when invisible -->
+                                <Grid.Triggers>
+                                    <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                        <Setter Property="HeightRequest" Value="0" />
+                                    </Trigger>
+                                </Grid.Triggers>
+                                <!-- the loading content -->
+                                <Label Text="טוען מוצרים..." Style="{StaticResource StatsCaptionLabel}" FontSize="20"  VerticalOptions="Center" HorizontalOptions="Center" />
+                                
+                            </Grid>
+                        
+                            <Grid x:Name="Footer2" Padding="6" >
+                                                      <!-- set the footer to have a zero height when invisible -->
+                                <Grid.Triggers>
+                                    <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                        <Setter Property="HeightRequest" Value="0" />
+                                    </Trigger>
+                                </Grid.Triggers>
+                                <Label Text="אין עוד מוצרים" Style="{StaticResource StatsCaptionLabel}" FontSize="20"  VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Grid>
+                                    </StackLayout>
+                        </ListView.Footer>
+                    
+                    </ListView>
             </StackLayout>
 
             <!--Add Button-->
@@ -220,13 +252,14 @@
                     WidthRequest="60" HeightRequest="60" BorderRadius="30"
                     Clicked="OnAddItemClick" BackgroundColor="#00BCD4"/>
 
+
             <!--No Items-->
             <Label x:Name="NoItemsLabel" IsVisible="False" 
                    AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"  
                    AbsoluteLayout.LayoutFlags="PositionProportional"
-                   FontSize="Medium"
+                   Style="{StaticResource StatsCaptionLabel}" FontSize="Medium"
                    Text="לא קיימים מוצרים להציג.." VerticalOptions="Center" 
-                   HorizontalOptions="CenterAndExpand"/>
+                   HorizontalOptions="CenterAndExpand" />
 
         </AbsoluteLayout>
     </ContentPage.Content>

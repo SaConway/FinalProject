@@ -47,5 +47,6 @@ namespace MsorLi.Services
         {
             await _table.DeleteAsync(item);
         }
+
     }
 }

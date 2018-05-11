@@ -7,6 +7,9 @@ using MsorLi.Models;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using MsorLi.Utilities;
+using Xamarin.Forms.Extended;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace MsorLi.Views
 {
@@ -17,9 +20,9 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------
 
-        ObservableCollection<ItemImage> AllImages = new ObservableCollection<ItemImage>();
-        ObservableCollection<Tuple<string, string, string, string>> ImagePairs =
-                            new ObservableCollection<Tuple<string, string, string, string>>();
+        ObservableCollection<ItemImage> AllImages;
+
+        InfiniteScrollCollection<Tuple<string, string, string, string>> ImagePairs { get; }
 
         bool _startupRefresh = false;
 
@@ -33,20 +36,37 @@ namespace MsorLi.Views
         string _currentCategory = "כל המוצרים";
         string _currentSubCategory = "";
 
+        private bool _isBusy;
+        int _numOfItems = 0;
+
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
 
+        public bool Is_Busy
+        {
+            get => _isBusy;
+            set
+            {
+                _isBusy = value;
+            }
+        }
+
         // Contrusctor
         public ItemListPage()
         {
+            
             // Hide Navigation Bar
             NavigationPage.SetHasNavigationBar(this, false);
 
             InitializeComponent();
 
+            NoItemsLabel.IsVisible = false;
+
+
             // Disable Selection Item
-            listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) => {
+            listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) =>
+            {
                 if (e.Item == null) return;
                 ((ListView)sender).SelectedItem = null;
             };
@@ -61,7 +81,7 @@ namespace MsorLi.Views
             _categoryIconSources.Add("all.png");
 
             // Listen to filters
-            MessagingCenter.Subscribe<FilterPage, Tuple<string, string>>(this, "Back From Filter", async (sender, filterResult) => 
+            MessagingCenter.Subscribe<FilterPage, Tuple<string, string>>(this, "Back From Filter", async (sender, filterResult) =>
             {
                 // Update filter results
                 _currentCategory = filterResult.Item1;
@@ -75,16 +95,51 @@ namespace MsorLi.Views
                 await RefreshItems(true, true);
             });
 
-            // Returning from item page, and item was deleted
-            MessagingCenter.Subscribe<ItemPage, string>(this, "Item Deleted", async (sender, key) => {
-                MessagingCenter.Unsubscribe<ItemPage, string>(this, "Item Deleted");
-
-                try
+            ImagePairs = new InfiniteScrollCollection<Tuple<string, string, string, string>>
+            {
+                OnLoadMore = async () =>
                 {
-                    await RefreshItems(true, true);
+                    Is_Busy = true;
+
+                    // load the next page
+                    var page = ImagePairs.Count * 2 / Constants.PAGE_SIZE;
+
+                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages(page, _currentCategory, _currentSubCategory); 
+
+                    ObservableCollection<Tuple<string, string, string, string>> ip = new ObservableCollection<Tuple<string, string, string, string>>();
+
+					_numOfItems = await AzureImageService.DefaultManager.NumOfItems(_currentCategory, _currentSubCategory);
+
+                    if (AllImages != null)
+                    {
+                        ip = CreateImagePairs();
+
+                        if (ImagePairs != null)
+                        {
+                            listView_items.ItemsSource = ImagePairs;
+                        }
+                    }
+                    Is_Busy = false;
+
+                    // return the items that need to be added
+                    return ip;
+                },
+                OnCanLoadMore = () =>
+                {
+					Boolean count =  ImagePairCount() < _numOfItems;
+					if (count)
+					{
+						Footer1.IsVisible = true;
+						Footer2.IsVisible = false;
+					}
+					else
+					{
+						Footer1.IsVisible = false;
+                        Footer2.IsVisible = true;
+					}
+					return count;
                 }
-                catch {}
-            });
+            };
         }
 
         protected async override void OnAppearing()
@@ -101,7 +156,7 @@ namespace MsorLi.Views
                     CategoryMainStack.IsEnabled = false;
 
                     Task t1 = CreateCategories();
-                    Task t2 = RefreshItems(true, true);
+                    Task t2 =  RefreshItems(true, true);
                     await Task.WhenAll(t1, t2);
 
                     CategoryMainStack.IsVisible = true;
@@ -124,11 +179,27 @@ namespace MsorLi.Views
 
         private async void OnRefresh(object sender, EventArgs e)
         {
+            var list = (ListView)sender;
+            Exception error = null;
+
             try
             {
-                await RefreshItems(true, true);
+                //string category = (_currentCategoryStackLayout.Children[1] as Label).Text;
+                await RefreshItems(false, true);
             }
             catch (Exception)
+            {
+
+            }
+            finally
+            {
+                if (list != null)
+                {
+                    list.EndRefresh();
+                }
+            }
+
+            if (error != null)
             {
                 await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים.", "אישור");
             }
@@ -136,25 +207,35 @@ namespace MsorLi.Views
 
         private async void OnCategoryClick(object sender, EventArgs e)
         {
-            var category = (e as TappedEventArgs).Parameter.ToString();
+            try
+            {
+                var category = (e as TappedEventArgs).Parameter.ToString();
 
-            _currentCategory = category;
+                _currentCategory = category;
 
-            // Update old category
-            (_currentCategoryStackLayout.Children[1] as Label).TextColor = Color.FromHex("212121");
-            (_currentCategoryStackLayout.Children[2] as BoxView).IsVisible = false;
-            
-            // Update new category
-            var s = sender as StackLayout;
-            (s.Children[1] as Label).TextColor = Color.FromHex("00BCD4");
-            (s.Children[2] as BoxView).IsVisible = true;
+                // Update old category
+                (_currentCategoryStackLayout.Children[1] as Label).TextColor = Color.FromHex("212121");
+                (_currentCategoryStackLayout.Children[2] as BoxView).IsVisible = false;
 
-            _currentCategoryStackLayout = s;
+                // Update new category
+                var s = sender as StackLayout;
+                (s.Children[1] as Label).TextColor = Color.FromHex("00BCD4");
+                (s.Children[2] as BoxView).IsVisible = true;
 
-            // Scroll to current category
-            //await CategoryScroll.ScrollToAsync(_currentCategoryStackLayout, ScrollToPosition.MakeVisible, true); CategoryMainStack.IsEnabled = true;
+                _currentCategoryStackLayout = s;
 
-            await RefreshItems(true, true);
+                // Scroll to current category
+                //problem with iOS
+                //await CategoryScroll.ScrollToAsync(_currentCategoryStackLayout, ScrollToPosition.MakeVisible, true);
+                CategoryMainStack.IsEnabled = true;
+
+
+                await RefreshItems(true, true);
+            }
+            catch(Exception){
+
+              
+            }
         }
 
         private async void OnItemClick(object sender, EventArgs e)
@@ -269,7 +350,7 @@ namespace MsorLi.Views
                 // Update old category
                 (_currentCategoryStackLayout.Children[1] as Label).TextColor = Color.FromHex("212121");
                 (_currentCategoryStackLayout.Children[2] as BoxView).IsVisible = false;
-                
+
                 _currentCategoryStackLayout = (StackLayout)StackCategory.Children[StackCategory.Children.Count - 1];
 
                 // Update new category
@@ -318,43 +399,43 @@ namespace MsorLi.Views
         {
             try
             {
-                listView_items.IsRefreshing = true;
-
-                AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages(_currentCategory, _currentSubCategory);
-
-                listView_items.IsRefreshing = false;
-
-                if (AllImages != null)
+                using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
                 {
-                    CreateImagePairs();
-
-                    if (ImagePairs != null)
+                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages(0, _currentCategory, _currentSubCategory);
+					_numOfItems = await AzureImageService.DefaultManager.NumOfItems(_currentCategory, _currentSubCategory);
+                    ImagePairs.Clear();
+                    if (AllImages.Count > 0)
                     {
-                        if (ImagePairs.Count == 0)
+                        NoItemsLabel.IsVisible = false;
+
+                        var temp_image_pair =  CreateImagePairs();
+                        ImagePairs.AddRange(temp_image_pair);
+                        if (ImagePairs != null)
                         {
-                            NoItemsLabel.IsVisible = true;
-                        }
-                        else
-                        {
-                            NoItemsLabel.IsVisible = false;
                             listView_items.ItemsSource = ImagePairs;
                         }
+                        return;
                     }
+
+					Footer2.IsVisible = false;
+                    NoItemsLabel.IsVisible = true;
+                    Is_Busy = false;
                 }
             }
-            catch
+            catch(Exception)
             {
-                listView_items.IsRefreshing = false;
                 await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים.", "אישור");
             }
         }
 
-        private void CreateImagePairs()
+        private ObservableCollection<Tuple<string, string, string, string>> CreateImagePairs()
         {
             try
             {
-                ImagePairs.Clear();
-
+                //ImagePairs.Clear();
+                ObservableCollection<Tuple<string, string, string, string>> ip  = 
+                    new ObservableCollection<Tuple<string, string, string, string>>() ;
+                
                 for (int i = 0; i < AllImages.Count; i += 2)
                 {
                     string Item1 = AllImages[i].Url;
@@ -362,13 +443,14 @@ namespace MsorLi.Views
                     string Item3 = i + 1 < AllImages.Count ? AllImages[i + 1].Url : "";
                     string Item4 = i + 1 < AllImages.Count ? AllImages[i + 1].ItemId : "";
 
-                    ImagePairs.Add(new Tuple<string, string, string, string>(Item1, Item2, Item3, Item4));
+                    ip.Add(new Tuple<string, string, string, string>(Item1, Item2, Item3, Item4));
                 }
+                return ip;
             }
 
             catch (Exception)
             {
-
+                return null;
             }
         }
 
@@ -385,7 +467,7 @@ namespace MsorLi.Views
             // Create button for all items
             CreateCategory("כל המוצרים",
                 _categoryIconSources[_categoryIconSources.Count - 1],
-                defultCategory : true);
+                defultCategory: true);
         }
 
         void CreateCategory(string categoryName, string categoryIconSource, bool defultCategory = false)
@@ -407,10 +489,11 @@ namespace MsorLi.Views
                 WidthRequest = 24
             };
 
-            var box = new BoxView {
-                 HeightRequest = 5,
-                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                 BackgroundColor = Color.FromHex("00BCD4"),
+            var box = new BoxView
+            {
+                HeightRequest = 5,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                BackgroundColor = Color.FromHex("00BCD4"),
             };
 
             if (defultCategory)
@@ -437,6 +520,8 @@ namespace MsorLi.Views
 
             if (defultCategory) _currentCategoryStackLayout = stack;
         }
+
+
 
         //---------------------------------
         // ActivityIndicator
@@ -495,5 +580,19 @@ namespace MsorLi.Views
                 }
             }
         }
+
+		public int ImagePairCount()
+		{
+			int count = 0;
+
+			for (int i = 0; i < ImagePairs.Count; i ++)
+			{
+				if (ImagePairs[i].Item1 != "")
+					count++;
+				if (ImagePairs[i].Item3 != "")
+					count++;
+			}
+			return count;
+		}
     }
 }

@@ -37,7 +37,7 @@ namespace MsorLi.Views
             MessagingCenter.Subscribe<ItemPage>(this, "Update Like Counter", (sender) => {
                 ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
             });
-            if(Settings.FacebookId != null){
+            if(Settings.FacebookId != ""){
                 EditBtn.IsEnabled = false;
             }
 
@@ -49,6 +49,8 @@ namespace MsorLi.Views
             {
                 UpdateUserData();
                 await GetUserItems();
+                if (AllImages.Count > 0)
+                    NoItemLabel.IsVisible = false;
             }
             catch (Exception)
             {
@@ -92,8 +94,8 @@ namespace MsorLi.Views
                 var image = new CachedImage
                 {
                     Source = AllImages[i].Url,
-                    WidthRequest = Utilities.Constants.ScreenWidth / 2.5,
-                    HeightRequest = Utilities.Constants.ScreenWidth / 2.5
+                    WidthRequest = Utilities.Constants.ScreenWidth / 2,
+                    HeightRequest = Utilities.Constants.ScreenWidth / 2
 
                 };
 
