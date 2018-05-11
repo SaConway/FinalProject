@@ -12,9 +12,12 @@
             <Color x:Key="LightBackgroundColor">#FAFAFA</Color>
             <Color x:Key="DarkBackgroundColor">#C0C0C0</Color>
             <Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
-            <Color x:Key="LightTextColor">#999999</Color>
-            <Color x:Key="BodyTextColor">#C3C3C3</Color>
-            <Color x:Key="HeaderTextColor">#585858</Color>
+            <!--<Color x:Key="LightTextColor">#999999</Color>-->
+            <!--<Color x:Key="BodyTextColor">#C3C3C3</Color>-->
+            <!--<Color x:Key="HeaderTextColor">#585858</Color>-->
+            <Color x:Key="LightTextColor">#212121</Color>
+            <Color x:Key="BodyTextColor">#212121</Color>
+            <Color x:Key="HeaderTextColor">#212121</Color>
 
              <!--font sizes-->
             <x:Double x:Key="TitleFontSize">20</x:Double>

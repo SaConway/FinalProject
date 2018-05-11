@@ -8,6 +8,7 @@ using MsorLi.Utilities;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.Generic;
+using Plugin.Messaging;
 
 namespace MsorLi.Views
 {
@@ -23,7 +24,7 @@ namespace MsorLi.Views
         public bool _unSaveItem = false;
 
         Item _item = new Item();
-        string _userId = Settings.UserId;
+        string _userId = Utilities.Settings.UserId;
         ObservableCollection<ItemImage> _images = new ObservableCollection<ItemImage>();
         string _savedId = "";
 
@@ -116,7 +117,7 @@ namespace MsorLi.Views
 
             // Show Delete item btn and Update item ?
 
-            if (_userId == _item.UserId || Settings.Permission == "Admin")
+            if (_userId == _item.UserId || Utilities.Settings.Permission == "Admin")
             {
                 ToolbarItems.Add(new ToolbarItem("", "edit.png", async () =>
                 {
@@ -164,8 +165,8 @@ namespace MsorLi.Views
         // Update liked items counter
         private async void UpdateLikeCounter(int prefix)
         {
-            int _numOfLikedItem = await AzureUserService.DefaultManager.UpdateNumOfItemsLiked(Settings.UserId, prefix);
-            Settings.NumOfItemsUserLike = _numOfLikedItem.ToString();
+            int _numOfLikedItem = await AzureUserService.DefaultManager.UpdateNumOfItemsLiked(MsorLi.Utilities.Settings.UserId, prefix);
+            Utilities.Settings.NumOfItemsUserLike = _numOfLikedItem.ToString();
             MessagingCenter.Send<ItemPage>(this, "Update Like Counter");
         }
 
@@ -177,7 +178,7 @@ namespace MsorLi.Views
         {
             try
             {
-                if (Settings.UserId == "")
+                if (Utilities.Settings.UserId == "")
                 {
                     // User is Not loged in
                     await Navigation.PushAsync(new LoginPage());
@@ -255,6 +256,38 @@ namespace MsorLi.Views
             DependencyService.Get<IWaze>().Navigate(_item.Location);
         }
 
+        // Call Button
+        private async void CallButtonClick(object sender, EventArgs e)
+        {
+            try
+            {
+                var phoneDialer = CrossMessaging.Current.PhoneDialer;
+                if (phoneDialer.CanMakePhoneCall)
+                    phoneDialer.MakePhoneCall(_item.ContactNumber);
+                else throw new Exception();
+            }
+            catch (Exception)
+            {
+                await DisplayAlert("שגיאה", "לא ניתן להשלים שיחה זו.", "אישור");
+            }
+        }
+
+        // WhatsApp Button
+        private async void WhatsAppButtonClick(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    var whatsaap = Android.Net.Uri.Parse("smsto:" + number);
+            //    Intent i = new Intent(Intent.ActionSendto, whatsaap);
+            //    i.SetPackage("com.whatsapp");
+            //    StartActivity(Intent.CreateChooser(i, ""));
+            //}
+            //catch (Exception)
+            //{
+
+            //}
+        }
+
         // PRIVATE FUNCTIONS
         //----------------------------------------------------------
 
@@ -282,8 +315,8 @@ namespace MsorLi.Views
                     list.Add(task3);
                 }
 
-                int num_of_items = await AzureUserService.DefaultManager.UpdateNumOfItems(Settings.UserId, -1);
-                Settings.NumOfItems = num_of_items.ToString();
+                int num_of_items = await AzureUserService.DefaultManager.UpdateNumOfItems(Utilities.Settings.UserId, -1);
+                Utilities.Settings.NumOfItems = num_of_items.ToString();
 
                 await Task.WhenAll(list);
 

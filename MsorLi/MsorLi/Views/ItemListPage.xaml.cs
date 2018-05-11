@@ -18,8 +18,8 @@ namespace MsorLi.Views
         //---------------------------------
 
         ObservableCollection<ItemImage> AllImages = new ObservableCollection<ItemImage>();
-        ObservableCollection<Tuple<string, string, string, string>> ImagePairs =
-                            new ObservableCollection<Tuple<string, string, string, string>>();
+        ObservableCollection<Tuple<string, string, string, string, bool, string, string>> ImagePairs =
+                            new ObservableCollection<Tuple<string, string, string, string, bool, string, string>>();
 
         bool _startupRefresh = false;
 
@@ -361,8 +361,12 @@ namespace MsorLi.Views
                     string Item2 = AllImages[i].ItemId;
                     string Item3 = i + 1 < AllImages.Count ? AllImages[i + 1].Url : "";
                     string Item4 = i + 1 < AllImages.Count ? AllImages[i + 1].ItemId : "";
+                    bool Item5 = i + 1 < AllImages.Count ? true : false;
+                    string Item6 = AllImages[i].Location;
+                    string Item7 = i + 1 < AllImages.Count ? AllImages[i].Location : "";
 
-                    ImagePairs.Add(new Tuple<string, string, string, string>(Item1, Item2, Item3, Item4));
+                    ImagePairs.Add(new Tuple<string, string, string, string, bool, string, string>
+                        (Item1, Item2, Item3, Item4, Item5, Item6, Item7));
                 }
             }
 

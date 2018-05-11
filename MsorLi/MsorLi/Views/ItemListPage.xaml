@@ -13,7 +13,8 @@
     <ContentPage.Content>
         <AbsoluteLayout>
             
-            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Spacing="0">
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" 
+                         Spacing="0">
 
                 <!--ToolBar-->
                 <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#00BCD4" Padding="10">
@@ -153,17 +154,17 @@
                                     </ffimageloading:CachedImage>
 
 
-                                    <Frame CornerRadius="10" Grid.Column="0" Grid.Row="1"
+                                    <Frame CornerRadius="5" Grid.Column="0" Grid.Row="1"
                                            HasShadow="False"
                                            VerticalOptions="Center" HorizontalOptions="FillAndExpand"
-                                          BackgroundColor="#80000000" Padding="12" Margin="2,4">
-                                        <Grid>
+                                          BackgroundColor="#80000000" Padding="5" Margin="2,3">
+                                        <Grid HorizontalOptions="Center">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Label Text="דימונה" BackgroundColor="Transparent" 
+                                            <Label Text="{Binding Item6}" BackgroundColor="Transparent" 
                                                    TextColor="White" Grid.Column="0" HorizontalOptions="End"
                                                    Style="{DynamicResource myBodyStyle}" VerticalOptions="Center"/>
                                             <Image Source="location.png" HorizontalOptions="Start" 
@@ -186,17 +187,17 @@
                                         </ffimageloading:CachedImage.GestureRecognizers>
                                     </ffimageloading:CachedImage>
 
-                                    <Frame CornerRadius="10" Grid.Column="1" Grid.Row="1"
-                                           HasShadow="False"
-                                          VerticalOptions="Center" HorizontalOptions="FillAndExpand"
-                                          BackgroundColor="#80000000" Padding="12" Margin="2,4">
-                                        <Grid>
+                                    <Frame CornerRadius="5" Grid.Column="1" Grid.Row="1"
+                                           HasShadow="False" IsVisible="{Binding Item5}"
+                                           VerticalOptions="Center" HorizontalOptions="FillAndExpand"
+                                           BackgroundColor="#80000000" Padding="5" Margin="2,3">
+                                        <Grid HorizontalOptions="Center">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Label Text="דימונה" BackgroundColor="Transparent" 
+                                            <Label Text="{Binding Item7}" BackgroundColor="Transparent" 
                                                    TextColor="White" Grid.Column="0" HorizontalOptions="End"
                                                    Style="{DynamicResource myBodyStyle}" VerticalOptions="Center"/>
                                             <Image Source="location.png" HorizontalOptions="Start" 

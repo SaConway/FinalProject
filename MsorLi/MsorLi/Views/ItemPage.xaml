@@ -181,13 +181,62 @@
                              HeightRequest="1"
                              Style="{StaticResource GrayColorBoxView}"/>
 
-                    <!--Waze-->
+                    <!--Btns-->
+                    <Grid Margin="5,20,5,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Call-->
+                        <StackLayout Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CallButtonClick"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Image Source="call.png" HorizontalOptions="Center"/>
+                            <Label Text="חיוג" HorizontalOptions="Center"/>
+
+                        </StackLayout>
+
+                        <!--Call-->
+                        <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="WhatsAppButtonClick"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Image Source="whatsapp.png" HorizontalOptions="Center"/>
+                            <Label Text="שלח הודעה" HorizontalOptions="Center"/>
+
+                        </StackLayout>
+
+                        <!--Waze-->
+                        <StackLayout Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnWazeClick"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Image HorizontalOptions="Center" Source="waze.png"/>
+                            <Label HorizontalOptions="Center" Text="ניווט"/>
+
+                        </StackLayout>
+
+                    </Grid>
+
+                    <!--Line-->
+                    <BoxView Margin="20,10,20,0" HorizontalOptions="FillAndExpand"
+                             HeightRequest="1"
+                             Style="{StaticResource GrayColorBoxView}"/>
+
+                    <!--Waze--><!--
                     <Label Text="נווט עם Waze" Style="{DynamicResource myBodyStyle}"
                            HorizontalTextAlignment="End" Margin="0,10,25,0">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnWazeClick"/>
                         </Label.GestureRecognizers>
-                    </Label>
+                    </Label>-->
                     
                     <!--Report Item-->
                     <Label Text="דווח על מוצר" Style="{DynamicResource myBodyStyle}"

@@ -282,6 +282,7 @@ namespace MsorLi.Views
 
                 item.Value.Item1.Category = category.Items[category.SelectedIndex];
                 item.Value.Item1.SubCategory = subCategory.Items[subCategory.SelectedIndex];
+                item.Value.Item1.Location = city.Text;
 
                 var t = UploadImageToDB(item.Value.Item1);
                 tList.Add(t);

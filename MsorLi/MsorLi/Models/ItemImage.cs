@@ -12,5 +12,6 @@ namespace MsorLi.Models
         public string UserId { get; set; }
         public string Category { get; set; }
         public string SubCategory { get; set; }
+        public string Location { get; set; }
     }
 }
