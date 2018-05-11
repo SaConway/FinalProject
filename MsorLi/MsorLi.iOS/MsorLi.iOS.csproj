@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
@@ -11,8 +10,7 @@
     <RootNamespace>MsorLi.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>MsorLi.iOS</AssemblyName>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -120,6 +118,11 @@
     <BundleResource Include="Resources\like.png" />
     <BundleResource Include="Resources\edit.png" />
     <BundleResource Include="Resources\add_item.png" />
+    <BundleResource Include="Resources\filter.png" />
+    <BundleResource Include="Resources\plus.png" />
+    <BundleResource Include="Resources\facebook.png" />
+    <BundleResource Include="Resources\delete_item.png" />
+    <BundleResource Include="Resources\profile%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -161,17 +164,8 @@
     <PackageReference Include="WindowsAzure.Storage">
       <Version>9.1.1</Version>
     </PackageReference>
-    <PackageReference Include="Xam.Plugins.Messaging">
-      <Version>5.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="Xam.Plugins.Settings">
-      <Version>3.1.1</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.0.2" />
     <PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.0.2" />
-    <PackageReference Include="Xamarin.Forms">
-      <Version>2.5.1.444934</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Forms.CarouselView">
       <Version>2.3.0-pre2</Version>
     </PackageReference>
@@ -189,6 +183,15 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Auth">
       <Version>1.6.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugins.Settings">
+      <Version>4.0.0.7</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>2.5.1.527436</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms.Extended.InfiniteScrolling">
+      <Version>1.0.0-preview2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -220,15 +223,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\unknown-user.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\profile.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\profile%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\profile%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\love_icon.png" />

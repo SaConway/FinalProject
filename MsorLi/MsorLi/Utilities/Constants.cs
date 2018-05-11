@@ -9,5 +9,6 @@
 
         public static int ScreenHeight { get; set; }
         public static int ScreenWidth { get; set; }
+        public static int PAGE_SIZE = 10;
     }
 }

@@ -52,7 +52,7 @@ namespace MsorLi.Droid
 
         async Task Task1()
         {
-            await AzureImageService.DefaultManager.GetAllPriorityImages("כל המוצרים", "");
+            await AzureImageService.DefaultManager.GetAllPriorityImages(0,"כל המוצרים", "");
         }
 
         async Task Task2()
