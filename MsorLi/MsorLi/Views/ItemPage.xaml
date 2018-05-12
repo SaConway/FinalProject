@@ -99,6 +99,21 @@
 
                         </StackLayout>
 
+                        <!--UnSave-->
+                        <StackLayout x:Name="UnSaveStack" Grid.Column="1"
+                                     IsVisible="False"
+                                     HorizontalOptions="Center" VerticalOptions="Center">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SaveButtonClick"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Image HorizontalOptions="Center"
+                                   Source="love_full.png"/>
+                            <Label HorizontalOptions="Center"
+                                   Text="הסרה"/>
+
+                        </StackLayout>
+
                         <!--Call-->
                         <StackLayout Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
                             <StackLayout.GestureRecognizers>
@@ -121,21 +136,6 @@
 
                         </StackLayout>
 
-                        <!--UnSave-->
-                        <StackLayout x:Name="UnSaveStack" Grid.Column="1"
-                                     IsVisible="False"
-                                     HorizontalOptions="Center" VerticalOptions="Center">
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="SaveButtonClick"/>
-                            </StackLayout.GestureRecognizers>
-
-                            <Image HorizontalOptions="Center"
-                                   Source="love_full.png"/>
-                            <Label HorizontalOptions="Center"
-                                   Text="ביטול שמירה"/>
-
-                        </StackLayout>
-                        
                     </Grid>
 
                     <!--Line-->

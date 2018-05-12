@@ -228,7 +228,8 @@
                                     </Trigger>
                                 </Grid.Triggers>
                                 <!-- the loading content -->
-                                <Label Text="טוען מוצרים..." Style="{StaticResource StatsCaptionLabel}" FontSize="20"  VerticalOptions="Center" HorizontalOptions="Center" />
+                                <Label Text="טוען מוצרים..." Style="{StaticResource StatsCaptionLabel}" 
+                                       VerticalOptions="Center" HorizontalOptions="Center" />
 
                             </Grid>
                         </ListView.Footer>

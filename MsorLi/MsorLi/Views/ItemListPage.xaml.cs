@@ -383,35 +383,42 @@ namespace MsorLi.Views
         {
             try
             {
-                using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
+                //using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
+                //{
+                listView_items.IsRefreshing = true;
+
+                AllImages = await AzureImageService.DefaultManager.
+                    GetAllPriorityImages(0, _currentCategory, _currentSubCategory);
+
+				_numOfItems = await AzureImageService.DefaultManager.
+                    NumOfItems(_currentCategory, _currentSubCategory);
+
+                ImagePairs.Clear();
+                if (AllImages.Count > 0)
                 {
-                    AllImages = await AzureImageService.DefaultManager.
-                        GetAllPriorityImages(0, _currentCategory, _currentSubCategory);
+                    NoItemsLabel.IsVisible = false;
 
-					_numOfItems = await AzureImageService.DefaultManager.
-                        NumOfItems(_currentCategory, _currentSubCategory);
+                    var temp_image_pair = CreateImagePairs();
+                    ImagePairs.AddRange(temp_image_pair);
 
-                    ImagePairs.Clear();
-                    if (AllImages.Count > 0)
+                    if (ImagePairs != null)
                     {
-                        NoItemsLabel.IsVisible = false;
+                        listView_items.IsRefreshing = false;
 
-                        var temp_image_pair = CreateImagePairs();
-                        ImagePairs.AddRange(temp_image_pair);
-
-                        if (ImagePairs != null)
-                        {
-                            listView_items.ItemsSource = ImagePairs;
-                        }
-                        return;
+                        listView_items.ItemsSource = ImagePairs;
                     }
-
-                    NoItemsLabel.IsVisible = true;
-                    Is_Busy = false;
+                    return;
                 }
+                listView_items.IsRefreshing = false;
+
+                NoItemsLabel.IsVisible = true;
+                Is_Busy = false;
+                //}
             }
             catch(Exception)
             {
+                listView_items.IsRefreshing = false;
+
                 await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים.", "אישור");
             }
         }

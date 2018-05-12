@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="MS_TableConnectionString-Web.config Connection String" description="MS_TableConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-MsorLiService-20180305081937.mdf;Initial Catalog=aspnet-MsorLiService-20180305081937;Integrated Security=True;MultipleActiveResultSets=True" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLiService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MS_TableConnectionString']/@connectionString" />
-  </parameter>
-</parameters>

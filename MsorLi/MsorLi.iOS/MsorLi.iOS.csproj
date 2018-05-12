@@ -163,13 +163,27 @@
     <ImageAsset Include="Media.xcassets\LaunchImages.launchimage\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\icon.png" />
-    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\Contents.json" />
-    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\Default.png" />
-    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\Default%402x.png" />
-    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\Default-568h%402x.png" />
-    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\Default-Portrait.png" />
-    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\Default-Portrait%402x.png" />
+    <ImageAsset Include="Media.xcassets\AppIcons.appiconset\icon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\Default.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\Default%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\Default-568h%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\Default-Portrait.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\Default-Portrait%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

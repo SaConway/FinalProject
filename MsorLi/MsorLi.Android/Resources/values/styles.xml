@@ -8,20 +8,20 @@
     <item name="windowActionBar">false</item>
     <!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette -->
     <!-- colorPrimary is used for the default action bar background -->
-    <item name="colorPrimary">#00BCD4</item>
-    <item name="colorPrimaryDark">#0097A7</item>
-    <item name="colorAccent">#00BCD4</item>
+    <item name="colorPrimary">#19a4b4</item>
+    <item name="colorPrimaryDark">#19a4b4</item>
+    <item name="colorAccent">#19a4b4</item>
     <item name="windowActionModeOverlay">true</item>
 
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
   </style>
 
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
-    <item name="colorAccent">#00BCD4</item>
+    <item name="colorAccent">#19a4b4</item>
   </style>
 
   <style name="Splash" parent ="Theme.AppCompat.Light.NoActionBar">
-    <item name="colorPrimaryDark">#00BCD4</item>
+    <item name="colorPrimaryDark">#19a4b4</item>
     <item name="android:windowBackground">@drawable/splash_screen</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowContentOverlay">@null</item>  
