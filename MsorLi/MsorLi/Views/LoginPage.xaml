@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MsorLi.Views.LoginPage"
@@ -26,7 +26,7 @@
 
                     <!--Forgat Password-->
                     <Button Grid.Column="0" Text="שכחתי סיסמא"
-                            TextColor="#00BCD4" BorderWidth="0.5" BorderColor="#999999"
+                            TextColor="#19a4b4" BorderWidth="0.5" BorderColor="#999999"
                             BackgroundColor="Transparent" Style="{StaticResource ButtonStyle}"/>
 
                     <!--Log in-->

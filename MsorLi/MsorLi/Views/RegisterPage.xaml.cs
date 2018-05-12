@@ -139,7 +139,7 @@ namespace MsorLi.Views
                 passwordLabel.IsVisible && phoneLabel.IsVisible && cityLabel.IsVisible)
             {
                 SubmitBtn.IsEnabled = true;
-                SubmitBtn.BackgroundColor = Color.FromHex("00BCD4");
+                SubmitBtn.BackgroundColor = Color.FromHex("19a4b4");
             }
             else
             {

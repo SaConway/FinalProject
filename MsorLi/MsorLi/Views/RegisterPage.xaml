@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
@@ -97,7 +97,7 @@
                     
                 <!--כפתור בחירת תמונות-->
                 <Button Text="בחירת תמונת פרופיל" Margin="0,50,0,0" FontSize="Medium"
-                        BackgroundColor="Transparent" TextColor="#00BCD4"
+                        BackgroundColor="Transparent" TextColor="#19a4b4"
                         HorizontalOptions="Center" x:Name="pickPictureButton" Clicked="PickImageButton_Event"/>
                 
                 <Button Text="הרשמה" Margin="15,80,15,30" IsEnabled="False" FontSize="Medium" x:Name="SubmitBtn"

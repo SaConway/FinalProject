@@ -50,8 +50,6 @@
 	<string>MsorLi</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Picture Picker uses photo library</string>
-	<key>XSLaunchImageAssets</key>
-	<string>Resources/Media.xcassets/LaunchImages.launchimage</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Arimo-Regular.ttf</string>

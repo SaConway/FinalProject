@@ -18,7 +18,7 @@
                          Spacing="0">
 
                 <!--ToolBar-->
-                <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#00BCD4" Padding="10">
+                <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#19a4b4" Padding="10">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -31,8 +31,7 @@
 
                     <!--Filter-->
                     <Image Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"
-                           Source="filter.png" Margin="5,0,0,0"
-                           HeightRequest="24" WidthRequest="24">
+                           Source="filter.png" Margin="5,0,0,0">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnFilterClick"/>
                         </Image.GestureRecognizers>
@@ -52,7 +51,6 @@
 
                         <!--Menu-->
                         <Image HorizontalOptions="Center" VerticalOptions="Center"
-                               HeightRequest="24" WidthRequest="24"
                                Source="menu.png" Margin="0,0,5,0">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnMenuClick">
@@ -91,8 +89,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <Image Source="x.png" Grid.Column="0"
-                                   HeightRequest="24" WidthRequest="24">
+                            <Image Source="x.png" Grid.Column="0">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="OnRemoveFilterClick">
                                     </TapGestureRecognizer>
@@ -103,8 +100,8 @@
                                          HorizontalOptions="End">
                                 <Label HorizontalTextAlignment="End"
                                        x:Name="FilterCategoryLabel" TextColor="#212121"/>
-                                <Image Source="tag.png"
-                                       HeightRequest="24" WidthRequest="24"/>
+                                <Image Source="tag.png"/>
+                                       
                             </StackLayout>
 
                             <Grid.GestureRecognizers>
@@ -175,8 +172,8 @@
                                                    TextColor="White" Grid.Column="0" HorizontalOptions="End"
                                                    Style="{DynamicResource myBodyStyle}" VerticalOptions="Center"/>
                                             <Image Source="location.png" HorizontalOptions="Start" 
-                                                   VerticalOptions="Center" Grid.Column="1"
-                                                   HeightRequest="24" WidthRequest="24"/>
+                                                   VerticalOptions="Center" Grid.Column="1"/>
+
                                         </Grid>
                                     </Frame>
 
@@ -210,8 +207,8 @@
                                                    TextColor="White" Grid.Column="0" HorizontalOptions="End"
                                                    Style="{DynamicResource myBodyStyle}" VerticalOptions="Center"/>
                                             <Image Source="location.png" HorizontalOptions="Start" 
-                                                   VerticalOptions="Center" Grid.Column="1"
-                                                   HeightRequest="24" WidthRequest="24"/>
+                                                   VerticalOptions="Center" Grid.Column="1"/>
+
                                         </Grid>
                                     </Frame>
 
@@ -220,9 +217,10 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
-                    <ListView.Footer>
-                        <StackLayout>
-                            <Grid x:Name="Footer1" Padding="6" >
+
+
+                        <ListView.Footer>
+                            <Grid x:Name="Footer" Padding="6" >
                                 <!-- set the footer to have a zero height when invisible -->
                                 <Grid.Triggers>
                                     <Trigger TargetType="Grid" Property="IsVisible" Value="False">
@@ -233,18 +231,7 @@
                                 <Label Text="טוען מוצרים..." Style="{StaticResource StatsCaptionLabel}" FontSize="20"  VerticalOptions="Center" HorizontalOptions="Center" />
 
                             </Grid>
-
-                            <Grid x:Name="Footer2" Padding="6" >
-                                <!-- set the footer to have a zero height when invisible -->
-                                <Grid.Triggers>
-                                    <Trigger TargetType="Grid" Property="IsVisible" Value="False">
-                                        <Setter Property="HeightRequest" Value="0" />
-                                    </Trigger>
-                                </Grid.Triggers>
-                                <Label Text="אין עוד מוצרים" Style="{StaticResource StatsCaptionLabel}" FontSize="20"  VerticalOptions="Center" HorizontalOptions="Center" />
-                            </Grid>
-                        </StackLayout>
-                    </ListView.Footer>
+                        </ListView.Footer>
                     
                 </ListView>
             </StackLayout>
@@ -254,7 +241,7 @@
                     AbsoluteLayout.LayoutFlags="PositionProportional"
                     x:Name="AddBtn" Image="plus.png" Margin="15"
                     WidthRequest="60" HeightRequest="60" BorderRadius="30"
-                    Clicked="OnAddItemClick" BackgroundColor="#00BCD4"/>
+                    Clicked="OnAddItemClick" BackgroundColor="#8bc34a"/>
 
 
             <!--No Items-->

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -204,7 +204,7 @@
 
                             <!--Btn Img-->
                             <Button Text="בחירת תמונות" Margin="0,50,0,0" FontSize="Medium"
-                            BackgroundColor="Transparent" TextColor="#00BCD4"
+                            BackgroundColor="Transparent" TextColor="#19a4b4"
                             HorizontalOptions="Center" x:Name="pickPictureButton" Clicked="OnAddImageClick"/>
                         </StackLayout>
                     </Grid>
