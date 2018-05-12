@@ -99,7 +99,7 @@ namespace MsorLi.Views
             SearchBtn.IsEnabled = true;
 
             SearchBtn.IsEnabled = true;
-            SearchBtn.BackgroundColor = Color.FromHex("00BCD4");
+            SearchBtn.BackgroundColor = Color.FromHex("19a4b4");
         }
     }
 }

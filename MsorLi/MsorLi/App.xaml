@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MsorLi.App">
@@ -6,16 +6,16 @@
         <ResourceDictionary>
 
             <!--colors-->
-            <Color x:Key="Primary">#00BCD4</Color>
-            <Color x:Key="PrimaryDark">#0097A7</Color>
-            <Color x:Key="Accent">#00BCD4</Color>
+            <Color x:Key="Primary">#19a4b4</Color>
+            <Color x:Key="PrimaryDark">#19a4b4</Color>
+            <Color x:Key="Accent">#19a4b4</Color>
             <Color x:Key="LightBackgroundColor">#FAFAFA</Color>
             <Color x:Key="DarkBackgroundColor">#C0C0C0</Color>
             <Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
             <!--<Color x:Key="LightTextColor">#999999</Color>-->
             <!--<Color x:Key="BodyTextColor">#C3C3C3</Color>-->
             <!--<Color x:Key="HeaderTextColor">#585858</Color>-->
-            <Color x:Key="LightTextColor">#212121</Color>
+          <Color x:Key="LightTextColor">#212121</Color>
             <Color x:Key="BodyTextColor">#212121</Color>
             <Color x:Key="HeaderTextColor">#212121</Color>
 
@@ -45,7 +45,7 @@
 
             <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="TextColor" Value="White"/>
-                <Setter Property="BackgroundColor" Value="#00BCD4"/>
+                <Setter Property="BackgroundColor" Value="#19a4b4"/>
                 <Setter Property="FontSize" Value="Medium"/>
                 <Setter Property="BorderRadius" Value="15"/>
             </Style>

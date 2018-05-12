@@ -7,7 +7,7 @@
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     
-	<ContentPage.Content>
+    <ContentPage.Content>
         <ScrollView>
             <Grid RowSpacing="0" >
 
@@ -21,7 +21,7 @@
                 </Grid.RowDefinitions>
                 
                 <!--top Cover area-->
-                <BoxView Grid.Row="0" BackgroundColor="#00BCD4"/>
+                <BoxView Grid.Row="0" BackgroundColor="#19a4b4"/>
                 <Image Grid.Row="0" Source="CurvedMask.png" VerticalOptions="End" Aspect="Fill" Margin="0,-1"/>
 
                 <!--User Name-->
@@ -43,7 +43,7 @@
                             <TapGestureRecognizer Tapped="EditBtnClicked"/>
                         </StackLayout.GestureRecognizers>
                         
-                        <Image Source="edit.png"/>
+                        <Image Source="edit_profile.png"/>
                         <Label Style="{StaticResource StatsCaptionLabel}"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="0" Text="ערוך פרטים"/>
 
                     </StackLayout>
@@ -54,7 +54,7 @@
                             <TapGestureRecognizer Tapped="LikeBtnClick"/>
                         </StackLayout.GestureRecognizers>
 
-                        <Image  Source="like.png"/>
+                        <Image  Source="love.png"/>
                         <Label Style="{StaticResource StatsCaptionLabel}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="1" Text="מוצרים שאהבתי"/>
 
                     </StackLayout>
@@ -101,5 +101,5 @@
                 
             </Grid>
         </ScrollView>
-	</ContentPage.Content>
+    </ContentPage.Content>
 </ContentPage>

@@ -33,7 +33,7 @@ namespace MsorLi.iOS
             var statusBar = UIApplication.SharedApplication.ValueForKey(new NSString("statusBar")) as UIView;
             if (statusBar.RespondsToSelector(new ObjCRuntime.Selector("setBackgroundColor:")))
             {
-                statusBar.BackgroundColor = UIColor.FromRGB(0, 151, 167);
+                statusBar.BackgroundColor = UIColor.FromRGB(25,164,180);
                 statusBar.TintColor = UIColor.White;
             }
 

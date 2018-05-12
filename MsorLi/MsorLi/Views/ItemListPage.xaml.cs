@@ -120,19 +120,11 @@ namespace MsorLi.Views
                     // return the items that need to be added
                     return ip;
                 },
+                //if there is more items to 
                 OnCanLoadMore = () =>
                 {
 					Boolean count =  ImagePairCount() < _numOfItems;
-					if (count)
-					{
-						Footer1.IsVisible = true;
-						Footer2.IsVisible = false;
-					}
-					else
-					{
-						Footer1.IsVisible = false;
-                        Footer2.IsVisible = true;
-					}
+					Footer.IsVisible = count;
 					return count;
                 }
             };
@@ -158,9 +150,9 @@ namespace MsorLi.Views
                     CategoryMainStack.IsVisible = true;
 
                     // Scroll to the right.
-                    await CategoryScroll.ScrollToAsync(StackCategory.Children[StackCategory.Children.Count - 1], ScrollToPosition.MakeVisible, true); CategoryMainStack.IsEnabled = true;
+					CategoryMainStack.IsEnabled = true;
+                    await CategoryScroll.ScrollToAsync(StackCategory.Children[StackCategory.Children.Count - 1], ScrollToPosition.MakeVisible, true);
 
-                    CategoryMainStack.IsEnabled = true;
                 }
             }
             catch
@@ -215,23 +207,18 @@ namespace MsorLi.Views
 
                 // Update new category
                 var s = sender as StackLayout;
-                (s.Children[1] as Label).TextColor = Color.FromHex("00BCD4");
+                (s.Children[1] as Label).TextColor = Color.FromHex("19a4b4");
                 (s.Children[2] as BoxView).IsVisible = true;
 
                 _currentCategoryStackLayout = s;
 
                 // Scroll to current category
                 //problem with iOS
-                //await CategoryScroll.ScrollToAsync(_currentCategoryStackLayout, ScrollToPosition.MakeVisible, true);
-                CategoryMainStack.IsEnabled = true;
-
-
-                await RefreshItems(true, true);
+				await RefreshItems(true, true);
+				CategoryMainStack.IsEnabled = true;
+                await CategoryScroll.ScrollToAsync(_currentCategoryStackLayout, ScrollToPosition.MakeVisible, true);
             }
-            catch(Exception){
-
-              
-            }
+            catch(Exception){}
         }
 
         private async void OnItemClick(object sender, EventArgs e)
@@ -419,7 +406,6 @@ namespace MsorLi.Views
                         return;
                     }
 
-					Footer2.IsVisible = false;
                     NoItemsLabel.IsVisible = true;
                     Is_Busy = false;
                 }
@@ -479,7 +465,7 @@ namespace MsorLi.Views
 
         void CreateCategory(string categoryName, string categoryIconSource, bool defultCategory = false)
         {
-            var stack = new StackLayout();
+			var stack = new StackLayout();
 
             var label = new Label
             {
@@ -491,21 +477,19 @@ namespace MsorLi.Views
             var img = new Xamarin.Forms.Image
             {
                 Source = categoryIconSource,
-                HorizontalOptions = LayoutOptions.Center,
-                HeightRequest = 24,
-                WidthRequest = 24
+                HorizontalOptions = LayoutOptions.Center
             };
 
             var box = new BoxView
             {
                 HeightRequest = 5,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                BackgroundColor = Color.FromHex("00BCD4"),
+                BackgroundColor = Color.FromHex("19a4b4"),
             };
 
             if (defultCategory)
             {
-                label.TextColor = Color.FromHex("00BCD4");
+                label.TextColor = Color.FromHex("19a4b4");
             }
             else
             {

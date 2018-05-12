@@ -11,7 +11,8 @@
 namespace MsorLi.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi\\Views\\ItemPage.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi/Views/Item" +
+        "Page.xaml")]
     public partial class ItemPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]

@@ -181,7 +181,7 @@ namespace MsorLi.Views
                 {
                     // User can submit
                     MySubmitBtn.IsEnabled = true;
-                    MySubmitBtn.BackgroundColor = Color.FromHex("00BCD4");
+                    MySubmitBtn.BackgroundColor = Color.FromHex("19a4b4");
                 }
                 else
                 {

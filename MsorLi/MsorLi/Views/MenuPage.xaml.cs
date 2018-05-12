@@ -19,7 +19,7 @@ namespace MsorLi.Views
             else
             {
                 UserName.Text = "שלום אורח";
-                UserImg.Source = "unknown-user.png";
+                UserImg.Source = "unknownuser.png";
                 logButton.Text = "התחבר";
                 logImg.Source = "login.png";
             }

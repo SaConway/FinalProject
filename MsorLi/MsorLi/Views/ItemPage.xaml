@@ -93,7 +93,7 @@
                             </StackLayout.GestureRecognizers>
 
                             <Image HorizontalOptions="Center"
-                                   Source="love_empty.png"/>
+                                   Source="love.png"/>
                             <Label HorizontalOptions="Center"
                                    Text="שמירה"/>
 
