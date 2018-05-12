@@ -15,6 +15,8 @@ Microsoft.WindowsAzure.Mobile.Ext
 Microsoft.WindowsAzure.Mobile.SQLiteStore
 Microsoft.WindowsAzure.Storage
 Newtonsoft.Json
+Plugin.Messaging.Abstractions
+Plugin.Messaging
 Plugin.Settings.Abstractions
 Plugin.Settings
 SQLitePCLRaw.batteries_green
@@ -46,6 +48,7 @@ Xamarin.Android.Support.v7.RecyclerView
 Xamarin.Android.Support.Vector.Drawable
 Xamarin.Forms.CarouselView
 Xamarin.Forms.Core
+Xamarin.Forms.Extended.InfiniteScrolling
 Xamarin.Forms.Platform.Android
 Xamarin.Forms.Platform
 Xamarin.Forms.Xaml

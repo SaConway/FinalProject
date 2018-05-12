@@ -272,22 +272,6 @@ namespace MsorLi.Views
             }
         }
 
-        // WhatsApp Button
-        private async void WhatsAppButtonClick(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    var whatsaap = Android.Net.Uri.Parse("smsto:" + number);
-            //    Intent i = new Intent(Intent.ActionSendto, whatsaap);
-            //    i.SetPackage("com.whatsapp");
-            //    StartActivity(Intent.CreateChooser(i, ""));
-            //}
-            //catch (Exception)
-            //{
-
-            //}
-        }
-
         // PRIVATE FUNCTIONS
         //----------------------------------------------------------
 
@@ -367,6 +351,7 @@ namespace MsorLi.Views
             contact_name.Text = _item.ContactName;
             contact_number.Text = _item.ContactNumber;
             date.Text = _item.Date;
+            email.Text = (_item.Email.Length > 0) ? _item.Email : "מידע חסר";
         }
 
         private async Task SetItemAsync()

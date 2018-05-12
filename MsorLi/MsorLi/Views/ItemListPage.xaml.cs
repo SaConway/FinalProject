@@ -8,8 +8,6 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using MsorLi.Utilities;
 using Xamarin.Forms.Extended;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace MsorLi.Views
 {
@@ -21,8 +19,7 @@ namespace MsorLi.Views
         //---------------------------------
 
         ObservableCollection<ItemImage> AllImages = new ObservableCollection<ItemImage>();
-        ObservableCollection<Tuple<string, string, string, string, bool, string, string>> ImagePairs =
-                            new ObservableCollection<Tuple<string, string, string, string, bool, string, string>>();
+        InfiniteScrollCollection<ImagePair> ImagePairs { get; }
 
         bool _startupRefresh = false;
 
@@ -39,10 +36,6 @@ namespace MsorLi.Views
         private bool _isBusy;
         int _numOfItems = 0;
 
-        //---------------------------------
-        // FUNCTIONS
-        //---------------------------------
-
         public bool Is_Busy
         {
             get => _isBusy;
@@ -51,6 +44,10 @@ namespace MsorLi.Views
                 _isBusy = value;
             }
         }
+
+        //---------------------------------
+        // FUNCTIONS
+        //---------------------------------
 
         // Contrusctor
         public ItemListPage()
@@ -62,7 +59,6 @@ namespace MsorLi.Views
             InitializeComponent();
 
             NoItemsLabel.IsVisible = false;
-
 
             // Disable Selection Item
             listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) =>
@@ -95,7 +91,7 @@ namespace MsorLi.Views
                 await RefreshItems(true, true);
             });
 
-            ImagePairs = new InfiniteScrollCollection<Tuple<string, string, string, string>>
+            ImagePairs = new InfiniteScrollCollection<ImagePair>
             {
                 OnLoadMore = async () =>
                 {
@@ -106,7 +102,7 @@ namespace MsorLi.Views
 
                     AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages(page, _currentCategory, _currentSubCategory); 
 
-                    ObservableCollection<Tuple<string, string, string, string>> ip = new ObservableCollection<Tuple<string, string, string, string>>();
+                    var ip = new ObservableCollection<ImagePair>();
 
 					_numOfItems = await AzureImageService.DefaultManager.NumOfItems(_currentCategory, _currentSubCategory);
 
@@ -259,9 +255,10 @@ namespace MsorLi.Views
                 _isRunningItem = false;
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                await DisplayAlert("שגיאה", "לא ניתן לטעון עמוד מבוקש.", "אישור");
+                //await DisplayAlert("שגיאה", "לא ניתן לטעון עמוד מבוקש.", "אישור");
+                await DisplayAlert("", ex.Message, "אישור");
             }
         }
 
@@ -401,15 +398,20 @@ namespace MsorLi.Views
             {
                 using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
                 {
-                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages(0, _currentCategory, _currentSubCategory);
-					_numOfItems = await AzureImageService.DefaultManager.NumOfItems(_currentCategory, _currentSubCategory);
+                    AllImages = await AzureImageService.DefaultManager.
+                        GetAllPriorityImages(0, _currentCategory, _currentSubCategory);
+
+					_numOfItems = await AzureImageService.DefaultManager.
+                        NumOfItems(_currentCategory, _currentSubCategory);
+
                     ImagePairs.Clear();
                     if (AllImages.Count > 0)
                     {
                         NoItemsLabel.IsVisible = false;
 
-                        var temp_image_pair =  CreateImagePairs();
+                        var temp_image_pair = CreateImagePairs();
                         ImagePairs.AddRange(temp_image_pair);
+
                         if (ImagePairs != null)
                         {
                             listView_items.ItemsSource = ImagePairs;
@@ -428,27 +430,28 @@ namespace MsorLi.Views
             }
         }
 
-        private ObservableCollection<Tuple<string, string, string, string>> CreateImagePairs()
+        private ObservableCollection<ImagePair> CreateImagePairs()
         {
             try
             {
-                //ImagePairs.Clear();
-                ObservableCollection<Tuple<string, string, string, string>> ip  = 
-                    new ObservableCollection<Tuple<string, string, string, string>>() ;
+                var ip = new ObservableCollection<ImagePair>() ;
                 
                 for (int i = 0; i < AllImages.Count; i += 2)
                 {
-                    string Item1 = AllImages[i].Url;
-                    string Item2 = AllImages[i].ItemId;
-                    string Item3 = i + 1 < AllImages.Count ? AllImages[i + 1].Url : "";
-                    string Item4 = i + 1 < AllImages.Count ? AllImages[i + 1].ItemId : "";
-                    bool Item5 = i + 1 < AllImages.Count ? true : false;
-                    string Item6 = AllImages[i].Location;
-                    string Item7 = i + 1 < AllImages.Count ? AllImages[i].Location : "";
+                    var item = new ImagePair
+                    {
+                        UrlLeft = AllImages[i].Url,
+                        UrlRight = i + 1 < AllImages.Count ? AllImages[i + 1].Url : "",
+                        ItemIdLeft = AllImages[i].ItemId,
+                        ItemIdRight = i + 1 < AllImages.Count ? AllImages[i + 1].ItemId : "",
+                        LocationLeft = AllImages[i].Location,
+                        LocationRight = i + 1 < AllImages.Count ? AllImages[i + 1].Location : "",
+                        IsRightImageExist = i + 1 < AllImages.Count ? true : false,
+                    };
 
-                    ImagePairs.Add(new Tuple<string, string, string, string, bool, string, string>
-                        (Item1, Item2, Item3, Item4, Item5, Item6, Item7));
+                    ImagePairs.Add(item);
                 }
+
                 return ip;
             }
 
@@ -525,7 +528,19 @@ namespace MsorLi.Views
             if (defultCategory) _currentCategoryStackLayout = stack;
         }
 
+        public int ImagePairCount()
+        {
+            int count = 0;
 
+            for (int i = 0; i < ImagePairs.Count; i++)
+            {
+                if (ImagePairs[i].UrlLeft != "")
+                    count++;
+                if (ImagePairs[i].UrlRight != "")
+                    count++;
+            }
+            return count;
+        }
 
         //---------------------------------
         // ActivityIndicator
@@ -584,19 +599,5 @@ namespace MsorLi.Views
                 }
             }
         }
-
-		public int ImagePairCount()
-		{
-			int count = 0;
-
-			for (int i = 0; i < ImagePairs.Count; i ++)
-			{
-				if (ImagePairs[i].Item1 != "")
-					count++;
-				if (ImagePairs[i].Item3 != "")
-					count++;
-			}
-			return count;
-		}
     }
 }

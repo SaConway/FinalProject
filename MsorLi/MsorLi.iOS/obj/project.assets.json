@@ -788,6 +788,20 @@
           "lib/Xamarin.iOS10/ImageCircle.Forms.Plugin.iOS.dll": {}
         }
       },
+      "Xam.Plugins.Messaging/5.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Plugin.Messaging.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Messaging.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Plugin.Messaging.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Messaging.dll": {}
+        }
+      },
       "Xam.Plugins.Settings/4.0.0.7": {
         "type": "package",
         "frameworkAssemblies": [
@@ -1728,6 +1742,20 @@
         "runtime": {
           "lib/Xamarin.iOS10/ImageCircle.Forms.Plugin.Abstractions.dll": {},
           "lib/Xamarin.iOS10/ImageCircle.Forms.Plugin.iOS.dll": {}
+        }
+      },
+      "Xam.Plugins.Messaging/5.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Plugin.Messaging.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Messaging.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Plugin.Messaging.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Messaging.dll": {}
         }
       },
       "Xam.Plugins.Settings/4.0.0.7": {
@@ -2672,6 +2700,20 @@
           "lib/Xamarin.iOS10/ImageCircle.Forms.Plugin.iOS.dll": {}
         }
       },
+      "Xam.Plugins.Messaging/5.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Plugin.Messaging.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Messaging.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Plugin.Messaging.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Messaging.dll": {}
+        }
+      },
       "Xam.Plugins.Settings/4.0.0.7": {
         "type": "package",
         "frameworkAssemblies": [
@@ -3612,6 +3654,20 @@
         "runtime": {
           "lib/Xamarin.iOS10/ImageCircle.Forms.Plugin.Abstractions.dll": {},
           "lib/Xamarin.iOS10/ImageCircle.Forms.Plugin.iOS.dll": {}
+        }
+      },
+      "Xam.Plugins.Messaging/5.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Plugin.Messaging.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Messaging.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Plugin.Messaging.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Messaging.dll": {}
         }
       },
       "Xam.Plugins.Settings/4.0.0.7": {
@@ -7015,6 +7071,41 @@
         "xam.plugins.forms.imagecircle.nuspec"
       ]
     },
+    "Xam.Plugins.Messaging/5.1.0": {
+      "sha512": "96BnnhxDEgLOkMSCg/SYIVzYMouyceU+Kdsr83smRXRqQDPHqQm8rOkYq5FWl3yFkBKs3O+HbVZc/TJIyDWAoA==",
+      "type": "package",
+      "path": "xam.plugins.messaging/5.1.0",
+      "files": [
+        "lib/MonoAndroid10/Plugin.Messaging.Abstractions.dll",
+        "lib/MonoAndroid10/Plugin.Messaging.Abstractions.pdb",
+        "lib/MonoAndroid10/Plugin.Messaging.Abstractions.xml",
+        "lib/MonoAndroid10/Plugin.Messaging.dll",
+        "lib/MonoAndroid10/Plugin.Messaging.dll.mdb",
+        "lib/MonoAndroid10/Plugin.Messaging.pdb",
+        "lib/MonoAndroid10/Plugin.Messaging.xml",
+        "lib/UAP10/Plugin.Messaging.Abstractions.dll",
+        "lib/UAP10/Plugin.Messaging.Abstractions.pdb",
+        "lib/UAP10/Plugin.Messaging.Abstractions.xml",
+        "lib/UAP10/Plugin.Messaging.dll",
+        "lib/UAP10/Plugin.Messaging.pdb",
+        "lib/UAP10/Plugin.Messaging.pri",
+        "lib/UAP10/Plugin.Messaging.xml",
+        "lib/Xamarin.iOS10/Plugin.Messaging.Abstractions.dll",
+        "lib/Xamarin.iOS10/Plugin.Messaging.Abstractions.pdb",
+        "lib/Xamarin.iOS10/Plugin.Messaging.Abstractions.xml",
+        "lib/Xamarin.iOS10/Plugin.Messaging.dll",
+        "lib/Xamarin.iOS10/Plugin.Messaging.xml",
+        "lib/netstandard1.0/Plugin.Messaging.Abstractions.dll",
+        "lib/netstandard1.0/Plugin.Messaging.Abstractions.pdb",
+        "lib/netstandard1.0/Plugin.Messaging.Abstractions.xml",
+        "lib/netstandard1.0/Plugin.Messaging.deps.json",
+        "lib/netstandard1.0/Plugin.Messaging.dll",
+        "lib/netstandard1.0/Plugin.Messaging.pdb",
+        "lib/netstandard1.0/Plugin.Messaging.xml",
+        "xam.plugins.messaging.5.1.0.nupkg.sha512",
+        "xam.plugins.messaging.nuspec"
+      ]
+    },
     "Xam.Plugins.Settings/4.0.0.7": {
       "sha512": "IJwsliYBQYbqiAwLnNuUu5mvqG3RKSoNv6HoB2det9qtLjQl+FsU2Dit28uvP6n6MuRSheLbzp6rNOsbAb5WUg==",
       "type": "package",
@@ -7446,6 +7537,7 @@
       "SuaveControls.FloatingActionButton >= 2018.1.5",
       "WindowsAzure.Storage >= 9.1.1",
       "Xam.Plugins.Forms.ImageCircle >= 2.0.2",
+      "Xam.Plugins.Messaging >= 5.1.0",
       "Xam.Plugins.Settings >= 4.0.0.7",
       "Xamarin.Auth >= 1.6.0.2",
       "Xamarin.FFImageLoading >= 2.3.6",
@@ -7457,24 +7549,32 @@
     ]
   },
   "packageFolders": {
-    "/Users/Idan Marciano/.nuget/packages/": {}
+    "C:\\Users\\sagee\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.iOS/MsorLi.iOS.csproj",
+      "projectUniqueName": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.iOS\\MsorLi.iOS.csproj",
       "projectName": "MsorLi.iOS",
-      "projectPath": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.iOS/MsorLi.iOS.csproj",
-      "packagesPath": "/Users/Idan Marciano/.nuget/packages/",
-      "outputPath": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.iOS/obj",
+      "projectPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.iOS\\MsorLi.iOS.csproj",
+      "packagesPath": "C:\\Users\\sagee\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.iOS\\obj\\",
       "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\"
+      ],
       "configFilePaths": [
-        "/Users/Idan Marciano/.config/NuGet/NuGet.Config"
+        "C:\\Users\\sagee\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "xamarinios10"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7488,59 +7588,63 @@
         "dependencies": {
           "CarouselView.FormsPlugin": {
             "target": "Package",
-            "version": "5.2.0"
-          },
-          "SuaveControls.FloatingActionButton": {
-            "target": "Package",
-            "version": "2018.1.5"
-          },
-          "WindowsAzure.Storage": {
-            "target": "Package",
-            "version": "9.1.1"
+            "version": "[5.2.0, )"
           },
           "Microsoft.Azure.Mobile.Client": {
             "target": "Package",
-            "version": "4.0.2"
+            "version": "[4.0.2, )"
           },
           "Microsoft.Azure.Mobile.Client.SQLiteStore": {
             "target": "Package",
-            "version": "4.0.2"
+            "version": "[4.0.2, )"
           },
-          "Xamarin.Forms.CarouselView": {
+          "SuaveControls.FloatingActionButton": {
             "target": "Package",
-            "version": "2.3.0-pre2"
+            "version": "[2018.1.5, )"
+          },
+          "WindowsAzure.Storage": {
+            "target": "Package",
+            "version": "[9.1.1, )"
           },
           "Xam.Plugins.Forms.ImageCircle": {
             "target": "Package",
-            "version": "2.0.2"
+            "version": "[2.0.2, )"
           },
-          "Xamarin.FFImageLoading.Transformations": {
+          "Xam.Plugins.Messaging": {
             "target": "Package",
-            "version": "2.3.6"
-          },
-          "Xamarin.FFImageLoading": {
-            "target": "Package",
-            "version": "2.3.6"
-          },
-          "Xamarin.FFImageLoading.Forms": {
-            "target": "Package",
-            "version": "2.3.6"
-          },
-          "Xamarin.Auth": {
-            "target": "Package",
-            "version": "1.6.0.2"
+            "version": "[5.1.0, )"
           },
           "Xam.Plugins.Settings": {
             "target": "Package",
-            "version": "4.0.0.7"
+            "version": "[4.0.0.7, )"
+          },
+          "Xamarin.Auth": {
+            "target": "Package",
+            "version": "[1.6.0.2, )"
+          },
+          "Xamarin.FFImageLoading": {
+            "target": "Package",
+            "version": "[2.3.6, )"
+          },
+          "Xamarin.FFImageLoading.Forms": {
+            "target": "Package",
+            "version": "[2.3.6, )"
+          },
+          "Xamarin.FFImageLoading.Transformations": {
+            "target": "Package",
+            "version": "[2.3.6, )"
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "2.5.1.527436"
+            "version": "[2.5.1.527436, )"
+          },
+          "Xamarin.Forms.CarouselView": {
+            "target": "Package",
+            "version": "[2.3.0-pre2, )"
           },
           "Xamarin.Forms.Extended.InfiniteScrolling": {
             "target": "Package",
-            "version": "1.0.0-preview2"
+            "version": "[1.0.0-preview2, )"
           }
         }
       }

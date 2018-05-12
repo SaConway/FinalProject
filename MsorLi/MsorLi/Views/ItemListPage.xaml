@@ -122,12 +122,14 @@
                 <ActivityIndicator IsVisible="False" IsEnabled="True" x:Name="syncIndicator"/>
 
                 <!--List Of Images-->
-                <ListView x:Name="listView_items" Refreshing="OnRefresh" IsPullToRefreshEnabled="True"
+                <ListView x:Name="listView_items" Refreshing="OnRefresh" 
+                          IsPullToRefreshEnabled="True"
                           SeparatorVisibility="None" Margin="0,3,0,0">
 
                     <ListView.Behaviors>
-                <extended:InfiniteScrollBehavior IsLoadingMore="{Binding Is_Busy}" />
-            </ListView.Behaviors>
+                        <extended:InfiniteScrollBehavior IsLoadingMore="{Binding Is_Busy}"/>
+                    </ListView.Behaviors>
+                    
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -143,8 +145,9 @@
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
 
+                                   <!--Left Image-->
                                     <ffimageloading:CachedImage Grid.Column="0" Aspect="AspectFit" Grid.RowSpan="2"
-                                                                Source="{Binding Item1}" Margin="0,0,0,3">
+                                                                Source="{Binding UrlLeft}" Margin="0,0,0,3">
 
                                         <ffimageloading:CachedImage.Transformations>
                                             <fftransformations:RoundedTransformation Radius="15"/>
@@ -152,12 +155,12 @@
 
                                         <ffimageloading:CachedImage.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="OnItemClick"  
-                                                                  CommandParameter="{Binding Item2}">
+                                                                  CommandParameter="{Binding ItemIdLeft}">
                                             </TapGestureRecognizer>
                                         </ffimageloading:CachedImage.GestureRecognizers>
                                     </ffimageloading:CachedImage>
 
-
+                                    <!--Left Location-->
                                     <Frame CornerRadius="5" Grid.Column="0" Grid.Row="1"
                                            HasShadow="False"
                                            VerticalOptions="Center" HorizontalOptions="FillAndExpand"
@@ -168,7 +171,7 @@
                                                 <ColumnDefinition Width="auto"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Label Text="{Binding Item6}" BackgroundColor="Transparent" 
+                                            <Label Text="{Binding LocationLeft}" BackgroundColor="Transparent" 
                                                    TextColor="White" Grid.Column="0" HorizontalOptions="End"
                                                    Style="{DynamicResource myBodyStyle}" VerticalOptions="Center"/>
                                             <Image Source="location.png" HorizontalOptions="Start" 
@@ -177,8 +180,9 @@
                                         </Grid>
                                     </Frame>
 
+                                   <!--Right Image-->
                                     <ffimageloading:CachedImage Grid.Column="1" Aspect="AspectFit" Grid.RowSpan="2"
-                                                                Source="{Binding Item3}" Margin="0,0,0,3">
+                                                                Source="{Binding UrlRight}" Margin="0,0,0,3">
 
                                         <ffimageloading:CachedImage.Transformations>
                                             <fftransformations:RoundedTransformation Radius="15"/>
@@ -186,13 +190,14 @@
 
                                         <ffimageloading:CachedImage.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="OnItemClick" 
-                                                                  CommandParameter="{Binding Item4}">
+                                                                  CommandParameter="{Binding ItemIdRight}">
                                             </TapGestureRecognizer>
                                         </ffimageloading:CachedImage.GestureRecognizers>
                                     </ffimageloading:CachedImage>
 
+                                   <!--Right Location-->
                                     <Frame CornerRadius="5" Grid.Column="1" Grid.Row="1"
-                                           HasShadow="False" IsVisible="{Binding Item5}"
+                                           HasShadow="False" IsVisible="{Binding IsRightImageExist}"
                                            VerticalOptions="Center" HorizontalOptions="FillAndExpand"
                                            BackgroundColor="#80000000" Padding="5" Margin="2,3">
                                         <Grid HorizontalOptions="Center">
@@ -201,7 +206,7 @@
                                                 <ColumnDefinition Width="auto"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Label Text="{Binding Item7}" BackgroundColor="Transparent" 
+                                            <Label Text="{Binding LocationRight}" BackgroundColor="Transparent" 
                                                    TextColor="White" Grid.Column="0" HorizontalOptions="End"
                                                    Style="{DynamicResource myBodyStyle}" VerticalOptions="Center"/>
                                             <Image Source="location.png" HorizontalOptions="Start" 
@@ -215,9 +220,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
-
-
-                        <ListView.Footer>
+                    <ListView.Footer>
                         <StackLayout>
                             <Grid x:Name="Footer1" Padding="6" >
                                 <!-- set the footer to have a zero height when invisible -->
@@ -228,11 +231,11 @@
                                 </Grid.Triggers>
                                 <!-- the loading content -->
                                 <Label Text="טוען מוצרים..." Style="{StaticResource StatsCaptionLabel}" FontSize="20"  VerticalOptions="Center" HorizontalOptions="Center" />
-                                
+
                             </Grid>
-                        
+
                             <Grid x:Name="Footer2" Padding="6" >
-                                                      <!-- set the footer to have a zero height when invisible -->
+                                <!-- set the footer to have a zero height when invisible -->
                                 <Grid.Triggers>
                                     <Trigger TargetType="Grid" Property="IsVisible" Value="False">
                                         <Setter Property="HeightRequest" Value="0" />
@@ -240,10 +243,10 @@
                                 </Grid.Triggers>
                                 <Label Text="אין עוד מוצרים" Style="{StaticResource StatsCaptionLabel}" FontSize="20"  VerticalOptions="Center" HorizontalOptions="Center" />
                             </Grid>
-                                    </StackLayout>
-                        </ListView.Footer>
+                        </StackLayout>
+                    </ListView.Footer>
                     
-                    </ListView>
+                </ListView>
             </StackLayout>
 
             <!--Add Button-->

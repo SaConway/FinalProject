@@ -1,4 +1,5 @@
-﻿using MsorLi.Models;
+﻿#region Usings
+using MsorLi.Models;
 using MsorLi.Services;
 using System;
 using Xamarin.Forms;
@@ -8,20 +9,21 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
 using MsorLi.Utilities;
+#endregion
 
 namespace MsorLi.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddItemPage : ContentPage
     {
-        //---------------------------------------------------
-        // MEMBERS
-        //---------------------------------------------------
+        #region Members
 
         bool _isEditingItem = false;
 
         Dictionary<ImageSource, Tuple<ItemImage, byte[]>> _keyValues = new Dictionary<ImageSource, Tuple<ItemImage, byte[]>>();
         Item _item = new Item();
+
+        #endregion
 
         //---------------------------------------------------
         // FUNCTIONS
@@ -303,6 +305,7 @@ namespace MsorLi.Views
             _item.ContactName = contactName.Text;
             _item.ContactNumber = contactNumber.Text;
             _item.UserId = Settings.UserId;
+            _item.Email = (email.Text != null && email.Text.Length > 0) ? email.Text : "";
 
             if (!_isEditingItem)
             {
@@ -336,44 +339,44 @@ namespace MsorLi.Views
             return true;
         }
 
-        private void NameTextChangedEvent(object sender, EventArgs e)
-        {
-            Entry entry = sender as Entry;
+        //private void NameTextChangedEvent(object sender, EventArgs e)
+        //{
+        //    Entry entry = sender as Entry;
 
-            bool IsVisable = false;
+        //    bool IsVisable = false;
 
-            if (entry.Text.Length > 0)
-            {
-                IsVisable = true;
-                entry.Margin = new Thickness(25, 15, 25, 0);
-            }
-            else
-            {
-                IsVisable = false;
-                entry.Margin = new Thickness(25, 50, 25, 0);
-            }
+        //    if (entry.Text.Length > 0)
+        //    {
+        //        IsVisable = true;
+        //        entry.Margin = new Thickness(25, 15, 25, 0);
+        //    }
+        //    else
+        //    {
+        //        IsVisable = false;
+        //        entry.Margin = new Thickness(25, 50, 25, 0);
+        //    }
             
-            if (entry.Placeholder.ToString() == "תיאור מוצר")
-            {
-                descriptionLabel.IsVisible = IsVisable;
-            }
-            else if (entry.Placeholder.ToString() == "עיר מגורים")
-            {
-                cityLabel.IsVisible = IsVisable;
-            }
-            else if (entry.Placeholder.ToString() == "רחוב (אופציונלי)")
-            {
-                streetLabel.IsVisible = IsVisable;
-            }
-            else if (entry.Placeholder.ToString() == "שם איש קשר")
-            {
-                contactNameLabel.IsVisible = IsVisable;
-            }
-            else if (entry.Placeholder.ToString() == "טלפון ליצירת קשר")
-            {
-                contactNumberLabel.IsVisible = IsVisable;
-            }
-        }
+        //    if (entry.Placeholder.ToString() == "תיאור מוצר")
+        //    {
+        //        descriptionLabel.IsVisible = IsVisable;
+        //    }
+        //    else if (entry.Placeholder.ToString() == "עיר מגורים")
+        //    {
+        //        cityLabel.IsVisible = IsVisable;
+        //    }
+        //    else if (entry.Placeholder.ToString() == "רחוב (אופציונלי)")
+        //    {
+        //        streetLabel.IsVisible = IsVisable;
+        //    }
+        //    else if (entry.Placeholder.ToString() == "שם איש קשר")
+        //    {
+        //        contactNameLabel.IsVisible = IsVisable;
+        //    }
+        //    else if (entry.Placeholder.ToString() == "טלפון ליצירת קשר")
+        //    {
+        //        contactNumberLabel.IsVisible = IsVisable;
+        //    }
+        //}
 
         private async Task ShowSubCategories(string category)
         {

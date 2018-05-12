@@ -1182,6 +1182,19 @@
         "runtime": {
           "lib/MonoAndroid10/Xamarin.Forms.CarouselView.dll": {}
         }
+      },
+      "Xamarin.Forms.Extended.InfiniteScrolling/1.0.0-preview2": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Xamarin.Forms": "2.4.0.280"
+        },
+        "compile": {
+          "lib/netstandard1.0/Xamarin.Forms.Extended.InfiniteScrolling.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/Xamarin.Forms.Extended.InfiniteScrolling.dll": {}
+        }
       }
     }
   },
@@ -4455,6 +4468,7 @@
         "lib/MonoAndroid10/Plugin.Messaging.Abstractions.pdb",
         "lib/MonoAndroid10/Plugin.Messaging.Abstractions.xml",
         "lib/MonoAndroid10/Plugin.Messaging.dll",
+        "lib/MonoAndroid10/Plugin.Messaging.dll.mdb",
         "lib/MonoAndroid10/Plugin.Messaging.pdb",
         "lib/MonoAndroid10/Plugin.Messaging.xml",
         "lib/UAP10/Plugin.Messaging.Abstractions.dll",
@@ -5127,6 +5141,17 @@
         "xamarin.forms.carouselview.2.3.0-pre2.nupkg.sha512",
         "xamarin.forms.carouselview.nuspec"
       ]
+    },
+    "Xamarin.Forms.Extended.InfiniteScrolling/1.0.0-preview2": {
+      "sha512": "q3MleY9BqDnVKUiXSvYETV++mg70CVXt7h2jqd3etdq5HHrRTYJdjZUdAEBYg5OozfABV7m5QtISU1XheV83XQ==",
+      "type": "package",
+      "path": "xamarin.forms.extended.infinitescrolling/1.0.0-preview2",
+      "files": [
+        "lib/netstandard1.0/Xamarin.Forms.Extended.InfiniteScrolling.dll",
+        "lib/netstandard1.0/Xamarin.Forms.Extended.InfiniteScrolling.xml",
+        "xamarin.forms.extended.infinitescrolling.1.0.0-preview2.nupkg.sha512",
+        "xamarin.forms.extended.infinitescrolling.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -5146,7 +5171,8 @@
       "Xamarin.FFImageLoading.Forms >= 2.3.6",
       "Xamarin.FFImageLoading.Transformations >= 2.3.6",
       "Xamarin.Forms >= 2.5.1.444934",
-      "Xamarin.Forms.CarouselView >= 2.3.0-pre2"
+      "Xamarin.Forms.CarouselView >= 2.3.0-pre2",
+      "Xamarin.Forms.Extended.InfiniteScrolling >= 1.0.0-preview2"
     ]
   },
   "packageFolders": {
@@ -5250,6 +5276,10 @@
           "Xamarin.Forms.CarouselView": {
             "target": "Package",
             "version": "[2.3.0-pre2, )"
+          },
+          "Xamarin.Forms.Extended.InfiniteScrolling": {
+            "target": "Package",
+            "version": "[1.0.0-preview2, )"
           }
         }
       }
