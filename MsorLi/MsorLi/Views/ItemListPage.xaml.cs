@@ -90,6 +90,11 @@ namespace MsorLi.Views
 
                 await RefreshItems(true, true);
             });
+            
+            MessagingCenter.Subscribe<ItemPage>(this, "Item Deleted", async (sender) =>
+            {
+                await RefreshItems(true, true);
+            });
 
             ImagePairs = new InfiniteScrollCollection<ImagePair>
             {
@@ -383,8 +388,6 @@ namespace MsorLi.Views
         {
             try
             {
-                //using (var scope = new ActivityIndicatorScope(syncIndicator, showActivityIndicator))
-                //{
                 listView_items.IsRefreshing = true;
 
                 AllImages = await AzureImageService.DefaultManager.
@@ -413,7 +416,6 @@ namespace MsorLi.Views
 
                 NoItemsLabel.IsVisible = true;
                 Is_Busy = false;
-                //}
             }
             catch(Exception)
             {
@@ -536,59 +538,59 @@ namespace MsorLi.Views
         //---------------------------------
         // ActivityIndicator
         //---------------------------------
-        private class ActivityIndicatorScope : IDisposable
-        {
-            //---------------------------------
-            // MEMBERS
-            //---------------------------------
-            private bool _showIndicator;
-            private ActivityIndicator _indicator;
-            private Task _indicatorDelay;
+        //private class ActivityIndicatorScope : IDisposable
+        //{
+        //    //---------------------------------
+        //    // MEMBERS
+        //    //---------------------------------
+        //    private bool _showIndicator;
+        //    private ActivityIndicator _indicator;
+        //    private Task _indicatorDelay;
 
-            //---------------------------------
-            // FUNCTIONS
-            //---------------------------------
-            public ActivityIndicatorScope(ActivityIndicator indicator, bool showIndicator)
-            {
-                try
-                {
-                    _indicator = indicator;
-                    _showIndicator = showIndicator;
+        //    //---------------------------------
+        //    // FUNCTIONS
+        //    //---------------------------------
+        //    public ActivityIndicatorScope(ActivityIndicator indicator, bool showIndicator)
+        //    {
+        //        try
+        //        {
+        //            _indicator = indicator;
+        //            _showIndicator = showIndicator;
 
-                    if (showIndicator)
-                    {
-                        _indicatorDelay = Task.Delay(2000);
-                        SetIndicatorActivity(true);
-                    }
-                    else
-                    {
-                        _indicatorDelay = Task.FromResult(0);
-                    }
-                }
-                catch
-                {
-                }
-            }
+        //            if (showIndicator)
+        //            {
+        //                _indicatorDelay = Task.Delay(2000);
+        //                SetIndicatorActivity(true);
+        //            }
+        //            else
+        //            {
+        //                _indicatorDelay = Task.FromResult(0);
+        //            }
+        //        }
+        //        catch
+        //        {
+        //        }
+        //    }
 
-            private void SetIndicatorActivity(bool isActive)
-            {
-                _indicator.IsVisible = isActive;
-                _indicator.IsRunning = isActive;
-            }
+        //    private void SetIndicatorActivity(bool isActive)
+        //    {
+        //        _indicator.IsVisible = isActive;
+        //        _indicator.IsRunning = isActive;
+        //    }
 
-            public void Dispose()
-            {
-                try
-                {
-                    if (_showIndicator)
-                    {
-                        _indicatorDelay.ContinueWith(t => SetIndicatorActivity(false), TaskScheduler.FromCurrentSynchronizationContext());
-                    }
-                }
-                catch
-                {
-                }
-            }
-        }
+        //    public void Dispose()
+        //    {
+        //        try
+        //        {
+        //            if (_showIndicator)
+        //            {
+        //                _indicatorDelay.ContinueWith(t => SetIndicatorActivity(false), TaskScheduler.FromCurrentSynchronizationContext());
+        //            }
+        //        }
+        //        catch
+        //        {
+        //        }
+        //    }
+        //}
     }
 }

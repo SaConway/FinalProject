@@ -140,7 +140,6 @@ namespace MsorLi.Views
             await MyScrollView.FadeTo(1, 100);
         }
 
-        // Override OnDisappearing
         protected async override void OnDisappearing()
         {
             //Save Item
@@ -154,20 +153,12 @@ namespace MsorLi.Views
             {
                 await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedId });
                 UpdateLikeCounter(-1);
-                MessagingCenter.Send<ItemPage, string>(this, "Item Deleted", _item.Id);
+                MessagingCenter.Send<ItemPage, string>(this, "Item Unsaved", _item.Id);
             }
             else
             {
                 MessagingCenter.Send<ItemPage>(this, "Back From Item Page");
             }
-        }
-
-        // Update liked items counter
-        private async void UpdateLikeCounter(int prefix)
-        {
-            int _numOfLikedItem = await AzureUserService.DefaultManager.UpdateNumOfItemsLiked(MsorLi.Utilities.Settings.UserId, prefix);
-            Utilities.Settings.NumOfItemsUserLike = _numOfLikedItem.ToString();
-            MessagingCenter.Send<ItemPage>(this, "Update Like Counter");
         }
 
         // EVENT FUNCTIONS
@@ -304,8 +295,8 @@ namespace MsorLi.Views
 
                 await Task.WhenAll(list);
 
+                MessagingCenter.Send<ItemPage>(this, "Item Deleted");
                 await Navigation.PopAsync();
-                MessagingCenter.Send<ItemPage, string>(this, "Item Deleted", _item.Id);
                 DependencyService.Get<IMessage>().LongAlert("המודעה נמחקה");
             }
             catch (Exception)
@@ -352,6 +343,13 @@ namespace MsorLi.Views
             contact_number.Text = _item.ContactNumber;
             date.Text = _item.Date;
             email.Text = (_item.Email.Length > 0) ? _item.Email : "מידע חסר";
+        }
+
+        private async void UpdateLikeCounter(int prefix)
+        {
+            int _numOfLikedItem = await AzureUserService.DefaultManager.UpdateNumOfItemsLiked(MsorLi.Utilities.Settings.UserId, prefix);
+            Utilities.Settings.NumOfItemsUserLike = _numOfLikedItem.ToString();
+            MessagingCenter.Send<ItemPage>(this, "Update Like Counter");
         }
 
         private async Task SetItemAsync()

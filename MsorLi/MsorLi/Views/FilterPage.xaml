@@ -42,9 +42,9 @@
 
                     <!--Cancel btn-->
                     <Button x:Name="CancelBtn" Grid.Column="0" Text="ביטול"
-                                TextColor="#19a4b4" BorderWidth="0.5" BorderColor="#999999"
-                                BackgroundColor="Transparent"
-                                Clicked="OnCancelClick" Style="{StaticResource ButtonStyle}"/>
+                            TextColor="#19a4b4" BorderWidth="0.5" BorderColor="#999999"
+                            BackgroundColor="Transparent"
+                            Clicked="OnCancelClick" Style="{StaticResource ButtonStyle}"/>
 
                     <!--Filter btn-->
                     <Button Grid.Column="1" Text="שמירה" Clicked="OnFilterClick" x:Name="SearchBtn"

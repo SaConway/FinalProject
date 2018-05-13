@@ -8,7 +8,7 @@
     
     <!-- Padding for ios status bar -->
      <ContentPage.Padding>
-            <OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0" />
+            <OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0"/>
     </ContentPage.Padding>
     
     <ContentPage.Content>
@@ -220,7 +220,7 @@
 
 
                         <ListView.Footer>
-                            <Grid x:Name="Footer" Padding="6" >
+                            <Grid x:Name="Footer">
                                 <!-- set the footer to have a zero height when invisible -->
                                 <Grid.Triggers>
                                     <Trigger TargetType="Grid" Property="IsVisible" Value="False">
@@ -229,7 +229,7 @@
                                 </Grid.Triggers>
                                 <!-- the loading content -->
                                 <Label Text="טוען מוצרים..." Style="{StaticResource StatsCaptionLabel}" 
-                                       VerticalOptions="Center" HorizontalOptions="Center" />
+                                       VerticalOptions="Center" HorizontalOptions="Center" Margin="5"/>
 
                             </Grid>
                         </ListView.Footer>

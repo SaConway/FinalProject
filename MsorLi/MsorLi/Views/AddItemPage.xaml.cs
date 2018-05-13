@@ -339,45 +339,6 @@ namespace MsorLi.Views
             return true;
         }
 
-        //private void NameTextChangedEvent(object sender, EventArgs e)
-        //{
-        //    Entry entry = sender as Entry;
-
-        //    bool IsVisable = false;
-
-        //    if (entry.Text.Length > 0)
-        //    {
-        //        IsVisable = true;
-        //        entry.Margin = new Thickness(25, 15, 25, 0);
-        //    }
-        //    else
-        //    {
-        //        IsVisable = false;
-        //        entry.Margin = new Thickness(25, 50, 25, 0);
-        //    }
-            
-        //    if (entry.Placeholder.ToString() == "תיאור מוצר")
-        //    {
-        //        descriptionLabel.IsVisible = IsVisable;
-        //    }
-        //    else if (entry.Placeholder.ToString() == "עיר מגורים")
-        //    {
-        //        cityLabel.IsVisible = IsVisable;
-        //    }
-        //    else if (entry.Placeholder.ToString() == "רחוב (אופציונלי)")
-        //    {
-        //        streetLabel.IsVisible = IsVisable;
-        //    }
-        //    else if (entry.Placeholder.ToString() == "שם איש קשר")
-        //    {
-        //        contactNameLabel.IsVisible = IsVisable;
-        //    }
-        //    else if (entry.Placeholder.ToString() == "טלפון ליצירת קשר")
-        //    {
-        //        contactNumberLabel.IsVisible = IsVisable;
-        //    }
-        //}
-
         private async Task ShowSubCategories(string category)
         {
             subCategory.IsEnabled = true;
