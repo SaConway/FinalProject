@@ -29,6 +29,8 @@ SuaveControls.FloatingActionButton.Droid
 System.Net.Http.Extensions
 System.Net.Http.Primitives
 System.Runtime
+Toasts.Forms.Plugin.Abstractions
+Toasts.Forms.Plugin.Droid
 Xamarin.Android.Support.Animated.Vector.Drawable
 Xamarin.Android.Support.Annotations
 Xamarin.Android.Support.Compat

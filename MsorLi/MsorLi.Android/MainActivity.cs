@@ -4,6 +4,9 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Plugin.Toasts;
+using Xamarin.Forms;
+
 
 namespace MsorLi.Droid
 {
@@ -24,8 +27,12 @@ namespace MsorLi.Droid
             FFImageLoading.Forms.Droid.CachedImageRenderer.Init(true);
             ImageCircle.Forms.Plugin.Droid.ImageCircleRenderer.Init();
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
-
+            
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+			DependencyService.Register<ToastNotification>(); // Register your dependency
+            ToastNotification.Init(this);
+
             base.SetTheme(Resource.Style.MainTheme);
             base.OnCreate(bundle);
             LoadApplication(new App());

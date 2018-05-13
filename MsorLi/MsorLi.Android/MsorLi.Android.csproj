@@ -17,6 +17,7 @@
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,7 +44,6 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidLinkMode>Full</AndroidLinkMode>
-    <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <LangVersion>latest</LangVersion>
     <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
@@ -105,6 +105,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Extended.InfiniteScrolling">
       <Version>1.0.0-preview2</Version>
+    </PackageReference>
+    <PackageReference Include="Toasts.Forms.Plugin">
+      <Version>3.3.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

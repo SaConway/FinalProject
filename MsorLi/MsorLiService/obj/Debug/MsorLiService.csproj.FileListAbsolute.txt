@@ -154,3 +154,11 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Debug\MsorLiSe
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Debug\MsorLiService.csproj.CopyComplete
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Debug\MsorLiService.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Debug\MsorLiService.pdb
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.LocalNotifications.Abstractions.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.LocalNotifications.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Rg.Plugins.Popup.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Rg.Plugins.Popup.Platform.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Toasts.Forms.Plugin.Abstractions.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Toasts.Forms.Plugin.Abstractions.pdb
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.LocalNotifications.Abstractions.xml
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\bin\Plugin.LocalNotifications.xml

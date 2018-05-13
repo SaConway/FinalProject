@@ -137,6 +137,8 @@ class MonoPackageManager_Resources {
 		"SuaveControls.FloatingActionButton.Droid.dll",
 		"System.Net.Http.Extensions.dll",
 		"System.Net.Http.Primitives.dll",
+		"Toasts.Forms.Plugin.Abstractions.dll",
+		"Toasts.Forms.Plugin.Droid.dll",
 		"Xamarin.Android.Support.Animated.Vector.Drawable.dll",
 		"Xamarin.Android.Support.Annotations.dll",
 		"Xamarin.Android.Support.Compat.dll",

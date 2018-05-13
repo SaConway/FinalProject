@@ -3437,6 +3437,8 @@ containing a value of this type.
         public static int vertical_viewpager=0x7f030045;
     }
     public static final class string {
+        public static int ApplicationName=0x7f09003f;
+        public static int Hello=0x7f09003e;
         public static int abc_action_bar_home_description=0x7f090015;
         public static int abc_action_bar_home_description_format=0x7f090016;
         public static int abc_action_bar_home_subtitle_description_format=0x7f090017;
@@ -3471,7 +3473,7 @@ containing a value of this type.
         public static int appbar_scrolling_view_behavior=0x7f090036;
         public static int bottom_sheet_behavior=0x7f090037;
         public static int character_counter_pattern=0x7f090038;
-        public static int library_name=0x7f09003e;
+        public static int library_name=0x7f090040;
         public static int mr_button_content_description=0x7f090000;
         public static int mr_cast_button_connected=0x7f090001;
         public static int mr_cast_button_connecting=0x7f090002;
