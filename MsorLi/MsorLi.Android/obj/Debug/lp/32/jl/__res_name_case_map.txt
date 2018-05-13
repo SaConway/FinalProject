@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 Values/Strings.xml;values/strings.xml
+=======
+Values/Strings.xml;values/strings.xml
+>>>>>>> Stashed changes

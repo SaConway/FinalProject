@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 BundleAssemblies=false
 AotAssemblies=false
+=======
+BundleAssemblies=False
+AotAssemblies=False
+>>>>>>> Stashed changes
 AndroidAotMode=
 ExplicitCrunch=False
 EnableProguard=
@@ -7,16 +12,32 @@ UseSharedRuntime=false
 EmbedAssembliesIntoApk=true
 AndroidLinkMode=None
 AndroidLinkSkip=
+<<<<<<< Updated upstream
 AndroidSdkBuildToolsVersion=23.0.0
+=======
+AndroidSdkBuildToolsVersion=27.0.3
+>>>>>>> Stashed changes
 AndroidSdkPath=
 AndroidNdkPath=
 JavaSdkPath=
 AndroidSequencePointsMode=None
+<<<<<<< Updated upstream
 XamarinAndroidVersion=8.2.0-16
+=======
+XamarinAndroidVersion=8.3.0-19
+>>>>>>> Stashed changes
 MonoSymbolArchive=False
 AndroidUseLatestPlatformSdk=false
 TargetFrameworkVersion=v8.1
 AndroidCreatePackagePerAbi=
+<<<<<<< Updated upstream
 OS=Windows_NT
 DesignTimeBuild=
 AndroidIncludeDebugSymbols=True
+=======
+OS=Unix
+DesignTimeBuild=
+AndroidIncludeDebugSymbols=True
+AdbTarget=
+AdbOptions=
+>>>>>>> Stashed changes

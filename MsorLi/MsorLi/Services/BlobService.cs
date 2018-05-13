@@ -1,12 +1,12 @@
-﻿using Microsoft.WindowsAzure.Storage;
+﻿using FFImageLoading.Forms;
+using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using MsorLi.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace MsorLi.Services
 {
@@ -40,7 +40,7 @@ namespace MsorLi.Services
 
             foreach (var imageData in byteData)
             {
-                byte[] resizedImage = ImageResizer.ResizeImage(imageData, 400, 400);
+				byte[] resizedImage = ImageResizer.ResizeImage(imageData, 640, 480);
 
                 //Insert Image to Blob server
                 var imageUrl = await BlobService.UploadFileAsync(new MemoryStream(resizedImage));
@@ -52,12 +52,13 @@ namespace MsorLi.Services
 
         public static async Task<string> SaveImageInBlob(byte[] byteData)
         {
-            byte[] resizedImage = ImageResizer.ResizeImage(byteData, 400, 400);
+			byte[] resizedImage = ImageResizer.ResizeImage(byteData, 640, 480);
             var imageUrl = await BlobService.UploadFileAsync(new MemoryStream(resizedImage));
             imageUrl = BLOB_URL + imageUrl;
 
             return imageUrl;
         }
+
 
         public static async Task DeleteImage(string image) // Name in the container
         {
@@ -75,6 +76,6 @@ namespace MsorLi.Services
                 
             }
         }
-
+              
     }
 }

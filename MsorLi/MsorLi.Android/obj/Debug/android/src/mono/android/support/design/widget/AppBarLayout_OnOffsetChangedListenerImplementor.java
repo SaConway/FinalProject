@@ -13,7 +13,11 @@ public class AppBarLayout_OnOffsetChangedListenerImplementor
 		__md_methods = 
 			"n_onOffsetChanged:(Landroid/support/design/widget/AppBarLayout;I)V:GetOnOffsetChanged_Landroid_support_design_widget_AppBarLayout_IHandler:Android.Support.Design.Widget.AppBarLayout/IOnOffsetChangedListenerInvoker, Xamarin.Android.Support.Design\n" +
 			"";
+<<<<<<< Updated upstream
 		mono.android.Runtime.register ("Android.Support.Design.Widget.AppBarLayout+IOnOffsetChangedListenerImplementor, Xamarin.Android.Support.Design, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", AppBarLayout_OnOffsetChangedListenerImplementor.class, __md_methods);
+=======
+		mono.android.Runtime.register ("Android.Support.Design.Widget.AppBarLayout+IOnOffsetChangedListenerImplementor, Xamarin.Android.Support.Design", AppBarLayout_OnOffsetChangedListenerImplementor.class, __md_methods);
+>>>>>>> Stashed changes
 	}
 
 
@@ -21,7 +25,11 @@ public class AppBarLayout_OnOffsetChangedListenerImplementor
 	{
 		super ();
 		if (getClass () == AppBarLayout_OnOffsetChangedListenerImplementor.class)
+<<<<<<< Updated upstream
 			mono.android.TypeManager.Activate ("Android.Support.Design.Widget.AppBarLayout+IOnOffsetChangedListenerImplementor, Xamarin.Android.Support.Design, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+=======
+			mono.android.TypeManager.Activate ("Android.Support.Design.Widget.AppBarLayout+IOnOffsetChangedListenerImplementor, Xamarin.Android.Support.Design", "", this, new java.lang.Object[] {  });
+>>>>>>> Stashed changes
 	}
 
 

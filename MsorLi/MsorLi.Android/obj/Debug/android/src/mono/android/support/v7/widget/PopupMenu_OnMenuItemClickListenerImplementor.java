@@ -13,7 +13,11 @@ public class PopupMenu_OnMenuItemClickListenerImplementor
 		__md_methods = 
 			"n_onMenuItemClick:(Landroid/view/MenuItem;)Z:GetOnMenuItemClick_Landroid_view_MenuItem_Handler:Android.Support.V7.Widget.PopupMenu/IOnMenuItemClickListenerInvoker, Xamarin.Android.Support.v7.AppCompat\n" +
 			"";
+<<<<<<< Updated upstream
 		mono.android.Runtime.register ("Android.Support.V7.Widget.PopupMenu+IOnMenuItemClickListenerImplementor, Xamarin.Android.Support.v7.AppCompat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", PopupMenu_OnMenuItemClickListenerImplementor.class, __md_methods);
+=======
+		mono.android.Runtime.register ("Android.Support.V7.Widget.PopupMenu+IOnMenuItemClickListenerImplementor, Xamarin.Android.Support.v7.AppCompat", PopupMenu_OnMenuItemClickListenerImplementor.class, __md_methods);
+>>>>>>> Stashed changes
 	}
 
 
@@ -21,7 +25,11 @@ public class PopupMenu_OnMenuItemClickListenerImplementor
 	{
 		super ();
 		if (getClass () == PopupMenu_OnMenuItemClickListenerImplementor.class)
+<<<<<<< Updated upstream
 			mono.android.TypeManager.Activate ("Android.Support.V7.Widget.PopupMenu+IOnMenuItemClickListenerImplementor, Xamarin.Android.Support.v7.AppCompat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+=======
+			mono.android.TypeManager.Activate ("Android.Support.V7.Widget.PopupMenu+IOnMenuItemClickListenerImplementor, Xamarin.Android.Support.v7.AppCompat", "", this, new java.lang.Object[] {  });
+>>>>>>> Stashed changes
 	}
 
 

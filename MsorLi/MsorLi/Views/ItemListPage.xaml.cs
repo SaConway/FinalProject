@@ -476,7 +476,10 @@ namespace MsorLi.Views
 
         void CreateCategory(string categoryName, string categoryIconSource, bool defultCategory = false)
         {
-			var stack = new StackLayout();
+			var stack = new StackLayout 
+			{
+				Spacing = 0
+			};
 
             var label = new Label
             {

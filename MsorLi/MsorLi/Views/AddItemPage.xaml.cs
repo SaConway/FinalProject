@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
 using MsorLi.Utilities;
+using FFImageLoading.Forms;
 #endregion
 
 namespace MsorLi.Views

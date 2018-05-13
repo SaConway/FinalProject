@@ -1,5 +1,4 @@
 ﻿using Foundation;
-using Plugin.Toasts;
 using SuaveControls.FloatingActionButton.iOS.Renderers;
 using UIKit;
 using Xamarin.Forms;
@@ -24,9 +23,6 @@ namespace MsorLi.iOS
         {
 
             global::Xamarin.Forms.Forms.Init();
-
-			DependencyService.Register<ToastNotification>(); // Register your dependency
-            ToastNotification.Init();
 
             //init for the circle image plugin
             ImageCircle.Forms.Plugin.iOS.ImageCircleRenderer.Init();
