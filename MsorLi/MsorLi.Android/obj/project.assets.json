@@ -752,6 +752,20 @@
           "lib/MonoAndroid10/_._": {}
         }
       },
+      "Toasts.Forms.Plugin/3.3.2": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Android.Support.v7.AppCompat": "23.3.0"
+        },
+        "compile": {
+          "lib/MonoAndroid10/Toasts.Forms.Plugin.Abstractions.dll": {},
+          "lib/MonoAndroid10/Toasts.Forms.Plugin.Droid.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10/Toasts.Forms.Plugin.Abstractions.dll": {},
+          "lib/MonoAndroid10/Toasts.Forms.Plugin.Droid.dll": {}
+        }
+      },
       "WindowsAzure.Storage/9.1.0": {
         "type": "package",
         "dependencies": {
@@ -4404,6 +4418,29 @@
         "system.xml.xmldocument.nuspec"
       ]
     },
+    "Toasts.Forms.Plugin/3.3.2": {
+      "sha512": "Cg+uc+GPV2rfGLYl/gyW7oo5YPPZ0/jG1Bj6KRihecoOy0Ju4HfKith9pd8CIXerS9DH7x8vqV5jrPaKXEGenA==",
+      "type": "package",
+      "path": "toasts.forms.plugin/3.3.2",
+      "files": [
+        "lib/MonoAndroid10/Toasts.Forms.Plugin.Abstractions.dll",
+        "lib/MonoAndroid10/Toasts.Forms.Plugin.Abstractions.pdb",
+        "lib/MonoAndroid10/Toasts.Forms.Plugin.Droid.dll",
+        "lib/MonoAndroid10/Toasts.Forms.Plugin.Droid.dll.mdb",
+        "lib/MonoAndroid10/Toasts.Forms.Plugin.Droid.pdb",
+        "lib/Xamarin.iOS10/Toasts.Forms.Plugin.Abstractions.dll",
+        "lib/Xamarin.iOS10/Toasts.Forms.Plugin.Abstractions.pdb",
+        "lib/Xamarin.iOS10/Toasts.Forms.Plugin.iOS.dll",
+        "lib/netstandard1.1/Toasts.Forms.Plugin.Abstractions.dll",
+        "lib/netstandard1.1/Toasts.Forms.Plugin.Abstractions.pdb",
+        "lib/uap10.0/Toasts.Forms.Plugin.Abstractions.dll",
+        "lib/uap10.0/Toasts.Forms.Plugin.Abstractions.pdb",
+        "lib/uap10.0/Toasts.Forms.Plugin.UWP.dll",
+        "lib/uap10.0/Toasts.Forms.Plugin.UWP.pdb",
+        "toasts.forms.plugin.3.3.2.nupkg.sha512",
+        "toasts.forms.plugin.nuspec"
+      ]
+    },
     "WindowsAzure.Storage/9.1.0": {
       "sha512": "fkDFm7yE7QLpHhIucjrdL8T9tGC6iz66BtOjWvWzY73GnuoXg22KYJq34XXayUnPIdFdqzl8vIiCxGnDpkbJJg==",
       "type": "package",
@@ -5160,6 +5197,7 @@
       "Microsoft.Azure.Mobile.Client >= 3.1.0",
       "Microsoft.Azure.Mobile.Client.SQLiteStore >= 3.1.0",
       "SuaveControls.FloatingActionButton >= 2018.1.5",
+      "Toasts.Forms.Plugin >= 3.3.2",
       "WindowsAzure.Storage >= 9.1.0",
       "Xam.Plugins.Forms.ImageCircle >= 2.0.2",
       "Xam.Plugins.Messaging >= 5.1.0",
@@ -5272,6 +5310,10 @@
           "Xamarin.Forms.Extended.InfiniteScrolling": {
             "target": "Package",
             "version": "1.0.0-preview2"
+          },
+          "Toasts.Forms.Plugin": {
+            "target": "Package",
+            "version": "3.3.2"
           }
         }
       }

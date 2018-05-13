@@ -59,7 +59,9 @@ namespace MsorLi.Views
             InitializeComponent();
 
             NoItemsLabel.IsVisible = false;
-
+            //loading item massage on first appiring is not showing.
+			Footer.IsVisible = false;
+            
             // Disable Selection Item
             listView_items.ItemTapped += (object sender, ItemTappedEventArgs e) =>
             {
@@ -128,6 +130,7 @@ namespace MsorLi.Views
 					return count;
                 }
             };
+            
         }
 
         protected async override void OnAppearing()
@@ -139,7 +142,6 @@ namespace MsorLi.Views
                 if (!_startupRefresh)
                 {
                     _startupRefresh = true;
-
                     CategoryMainStack.IsVisible = false;
                     CategoryMainStack.IsEnabled = false;
 

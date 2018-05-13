@@ -61,9 +61,8 @@ namespace MsorLi.Views
                 //if user is looged and pressed logout
                 if (Session.IsLogged())
                 {
-                    //Settings.UserId = "";
                     await Navigation.PopToRootAsync();
-                    DependencyService.Get<IMessage>().LongAlert("בוצעה התנתקות מהמערכת");
+					DependencyService.Get<IMessage>().LongAlert("בוצעה התנתקות מהמערכת");
                     Settings.ClearUserData();
                 }
                 else
@@ -74,7 +73,7 @@ namespace MsorLi.Views
 
                         MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
                         UserImg.Source = Settings.ImgUrl;
-                        UserName.Text = Settings.UserFirstName + Settings.UserLastName;
+                        UserName.Text = Settings.UserFirstName +" "+ Settings.UserLastName;
                     });
                 }
             }

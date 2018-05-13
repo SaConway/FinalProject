@@ -10,6 +10,7 @@ namespace MsorLi.iOS
             // if you want to use a different Application Delegate class from "AppDelegate"
             // you can specify it here.
 			FFImageLoading.Forms.Touch.CachedImageRenderer.Init();
+
             UIApplication.Main(args, null, "AppDelegate");
         }
     }

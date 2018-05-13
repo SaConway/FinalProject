@@ -739,6 +739,32 @@
           "lib/xamarinios10/_._": {}
         }
       },
+      "Toast.iOS/1.1.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System",
+          "System.Core",
+          "System.Xml",
+          "Xamarin.iOS"
+        ],
+        "compile": {
+          "lib/xamarinios10/Toast.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/Toast.dll": {}
+        }
+      },
+      "Toasts.Forms.Plugin/3.3.2": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Toasts.Forms.Plugin.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Toasts.Forms.Plugin.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Toasts.Forms.Plugin.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Toasts.Forms.Plugin.iOS.dll": {}
+        }
+      },
       "Validation/2.2.8": {
         "type": "package",
         "compile": {
@@ -1693,6 +1719,32 @@
         },
         "runtime": {
           "lib/xamarinios10/_._": {}
+        }
+      },
+      "Toast.iOS/1.1.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System",
+          "System.Core",
+          "System.Xml",
+          "Xamarin.iOS"
+        ],
+        "compile": {
+          "lib/xamarinios10/Toast.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/Toast.dll": {}
+        }
+      },
+      "Toasts.Forms.Plugin/3.3.2": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Toasts.Forms.Plugin.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Toasts.Forms.Plugin.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Toasts.Forms.Plugin.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Toasts.Forms.Plugin.iOS.dll": {}
         }
       },
       "Validation/2.2.8": {
@@ -2651,6 +2703,32 @@
           "lib/xamarinios10/_._": {}
         }
       },
+      "Toast.iOS/1.1.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System",
+          "System.Core",
+          "System.Xml",
+          "Xamarin.iOS"
+        ],
+        "compile": {
+          "lib/xamarinios10/Toast.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/Toast.dll": {}
+        }
+      },
+      "Toasts.Forms.Plugin/3.3.2": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Toasts.Forms.Plugin.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Toasts.Forms.Plugin.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Toasts.Forms.Plugin.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Toasts.Forms.Plugin.iOS.dll": {}
+        }
+      },
       "Validation/2.2.8": {
         "type": "package",
         "compile": {
@@ -3605,6 +3683,32 @@
         },
         "runtime": {
           "lib/xamarinios10/_._": {}
+        }
+      },
+      "Toast.iOS/1.1.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System",
+          "System.Core",
+          "System.Xml",
+          "Xamarin.iOS"
+        ],
+        "compile": {
+          "lib/xamarinios10/Toast.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/Toast.dll": {}
+        }
+      },
+      "Toasts.Forms.Plugin/3.3.2": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Toasts.Forms.Plugin.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Toasts.Forms.Plugin.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Toasts.Forms.Plugin.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Toasts.Forms.Plugin.iOS.dll": {}
         }
       },
       "Validation/2.2.8": {
@@ -6982,6 +7086,39 @@
         "system.xml.xmldocument.nuspec"
       ]
     },
+    "Toast.iOS/1.1.0": {
+      "sha512": "LD6PHtbeQzmgN60Lyw1t22nG+baHQy7VI5MJVowtcxvvoAROQPtSQWcLinRJ5eSMVGKOIJk9Mr4GNVu46SqvJQ==",
+      "type": "package",
+      "path": "toast.ios/1.1.0",
+      "files": [
+        "lib/xamarinios10/Toast.dll",
+        "toast.ios.1.1.0.nupkg.sha512",
+        "toast.ios.nuspec"
+      ]
+    },
+    "Toasts.Forms.Plugin/3.3.2": {
+      "sha512": "Cg+uc+GPV2rfGLYl/gyW7oo5YPPZ0/jG1Bj6KRihecoOy0Ju4HfKith9pd8CIXerS9DH7x8vqV5jrPaKXEGenA==",
+      "type": "package",
+      "path": "toasts.forms.plugin/3.3.2",
+      "files": [
+        "lib/MonoAndroid10/Toasts.Forms.Plugin.Abstractions.dll",
+        "lib/MonoAndroid10/Toasts.Forms.Plugin.Abstractions.pdb",
+        "lib/MonoAndroid10/Toasts.Forms.Plugin.Droid.dll",
+        "lib/MonoAndroid10/Toasts.Forms.Plugin.Droid.dll.mdb",
+        "lib/MonoAndroid10/Toasts.Forms.Plugin.Droid.pdb",
+        "lib/Xamarin.iOS10/Toasts.Forms.Plugin.Abstractions.dll",
+        "lib/Xamarin.iOS10/Toasts.Forms.Plugin.Abstractions.pdb",
+        "lib/Xamarin.iOS10/Toasts.Forms.Plugin.iOS.dll",
+        "lib/netstandard1.1/Toasts.Forms.Plugin.Abstractions.dll",
+        "lib/netstandard1.1/Toasts.Forms.Plugin.Abstractions.pdb",
+        "lib/uap10.0/Toasts.Forms.Plugin.Abstractions.dll",
+        "lib/uap10.0/Toasts.Forms.Plugin.Abstractions.pdb",
+        "lib/uap10.0/Toasts.Forms.Plugin.UWP.dll",
+        "lib/uap10.0/Toasts.Forms.Plugin.UWP.pdb",
+        "toasts.forms.plugin.3.3.2.nupkg.sha512",
+        "toasts.forms.plugin.nuspec"
+      ]
+    },
     "Validation/2.2.8": {
       "sha512": "DMNc7JhPlgRwnR+NNb+ldoluObL+RBw96aMoiZae/Looa4vgaAnIysmle/bV2OKqDNW9oUBDckPyfa2+sX6JdA==",
       "type": "package",
@@ -7535,6 +7672,8 @@
       "Microsoft.Azure.Mobile.Client >= 4.0.2",
       "Microsoft.Azure.Mobile.Client.SQLiteStore >= 4.0.2",
       "SuaveControls.FloatingActionButton >= 2018.1.5",
+      "Toast.iOS >= 1.1.0",
+      "Toasts.Forms.Plugin >= 3.3.2",
       "WindowsAzure.Storage >= 9.1.1",
       "Xam.Plugins.Forms.ImageCircle >= 2.0.2",
       "Xam.Plugins.Messaging >= 5.1.0",
@@ -7637,6 +7776,14 @@
           "Xamarin.Forms.Extended.InfiniteScrolling": {
             "target": "Package",
             "version": "1.0.0-preview2"
+          },
+          "Toast.iOS": {
+            "target": "Package",
+            "version": "1.1.0"
+          },
+          "Toasts.Forms.Plugin": {
+            "target": "Package",
+            "version": "3.3.2"
           }
         }
       }
