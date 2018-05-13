@@ -17,6 +17,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
                 
@@ -35,7 +36,7 @@
 
                 <!--Button area -->
 
-                <Grid Grid.Row="2" Margin="0,20">
+                <Grid Grid.Row="2" Margin="0,20,0,0">
                     
                     <StackLayout x:Name="EditBtn" Grid.Row="0" Grid.Column="0">
                         
@@ -72,8 +73,12 @@
                     
                 </Grid>
 
+                <!--Seperator Line-->
+                <BoxView Grid.Row="3" Margin="20" HorizontalOptions="FillAndExpand" HeightRequest="1"
+                             Style="{StaticResource GrayColorBoxView}"/>
+                
                 <!--Counters area -->
-                <Grid Grid.Row="3" ColumnSpacing="0" >
+                <Grid Grid.Row="4" ColumnSpacing="0" >
                     
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -92,10 +97,10 @@
                     </StackLayout>
                 </Grid>
 
-                <Label x:Name="MyItemLabel"  Grid.Row="4" Text="מוצרים שפירסמתי" Margin="0,20,0,0" Style="{StaticResource StatsCaptionLabel}" HorizontalOptions="Center"/>
-                <Label x:Name="NoItemLabel" Grid.Row="5" Text="לא פרסמתי מוצרים" Margin="0,20,0,0" Style="{StaticResource StatsCaptionLabel}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label x:Name="MyItemLabel"  Grid.Row="5" Text="מוצרים שפירסמתי" Margin="0,20,0,0" Style="{StaticResource StatsCaptionLabel}" HorizontalOptions="Center"/>
+                <Label x:Name="NoItemLabel" Grid.Row="6" Text="לא פרסמתי מוצרים" Margin="0,20,0,0" Style="{StaticResource StatsCaptionLabel}" VerticalOptions="Center" HorizontalOptions="Center"/>
 
-                <ScrollView x:Name="ItemList" BackgroundColor="Transparent" Grid.Row="5" Orientation="Horizontal" Margin="7,0,7,20" HorizontalOptions="CenterAndExpand">
+                <ScrollView x:Name="ItemList" BackgroundColor="Transparent" Grid.Row="6" Orientation="Horizontal" Margin="7,0,7,20" HorizontalOptions="CenterAndExpand">
                         <StackLayout x:Name="StackCategory" BackgroundColor="Transparent" Orientation="Horizontal" HorizontalOptions="End" />
                 </ScrollView>
                 

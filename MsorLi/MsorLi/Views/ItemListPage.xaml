@@ -7,12 +7,13 @@
              x:Class="MsorLi.Views.ItemListPage">
     
     <!-- Padding for ios status bar -->
-     <ContentPage.Padding>
+     <ContentPage.Padding> 
             <OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0"/>
     </ContentPage.Padding>
     
     <ContentPage.Content>
         <AbsoluteLayout>
+            
             
             <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" 
                          Spacing="0">

@@ -174,7 +174,7 @@ namespace MsorLi.Views
 
                     DependencyService.Get<IMessage>().LongAlert("פרסום המוצר בוצע בהצלחה");
 
-                    await Navigation.PopAsync();
+                    await Navigation.PopToRootAsync();
                 }
 
                 if (_isEditingItem)
@@ -187,7 +187,7 @@ namespace MsorLi.Views
 
                         MyFrame.IsVisible = false;
                         DependencyService.Get<IMessage>().LongAlert("עדכון המוצר בוצע בהצלחה");
-                        await Navigation.PopAsync();
+						await Navigation.PopToRootAsync();
 
                     });
                 }
@@ -196,7 +196,7 @@ namespace MsorLi.Views
             catch (Exception)
             {
                 await DisplayAlert("שגיאה", "לא ניתן להשלים את פעולת פרסום המוצר. נסה/י שנית מאוחר יותר.", "אישור");
-                await Navigation.PopAsync();
+				await Navigation.PopToRootAsync();
             }
         }
 

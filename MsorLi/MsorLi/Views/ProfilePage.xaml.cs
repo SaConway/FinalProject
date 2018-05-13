@@ -37,9 +37,7 @@ namespace MsorLi.Views
             MessagingCenter.Subscribe<ItemPage>(this, "Update Like Counter", (sender) => {
                 ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
             });
-            if(Settings.FacebookId != ""){
-                EditBtn.IsEnabled = false;
-            }
+
 
         }
 
@@ -146,7 +144,12 @@ namespace MsorLi.Views
 
         private async void EditBtnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new EditUserInfoPage());
+			if (Settings.FacebookId != "")
+            {
+				DependencyService.Get<IMessage>().LongAlert("משתמש פייבוק לא יכול לערוך פרטים");
+            }
+			else
+                await Navigation.PushAsync(new EditUserInfoPage());
         }
 
         private async void AddNewItemClicked(object sender, EventArgs e)
