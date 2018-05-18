@@ -118,4 +118,3 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.ComponentModel.TypeConverter.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Dynamic.Runtime.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Runtime.Serialization.Formatters.dll
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\linksrc\he\System.Xml.Linq.resources.dll

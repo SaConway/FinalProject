@@ -1,3 +1,4 @@
+C:\Users\sagee\.nuget\packages\toasts.forms.plugin\3.3.2\lib\MonoAndroid10\Toasts.Forms.Plugin.Droid.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\MsorLi.Android.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\MsorLi.Android.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\com.companyname.MsorLi.apk
@@ -107,7 +108,6 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\res\dra
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\R.cs.flag
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\uploadflags.txt
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\MsorLi.Android.dll
-C:\Users\sagee\.nuget\packages\toasts.forms.plugin\3.3.2\lib\MonoAndroid10\Toasts.Forms.Plugin.Droid.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\FFImageLoading.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\FFImageLoading.Forms.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\FFImageLoading.Forms.Droid.pdb
