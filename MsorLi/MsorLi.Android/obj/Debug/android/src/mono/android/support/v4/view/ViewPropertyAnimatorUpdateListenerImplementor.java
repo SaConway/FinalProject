@@ -13,7 +13,11 @@ public class ViewPropertyAnimatorUpdateListenerImplementor
 		__md_methods = 
 			"n_onAnimationUpdate:(Landroid/view/View;)V:GetOnAnimationUpdate_Landroid_view_View_Handler:Android.Support.V4.View.IViewPropertyAnimatorUpdateListenerInvoker, Xamarin.Android.Support.Compat\n" +
 			"";
+<<<<<<< Updated upstream
 		mono.android.Runtime.register ("Android.Support.V4.View.IViewPropertyAnimatorUpdateListenerImplementor, Xamarin.Android.Support.Compat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ViewPropertyAnimatorUpdateListenerImplementor.class, __md_methods);
+=======
+		mono.android.Runtime.register ("Android.Support.V4.View.IViewPropertyAnimatorUpdateListenerImplementor, Xamarin.Android.Support.Compat", ViewPropertyAnimatorUpdateListenerImplementor.class, __md_methods);
+>>>>>>> Stashed changes
 	}
 
 
@@ -21,7 +25,11 @@ public class ViewPropertyAnimatorUpdateListenerImplementor
 	{
 		super ();
 		if (getClass () == ViewPropertyAnimatorUpdateListenerImplementor.class)
+<<<<<<< Updated upstream
 			mono.android.TypeManager.Activate ("Android.Support.V4.View.IViewPropertyAnimatorUpdateListenerImplementor, Xamarin.Android.Support.Compat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+=======
+			mono.android.TypeManager.Activate ("Android.Support.V4.View.IViewPropertyAnimatorUpdateListenerImplementor, Xamarin.Android.Support.Compat", "", this, new java.lang.Object[] {  });
+>>>>>>> Stashed changes
 	}
 
 

@@ -19,7 +19,7 @@
                          Spacing="0">
 
                 <!--ToolBar-->
-                <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#19a4b4" Padding="10">
+                <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="#19a4b4" >
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -31,12 +31,18 @@
                     </Grid.ColumnDefinitions>
 
                     <!--Filter-->
-                    <Image Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"
-                           Source="filter.png" Margin="5,0,0,0">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnFilterClick"/>
-                        </Image.GestureRecognizers>
-                    </Image>
+                    <StackLayout Padding="10" Spacing="0" >
+                        
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer  Tapped="OnFilterClick">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        
+                        <Image Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"
+                            Source="filter.png" Margin="0,0,0,0"/>
+
+                    </StackLayout>
+                        
 
                     <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="Center">
 
@@ -51,13 +57,17 @@
                         </Label>
 
                         <!--Menu-->
-                        <Image HorizontalOptions="Center" VerticalOptions="Center"
-                               Source="menu.png" Margin="0,0,5,0">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnMenuClick">
-                                </TapGestureRecognizer>
-                            </Image.GestureRecognizers>
-                        </Image>
+                        <StackLayout  Padding="10" Spacing="0">
+                            
+                            <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="OnMenuClick">
+                                    </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                            
+                            <Image HorizontalOptions="Center" VerticalOptions="Center"
+                                   Source="menu.png"/>
+                            
+                        </StackLayout>
 
                     </StackLayout>
 
@@ -70,11 +80,14 @@
                             BackgroundColor="Transparent" HorizontalOptions="End">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="End"
                                  BackgroundColor="Transparent" x:Name="StackCategory"/>
+
                     </ScrollView>
 
                     <BoxView HorizontalOptions="FillAndExpand"
                              HeightRequest="1" BackgroundColor="#BDBDBD"/>
                 </StackLayout>
+
+
                 
                 <!--Filter Erea-->
                 <StackLayout BackgroundColor="Transparent" HorizontalOptions="FillAndExpand"

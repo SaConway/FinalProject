@@ -2929,6 +2929,7 @@ containing a value of this type.
         public static int add_item=0x7f020053;
         public static int all=0x7f020054;
         public static int avd_hide_password=0x7f020055;
+<<<<<<< Updated upstream
         public static int avd_hide_password_1=0x7f02012f;
         public static int avd_hide_password_2=0x7f020130;
         public static int avd_hide_password_3=0x7f020131;
@@ -2936,6 +2937,15 @@ containing a value of this type.
         public static int avd_show_password_1=0x7f020132;
         public static int avd_show_password_2=0x7f020133;
         public static int avd_show_password_3=0x7f020134;
+=======
+        public static int avd_hide_password_1=0x7f020132;
+        public static int avd_hide_password_2=0x7f020133;
+        public static int avd_hide_password_3=0x7f020134;
+        public static int avd_show_password=0x7f020056;
+        public static int avd_show_password_1=0x7f020135;
+        public static int avd_show_password_2=0x7f020136;
+        public static int avd_show_password_3=0x7f020137;
+>>>>>>> Stashed changes
         public static int call=0x7f020057;
         public static int curvedmask=0x7f020058;
         public static int delete=0x7f020059;
@@ -3103,6 +3113,7 @@ containing a value of this type.
         public static int login=0x7f0200fb;
         public static int logout=0x7f0200fc;
         public static int love=0x7f0200fd;
+<<<<<<< Updated upstream
         public static int love_full=0x7f0200fe;
         public static int menu=0x7f0200ff;
         public static int mr_button_connected_dark=0x7f020100;
@@ -3152,6 +3163,60 @@ containing a value of this type.
         public static int up=0x7f02012a;
         public static int waze=0x7f02012b;
         public static int x=0x7f02012c;
+=======
+        public static int love_empty=0x7f0200fe;
+        public static int love_full=0x7f0200ff;
+        public static int love_icon=0x7f020100;
+        public static int menu=0x7f020101;
+        public static int mr_button_connected_dark=0x7f020102;
+        public static int mr_button_connected_light=0x7f020103;
+        public static int mr_button_connecting_dark=0x7f020104;
+        public static int mr_button_connecting_light=0x7f020105;
+        public static int mr_button_dark=0x7f020106;
+        public static int mr_button_light=0x7f020107;
+        public static int mr_dialog_close_dark=0x7f020108;
+        public static int mr_dialog_close_light=0x7f020109;
+        public static int mr_dialog_material_background_dark=0x7f02010a;
+        public static int mr_dialog_material_background_light=0x7f02010b;
+        public static int mr_group_collapse=0x7f02010c;
+        public static int mr_group_expand=0x7f02010d;
+        public static int mr_media_pause_dark=0x7f02010e;
+        public static int mr_media_pause_light=0x7f02010f;
+        public static int mr_media_play_dark=0x7f020110;
+        public static int mr_media_play_light=0x7f020111;
+        public static int mr_media_stop_dark=0x7f020112;
+        public static int mr_media_stop_light=0x7f020113;
+        public static int mr_vol_type_audiotrack_dark=0x7f020114;
+        public static int mr_vol_type_audiotrack_light=0x7f020115;
+        public static int navigation_empty_icon=0x7f020116;
+        public static int next=0x7f020117;
+        public static int notification_action_background=0x7f020118;
+        public static int notification_bg=0x7f020119;
+        public static int notification_bg_low=0x7f02011a;
+        public static int notification_bg_low_normal=0x7f02011b;
+        public static int notification_bg_low_pressed=0x7f02011c;
+        public static int notification_bg_normal=0x7f02011d;
+        public static int notification_bg_normal_pressed=0x7f02011e;
+        public static int notification_icon_background=0x7f02011f;
+        public static int notification_template_icon_bg=0x7f020130;
+        public static int notification_template_icon_low_bg=0x7f020131;
+        public static int notification_tile_bg=0x7f020120;
+        public static int notify_panel_notification_icon_bg=0x7f020121;
+        public static int picture=0x7f020122;
+        public static int pingpong=0x7f020123;
+        public static int plus=0x7f020124;
+        public static int prev=0x7f020125;
+        public static int profile=0x7f020126;
+        public static int search=0x7f020127;
+        public static int share=0x7f020128;
+        public static int splash_logo=0x7f020129;
+        public static int splash_screen=0x7f02012a;
+        public static int tag=0x7f02012b;
+        public static int unknownuser=0x7f02012c;
+        public static int up=0x7f02012d;
+        public static int waze=0x7f02012e;
+        public static int x=0x7f02012f;
+>>>>>>> Stashed changes
     }
     public static final class id {
         public static int action0=0x7f0800a6;
