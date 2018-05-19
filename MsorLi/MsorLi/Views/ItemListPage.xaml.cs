@@ -142,8 +142,8 @@ namespace MsorLi.Views
                     CategoryMainStack.IsVisible = false;
                     CategoryMainStack.IsEnabled = false;
 
-                    Task t1 = CreateCategories();
                     Task t2 =  RefreshItems();
+                    Task t1 = CreateCategories();
                     await Task.WhenAll(t1, t2);
 
                     CategoryMainStack.IsVisible = true;
@@ -540,7 +540,7 @@ namespace MsorLi.Views
             // Hide categories
             CategoryMainStack.IsVisible = false;
             FilterCategoryLabel.Text = _subCategoryFilter != "" ? filterResult.Item1 + ", " + filterResult.Item2 : filterResult.Item1;
-            FilterCategoryLabel.Text += FilterCategoryLabel.Text.Length > 0 ? ", " : "";
+            FilterCategoryLabel.Text += FilterCategoryLabel.Text.Length > 0 && _conditionFilter != "" ? ", " : "";
             FilterCategoryLabel.Text += _conditionFilter != "" ? filterResult.Item3 : "";
             FilterMainStack.IsVisible = true;
 

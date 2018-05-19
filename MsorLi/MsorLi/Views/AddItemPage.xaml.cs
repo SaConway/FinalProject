@@ -259,10 +259,8 @@ namespace MsorLi.Views
                     // Image was uploaded to DB and Blob,
                     // so we need to delete..
 
-                    var t1 = AzureImageService.DefaultManager.DeleteImage(tuple.Item1);
-                    var t2 = BlobService.DeleteImage(tuple.Item1.Url);
-
-                    await Task.WhenAll(t1, t2);
+                    await AzureImageService.DefaultManager.DeleteImage(tuple.Item1);
+                    await BlobService.DeleteImage(tuple.Item1.Url);
                 }
 
                 _keyValues.Remove(key);

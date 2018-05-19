@@ -112,7 +112,7 @@
 
                             <StackLayout Grid.Column="1" Orientation="Horizontal"
                                          HorizontalOptions="End">
-                                <Label HorizontalTextAlignment="End"
+                                <Label HorizontalTextAlignment="End" LineBreakMode="WordWrap"
                                        x:Name="FilterCategoryLabel" TextColor="#212121"/>
                                 <Image Source="tag.png"/>
                                        
@@ -128,9 +128,6 @@
                     <BoxView HorizontalOptions="FillAndExpand"
                              HeightRequest="1" BackgroundColor="#BDBDBD"/>
                 </StackLayout>
-                
-                <!--Activity Indicator-->
-                <ActivityIndicator IsVisible="False" IsEnabled="True" x:Name="syncIndicator"/>
 
                 <!--List Of Images-->
                 <ListView x:Name="listView_items" Refreshing="OnRefresh" 
