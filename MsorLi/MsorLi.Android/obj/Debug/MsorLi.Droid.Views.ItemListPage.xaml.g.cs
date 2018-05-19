@@ -11,12 +11,7 @@
 namespace MsorLi.Views {
     
     
-<<<<<<< Updated upstream
     [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi\\Views\\ItemListPage.xaml")]
-=======
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi/Views/Item" +
-        "ListPage.xaml")]
->>>>>>> Stashed changes
     public partial class ItemListPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]

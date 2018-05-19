@@ -14,11 +14,11 @@
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
                          Grid.Row="0" Margin="10">
 
-                <Image Source="report.jpg" HorizontalOptions="Center" Margin="40"/>
+                <Image Source="report.png" HorizontalOptions="Center" Margin="40"/>
 
                 <Picker x:Name="picker" Margin="10,20" Title="בחר סיבת דיווח">
                     <Picker.Items>
-                        <x:String>זהו ספאם</x:String>
+                        <x:String>ספאם</x:String>
                         <x:String>התמונות לא תואמות לתיאור</x:String>
                         <x:String>מכיל תוכן אלים ו/או מיני</x:String>
                         <x:String>המוצר אינו למסירה</x:String>

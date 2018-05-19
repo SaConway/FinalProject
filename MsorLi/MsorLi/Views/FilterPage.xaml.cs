@@ -18,7 +18,7 @@ namespace MsorLi.Views
         // FUNCTIONS
         //---------------------------------------------------
 
-        public FilterPage(string category, string subCategory)
+        public FilterPage(string category, string subCategory, string condition)
 		{
 			InitializeComponent ();
 
@@ -30,7 +30,13 @@ namespace MsorLi.Views
             }
 
             CategoryPicker.SelectedItem = category;
+            ConditionPicker.SelectedItem = condition;
             _subCategory = subCategory;
+
+            if (CategoryPicker.SelectedIndex != -1 || ConditionPicker.SelectedIndex != -1)
+            {
+                EnableSubmit();
+            }
         }
 
         protected async override void OnAppearing()
@@ -50,18 +56,30 @@ namespace MsorLi.Views
             await SetSubCategories();
         }
 
+        private void OnConditionChanged(object sender, EventArgs e)
+        {
+            EnableSubmit();
+        }
+
         private async void OnFilterClick(object sender, EventArgs e)
         {
             try
             {
-                var category = CategoryPicker.Items[CategoryPicker.SelectedIndex].ToString();
-                var subCategory = SubCategoryPicker.SelectedIndex != -1 ? SubCategoryPicker.Items[SubCategoryPicker.SelectedIndex].ToString() : "";
-                var filterResult = new Tuple<string, string>(category, subCategory);
+                var category = CategoryPicker.SelectedIndex != -1 ? 
+                    CategoryPicker.Items[CategoryPicker.SelectedIndex].ToString() : "";
+
+                var subCategory = SubCategoryPicker.SelectedIndex != -1 ?
+                    SubCategoryPicker.Items[SubCategoryPicker.SelectedIndex].ToString() : "";
+
+                var condition = ConditionPicker.SelectedIndex != -1 ?
+                    ConditionPicker.Items[ConditionPicker.SelectedIndex].ToString() : "";
+
+                var filterResult = new Tuple<string, string, string>(category, subCategory, condition);
 
                 _subCategory = subCategory;
 
                 await Navigation.PopAsync();
-                MessagingCenter.Send<FilterPage, Tuple<string, string>>(this, "Back From Filter", filterResult);
+                MessagingCenter.Send<FilterPage, Tuple<string, string, string>>(this, "Back From Filter", filterResult);
             }
             catch (Exception)
             {
@@ -96,8 +114,11 @@ namespace MsorLi.Views
             }
 
             SubCategoryPicker.IsEnabled = true;
-            SearchBtn.IsEnabled = true;
+            EnableSubmit();
+        }
 
+        private void EnableSubmit()
+        {
             SearchBtn.IsEnabled = true;
             SearchBtn.BackgroundColor = Color.FromHex("19a4b4");
         }

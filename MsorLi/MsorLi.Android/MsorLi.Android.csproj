@@ -119,7 +119,6 @@
     <Compile Include="PicturePickerImplementation.cs" />
     <Compile Include="HorizontalListviewRendererAndroid.cs" />
     <Compile Include="ScrollViewEXRenderer.cs" />
-    <Compile Include="SplashActivity.cs" />
     <Compile Include="WazeAndroid.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -154,32 +153,6 @@
     <AndroidResource Include="Resources\drawable-hdpi\love.png" />
     <AndroidResource Include="Resources\drawable-hdpi\profile.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\facebook.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\share.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\add_item.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\call.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\edit_profile.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\waze.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\delete_item.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\delete.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\edit.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\login.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\tag.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\logout.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\x.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\location.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\plus.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\filter.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\menu.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\love_full.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\pingpong.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\picture.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\electronic.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\fashion.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\all.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\love.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\profile.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\facebook.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\share.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\add_item.png" />
@@ -221,16 +194,117 @@
     <AndroidResource Include="Resources\drawable\splash_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\splash_screen.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\unknownuser.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\CurvedMask.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\drawable-xxhdpi\" />
+    <AndroidResource Include="Resources\drawable\splash_screen.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\add_item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\all.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\call.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\delete_item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\edit_profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\electronic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\facebook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\fashion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\filter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\location.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\love.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\love_full.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\pingpong.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\tag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\waze.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
   </ItemGroup>
   <Import Project="..\MsorLi\MsorLi.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

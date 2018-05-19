@@ -1,17 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Paths>
   <AdditionalAndroidResourcePaths>
-<<<<<<< Updated upstream
     <AdditionalAndroidResourcePath>C:\Users\sagee\AppData\Local\Xamarin\Xamarin.Android.Support.CustomTabs\23.4.0.0\embedded</AdditionalAndroidResourcePath>
   </AdditionalAndroidResourcePaths>
   <AdditionalJavaLibraryReferences>
     <AdditionalJavaLibraryReference>C:\Users\sagee\AppData\Local\Xamarin\Xamarin.Android.Support.CustomTabs\23.4.0.0\embedded\classes.jar</AdditionalJavaLibraryReference>
-=======
-    <AdditionalAndroidResourcePath>/Users/Idan Marciano/.local/share/Xamarin/Xamarin.Android.Support.CustomTabs/23.4.0.0/embedded</AdditionalAndroidResourcePath>
-  </AdditionalAndroidResourcePaths>
-  <AdditionalJavaLibraryReferences>
-    <AdditionalJavaLibraryReference>/Users/Idan Marciano/.local/share/Xamarin/Xamarin.Android.Support.CustomTabs/23.4.0.0/embedded/classes.jar</AdditionalJavaLibraryReference>
->>>>>>> Stashed changes
   </AdditionalJavaLibraryReferences>
   <AdditionalNativeLibraryReferences />
 </Paths>

@@ -82,6 +82,7 @@ namespace MsorLi.Views
                 await DisplayAlert("שגיאה", "לא ניתן להתנתק. נסה שנית מאוחר יותר.", "אישור");
             }
         }
+
         private async void ProfileClickEvent(object sender, EventArgs e)
         {
             try
@@ -108,6 +109,56 @@ namespace MsorLi.Views
             catch (Exception)
             {
                 //await DisplayAlert("שגיאה", "לא ניתן להתנתק. נסה שנית מאוחר יותר.", "אישור");
+            }
+        }
+
+        private async void HomeClickEvent(object sender, EventArgs e)
+        {
+            try
+            {
+                await Navigation.PopToRootAsync();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private async void AboutClickEvent(object sender, EventArgs e)
+        {
+            try
+            {
+                await Navigation.PushAsync(new AboutPage());
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private async void AddItemClickEvent(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session.IsLogged())
+                {
+                    await Navigation.PushAsync(new AddItemPage());
+                }
+                else
+                {
+                    await Navigation.PushAsync(new LoginPage());
+
+                    // If login is finish with success, load add item page
+                    MessagingCenter.Subscribe<LoginPage>(this, "Success", async (send) =>
+                    {
+                        MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
+                        await Navigation.PushAsync(new AddItemPage());
+                    });
+                }
+            }
+            catch (Exception)
+            {
+
             }
         }
     }

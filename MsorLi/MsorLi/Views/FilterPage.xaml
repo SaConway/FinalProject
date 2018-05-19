@@ -31,6 +31,23 @@
                     <Picker Title="בחר תת קטגוריה" IsEnabled="False" x:Name="SubCategoryPicker"
                             Margin="0,10,0,0" HorizontalOptions="FillAndExpand"/>
 
+                    <!--Condition-->
+                    <Label Text="מצב מוצר" HorizontalOptions="FillAndExpand"
+                           HorizontalTextAlignment="End" Margin="0,40,0,0"
+                           Style="{DynamicResource myBodyStyle}"/>
+
+                    <Picker x:Name="ConditionPicker" Title="בחר מצב מוצר"
+                            SelectedIndexChanged="OnConditionChanged"
+                            Margin="0,10,0,0" HorizontalOptions="FillAndExpand">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>כמו חדש</x:String>
+                                <x:String>משומש</x:String>
+                                <x:String>דרוש תיקון/שיפוץ</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+
                 </StackLayout>
 
                 <!--Buttons-->

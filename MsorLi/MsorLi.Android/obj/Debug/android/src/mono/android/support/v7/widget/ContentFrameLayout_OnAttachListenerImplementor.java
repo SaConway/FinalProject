@@ -14,11 +14,7 @@ public class ContentFrameLayout_OnAttachListenerImplementor
 			"n_onAttachedFromWindow:()V:GetOnAttachedFromWindowHandler:Android.Support.V7.Widget.ContentFrameLayout/IOnAttachListenerInvoker, Xamarin.Android.Support.v7.AppCompat\n" +
 			"n_onDetachedFromWindow:()V:GetOnDetachedFromWindowHandler:Android.Support.V7.Widget.ContentFrameLayout/IOnAttachListenerInvoker, Xamarin.Android.Support.v7.AppCompat\n" +
 			"";
-<<<<<<< Updated upstream
 		mono.android.Runtime.register ("Android.Support.V7.Widget.ContentFrameLayout+IOnAttachListenerImplementor, Xamarin.Android.Support.v7.AppCompat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ContentFrameLayout_OnAttachListenerImplementor.class, __md_methods);
-=======
-		mono.android.Runtime.register ("Android.Support.V7.Widget.ContentFrameLayout+IOnAttachListenerImplementor, Xamarin.Android.Support.v7.AppCompat", ContentFrameLayout_OnAttachListenerImplementor.class, __md_methods);
->>>>>>> Stashed changes
 	}
 
 
@@ -26,11 +22,7 @@ public class ContentFrameLayout_OnAttachListenerImplementor
 	{
 		super ();
 		if (getClass () == ContentFrameLayout_OnAttachListenerImplementor.class)
-<<<<<<< Updated upstream
 			mono.android.TypeManager.Activate ("Android.Support.V7.Widget.ContentFrameLayout+IOnAttachListenerImplementor, Xamarin.Android.Support.v7.AppCompat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
-=======
-			mono.android.TypeManager.Activate ("Android.Support.V7.Widget.ContentFrameLayout+IOnAttachListenerImplementor, Xamarin.Android.Support.v7.AppCompat", "", this, new java.lang.Object[] {  });
->>>>>>> Stashed changes
 	}
 
 

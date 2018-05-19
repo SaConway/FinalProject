@@ -69,21 +69,22 @@ namespace MsorLiService
             List<ItemSubCategory> SubCategories = new List<ItemSubCategory>
             {
                 new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=1, Name="מחשבים וציוד נלווה", MainCategory = "מוצרי חשמל" },
-                new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=2, Name="מוצרי חשמל למטבח", MainCategory = "מוצרי חשמל" },
+                new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=2, Name="מכשירי חשמל", MainCategory = "מוצרי חשמל" },
                 new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=3, Name="סלולר", MainCategory = "מוצרי חשמל" },
                 new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=4, Name="אחר", MainCategory = "מוצרי חשמל" },
-                new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=1, Name="ריהוט לסלון", MainCategory = "ריהוט וכלי בית" },
-                new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=2, Name="ריהוט לחדר שינה", MainCategory = "ריהוט וכלי בית" },
+                new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=1, Name="רהיטים", MainCategory = "ריהוט וכלי בית" },
+                new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=2, Name="כלי בית", MainCategory = "ריהוט וכלי בית" },
                 new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=3, Name="ציוד משרדי", MainCategory = "ריהוט וכלי בית" },
                 new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=4, Name="אחר", MainCategory = "ריהוט וכלי בית" },
                 new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=1, Name="בגדי נשים", MainCategory = "בגדים ואופנה" },
                 new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=2, Name="בגדי גברים", MainCategory = "בגדים ואופנה" },
                 new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=3, Name="בגדי נוער", MainCategory = "בגדים ואופנה" },
-                new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=4, Name="אחר", MainCategory = "בגדים ואופנה" },
+                new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=4, Name="בגדי נוער", MainCategory = "בגדים ואופנה" },
+                new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=5, Name="אקססוריז", MainCategory = "בגדים ואופנה" },
                 new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=1, Name="ציוד ספורט", MainCategory = "תחביבים" },
                 new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=2, Name="מוזיקה", MainCategory = "תחביבים" },
                 new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=3, Name="אומנות", MainCategory = "תחביבים" },
-                new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=7, Name="אחר", MainCategory = "תחביבים" },
+                new ItemSubCategory { Id = Guid.NewGuid().ToString(), Order=4, Name="אחר", MainCategory = "תחביבים" },
             };
 
             foreach (var sc in SubCategories)

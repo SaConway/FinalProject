@@ -24,6 +24,9 @@ namespace MsorLi.Views
         Dictionary<ImageSource, Tuple<ItemImage, byte[]>> _keyValues = new Dictionary<ImageSource, Tuple<ItemImage, byte[]>>();
         Item _item = new Item();
 
+        Boolean _isRunningItem = false;
+        Object _lockObject = new Object();
+
         #endregion
 
         //---------------------------------------------------
@@ -40,6 +43,7 @@ namespace MsorLi.Views
                 city.Text = Settings.Address;
                 contactName.Text = Settings.UserFirstName + " " + Settings.UserLastName;
                 contactNumber.Text = Settings.Phone;
+                email.Text = Settings.Email;
 
                 var categories = CategoryStorage.GetCategories().Result;
 
@@ -112,6 +116,14 @@ namespace MsorLi.Views
         {
             try
             {
+                lock (_lockObject)
+                {
+                    if (_isRunningItem)
+                        return;
+                    else
+                        _isRunningItem = true;
+                }
+
                 if (_keyValues.Count == Constants.MAX_NUM_OF_IMAGES) return;
 
                 pickPictureButton.IsEnabled = false;
@@ -143,14 +155,28 @@ namespace MsorLi.Views
                 }
 
                 pickPictureButton.IsEnabled = _keyValues.Count == Constants.MAX_NUM_OF_IMAGES ? false : true;
+
+                _isRunningItem = false;
+
             }
-            catch (Exception) {}
+            catch (Exception)
+            {
+                _isRunningItem = false;
+            }
         }
 
         private async void OnAddItemClick(object sender, EventArgs e)
         {
             try
             {
+                lock (_lockObject)
+                {
+                    if (_isRunningItem)
+                        return;
+                    else
+                        _isRunningItem = true;
+                }
+
                 if (!Validation())
                 {
                     await DisplayAlert("", "אחד או יותר משדות החובה לא מולאו. יש למלא את כולן ולנסות בשנית.", "אישור");
@@ -192,10 +218,15 @@ namespace MsorLi.Views
 
                     });
                 }
+
+                _isRunningItem = false;
+
             }
 
             catch (Exception)
             {
+                _isRunningItem = false;
+
                 await DisplayAlert("שגיאה", "לא ניתן להשלים את פעולת פרסום המוצר. נסה/י שנית מאוחר יותר.", "אישור");
 				await Navigation.PopToRootAsync();
             }
@@ -211,6 +242,14 @@ namespace MsorLi.Views
         {
             try
             {
+                lock (_lockObject)
+                {
+                    if (_isRunningItem)
+                        return;
+                    else
+                        _isRunningItem = true;
+                }
+
                 ImageSource key = (ImageSource)e.Parameter;
 
                 var tuple = _keyValues[key];
@@ -254,9 +293,13 @@ namespace MsorLi.Views
                 }
 
                 pickPictureButton.IsEnabled = _keyValues.Count == Constants.MAX_NUM_OF_IMAGES ? false : true;
+
+                _isRunningItem = false;
             }
             catch (Exception)
             {
+                _isRunningItem = false;
+
                 await DisplayAlert("שגיאה", "לא ניתן להשלים את הפעולה. נסה שנית.", "אישור");
             }
         }
@@ -286,6 +329,7 @@ namespace MsorLi.Views
                 item.Value.Item1.Category = category.Items[category.SelectedIndex];
                 item.Value.Item1.SubCategory = subCategory.Items[subCategory.SelectedIndex];
                 item.Value.Item1.Location = city.Text;
+                item.Value.Item1.Condition = condition.SelectedItem.ToString();
 
                 var t = UploadImageToDB(item.Value.Item1);
                 tList.Add(t);

@@ -14,9 +14,7 @@ namespace MsorLi.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemListPage : ContentPage
     {
-        //---------------------------------
-        // MEMBERS
-        //---------------------------------
+        #region Members
 
         ObservableCollection<ItemImage> AllImages = new ObservableCollection<ItemImage>();
         InfiniteScrollCollection<ImagePair> ImagePairs { get; }
@@ -30,8 +28,9 @@ namespace MsorLi.Views
 
         List<string> _categoryIconSources = new List<string>();
 
-        string _currentCategory = "כל המוצרים";
-        string _currentSubCategory = "";
+        string _categoryFilter = "כל המוצרים";
+        string _subCategoryFilter = "";
+        string _conditionFilter = "";
 
         private bool _isBusy;
         int _numOfItems = 0;
@@ -45,6 +44,8 @@ namespace MsorLi.Views
             }
         }
 
+        #endregion Members
+
         //---------------------------------
         // FUNCTIONS
         //---------------------------------
@@ -52,7 +53,6 @@ namespace MsorLi.Views
         // Contrusctor
         public ItemListPage()
         {
-            
             // Hide Navigation Bar
             NavigationPage.SetHasNavigationBar(this, false);
 
@@ -79,23 +79,15 @@ namespace MsorLi.Views
             _categoryIconSources.Add("all.png");
 
             // Listen to filters
-            MessagingCenter.Subscribe<FilterPage, Tuple<string, string>>(this, "Back From Filter", async (sender, filterResult) =>
+            MessagingCenter.Subscribe<FilterPage, Tuple<string, string, string>>
+                (this, "Back From Filter", async (sender, filterResult) =>
             {
-                // Update filter results
-                _currentCategory = filterResult.Item1;
-                _currentSubCategory = filterResult.Item2;
-
-                // Hide categories
-                CategoryMainStack.IsVisible = false;
-                FilterCategoryLabel.Text = _currentSubCategory != "" ? filterResult.Item1 + ", " + filterResult.Item2 : filterResult.Item1;
-                FilterMainStack.IsVisible = true;
-
-                await RefreshItems(true, true);
+                await HandleFilterResult(filterResult);
             });
             
             MessagingCenter.Subscribe<ItemPage>(this, "Item Deleted", async (sender) =>
             {
-                await RefreshItems(true, true);
+                await RefreshItems();
             });
 
             ImagePairs = new InfiniteScrollCollection<ImagePair>
@@ -107,11 +99,11 @@ namespace MsorLi.Views
                     // load the next page
                     var page = ImagePairs.Count * 2 / Constants.PAGE_SIZE;
 
-                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages(page, _currentCategory, _currentSubCategory); 
+                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages(page, _categoryFilter, _subCategoryFilter, _conditionFilter); 
 
                     var ip = new ObservableCollection<ImagePair>();
 
-					_numOfItems = await AzureImageService.DefaultManager.NumOfItems(_currentCategory, _currentSubCategory);
+					_numOfItems = await AzureImageService.DefaultManager.NumOfItems(_categoryFilter, _subCategoryFilter, _conditionFilter);
 
                     if (AllImages != null)
                     {
@@ -151,7 +143,7 @@ namespace MsorLi.Views
                     CategoryMainStack.IsEnabled = false;
 
                     Task t1 = CreateCategories();
-                    Task t2 =  RefreshItems(true, true);
+                    Task t2 =  RefreshItems();
                     await Task.WhenAll(t1, t2);
 
                     CategoryMainStack.IsVisible = true;
@@ -159,7 +151,6 @@ namespace MsorLi.Views
                     // Scroll to the right.
 					CategoryMainStack.IsEnabled = true;
                     await CategoryScroll.ScrollToAsync(StackCategory.Children[StackCategory.Children.Count - 1], ScrollToPosition.MakeVisible, true);
-
                 }
             }
             catch
@@ -179,8 +170,7 @@ namespace MsorLi.Views
 
             try
             {
-                //string category = (_currentCategoryStackLayout.Children[1] as Label).Text;
-                await RefreshItems(false, true);
+                await RefreshItems();
             }
             catch (Exception)
             {
@@ -206,7 +196,7 @@ namespace MsorLi.Views
             {
                 var category = (e as TappedEventArgs).Parameter.ToString();
 
-                _currentCategory = category;
+                _categoryFilter = category;
 
                 // Update old category
                 (_currentCategoryStackLayout.Children[1] as Label).TextColor = Color.FromHex("212121");
@@ -221,7 +211,7 @@ namespace MsorLi.Views
 
                 // Scroll to current category
                 //problem with iOS
-				await RefreshItems(true, true);
+				await RefreshItems();
 				CategoryMainStack.IsEnabled = true;
                 await CategoryScroll.ScrollToAsync(_currentCategoryStackLayout, ScrollToPosition.MakeVisible, true);
             }
@@ -321,7 +311,7 @@ namespace MsorLi.Views
                         _isRunningItem = true;
                 }
 
-                await Navigation.PushAsync(new FilterPage(_currentCategory, _currentSubCategory));
+                await Navigation.PushAsync(new FilterPage(_categoryFilter, _subCategoryFilter, _conditionFilter));
 
                 _isRunningItem = false;
             }
@@ -335,8 +325,8 @@ namespace MsorLi.Views
         {
             try
             {
-                _currentCategory = "כל המוצרים";
-                _currentSubCategory = "";
+                _categoryFilter = "כל המוצרים";
+                _subCategoryFilter = "";
 
                 // Update old category
                 (_currentCategoryStackLayout.Children[1] as Label).TextColor = Color.FromHex("212121");
@@ -352,7 +342,7 @@ namespace MsorLi.Views
                 CategoryMainStack.IsVisible = true;
                 FilterMainStack.IsVisible = false;
 
-                await RefreshItems(true, true);
+                await RefreshItems();
             }
             catch (Exception)
             {
@@ -372,7 +362,7 @@ namespace MsorLi.Views
                         _isRunningItem = true;
                 }
 
-                await Navigation.PushAsync(new FilterPage(_currentCategory, _currentSubCategory));
+                await Navigation.PushAsync(new FilterPage(_categoryFilter, _subCategoryFilter, _conditionFilter));
 
                 _isRunningItem = false;
             }
@@ -386,17 +376,17 @@ namespace MsorLi.Views
         // Private functions
         //---------------------------------
 
-        private async Task RefreshItems(bool showActivityIndicator, bool syncItems)
+        private async Task RefreshItems()
         {
             try
             {
                 listView_items.IsRefreshing = true;
 
                 AllImages = await AzureImageService.DefaultManager.
-                    GetAllPriorityImages(0, _currentCategory, _currentSubCategory);
+                    GetAllPriorityImages(0, _categoryFilter, _subCategoryFilter, _conditionFilter);
 
 				_numOfItems = await AzureImageService.DefaultManager.
-                    NumOfItems(_currentCategory, _currentSubCategory);
+                    NumOfItems(_categoryFilter, _subCategoryFilter, _conditionFilter);
 
                 ImagePairs.Clear();
                 if (AllImages.Count > 0)
@@ -474,7 +464,7 @@ namespace MsorLi.Views
                 defultCategory: true);
         }
 
-        void CreateCategory(string categoryName, string categoryIconSource, bool defultCategory = false)
+        private void CreateCategory(string categoryName, string categoryIconSource, bool defultCategory = false)
         {
 			var stack = new StackLayout 
 			{
@@ -526,7 +516,7 @@ namespace MsorLi.Views
             if (defultCategory) _currentCategoryStackLayout = stack;
         }
 
-        public int ImagePairCount()
+        private int ImagePairCount()
         {
             int count = 0;
 
@@ -540,62 +530,21 @@ namespace MsorLi.Views
             return count;
         }
 
-        //---------------------------------
-        // ActivityIndicator
-        //---------------------------------
-        //private class ActivityIndicatorScope : IDisposable
-        //{
-        //    //---------------------------------
-        //    // MEMBERS
-        //    //---------------------------------
-        //    private bool _showIndicator;
-        //    private ActivityIndicator _indicator;
-        //    private Task _indicatorDelay;
+        private async Task HandleFilterResult(Tuple<string, string, string> filterResult)
+        {
+            // Update filter results
+            _categoryFilter = filterResult.Item1;
+            _subCategoryFilter = filterResult.Item2;
+            _conditionFilter = filterResult.Item3;
 
-        //    //---------------------------------
-        //    // FUNCTIONS
-        //    //---------------------------------
-        //    public ActivityIndicatorScope(ActivityIndicator indicator, bool showIndicator)
-        //    {
-        //        try
-        //        {
-        //            _indicator = indicator;
-        //            _showIndicator = showIndicator;
+            // Hide categories
+            CategoryMainStack.IsVisible = false;
+            FilterCategoryLabel.Text = _subCategoryFilter != "" ? filterResult.Item1 + ", " + filterResult.Item2 : filterResult.Item1;
+            FilterCategoryLabel.Text += FilterCategoryLabel.Text.Length > 0 ? ", " : "";
+            FilterCategoryLabel.Text += _conditionFilter != "" ? filterResult.Item3 : "";
+            FilterMainStack.IsVisible = true;
 
-        //            if (showIndicator)
-        //            {
-        //                _indicatorDelay = Task.Delay(2000);
-        //                SetIndicatorActivity(true);
-        //            }
-        //            else
-        //            {
-        //                _indicatorDelay = Task.FromResult(0);
-        //            }
-        //        }
-        //        catch
-        //        {
-        //        }
-        //    }
-
-        //    private void SetIndicatorActivity(bool isActive)
-        //    {
-        //        _indicator.IsVisible = isActive;
-        //        _indicator.IsRunning = isActive;
-        //    }
-
-        //    public void Dispose()
-        //    {
-        //        try
-        //        {
-        //            if (_showIndicator)
-        //            {
-        //                _indicatorDelay.ContinueWith(t => SetIndicatorActivity(false), TaskScheduler.FromCurrentSynchronizationContext());
-        //            }
-        //        }
-        //        catch
-        //        {
-        //        }
-        //    }
-        //}
+            await RefreshItems();
+        }
     }
 }

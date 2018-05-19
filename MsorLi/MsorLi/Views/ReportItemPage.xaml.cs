@@ -34,7 +34,7 @@ namespace MsorLi.Views
             await SendEmail(reason);
         }
 
-        private async Task SendEmail(string subject)
+        private async Task SendEmail(string reason)
         {
             try
             {
@@ -44,8 +44,8 @@ namespace MsorLi.Views
 #pragma warning restore CS0618 // Type or member is obsolete
                 mail.From = new MailAddress("msorli.app@gmail.com");
                 mail.To.Add("msorli.app@gmail.com");
-                mail.Subject = subject;
-                mail.Body = _itemId;
+                mail.Subject = "התקבל דיווח אודות מוצר";
+                mail.Body = "דיווח על מוצר עם " + "id = " + _itemId + ". סיבת הדיווח היא: " + reason;
 
                 SmtpServer.Port = 587;
                 SmtpServer.Credentials = new NetworkCredential("msorli.app@gmail.com", "Si123456");

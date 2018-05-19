@@ -10,13 +10,14 @@
         <AbsoluteLayout>
             <StackLayout x:Name="MyMainStack" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
                 
-                <ListView x:Name="listView_items" Margin="5"
-                          HorizontalOptions="CenterAndExpand" SeparatorVisibility="None" VerticalOptions="Center">
+                <ListView x:Name="listView_items" Margin="5" HorizontalOptions="CenterAndExpand" 
+                          SeparatorVisibility="None" VerticalOptions="CenterAndExpand">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
 
-                                <Grid Margin="10,10,0,10" HorizontalOptions="FillAndExpand">
+                                <Grid Margin="10,10,0,10" 
+                                      VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 
                                     <Grid.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnItemClick" 

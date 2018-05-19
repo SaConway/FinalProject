@@ -27,7 +27,7 @@ namespace MsorLi.Views
 
         public RegisterPage ()
 		{
-			InitializeComponent();
+            InitializeComponent();
 		}
 
         public async void SubmitBtnClicked(object sender, EventArgs e)
@@ -57,7 +57,7 @@ namespace MsorLi.Views
                 new_user.Email = email.Text;
                 new_user.Password = EncryptDecrypt.Encrypt(password.Text);
                 new_user.Phone = phoneNumber.Text;
-                new_user.Address = ( address.Text != null && address.Text.Length > 0 ) ? city.Text + ", " + address.Text : city.Text;
+                new_user.Address = (address.Text != null && address.Text.Length > 0) ? city.Text + ", " + address.Text : city.Text;
                 new_user.Permission = "User";
                 new_user.NumOfItems = 0;
                 new_user.NumOfItemsUserLike = 0;
@@ -73,70 +73,8 @@ namespace MsorLi.Views
 
         private void Event_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Entry entry = sender as Entry;
-            String val = entry.Text;
-            int len = val.Length;
-
-            bool IsVisable = false;
-
-            if (len > 0)
-            {
-                IsVisable = true;
-                entry.Margin = new Thickness(0, 15, 0, 0);
-            }
-            else
-            {
-                IsVisable = false;
-                entry.Margin = new Thickness(0, 50, 0, 0);
-            }
-
-            var placeholder = entry.Placeholder.ToString();
-
-            switch (placeholder)
-            {
-                case "שם פרטי":
-                    {
-                        firstNameLabel.IsVisible = IsVisable;
-                        entry.Margin = new Thickness(0, 0, 0, 0);
-                        break;
-                    }
-                case "שם משפחה":
-                    {
-                        lastNameLabel.IsVisible = IsVisable;
-                        entry.Margin = new Thickness(0, 0, 0, 0);
-                        break;
-                    }
-                case "אימייל":
-                    {
-                        emailLabel.IsVisible = IsVisable;
-                        break;
-                    }
-                case "סיסמה":
-                    {
-                        passwordLabel.IsVisible = IsVisable;
-                        break;
-                    }
-                case "מס' טלפון":
-                    {
-                        phoneLabel.IsVisible = IsVisable;
-                        break;
-                    }
-                case "עיר מגורים":
-                    {
-                        cityLabel.IsVisible = IsVisable;
-                        entry.Margin = new Thickness(0, 0, 0, 0);
-                        break;
-                    }
-                case "כתובת (אופציונלי)":
-                    {
-                        adressLabel.IsVisible = IsVisable;
-                        entry.Margin = new Thickness(0, 0, 0, 0);
-                        break;
-                    }
-            }
-
-            if (firstNameLabel.IsVisible && lastNameLabel.IsVisible && emailLabel.IsVisible &&
-                passwordLabel.IsVisible && phoneLabel.IsVisible && cityLabel.IsVisible)
+            if (firstName.Text != null && lastName.Text != null && email.Text != null &&
+                password.Text != null && phoneNumber.Text != null && city.Text != null)
             {
                 SubmitBtn.IsEnabled = true;
                 SubmitBtn.BackgroundColor = Color.FromHex("19a4b4");

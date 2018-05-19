@@ -98,7 +98,7 @@ namespace MsorLi.Views
 
             // Update saved item details
 
-            if (_savedId != "")
+            if (_savedId != "" && Utilities.Settings.UserId != null)
             {
                 // Item is saved by the user
 
