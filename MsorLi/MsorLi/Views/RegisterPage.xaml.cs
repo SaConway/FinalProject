@@ -73,8 +73,12 @@ namespace MsorLi.Views
 
         private void Event_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (firstName.Text != null && lastName.Text != null && email.Text != null &&
-                password.Text != null && phoneNumber.Text != null && city.Text != null)
+            if (firstName.Text != null && firstName.Text.Length > 0 &&
+                lastName.Text != null && lastName.Text.Length > 0 &&
+                email.Text != null && email.Text.Length > 0 &&
+                password.Text != null && password.Text.Length > 0 &&
+                phoneNumber.Text != null && phoneNumber.Text.Length > 0 &&
+                city.Text != null && city.Text.Length > 0)
             {
                 SubmitBtn.IsEnabled = true;
                 SubmitBtn.BackgroundColor = Color.FromHex("19a4b4");

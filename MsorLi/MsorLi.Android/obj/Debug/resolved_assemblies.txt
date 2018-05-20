@@ -37,7 +37,6 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Net.Http.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Net.Http.Extensions.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Net.Http.Primitives.dll
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Runtime.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Web.Services.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Xml.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Xml.Linq.dll
@@ -66,6 +65,8 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\Xamarin.Forms.Platform.Android.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\Xamarin.Forms.Platform.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\Xamarin.Forms.Xaml.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Runtime.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.ComponentModel.Composition.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.ComponentModel.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Xml.ReaderWriter.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Reflection.dll
@@ -74,13 +75,9 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Data.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Numerics.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Transactions.dll
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\Mono.Data.Tds.dll
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\Mono.Security.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Diagnostics.StackTrace.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Globalization.Extensions.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.IO.Compression.FileSystem.dll
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.ComponentModel.Composition.dll
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Runtime.InteropServices.RuntimeInformation.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Runtime.Serialization.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.ServiceModel.Internals.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Runtime.Serialization.Xml.dll
@@ -100,11 +97,12 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.ObjectModel.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Globalization.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Collections.Concurrent.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Linq.Expressions.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Reflection.Primitives.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Dynamic.Runtime.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Runtime.InteropServices.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Reflection.Extensions.dll
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Reflection.Primitives.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Resources.ResourceManager.dll
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Linq.Expressions.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Diagnostics.Tools.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Linq.Queryable.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Xml.XDocument.dll
@@ -116,5 +114,6 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Runtime.Numerics.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Xml.XmlDocument.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.ComponentModel.TypeConverter.dll
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Dynamic.Runtime.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\System.Runtime.Serialization.Formatters.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\assets\Mono.Security.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\linksrc\he\System.Xml.Linq.resources.dll

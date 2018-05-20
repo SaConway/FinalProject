@@ -79,6 +79,3 @@ System.IO.FileSystem.Primitives
 System.IO.FileSystem
 System.Security.Cryptography.Primitives
 System.ComponentModel
-Rg.Plugins.Popup
-Rg.Plugins.Popup.Droid
-Rg.Plugins.Popup.Platform

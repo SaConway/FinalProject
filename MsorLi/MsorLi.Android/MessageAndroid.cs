@@ -9,12 +9,16 @@ namespace MsorLi.Droid
     {
         public void LongAlert(string message)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             Toast.MakeText(Forms.Context as MainActivity, message, ToastLength.Long).Show();
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         public void ShortAlert(string message)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             Toast.MakeText(Forms.Context as MainActivity, message, ToastLength.Short).Show();
+#pragma warning restore CS0618 // Type or member is obsolete
         }
     }
 }

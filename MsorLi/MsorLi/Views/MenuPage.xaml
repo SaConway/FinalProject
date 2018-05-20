@@ -24,15 +24,15 @@
                     <controls:CircleImage x:Name="UserImg" BorderColor="White" 
                                             BorderThickness="2"
                                             HorizontalOptions="Center" 
-                                            VerticalOptions="End" WidthRequest="120" 
-                                            HeightRequest="120"/>
+                                            VerticalOptions="End" WidthRequest="100" 
+                                            HeightRequest="100"/>
                     <Label x:Name="UserName" Font="Bold" HorizontalOptions="Center" 
                             Margin="0,10,0,10" VerticalOptions="End" />
                 </StackLayout>
             </StackLayout>
 
-            <ScrollView>
-                <StackLayout Grid.Row="1" Margin="20">
+            <ScrollView Grid.Row="1">
+                <StackLayout Margin="20,0">
 
                     <!--Home button-->
                     <StackLayout Margin="0,25,0,0">
@@ -130,7 +130,6 @@
                         </Grid>
 
                     </StackLayout>
-
 
                     <!--Login/Logout button-->
                     <StackLayout Margin="0,25,0,0">

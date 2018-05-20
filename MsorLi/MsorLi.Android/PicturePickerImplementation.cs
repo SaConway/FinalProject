@@ -18,7 +18,9 @@ namespace MsorLi.Droid
             intent.SetAction(Intent.ActionGetContent);
 
             // Get the MainActivity instance
+#pragma warning disable CS0618 // Type or member is obsolete
             MainActivity activity = Forms.Context as MainActivity;
+#pragma warning restore CS0618 // Type or member is obsolete
 
             // Start the picture-picker activity (resumes in MainActivity.cs)
             activity.StartActivityForResult(

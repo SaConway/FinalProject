@@ -139,6 +139,8 @@ namespace MsorLi.Views
                 if (!_startupRefresh)
                 {
                     _startupRefresh = true;
+                    IsVisible = false;
+                    IsEnabled = false;
                     CategoryMainStack.IsVisible = false;
                     CategoryMainStack.IsEnabled = false;
 
@@ -146,11 +148,13 @@ namespace MsorLi.Views
                     Task t1 = CreateCategories();
                     await Task.WhenAll(t1, t2);
 
-                    CategoryMainStack.IsVisible = true;
+                    IsVisible = true;
+                    IsEnabled = true;
 
-                    // Scroll to the right.
+                    CategoryMainStack.IsVisible = true;
 					CategoryMainStack.IsEnabled = true;
-                    await CategoryScroll.ScrollToAsync(StackCategory.Children[StackCategory.Children.Count - 1], ScrollToPosition.MakeVisible, true);
+
+                    await CategoryScroll.ScrollToAsync(_currentCategoryStackLayout, ScrollToPosition.MakeVisible, true);
                 }
             }
             catch
@@ -327,6 +331,7 @@ namespace MsorLi.Views
             {
                 _categoryFilter = "כל המוצרים";
                 _subCategoryFilter = "";
+                _conditionFilter = "";
 
                 // Update old category
                 (_currentCategoryStackLayout.Children[1] as Label).TextColor = Color.FromHex("212121");

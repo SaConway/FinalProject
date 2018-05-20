@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Paths>
   <Jars>
+    <Jar>obj\Debug\lp\9\jl\formsviewgroup.jar</Jar>
+    <Jar>obj\Debug\lp\34\jl\support-annotations.jar</Jar>
     <Jar>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\33\jl\bin\classes.jar</Jar>
     <Jar>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\34\jl\support-annotations.jar</Jar>
     <Jar>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\35\jl\bin\classes.jar</Jar>
@@ -25,8 +27,6 @@
     <ResolvedResourceDirectory>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\3\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\13\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\20\jl\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\82\jl\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\83\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\21\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\22\jl\res</ResolvedResourceDirectory>
     <ResolvedResourceDirectory>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\23\jl\res</ResolvedResourceDirectory>
@@ -48,8 +48,6 @@
     <ResolvedAssetDirectory>obj\Debug\lp\3\jl\assets</ResolvedAssetDirectory>
     <ResolvedAssetDirectory>obj\Debug\lp\13\jl\assets</ResolvedAssetDirectory>
     <ResolvedAssetDirectory>obj\Debug\lp\20\jl\assets</ResolvedAssetDirectory>
-    <ResolvedAssetDirectory>obj\Debug\lp\82\jl\assets</ResolvedAssetDirectory>
-    <ResolvedAssetDirectory>obj\Debug\lp\83\jl\assets</ResolvedAssetDirectory>
     <ResolvedAssetDirectory>obj\Debug\lp\21\jl\assets</ResolvedAssetDirectory>
     <ResolvedAssetDirectory>obj\Debug\lp\22\jl\assets</ResolvedAssetDirectory>
     <ResolvedAssetDirectory>obj\Debug\lp\23\jl\assets</ResolvedAssetDirectory>
@@ -66,8 +64,6 @@
     <ResolvedResourceDirectoryStamp>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\3.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\13.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\20.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\82.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\83.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\21.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\22.stamp</ResolvedResourceDirectoryStamp>
     <ResolvedResourceDirectoryStamp>C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\lp\23.stamp</ResolvedResourceDirectoryStamp>

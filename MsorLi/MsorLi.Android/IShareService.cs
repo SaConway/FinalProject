@@ -33,11 +33,15 @@ namespace MsorLi.Droid
                 }
 
                 intent.PutExtra(Intent.ExtraStream, Android.Net.Uri.FromFile(path));
+#pragma warning disable CS0618 // Type or member is obsolete
                 Forms.Context.StartActivity(Intent.CreateChooser(intent, "Share Image"));
+#pragma warning restore CS0618 // Type or member is obsolete
             }
             catch (System.Exception)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 Toast.MakeText(Forms.Context as MainActivity, "יש לוודא הרשאות לפני שימוש", ToastLength.Long).Show();
+#pragma warning restore CS0618 // Type or member is obsolete
             }
         }
     }

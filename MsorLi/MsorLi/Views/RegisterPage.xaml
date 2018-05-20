@@ -116,7 +116,7 @@
                         BackgroundColor="Transparent" TextColor="#19a4b4"
                         HorizontalOptions="Center" x:Name="pickPictureButton" Clicked="PickImageButton_Event"/>
 
-                <Button Text="הרשמה" Margin="15,80,15,30" IsEnabled="False" 
+                <Button Text="הרשמה" Margin="15,80,15,10" IsEnabled="False" 
                         FontSize="Medium" x:Name="SubmitBtn"
                         Clicked="SubmitBtnClicked" Style="{StaticResource ButtonStyle}" 
                         BackgroundColor="#999999"/>

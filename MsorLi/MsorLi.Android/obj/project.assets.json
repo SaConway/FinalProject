@@ -5214,8 +5214,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sagee\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {}
+    "C:\\Users\\sagee\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -5227,13 +5226,9 @@
       "outputPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\"
-      ],
       "configFilePaths": [
         "C:\\Users\\sagee\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "monoandroid81"

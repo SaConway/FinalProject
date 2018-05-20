@@ -58,7 +58,8 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\andro
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\android\assets\Xamarin.Forms.Platform.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\android\assets\Xamarin.Forms.Xaml.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\android\assets\System.Numerics.dll
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\android\assets\Mono.Security.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\android\assets\System.Runtime.Serialization.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\android\assets\System.ServiceModel.Internals.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\android\assets\System.Security.Cryptography.Algorithms.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\android\assets\Mono.Security.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Release\linksrc\he\System.Xml.Linq.resources.dll

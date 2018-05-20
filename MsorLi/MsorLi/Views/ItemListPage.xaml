@@ -57,7 +57,7 @@
                         </Label>
 
                         <!--Menu-->
-                        <StackLayout  Padding="10" Spacing="0">
+                        <StackLayout Padding="10" Spacing="0">
                             
                             <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer  Tapped="OnMenuClick">
@@ -87,17 +87,15 @@
                              HeightRequest="1" BackgroundColor="#BDBDBD"/>
                 </StackLayout>
 
-
-                
                 <!--Filter Erea-->
                 <StackLayout BackgroundColor="Transparent" HorizontalOptions="FillAndExpand"
                              x:Name="FilterMainStack" Spacing="0" IsVisible="False">
                     
-                    <ScrollView Orientation="Horizontal" x:Name="FilterScroll" Margin="10"
+                    <!--<ScrollView Orientation="Horizontal" Margin="10"
                                 VerticalOptions="FillAndExpand"
-                                BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
+                                BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">-->
 
-                        <Grid>
+                        <Grid Margin="10">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
@@ -123,7 +121,7 @@
                             </Grid.GestureRecognizers>
 
                         </Grid>
-                    </ScrollView>
+                    <!--</ScrollView>-->
 
                     <BoxView HorizontalOptions="FillAndExpand"
                              HeightRequest="1" BackgroundColor="#BDBDBD"/>

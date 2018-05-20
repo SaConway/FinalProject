@@ -18,7 +18,7 @@ namespace MsorLi.Droid
                 Forms.Context.StartActivity(intent);
 #pragma warning restore CS0618 // Type or member is obsolete
             }
-            catch (ActivityNotFoundException ex)
+            catch (ActivityNotFoundException)
             {
                 // If Waze is not installed, open it in Google Play:
                 Android.Net.Uri uri = Android.Net.Uri.Parse("market://details?id=com.waze");

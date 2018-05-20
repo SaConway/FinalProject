@@ -146,7 +146,7 @@ namespace MsorLi.Views
         {
 			if (Settings.FacebookId != "")
             {
-				DependencyService.Get<IMessage>().LongAlert("משתמש פייבוק לא יכול לערוך פרטים");
+				DependencyService.Get<IMessage>().LongAlert("משתמש פייסבוק לא יכול לערוך פרטים");
             }
 			else
                 await Navigation.PushAsync(new EditUserInfoPage());
