@@ -20,6 +20,7 @@ namespace MsorLiService.Models
         public DbSet<ItemCategory> ItemCategories { get; set; }
         public DbSet<ItemSubCategory> ItemSubCategories { get; set; }
         public DbSet<SavedItem> SavedItems { get; set; }
+        public DbSet<Location> Locations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -237,7 +237,7 @@ namespace MsorLi.Views
             else
             {
                 _dictionary[index].Category = item.Category;
-                _dictionary[index].Location = item.Location;
+                _dictionary[index].Location = item.Erea;
             }
         }
 

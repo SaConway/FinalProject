@@ -48,7 +48,7 @@ namespace MsorLi.Services
 
 
         public async Task<ObservableCollection<ItemImage>> GetAllPriorityImages
-            (int pageIndex, string category, string subCategory, string condition)
+            (int pageIndex, string category, string subCategory, string condition, string erea)
         {
             //var _TypeCategory = typeof(ItemImage);
             //var _PropCategory = _TypeCategory.GetProperty("Category");
@@ -80,7 +80,7 @@ namespace MsorLi.Services
                 IEnumerable<ItemImage> images = null;
 
                 // All items
-                if (category == "כל המוצרים" && subCategory == "" && condition == "")
+                if (category == "כל המוצרים" && subCategory == "" && condition == "" && erea == "")
                 {
                     images = await _table
                     .OrderByDescending(ItemImage => ItemImage.CreatedAt)
@@ -89,7 +89,7 @@ namespace MsorLi.Services
                     .ToEnumerableAsync();
                 }
                 // All items with condition
-                else if (category == "כל המוצרים" && subCategory == "" && condition != "")
+                else if (category == "כל המוצרים" && subCategory == "" && condition != "" && erea == "")
                 {
                     images = await _table
                     .OrderByDescending(ItemImage => ItemImage.CreatedAt)
@@ -98,8 +98,28 @@ namespace MsorLi.Services
                     .Skip(pageIndex * Constants.PAGE_SIZE).Take(Constants.PAGE_SIZE)
                     .ToEnumerableAsync();
                 }
+                // All items with erea
+                else if (category == "כל המוצרים" && subCategory == "" && condition == "" && erea != "")
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true &&
+                    itemImage.Erea == erea)
+                    .Skip(pageIndex * Constants.PAGE_SIZE).Take(Constants.PAGE_SIZE)
+                    .ToEnumerableAsync();
+                }
+                // All items with condition and erea
+                else if (category == "כל המוצרים" && subCategory == "" && condition != "" && erea != "")
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true &&
+                    itemImage.Condition == condition && itemImage.Erea == erea)
+                    .Skip(pageIndex * Constants.PAGE_SIZE).Take(Constants.PAGE_SIZE)
+                    .ToEnumerableAsync();
+                }
                 // Category with sub category
-                else if (category != "כל המוצרים" && subCategory != "" && condition == "")
+                else if (category != "כל המוצרים" && subCategory != "" && condition == "" && erea == "")
                 {
                     images = await _table
                     .OrderByDescending(ItemImage => ItemImage.CreatedAt)
@@ -108,8 +128,18 @@ namespace MsorLi.Services
                     .Skip(pageIndex * Constants.PAGE_SIZE).Take(Constants.PAGE_SIZE)
                     .ToEnumerableAsync();
                 }
+                // Category with sub category and erea
+                else if (category != "כל המוצרים" && subCategory != "" && condition == "" && erea != "")
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true && itemImage.Erea == erea &&
+                    itemImage.Category == category && itemImage.SubCategory == subCategory)
+                    .Skip(pageIndex * Constants.PAGE_SIZE).Take(Constants.PAGE_SIZE)
+                    .ToEnumerableAsync();
+                }
                 // Category with condition
-                else if (category != "כל המוצרים" && subCategory == "" && condition != "")
+                else if (category != "כל המוצרים" && subCategory == "" && condition != "" && erea == "")
                 {
                     images = await _table
                     .OrderByDescending(ItemImage => ItemImage.CreatedAt)
@@ -118,8 +148,28 @@ namespace MsorLi.Services
                     .Skip(pageIndex * Constants.PAGE_SIZE).Take(Constants.PAGE_SIZE)
                     .ToEnumerableAsync();
                 }
+                // Category with erea
+                else if (category != "כל המוצרים" && subCategory == "" && condition == "" && erea != "")
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true &&
+                    itemImage.Category == category && itemImage.Erea == erea)
+                    .Skip(pageIndex * Constants.PAGE_SIZE).Take(Constants.PAGE_SIZE)
+                    .ToEnumerableAsync();
+                }
+                // Category with erea and condition
+                else if (category != "כל המוצרים" && subCategory == "" && condition != "" && erea != "")
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true &&
+                    itemImage.Category == category && itemImage.Erea == erea && itemImage.Condition == condition)
+                    .Skip(pageIndex * Constants.PAGE_SIZE).Take(Constants.PAGE_SIZE)
+                    .ToEnumerableAsync();
+                }
                 // Category with sub category and condition
-                else if (category != "כל המוצרים" && subCategory != "" && condition != "")
+                else if (category != "כל המוצרים" && subCategory != "" && condition != "" && erea == "")
                 {
                     images = await _table
                     .OrderByDescending(ItemImage => ItemImage.CreatedAt)
@@ -128,12 +178,31 @@ namespace MsorLi.Services
                     .Skip(pageIndex * Constants.PAGE_SIZE).Take(Constants.PAGE_SIZE)
                     .ToEnumerableAsync();
                 }
+                // Category with sub category and condition and erea
+                else if (category != "כל המוצרים" && subCategory != "" && condition != "" && erea != "")
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true && itemImage.Category == category &&
+                    itemImage.SubCategory == subCategory && itemImage.Condition == condition && itemImage.Erea == erea)
+                    .Skip(pageIndex * Constants.PAGE_SIZE).Take(Constants.PAGE_SIZE)
+                    .ToEnumerableAsync();
+                }
                 // Only category
-                else if (category != "כל המוצרים" && subCategory == "" && condition == "")
+                else if (category != "כל המוצרים" && subCategory == "" && condition == "" && erea == "")
                 {
                     images = await _table
                     .OrderByDescending(ItemImage => ItemImage.CreatedAt)
                     .Where(itemImage => itemImage.IsPriorityImage == true && itemImage.Category == category)
+                    .Skip(pageIndex * Constants.PAGE_SIZE).Take(Constants.PAGE_SIZE)
+                    .ToEnumerableAsync();
+                }
+                // Only erea
+                else if (category == "כל המוצרים" && subCategory == "" && condition == "" && erea != "")
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true && itemImage.Erea == erea)
                     .Skip(pageIndex * Constants.PAGE_SIZE).Take(Constants.PAGE_SIZE)
                     .ToEnumerableAsync();
                 }
@@ -186,14 +255,15 @@ namespace MsorLi.Services
             await _table.DeleteAsync(itemImage);
         }
 
-		public async Task<int> NumOfItems(string category, string subCategory, string condition)
+		public async Task<int> NumOfItems(string category, string subCategory,
+            string condition, string erea)
         {
             try
             {
                 IEnumerable<ItemImage> images = null;
 
                 // All items
-                if (category == "כל המוצרים" && subCategory == "" && condition == "")
+                if (category == "כל המוצרים" && subCategory == "" && condition == "" && erea == "")
                 {
                     images = await _table
                     .OrderByDescending(ItemImage => ItemImage.CreatedAt)
@@ -201,7 +271,7 @@ namespace MsorLi.Services
                     .ToEnumerableAsync();
                 }
                 // All items with condition
-                else if (category == "כל המוצרים" && subCategory == "" && condition != "")
+                else if (category == "כל המוצרים" && subCategory == "" && condition != "" && erea == "")
                 {
                     images = await _table
                     .OrderByDescending(ItemImage => ItemImage.CreatedAt)
@@ -209,8 +279,26 @@ namespace MsorLi.Services
                     itemImage.Condition == condition)
                     .ToEnumerableAsync();
                 }
+                // All items with erea
+                else if (category == "כל המוצרים" && subCategory == "" && condition == "" && erea != "")
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true &&
+                    itemImage.Erea == erea)
+                    .ToEnumerableAsync();
+                }
+                // All items with condition and erea
+                else if (category == "כל המוצרים" && subCategory == "" && condition != "" && erea != "")
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true &&
+                    itemImage.Condition == condition && itemImage.Erea == erea)
+                    .ToEnumerableAsync();
+                }
                 // Category with sub category
-                else if (category != "כל המוצרים" && subCategory != "" && condition == "")
+                else if (category != "כל המוצרים" && subCategory != "" && condition == "" && erea == "")
                 {
                     images = await _table
                     .OrderByDescending(ItemImage => ItemImage.CreatedAt)
@@ -218,8 +306,17 @@ namespace MsorLi.Services
                     itemImage.Category == category && itemImage.SubCategory == subCategory)
                     .ToEnumerableAsync();
                 }
+                // Category with sub category and erea
+                else if (category != "כל המוצרים" && subCategory != "" && condition == "" && erea != "")
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true && itemImage.Erea == erea &&
+                    itemImage.Category == category && itemImage.SubCategory == subCategory)
+                    .ToEnumerableAsync();
+                }
                 // Category with condition
-                else if (category != "כל המוצרים" && subCategory == "" && condition != "")
+                else if (category != "כל המוצרים" && subCategory == "" && condition != "" && erea == "")
                 {
                     images = await _table
                     .OrderByDescending(ItemImage => ItemImage.CreatedAt)
@@ -227,8 +324,26 @@ namespace MsorLi.Services
                     itemImage.Category == category && itemImage.Condition == condition)
                     .ToEnumerableAsync();
                 }
+                // Category with erea
+                else if (category != "כל המוצרים" && subCategory == "" && condition == "" && erea != "")
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true &&
+                    itemImage.Category == category && itemImage.Erea == erea)
+                    .ToEnumerableAsync();
+                }
+                // Category with erea and condition
+                else if (category != "כל המוצרים" && subCategory == "" && condition != "" && erea != "")
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true &&
+                    itemImage.Category == category && itemImage.Erea == erea && itemImage.Condition == condition)
+                    .ToEnumerableAsync();
+                }
                 // Category with sub category and condition
-                else if (category != "כל המוצרים" && subCategory != "" && condition != "")
+                else if (category != "כל המוצרים" && subCategory != "" && condition != "" && erea == "")
                 {
                     images = await _table
                     .OrderByDescending(ItemImage => ItemImage.CreatedAt)
@@ -236,12 +351,29 @@ namespace MsorLi.Services
                     itemImage.SubCategory == subCategory && itemImage.Condition == condition)
                     .ToEnumerableAsync();
                 }
+                // Category with sub category and condition and erea
+                else if (category != "כל המוצרים" && subCategory != "" && condition != "" && erea != "")
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true && itemImage.Category == category &&
+                    itemImage.SubCategory == subCategory && itemImage.Condition == condition && itemImage.Erea == erea)
+                    .ToEnumerableAsync();
+                }
                 // Only category
-                else if (category != "כל המוצרים" && subCategory == "" && condition == "")
+                else if (category != "כל המוצרים" && subCategory == "" && condition == "" && erea == "")
                 {
                     images = await _table
                     .OrderByDescending(ItemImage => ItemImage.CreatedAt)
                     .Where(itemImage => itemImage.IsPriorityImage == true && itemImage.Category == category)
+                    .ToEnumerableAsync();
+                }
+                // Only erea
+                else if (category == "כל המוצרים" && subCategory == "" && condition == "" && erea != "")
+                {
+                    images = await _table
+                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
+                    .Where(itemImage => itemImage.IsPriorityImage == true && itemImage.Erea == erea)
                     .ToEnumerableAsync();
                 }
 

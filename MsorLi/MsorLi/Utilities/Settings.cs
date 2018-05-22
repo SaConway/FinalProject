@@ -62,6 +62,12 @@ namespace MsorLi.Utilities
             set => _AppSettings.AddOrUpdateValue(nameof(Address), value, "Settings.txt");
         }
 
+        public static string Erea
+        {
+            get => _AppSettings.GetValueOrDefault(nameof(Erea), _SettingsDefault, "Settings.txt");
+            set => _AppSettings.AddOrUpdateValue(nameof(Erea), value, "Settings.txt");
+        }
+
         public static string Permission
         {
             get => _AppSettings.GetValueOrDefault(nameof(Permission), _SettingsDefault, "Settings.txt");
@@ -102,6 +108,7 @@ namespace MsorLi.Utilities
             Settings.Email = user.Email;
             Settings.Phone = user.Phone;
             Settings.Address = user.Address;
+            Settings.Erea = user.Erea;
             Settings.Permission = user.Permission;
             Settings.NumOfItems = user.NumOfItems.ToString();
             Settings.NumOfItemsUserLike = user.NumOfItemsUserLike.ToString();

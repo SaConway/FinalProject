@@ -31,6 +31,7 @@ namespace MsorLi.Views
         string _categoryFilter = "כל המוצרים";
         string _subCategoryFilter = "";
         string _conditionFilter = "";
+        string _ereaFilter = "";
 
         private bool _isBusy;
         int _numOfItems = 0;
@@ -79,7 +80,7 @@ namespace MsorLi.Views
             _categoryIconSources.Add("all.png");
 
             // Listen to filters
-            MessagingCenter.Subscribe<FilterPage, Tuple<string, string, string>>
+            MessagingCenter.Subscribe<FilterPage, Tuple<string, string, string, string>>
                 (this, "Back From Filter", async (sender, filterResult) =>
             {
                 await HandleFilterResult(filterResult);
@@ -99,11 +100,13 @@ namespace MsorLi.Views
                     // load the next page
                     var page = ImagePairs.Count * 2 / Constants.PAGE_SIZE;
 
-                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages(page, _categoryFilter, _subCategoryFilter, _conditionFilter); 
+                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages
+                    (page, _categoryFilter, _subCategoryFilter, _conditionFilter, _ereaFilter); 
 
                     var ip = new ObservableCollection<ImagePair>();
 
-					_numOfItems = await AzureImageService.DefaultManager.NumOfItems(_categoryFilter, _subCategoryFilter, _conditionFilter);
+					_numOfItems = await AzureImageService.DefaultManager.NumOfItems
+                    (_categoryFilter, _subCategoryFilter, _conditionFilter, _ereaFilter);
 
                     if (AllImages != null)
                     {
@@ -139,8 +142,8 @@ namespace MsorLi.Views
                 if (!_startupRefresh)
                 {
                     _startupRefresh = true;
-                    IsVisible = false;
-                    IsEnabled = false;
+                    //IsVisible = false;
+                    //IsEnabled = false;
                     CategoryMainStack.IsVisible = false;
                     CategoryMainStack.IsEnabled = false;
 
@@ -148,8 +151,8 @@ namespace MsorLi.Views
                     Task t1 = CreateCategories();
                     await Task.WhenAll(t1, t2);
 
-                    IsVisible = true;
-                    IsEnabled = true;
+                    //IsVisible = true;
+                    //IsEnabled = true;
 
                     CategoryMainStack.IsVisible = true;
 					CategoryMainStack.IsEnabled = true;
@@ -315,7 +318,8 @@ namespace MsorLi.Views
                         _isRunningItem = true;
                 }
 
-                await Navigation.PushAsync(new FilterPage(_categoryFilter, _subCategoryFilter, _conditionFilter));
+                await Navigation.PushAsync(
+                    new FilterPage(_categoryFilter, _subCategoryFilter, _conditionFilter, _ereaFilter));
 
                 _isRunningItem = false;
             }
@@ -332,6 +336,7 @@ namespace MsorLi.Views
                 _categoryFilter = "כל המוצרים";
                 _subCategoryFilter = "";
                 _conditionFilter = "";
+                _ereaFilter = "";
 
                 // Update old category
                 (_currentCategoryStackLayout.Children[1] as Label).TextColor = Color.FromHex("212121");
@@ -367,7 +372,8 @@ namespace MsorLi.Views
                         _isRunningItem = true;
                 }
 
-                await Navigation.PushAsync(new FilterPage(_categoryFilter, _subCategoryFilter, _conditionFilter));
+                await Navigation.PushAsync(
+                    new FilterPage(_categoryFilter, _subCategoryFilter, _conditionFilter, _ereaFilter));
 
                 _isRunningItem = false;
             }
@@ -388,10 +394,12 @@ namespace MsorLi.Views
                 listView_items.IsRefreshing = true;
 
                 AllImages = await AzureImageService.DefaultManager.
-                    GetAllPriorityImages(0, _categoryFilter, _subCategoryFilter, _conditionFilter);
+                    GetAllPriorityImages
+                    (0, _categoryFilter, _subCategoryFilter, _conditionFilter, _ereaFilter);
 
 				_numOfItems = await AzureImageService.DefaultManager.
-                    NumOfItems(_categoryFilter, _subCategoryFilter, _conditionFilter);
+                    NumOfItems
+                    (_categoryFilter, _subCategoryFilter, _conditionFilter, _ereaFilter);
 
                 ImagePairs.Clear();
                 if (AllImages.Count > 0)
@@ -436,8 +444,8 @@ namespace MsorLi.Views
                         UrlRight = i + 1 < AllImages.Count ? AllImages[i + 1].Url : "",
                         ItemIdLeft = AllImages[i].ItemId,
                         ItemIdRight = i + 1 < AllImages.Count ? AllImages[i + 1].ItemId : "",
-                        LocationLeft = AllImages[i].Location,
-                        LocationRight = i + 1 < AllImages.Count ? AllImages[i + 1].Location : "",
+                        LocationLeft = AllImages[i].Erea,
+                        LocationRight = i + 1 < AllImages.Count ? AllImages[i + 1].Erea : "",
                         IsRightImageExist = i + 1 < AllImages.Count ? true : false,
                     };
 
@@ -535,18 +543,33 @@ namespace MsorLi.Views
             return count;
         }
 
-        private async Task HandleFilterResult(Tuple<string, string, string> filterResult)
+        private async Task HandleFilterResult(Tuple<string, string, string, string> filterResult)
         {
             // Update filter results
             _categoryFilter = filterResult.Item1;
             _subCategoryFilter = filterResult.Item2;
             _conditionFilter = filterResult.Item3;
+            _ereaFilter = filterResult.Item4;
 
             // Hide categories
             CategoryMainStack.IsVisible = false;
-            FilterCategoryLabel.Text = _subCategoryFilter != "" ? filterResult.Item1 + ", " + filterResult.Item2 : filterResult.Item1;
-            FilterCategoryLabel.Text += FilterCategoryLabel.Text.Length > 0 && _conditionFilter != "" ? ", " : "";
-            FilterCategoryLabel.Text += _conditionFilter != "" ? filterResult.Item3 : "";
+            FilterCategoryLabel.Text = _ereaFilter;
+
+            if (FilterCategoryLabel.Text.Length > 0 && _categoryFilter.Length > 0)
+            {
+                FilterCategoryLabel.Text += ", " + _categoryFilter;
+            }
+
+            if (FilterCategoryLabel.Text.Length > 0 && _subCategoryFilter.Length > 0)
+            {
+                FilterCategoryLabel.Text += ", " + _subCategoryFilter;
+            }
+
+            if (FilterCategoryLabel.Text.Length > 0 && _conditionFilter.Length > 0)
+            {
+                FilterCategoryLabel.Text += ", " + _conditionFilter;
+            }
+
             FilterMainStack.IsVisible = true;
 
             await RefreshItems();

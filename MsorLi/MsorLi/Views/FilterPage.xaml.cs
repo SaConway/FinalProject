@@ -12,39 +12,73 @@ namespace MsorLi.Views
         // MEMBERS
         //---------------------------------------------------
 
+        bool _firstAppearing = true;
+        string _erea = "";
+        string _category = "";
         string _subCategory = "";
 
         //---------------------------------------------------
         // FUNCTIONS
         //---------------------------------------------------
 
-        public FilterPage(string category, string subCategory, string condition)
+        public FilterPage(string category, string subCategory, 
+                    string condition, string erea)
 		{
-			InitializeComponent ();
+			InitializeComponent();
 
-            var categories = Utilities.CategoryStorage.GetCategories().Result;
-
-            foreach (var c in categories)
-            {
-                CategoryPicker.Items.Add(c.Name);
-            }
-
-            CategoryPicker.SelectedItem = category;
             ConditionPicker.SelectedItem = condition;
             _subCategory = subCategory;
-
-            if (CategoryPicker.SelectedIndex != -1 || ConditionPicker.SelectedIndex != -1)
-            {
-                EnableSubmit();
-            }
+            _erea = erea;
+            _category = category;
         }
 
         protected async override void OnAppearing()
         {
-            if (_subCategory != "")
+            try
             {
-                await SetSubCategories();
-                SubCategoryPicker.SelectedItem = _subCategory;
+                if (_firstAppearing)
+                {
+                    _firstAppearing = false;
+
+                    // Categories
+
+                    var categories = await Utilities.CategoryStorage.GetCategories();
+
+                    foreach (var c in categories)
+                    {
+                        CategoryPicker.Items.Add(c.Name);
+                    }
+
+                    CategoryPicker.SelectedItem = _category;
+
+                    // Locations
+
+                    var ereas = await Utilities.LocationStorage.GetLocations();
+
+                    foreach (var e in ereas)
+                    {
+                        EreaPicker.Items.Add(e.Name);
+                    }
+
+                    EreaPicker.SelectedItem = _erea;
+
+                    if (CategoryPicker.SelectedIndex != -1 ||
+                        ConditionPicker.SelectedIndex != -1 ||
+                        EreaPicker.SelectedIndex != -1)
+                    {
+                        EnableSubmit();
+                    }
+
+                    if (_subCategory != "")
+                    {
+                        await SetSubCategories();
+                        SubCategoryPicker.SelectedItem = _subCategory;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
             }
         }
 
@@ -57,6 +91,11 @@ namespace MsorLi.Views
         }
 
         private void OnConditionChanged(object sender, EventArgs e)
+        {
+            EnableSubmit();
+        }
+
+        private void OnEreaChanged(object sender, EventArgs e)
         {
             EnableSubmit();
         }
@@ -74,12 +113,17 @@ namespace MsorLi.Views
                 var condition = ConditionPicker.SelectedIndex != -1 ?
                     ConditionPicker.Items[ConditionPicker.SelectedIndex].ToString() : "";
 
-                var filterResult = new Tuple<string, string, string>(category, subCategory, condition);
+                var erea = EreaPicker.SelectedIndex != -1 ?
+                    EreaPicker.Items[EreaPicker.SelectedIndex].ToString() : "";
+
+                var filterResult = new Tuple<string, string, string, string>
+                    (category, subCategory, condition, erea);
 
                 _subCategory = subCategory;
 
                 await Navigation.PopAsync();
-                MessagingCenter.Send<FilterPage, Tuple<string, string, string>>(this, "Back From Filter", filterResult);
+                MessagingCenter.Send<FilterPage, Tuple<string, string, string, string>>
+                    (this, "Back From Filter", filterResult);
             }
             catch (Exception)
             {

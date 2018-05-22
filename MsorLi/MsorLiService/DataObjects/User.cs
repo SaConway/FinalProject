@@ -10,6 +10,7 @@ namespace MsorLiService.DataObjects
         public string Password { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
+        public string Erea { get; set; }
         public string Permission { get; set; }
         public string ImgUrl { get; set; }
         public int NumOfItems { get; set; }

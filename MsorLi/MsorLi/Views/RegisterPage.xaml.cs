@@ -18,8 +18,13 @@ namespace MsorLi.Views
         //---------------------------------------------------
         // MEMBERS
         //---------------------------------------------------
+
         List<byte[]> _byteData = new List<byte[]>();
-        ObservableCollection<ImageSource> _profileImage = new ObservableCollection<ImageSource>();
+
+        ObservableCollection<ImageSource> _profileImage =
+            new ObservableCollection<ImageSource>();
+
+        bool _firstAppearing = true;
 
         //---------------------------------------------------
         // FUNCTIONS
@@ -29,6 +34,31 @@ namespace MsorLi.Views
 		{
             InitializeComponent();
 		}
+
+        protected async override void OnAppearing()
+        {
+            try
+            {
+                if (_firstAppearing)
+                {
+                    _firstAppearing = false;
+
+                    // Set locations to the location picker
+
+                    var locations = await LocationStorage.GetLocations();
+
+                    foreach (var l in locations)
+                    {
+                        if (!LocationPicker.Items.Contains(l.Name))
+                            LocationPicker.Items.Add(l.Name);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
 
         public async void SubmitBtnClicked(object sender, EventArgs e)
         {
@@ -57,7 +87,8 @@ namespace MsorLi.Views
                 new_user.Email = email.Text;
                 new_user.Password = EncryptDecrypt.Encrypt(password.Text);
                 new_user.Phone = phoneNumber.Text;
-                new_user.Address = (address.Text != null && address.Text.Length > 0) ? city.Text + ", " + address.Text : city.Text;
+                new_user.Erea = LocationPicker.SelectedItem.ToString();
+                new_user.Address = (address.Text != null && address.Text.Length > 0) ? address.Text : "";
                 new_user.Permission = "User";
                 new_user.NumOfItems = 0;
                 new_user.NumOfItemsUserLike = 0;
@@ -73,20 +104,13 @@ namespace MsorLi.Views
 
         private void Event_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (firstName.Text != null && firstName.Text.Length > 0 &&
-                lastName.Text != null && lastName.Text.Length > 0 &&
-                email.Text != null && email.Text.Length > 0 &&
-                password.Text != null && password.Text.Length > 0 &&
-                phoneNumber.Text != null && phoneNumber.Text.Length > 0 &&
-                city.Text != null && city.Text.Length > 0)
+            try
             {
-                SubmitBtn.IsEnabled = true;
-                SubmitBtn.BackgroundColor = Color.FromHex("19a4b4");
+                CheckToEnableSubmit();
             }
-            else
+            catch (Exception)
             {
-                SubmitBtn.IsEnabled = false;
-                SubmitBtn.BackgroundColor = Color.FromHex("999999");
+
             }
         }
 
@@ -144,6 +168,37 @@ namespace MsorLi.Views
                 pickPictureButton.IsEnabled = _profileImage.Count == Constants.MAX_NUM_OF_PROFILE_IMAGES ? false : true;
             }
             catch (Exception) { }
+        }
+
+        private void OnLocationChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckToEnableSubmit();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void CheckToEnableSubmit()
+        {
+            if (firstName.Text != null && firstName.Text.Length > 0 &&
+                lastName.Text != null && lastName.Text.Length > 0 &&
+                email.Text != null && email.Text.Length > 0 &&
+                password.Text != null && password.Text.Length > 0 &&
+                phoneNumber.Text != null && phoneNumber.Text.Length > 0 &&
+                LocationPicker.SelectedIndex != -1)
+            {
+                SubmitBtn.IsEnabled = true;
+                SubmitBtn.BackgroundColor = Color.FromHex("19a4b4");
+            }
+            else
+            {
+                SubmitBtn.IsEnabled = false;
+                SubmitBtn.BackgroundColor = Color.FromHex("999999");
+            }
         }
 
         private void InitializeCarouselView()

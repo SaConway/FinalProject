@@ -78,11 +78,11 @@
                         <Entry x:Name="phoneNumber" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand"
                                        VerticalOptions="Center" Margin="10,10,0,0" Keyboard="Telephone" HorizontalTextAlignment="End"/>
 
-                        <Label Grid.Row="1" Grid.Column="1" Text="עיר מגורים" VerticalOptions="Center" HorizontalTextAlignment="End"
+                        <Label Grid.Row="1" Grid.Column="1" Text="אזור" VerticalOptions="Center" HorizontalTextAlignment="End"
                                    Margin="0,10,10,0"/>
-                        <Entry x:Name="city" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand"
-                                   VerticalOptions="Center" Margin="10,10,0,0" HorizontalTextAlignment="End"/>
-
+                        <Picker x:Name="EreaPicker" HorizontalOptions="FillAndExpand"
+                                Margin="10,10,0,0" Title="בחר אזור"
+                                Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
 
                         <Label Grid.Row="2" Grid.Column="1" Text="כתובת" VerticalOptions="Center" HorizontalTextAlignment="End"
                                    Margin="0,10,10,20"/>
@@ -176,7 +176,7 @@
                     </control:CarouselView.ItemTemplate>
                 </control:CarouselView>
 
-                <Grid ColumnSpacing="15">
+                <Grid ColumnSpacing="15" Margin="20">
 
                     <Button Clicked="SubmitBtnClicked" Style="{StaticResource ButtonStyle}" 
                                         Text="עדכון פרטים" Grid.Column="0"/>

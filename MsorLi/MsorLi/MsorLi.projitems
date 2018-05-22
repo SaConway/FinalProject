@@ -40,11 +40,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\ItemCategory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ItemImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ItemSubCategory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Location.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SavedItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureCategoryService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureImageService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureItemService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\AzureLocationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureSavedItemService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureSubCategoryService.cs" />
@@ -57,6 +59,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\ImageResizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\IMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\IShare.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\LocationStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\SavedItemsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\SubCategoryStorage.cs" />

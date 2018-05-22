@@ -13,14 +13,16 @@ namespace MsorLi.Views
 {
     public partial class EditUserInfoPage : ContentPage
     {
-
-
         //---------------------------------------------------
         // MEMBERS
         //---------------------------------------------------
+
         List<byte[]> _byteData = new List<byte[]>();
         ObservableCollection<ImageSource> _profileImage = new ObservableCollection<ImageSource>();
         bool _password_change = false;
+        bool _firstAppearing = true;
+        string _erea = "";
+
         //---------------------------------------------------
         // FUNCTIONS
         //---------------------------------------------------
@@ -32,8 +34,37 @@ namespace MsorLi.Views
             lastName.Text = Settings.UserLastName;
             email.Text = Settings.Email;
             phoneNumber.Text = Settings.Phone;
-            city.Text = Settings.Address;
+
+            _erea = Settings.Erea;
+
             NewPhotoLabel.IsVisible = false;
+        }
+
+        protected async override void OnAppearing()
+        {
+            try
+            {
+                if (_firstAppearing)
+                {
+                    _firstAppearing = false;
+
+                    // Set locations to the location picker
+
+                    var locations = await LocationStorage.GetLocations();
+
+                    foreach (var l in locations)
+                    {
+                        if (!EreaPicker.Items.Contains(l.Name))
+                            EreaPicker.Items.Add(l.Name);
+                    }
+
+                    EreaPicker.SelectedItem = _erea;
+                }
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         public async void SubmitBtnClicked(object sender, EventArgs e)
@@ -74,7 +105,8 @@ namespace MsorLi.Views
                     LastName = lastName.Text,
                     Email = email.Text,
                     Phone = phoneNumber.Text,
-                    Address = city.Text,
+                    Erea = EreaPicker.SelectedIndex != -1 ? EreaPicker.SelectedItem.ToString() : "",
+                    Address = address.Text != null && address.Text.Length > 0 ? address.Text : "",
                     Permission = "1",
                     NumOfItems = int.Parse( Settings.NumOfItems),
                     NumOfItemsUserLike = int.Parse(Settings.NumOfItemsUserLike),

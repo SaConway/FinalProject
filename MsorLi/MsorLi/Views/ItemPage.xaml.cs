@@ -218,7 +218,7 @@ namespace MsorLi.Views
             DependencyService.Get<Utilities.IShare>().Share("מוצר למסירה, דרך אפליקציית מסור-לי.",
                  "מוצר למסירה, דרך אפליקציית מסור--לי. להלן פרטי המוצר ודרכי התקשרות:" + Environment.NewLine + Environment.NewLine
                      + "קטגוריה: " + _item.Category + Environment.NewLine
-                     + "מיקום: " + _item.Location + Environment.NewLine
+                     + "מיקום: " + _item.Erea + Environment.NewLine
                      + "מצב מוצר: " + _item.Condition + Environment.NewLine
                      + "תיאור: " + _item.Description + Environment.NewLine
                      + "שם איש קשר: " + _item.ContactName + Environment.NewLine
@@ -244,7 +244,10 @@ namespace MsorLi.Views
         // Waze Buuton
         private void OnWazeClick(object sender, EventArgs e)
         {
-            DependencyService.Get<IWaze>().Navigate(_item.Location);
+            var location = _item.Address.Length > 0 ? 
+                _item.Erea + ", " + _item.Address : _item.Erea;
+
+            DependencyService.Get<IWaze>().Navigate(location);
         }
 
         // Call Button
@@ -338,7 +341,7 @@ namespace MsorLi.Views
             subCategory.Text = _item.SubCategory;
             description.Text = _item.Description;
             condition.Text = _item.Condition;
-            location.Text = _item.Location;
+            location.Text = _item.Address.Length > 0 ? _item.Erea + ", " + _item.Address : _item.Erea;
             contact_name.Text = _item.ContactName;
             contact_number.Text = _item.ContactNumber;
             date.Text = _item.Date;

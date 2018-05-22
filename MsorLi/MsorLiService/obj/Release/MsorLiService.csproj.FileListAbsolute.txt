@@ -161,3 +161,4 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLi
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.csproj.CopyComplete
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.pdb
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLiService\obj\Release\MsorLiService.csprojAssemblyReference.cache

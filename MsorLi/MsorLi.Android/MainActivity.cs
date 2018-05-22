@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using MsorLi.Utilities;
 using Plugin.Toasts;
 using Xamarin.Forms;
 
@@ -18,26 +19,49 @@ namespace MsorLi.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
-            TabLayoutResource = Resource.Layout.Tabbar;
-            ToolbarResource = Resource.Layout.Toolbar;
+            try
+            {
+                TabLayoutResource = Resource.Layout.Tabbar;
+                ToolbarResource = Resource.Layout.Toolbar;
 
-            Utilities.Constants.ScreenHeight = (int)(Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
-            Utilities.Constants.ScreenWidth = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
+                Utilities.Constants.ScreenHeight = (int)(Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
+                Utilities.Constants.ScreenWidth = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
 
-            FFImageLoading.Forms.Droid.CachedImageRenderer.Init(true);
-            ImageCircle.Forms.Plugin.Droid.ImageCircleRenderer.Init();
-            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
-            
-            global::Xamarin.Forms.Forms.Init(this, bundle);
+                FFImageLoading.Forms.Droid.CachedImageRenderer.Init(true);
+                ImageCircle.Forms.Plugin.Droid.ImageCircleRenderer.Init();
+                Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 
-			DependencyService.Register<ToastNotification>(); // Register your dependency
-            ToastNotification.Init(this);
+                global::Xamarin.Forms.Forms.Init(this, bundle);
 
-            base.SetTheme(Resource.Style.MainTheme);
-            base.OnCreate(bundle);
-            LoadApplication(new App());
+                DependencyService.Register<ToastNotification>(); // Register your dependency
+                ToastNotification.Init(this);
+
+                base.SetTheme(Resource.Style.MainTheme);
+                base.OnCreate(bundle);
+            }
+            catch (System.Exception)
+            {
+
+            }
         }
-        
+
+        protected async override void OnResume()
+        {
+            try
+            {
+                base.OnResume();
+
+                var categories = await CategoryStorage.GetCategories();
+
+                LoadApplication(new App());
+            }
+            catch (System.Exception)
+            {
+
+            }
+            
+        }
+
         //--------------------------------------------
         // PICTURE HANDLE
 

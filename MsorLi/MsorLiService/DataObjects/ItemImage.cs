@@ -10,7 +10,7 @@ namespace MsorLiService.DataObjects
         public string UserId { get; set; }
         public string Category { get; set; }
         public string SubCategory { get; set; }
-        public string Location { get; set; }
+        public string Erea { get; set; }
         public string Condition { get; set; }
     }
 }

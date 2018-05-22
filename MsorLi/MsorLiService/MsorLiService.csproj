@@ -251,12 +251,14 @@
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ItemImageController.cs" />
     <Compile Include="Controllers\ItemSubCategoryController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\SavedItemController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataObjects\Item.cs" />
     <Compile Include="DataObjects\ItemCategory.cs" />
     <Compile Include="DataObjects\ItemImage.cs" />
     <Compile Include="DataObjects\ItemSubCategory.cs" />
+    <Compile Include="DataObjects\Location.cs" />
     <Compile Include="DataObjects\SavedItem.cs" />
     <Compile Include="DataObjects\User.cs" />
     <Compile Include="Models\MsorLiContext.cs" />

@@ -9,7 +9,8 @@ namespace MsorLiService.DataObjects
         public int NumOfImages { get; set; }
         public string Description { get; set; }
         public string Condition { get; set; }
-        public string Location { get; set; }
+        public string Address { get; set; }
+        public string Erea { get; set; }
         public int ViewCounter { get; set; }
         public string ContactName { get; set; }
         public string ContactNumber { get; set; }

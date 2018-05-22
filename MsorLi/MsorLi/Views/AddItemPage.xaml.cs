@@ -27,6 +27,10 @@ namespace MsorLi.Views
         Boolean _isRunningItem = false;
         Object _lockObject = new Object();
 
+        bool _firstAppearing = true;
+
+        string _erea = "";
+
         #endregion
 
         //---------------------------------------------------
@@ -40,19 +44,10 @@ namespace MsorLi.Views
                 InitializeComponent();
                 this.Title = "הוספת מודעה";
 
-                city.Text = Settings.Address;
                 contactName.Text = Settings.UserFirstName + " " + Settings.UserLastName;
                 contactNumber.Text = Settings.Phone;
                 email.Text = Settings.Email;
-
-                var categories = CategoryStorage.GetCategories().Result;
-
-                category.Items.Clear();
-                foreach (var c in categories)
-                {
-                    if (!category.Items.Contains(c.Name))
-                        category.Items.Add(c.Name);
-                }
+                _erea = Settings.Erea;
             }
             catch { }
         }
@@ -89,7 +84,7 @@ namespace MsorLi.Views
                 category.SelectedItem = item.Category;
                 description.Text = item.Description;
                 condition.SelectedItem = item.Condition;
-                city.Text = item.Location;
+                EreaPicker.SelectedItem = item.Erea;
                 contactName.Text = item.ContactName;
                 contactNumber.Text = item.ContactNumber;
 
@@ -106,6 +101,44 @@ namespace MsorLi.Views
                 subCategory.SelectedItem = item.SubCategory;
             }
             catch (Exception) { }
+        }
+
+        protected async override void OnAppearing()
+        {
+            try
+            {
+                if (_firstAppearing && !_isEditingItem)
+                {
+                    _firstAppearing = false;
+
+                    // Set locations to the location picker
+
+                    var locations = await LocationStorage.GetLocations();
+
+                    foreach (var l in locations)
+                    {
+                        if (!EreaPicker.Items.Contains(l.Name))
+                            EreaPicker.Items.Add(l.Name);
+                    }
+
+                    EreaPicker.SelectedItem = _erea;
+                    
+                    // Set categories to the category picker
+
+                    var categories = await CategoryStorage.GetCategories();
+
+                    category.Items.Clear();
+                    foreach (var c in categories)
+                    {
+                        if (!category.Items.Contains(c.Name))
+                            category.Items.Add(c.Name);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         //---------------------------------------------------
@@ -326,7 +359,7 @@ namespace MsorLi.Views
 
                 item.Value.Item1.Category = category.Items[category.SelectedIndex];
                 item.Value.Item1.SubCategory = subCategory.Items[subCategory.SelectedIndex];
-                item.Value.Item1.Location = city.Text;
+                item.Value.Item1.Erea = EreaPicker.SelectedItem.ToString();
                 item.Value.Item1.Condition = condition.SelectedItem.ToString();
 
                 var t = UploadImageToDB(item.Value.Item1);
@@ -343,7 +376,8 @@ namespace MsorLi.Views
             _item.NumOfImages = _keyValues.Count;
             _item.Description = description.Text;
             _item.Condition = condition.SelectedItem.ToString();
-            _item.Location = (street.Text != null && street.Text.Length > 0) ? city.Text + ", " + street.Text : city.Text;
+            _item.Erea = EreaPicker.SelectedItem.ToString();
+            _item.Address = (street.Text != null && street.Text.Length > 0) ? street.ToString() : "";
             _item.ViewCounter = 0;
             _item.ContactName = contactName.Text;
             _item.ContactNumber = contactNumber.Text;
@@ -375,7 +409,7 @@ namespace MsorLi.Views
         {
             if (category.SelectedIndex == -1 || _keyValues.Count == 0 ||
                 description.Text.Length == 0 || condition.SelectedIndex == -1 ||
-                city.Text.Length == 0 || contactName.Text.Length == 0 ||
+                EreaPicker.SelectedIndex == -1 || contactName.Text.Length == 0 ||
                 contactNumber.Text.Length == 0 || subCategory.SelectedIndex == -1)
                 return false;
 
