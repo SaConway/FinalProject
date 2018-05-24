@@ -63,7 +63,7 @@ namespace MsorLi.Views
                     }
                 }
 
-                catch
+				catch(Exception)
                 {
 
                 }
@@ -98,7 +98,7 @@ namespace MsorLi.Views
                 };
             }
 
-            catch
+            catch(Exception)
             {
 
             }
@@ -208,8 +208,9 @@ namespace MsorLi.Views
             try
             {
                 // Delete Item from data base
-                await AzureSavedItemService.DefaultManager
-                    .DeleteSavedItem(new SavedItem { Id = _dictionary[itemId].SavedId });
+                await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _dictionary[itemId].SavedId });
+
+                UpdateLikeCounter(-1);
 
                 // Delete Item from collection and dictionary
                 _collection.Remove(_dictionary[itemId]);
@@ -232,6 +233,8 @@ namespace MsorLi.Views
                 // Item was deleted, so delete from saved table
                 await AzureSavedItemService.DefaultManager.DeleteSavedItem(saved);
 
+
+
                 _dictionary.Remove(itemId);
             }
             else
@@ -247,6 +250,13 @@ namespace MsorLi.Views
 
             if (imageUrl != null)
                 _dictionary[index].ImageUrl = imageUrl;
+        }
+
+		private async void UpdateLikeCounter(int prefix)
+        {
+            int _numOfLikedItem = await AzureUserService.DefaultManager.UpdateNumOfItemsLiked(MsorLi.Utilities.Settings.UserId, prefix);
+            Utilities.Settings.NumOfItemsUserLike = _numOfLikedItem.ToString();
+			MessagingCenter.Send<SavedItemsPage>(this, "Update Like Counter");
         }
     }
 }

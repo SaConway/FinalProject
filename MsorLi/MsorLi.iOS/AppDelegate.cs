@@ -1,8 +1,6 @@
 ﻿using Foundation;
 using SuaveControls.FloatingActionButton.iOS.Renderers;
 using UIKit;
-using Xamarin.Forms;
-
 
 namespace MsorLi.iOS
 {
@@ -21,9 +19,9 @@ namespace MsorLi.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-
             global::Xamarin.Forms.Forms.Init();
 
+            Rg.Plugins.Popup.Popup.Init();
             //init for the circle image plugin
             ImageCircle.Forms.Plugin.iOS.ImageCircleRenderer.Init();
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();

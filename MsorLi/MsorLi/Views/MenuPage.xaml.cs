@@ -9,10 +9,13 @@ namespace MsorLi.Views
         public MenuPage()
         {
             InitializeComponent();
+
             if (Session.IsLogged())
             {
                 UserName.Text = "שלום " + Settings.UserFirstName;
-                UserImg.Source = Settings.ImgUrl;
+
+				UserProfilePicture();
+
                 logButton.Text = "התנתק";
                 logImg.Source = "logout.png";
             }
@@ -68,12 +71,13 @@ namespace MsorLi.Views
                 else
                 {
                     await Navigation.PushAsync(new LoginPage());
+
                     //user loged in success event
-                    MessagingCenter.Subscribe<LoginPage>(this, "Success", (send) => {
+                    MessagingCenter.Subscribe<LoginPage>(this, "Success", async (send) => {
 
                         MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
-                        UserImg.Source = Settings.ImgUrl;
-                        UserName.Text = Settings.UserFirstName +" "+ Settings.UserLastName;
+						UserProfilePicture();
+                        UserName.Text = "שלום " + Settings.UserFirstName;
                     });
                 }
             }
@@ -110,6 +114,7 @@ namespace MsorLi.Views
             {
                 //await DisplayAlert("שגיאה", "לא ניתן להתנתק. נסה שנית מאוחר יותר.", "אישור");
             }
+
         }
 
         private async void HomeClickEvent(object sender, EventArgs e)
@@ -161,5 +166,14 @@ namespace MsorLi.Views
 
             }
         }
+		private void UserProfilePicture()
+		{
+
+			//if user doesnt have profile picture
+            if (String.IsNullOrEmpty(Settings.ImgUrl))
+                UserImg.Source = "unknownuser.png";
+            else
+                UserImg.Source = Settings.ImgUrl;
+		}
     }
 }

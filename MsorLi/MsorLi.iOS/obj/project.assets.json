@@ -199,6 +199,20 @@
           "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
         }
       },
+      "Rg.Plugins.Popup/1.1.4.158-pre": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.5.0.121934"
+        },
+        "compile": {
+          "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.dll": {},
+          "lib/Xamarin.IOS/Rg.Plugins.Popup.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.dll": {},
+          "lib/Xamarin.IOS/Rg.Plugins.Popup.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_green/1.1.2": {
         "type": "package",
         "dependencies": {
@@ -803,7 +817,7 @@
           "lib/Xamarin.iOS10/ImageCircle.Forms.Plugin.iOS.dll": {}
         }
       },
-      "Xam.Plugins.Messaging/5.1.0": {
+      "Xam.Plugins.Messaging/5.2.0": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1"
@@ -887,7 +901,7 @@
           "lib/Xamarin.iOS10/FFImageLoading.Transformations.dll": {}
         }
       },
-      "Xamarin.Forms/2.5.1.527436": {
+      "Xamarin.Forms/3.0.0.482510": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -1006,8 +1020,8 @@
           }
         },
         "build": {
-          "build/netstandard1.0/Xamarin.Forms.props": {},
-          "build/netstandard1.0/Xamarin.Forms.targets": {}
+          "build/netstandard2.0/Xamarin.Forms.props": {},
+          "build/netstandard2.0/Xamarin.Forms.targets": {}
         }
       },
       "Xamarin.Forms.CarouselView/2.3.0-pre2": {
@@ -1234,6 +1248,20 @@
           "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
         }
       },
+      "Rg.Plugins.Popup/1.1.4.158-pre": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.5.0.121934"
+        },
+        "compile": {
+          "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.dll": {},
+          "lib/Xamarin.IOS/Rg.Plugins.Popup.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.dll": {},
+          "lib/Xamarin.IOS/Rg.Plugins.Popup.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_green/1.1.2": {
         "type": "package",
         "dependencies": {
@@ -1774,7 +1802,7 @@
           "lib/Xamarin.iOS10/ImageCircle.Forms.Plugin.iOS.dll": {}
         }
       },
-      "Xam.Plugins.Messaging/5.1.0": {
+      "Xam.Plugins.Messaging/5.2.0": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1"
@@ -1858,7 +1886,7 @@
           "lib/Xamarin.iOS10/FFImageLoading.Transformations.dll": {}
         }
       },
-      "Xamarin.Forms/2.5.1.527436": {
+      "Xamarin.Forms/3.0.0.482510": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -1977,8 +2005,8 @@
           }
         },
         "build": {
-          "build/netstandard1.0/Xamarin.Forms.props": {},
-          "build/netstandard1.0/Xamarin.Forms.targets": {}
+          "build/netstandard2.0/Xamarin.Forms.props": {},
+          "build/netstandard2.0/Xamarin.Forms.targets": {}
         }
       },
       "Xamarin.Forms.CarouselView/2.3.0-pre2": {
@@ -2205,6 +2233,20 @@
           "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
         }
       },
+      "Rg.Plugins.Popup/1.1.4.158-pre": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.5.0.121934"
+        },
+        "compile": {
+          "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.dll": {},
+          "lib/Xamarin.IOS/Rg.Plugins.Popup.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.dll": {},
+          "lib/Xamarin.IOS/Rg.Plugins.Popup.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_green/1.1.2": {
         "type": "package",
         "dependencies": {
@@ -2745,7 +2787,7 @@
           "lib/Xamarin.iOS10/ImageCircle.Forms.Plugin.iOS.dll": {}
         }
       },
-      "Xam.Plugins.Messaging/5.1.0": {
+      "Xam.Plugins.Messaging/5.2.0": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1"
@@ -2829,7 +2871,7 @@
           "lib/Xamarin.iOS10/FFImageLoading.Transformations.dll": {}
         }
       },
-      "Xamarin.Forms/2.5.1.527436": {
+      "Xamarin.Forms/3.0.0.482510": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -2948,8 +2990,8 @@
           }
         },
         "build": {
-          "build/netstandard1.0/Xamarin.Forms.props": {},
-          "build/netstandard1.0/Xamarin.Forms.targets": {}
+          "build/netstandard2.0/Xamarin.Forms.props": {},
+          "build/netstandard2.0/Xamarin.Forms.targets": {}
         }
       },
       "Xamarin.Forms.CarouselView/2.3.0-pre2": {
@@ -3176,6 +3218,20 @@
           "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
         }
       },
+      "Rg.Plugins.Popup/1.1.4.158-pre": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.5.0.121934"
+        },
+        "compile": {
+          "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.dll": {},
+          "lib/Xamarin.IOS/Rg.Plugins.Popup.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.dll": {},
+          "lib/Xamarin.IOS/Rg.Plugins.Popup.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_green/1.1.2": {
         "type": "package",
         "dependencies": {
@@ -3716,7 +3772,7 @@
           "lib/Xamarin.iOS10/ImageCircle.Forms.Plugin.iOS.dll": {}
         }
       },
-      "Xam.Plugins.Messaging/5.1.0": {
+      "Xam.Plugins.Messaging/5.2.0": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1"
@@ -3800,7 +3856,7 @@
           "lib/Xamarin.iOS10/FFImageLoading.Transformations.dll": {}
         }
       },
-      "Xamarin.Forms/2.5.1.527436": {
+      "Xamarin.Forms/3.0.0.482510": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -3919,8 +3975,8 @@
           }
         },
         "build": {
-          "build/netstandard1.0/Xamarin.Forms.props": {},
-          "build/netstandard1.0/Xamarin.Forms.targets": {}
+          "build/netstandard2.0/Xamarin.Forms.props": {},
+          "build/netstandard2.0/Xamarin.Forms.targets": {}
         }
       },
       "Xamarin.Forms.CarouselView/2.3.0-pre2": {
@@ -4231,6 +4287,34 @@
         "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.xml",
         "pinvoke.windows.core.0.3.2.nupkg.sha512",
         "pinvoke.windows.core.nuspec"
+      ]
+    },
+    "Rg.Plugins.Popup/1.1.4.158-pre": {
+      "sha512": "CFhrhEiGfpDBTgH+wTJPvZ3Dd9NPGdHJmaZO/qaKt+KTIfuOetRbj6p4apEpVEsHu1vAhDacE9Ciumr71c/WXA==",
+      "type": "package",
+      "path": "rg.plugins.popup/1.1.4.158-pre",
+      "files": [
+        "lib/MonoAndroid/Rg.Plugins.Popup.Droid.dll",
+        "lib/MonoAndroid/Rg.Plugins.Popup.Droid.dll.mdb",
+        "lib/MonoAndroid/Rg.Plugins.Popup.Droid.pdb",
+        "lib/MonoAndroid/Rg.Plugins.Popup.dll",
+        "lib/MonoAndroid/Rg.Plugins.Popup.pdb",
+        "lib/MonoTouch/Rg.Plugins.Popup.IOS.dll",
+        "lib/MonoTouch/Rg.Plugins.Popup.IOS.pdb",
+        "lib/MonoTouch/Rg.Plugins.Popup.dll",
+        "lib/MonoTouch/Rg.Plugins.Popup.pdb",
+        "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.dll",
+        "lib/Xamarin.IOS/Rg.Plugins.Popup.IOS.pdb",
+        "lib/Xamarin.IOS/Rg.Plugins.Popup.dll",
+        "lib/Xamarin.IOS/Rg.Plugins.Popup.pdb",
+        "lib/netstandard1.0/Rg.Plugins.Popup.dll",
+        "lib/netstandard1.0/Rg.Plugins.Popup.pdb",
+        "lib/uap10.0/Rg.Plugins.Popup.UWP.dll",
+        "lib/uap10.0/Rg.Plugins.Popup.UWP.pdb",
+        "lib/uap10.0/Rg.Plugins.Popup.dll",
+        "lib/uap10.0/Rg.Plugins.Popup.pdb",
+        "rg.plugins.popup.1.1.4.158-pre.nupkg.sha512",
+        "rg.plugins.popup.nuspec"
       ]
     },
     "SQLitePCLRaw.bundle_green/1.1.2": {
@@ -7141,16 +7225,15 @@
         "xam.plugins.forms.imagecircle.nuspec"
       ]
     },
-    "Xam.Plugins.Messaging/5.1.0": {
-      "sha512": "96BnnhxDEgLOkMSCg/SYIVzYMouyceU+Kdsr83smRXRqQDPHqQm8rOkYq5FWl3yFkBKs3O+HbVZc/TJIyDWAoA==",
+    "Xam.Plugins.Messaging/5.2.0": {
+      "sha512": "oTBg4tZjkkLHuUuXaybC/pwi0SugrJeyZ7Nq60IAxBliO7FMYaPq9mmmPQvCAEwEhtWaZAjbBzwG/I71CcQrmA==",
       "type": "package",
-      "path": "xam.plugins.messaging/5.1.0",
+      "path": "xam.plugins.messaging/5.2.0",
       "files": [
         "lib/MonoAndroid10/Plugin.Messaging.Abstractions.dll",
         "lib/MonoAndroid10/Plugin.Messaging.Abstractions.pdb",
         "lib/MonoAndroid10/Plugin.Messaging.Abstractions.xml",
         "lib/MonoAndroid10/Plugin.Messaging.dll",
-        "lib/MonoAndroid10/Plugin.Messaging.dll.mdb",
         "lib/MonoAndroid10/Plugin.Messaging.pdb",
         "lib/MonoAndroid10/Plugin.Messaging.xml",
         "lib/UAP10/Plugin.Messaging.Abstractions.dll",
@@ -7172,7 +7255,12 @@
         "lib/netstandard1.0/Plugin.Messaging.dll",
         "lib/netstandard1.0/Plugin.Messaging.pdb",
         "lib/netstandard1.0/Plugin.Messaging.xml",
-        "xam.plugins.messaging.5.1.0.nupkg.sha512",
+        "lib/tizen40/Plugin.Messaging.Abstractions.dll",
+        "lib/tizen40/Plugin.Messaging.Abstractions.pdb",
+        "lib/tizen40/Plugin.Messaging.Abstractions.xml",
+        "lib/tizen40/Plugin.Messaging.deps.json",
+        "lib/tizen40/Plugin.Messaging.dll",
+        "xam.plugins.messaging.5.2.0.nupkg.sha512",
         "xam.plugins.messaging.nuspec"
       ]
     },
@@ -7389,15 +7477,16 @@
         "xamarin.ffimageloading.transformations.nuspec"
       ]
     },
-    "Xamarin.Forms/2.5.1.527436": {
-      "sha512": "HY6Kzu7fufV5PYkMcetpFmeQ8/NrOsolBc1XZzzZKqh2UrqWwkHC7UI5LmmZgfwqs/O9eP7tDIwc1lturp1vOw==",
+    "Xamarin.Forms/3.0.0.482510": {
+      "sha512": "kq209d8qVvulrY3o+nGirENZ3kaZpEN7VWRErWcW1M+ahtDgm4BUXQJ5s9hnp1SAGxQMTMhDAVI3uk5g9NV7hA==",
       "type": "package",
-      "path": "xamarin.forms/2.5.1.527436",
+      "path": "xamarin.forms/3.0.0.482510",
       "files": [
         "build/netstandard1.0/Mono.Cecil.Mdb.dll",
         "build/netstandard1.0/Mono.Cecil.Pdb.dll",
         "build/netstandard1.0/Mono.Cecil.Rocks.dll",
         "build/netstandard1.0/Mono.Cecil.dll",
+        "build/netstandard1.0/System.CodeDom.dll",
         "build/netstandard1.0/Xamarin.Forms.Build.Tasks.dll",
         "build/netstandard1.0/Xamarin.Forms.Core.dll",
         "build/netstandard1.0/Xamarin.Forms.DefaultItems.props",
@@ -7405,38 +7494,35 @@
         "build/netstandard1.0/Xamarin.Forms.Xaml.dll",
         "build/netstandard1.0/Xamarin.Forms.props",
         "build/netstandard1.0/Xamarin.Forms.targets",
-        "build/portable-win+net45+wp80+win81+wpa81/Mono.Cecil.Mdb.dll",
-        "build/portable-win+net45+wp80+win81+wpa81/Mono.Cecil.Pdb.dll",
-        "build/portable-win+net45+wp80+win81+wpa81/Mono.Cecil.Rocks.dll",
-        "build/portable-win+net45+wp80+win81+wpa81/Mono.Cecil.dll",
-        "build/portable-win+net45+wp80+win81+wpa81/Xamarin.Forms.Build.Tasks.dll",
-        "build/portable-win+net45+wp80+win81+wpa81/Xamarin.Forms.Core.dll",
-        "build/portable-win+net45+wp80+win81+wpa81/Xamarin.Forms.DefaultItems.targets",
-        "build/portable-win+net45+wp80+win81+wpa81/Xamarin.Forms.Xaml.dll",
-        "build/portable-win+net45+wp80+win81+wpa81/Xamarin.Forms.targets",
+        "build/netstandard2.0/Mono.Cecil.Mdb.dll",
+        "build/netstandard2.0/Mono.Cecil.Pdb.dll",
+        "build/netstandard2.0/Mono.Cecil.Rocks.dll",
+        "build/netstandard2.0/Mono.Cecil.dll",
+        "build/netstandard2.0/System.CodeDom.dll",
+        "build/netstandard2.0/Xamarin.Forms.Build.Tasks.dll",
+        "build/netstandard2.0/Xamarin.Forms.Core.dll",
+        "build/netstandard2.0/Xamarin.Forms.DefaultItems.props",
+        "build/netstandard2.0/Xamarin.Forms.DefaultItems.targets",
+        "build/netstandard2.0/Xamarin.Forms.Xaml.dll",
+        "build/netstandard2.0/Xamarin.Forms.props",
+        "build/netstandard2.0/Xamarin.Forms.targets",
         "lib/MonoAndroid10/Design/Xamarin.Forms.Core.Design.dll",
         "lib/MonoAndroid10/Design/Xamarin.Forms.Xaml.Design.dll",
         "lib/MonoAndroid10/FormsViewGroup.dll",
+        "lib/MonoAndroid10/FormsViewGroup.dll.mdb",
         "lib/MonoAndroid10/FormsViewGroup.pdb",
         "lib/MonoAndroid10/Xamarin.Forms.Core.dll",
         "lib/MonoAndroid10/Xamarin.Forms.Core.pdb",
         "lib/MonoAndroid10/Xamarin.Forms.Core.xml",
         "lib/MonoAndroid10/Xamarin.Forms.Platform.Android.dll",
+        "lib/MonoAndroid10/Xamarin.Forms.Platform.Android.dll.mdb",
         "lib/MonoAndroid10/Xamarin.Forms.Platform.Android.pdb",
         "lib/MonoAndroid10/Xamarin.Forms.Platform.dll",
         "lib/MonoAndroid10/Xamarin.Forms.Xaml.dll",
         "lib/MonoAndroid10/Xamarin.Forms.Xaml.pdb",
         "lib/MonoAndroid10/Xamarin.Forms.Xaml.xml",
-        "lib/WP80/Design/Xamarin.Forms.Core.Design.dll",
-        "lib/WP80/Design/Xamarin.Forms.Xaml.Design.dll",
-        "lib/WP80/Xamarin.Forms.Core.dll",
-        "lib/WP80/Xamarin.Forms.Core.pdb",
-        "lib/WP80/Xamarin.Forms.Core.xml",
-        "lib/WP80/Xamarin.Forms.Platform.WP8.dll",
-        "lib/WP80/Xamarin.Forms.Platform.dll",
-        "lib/WP80/Xamarin.Forms.Xaml.dll",
-        "lib/WP80/Xamarin.Forms.Xaml.pdb",
-        "lib/WP80/Xamarin.Forms.Xaml.xml",
+        "lib/Xamarin.Mac/Design/Xamarin.Forms.Core.Design.dll",
+        "lib/Xamarin.Mac/Design/Xamarin.Forms.Xaml.Design.dll",
         "lib/Xamarin.Mac/Xamarin.Forms.Core.dll",
         "lib/Xamarin.Mac/Xamarin.Forms.Platform.dll",
         "lib/Xamarin.Mac/Xamarin.Forms.Platform.macOS.dll",
@@ -7444,14 +7530,12 @@
         "lib/Xamarin.iOS10/Design/Xamarin.Forms.Core.Design.dll",
         "lib/Xamarin.iOS10/Design/Xamarin.Forms.Xaml.Design.dll",
         "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll",
-        "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll.mdb",
         "lib/Xamarin.iOS10/Xamarin.Forms.Core.pdb",
         "lib/Xamarin.iOS10/Xamarin.Forms.Core.xml",
         "lib/Xamarin.iOS10/Xamarin.Forms.Platform.dll",
         "lib/Xamarin.iOS10/Xamarin.Forms.Platform.iOS.dll",
         "lib/Xamarin.iOS10/Xamarin.Forms.Platform.iOS.pdb",
         "lib/Xamarin.iOS10/Xamarin.Forms.Xaml.dll",
-        "lib/Xamarin.iOS10/Xamarin.Forms.Xaml.dll.mdb",
         "lib/Xamarin.iOS10/Xamarin.Forms.Xaml.pdb",
         "lib/Xamarin.iOS10/Xamarin.Forms.Xaml.xml",
         "lib/Xamarin.iOS10/ar/Xamarin.Forms.Platform.iOS.resources.dll",
@@ -7491,25 +7575,32 @@
         "lib/netstandard1.0/Design/Xamarin.Forms.Core.Design.dll",
         "lib/netstandard1.0/Design/Xamarin.Forms.Xaml.Design.dll",
         "lib/netstandard1.0/Xamarin.Forms.Core.dll",
-        "lib/netstandard1.0/Xamarin.Forms.Core.dll.mdb",
         "lib/netstandard1.0/Xamarin.Forms.Core.pdb",
         "lib/netstandard1.0/Xamarin.Forms.Core.xml",
         "lib/netstandard1.0/Xamarin.Forms.Platform.dll",
         "lib/netstandard1.0/Xamarin.Forms.Xaml.dll",
-        "lib/netstandard1.0/Xamarin.Forms.Xaml.dll.mdb",
         "lib/netstandard1.0/Xamarin.Forms.Xaml.pdb",
         "lib/netstandard1.0/Xamarin.Forms.Xaml.xml",
-        "lib/portable-win+net45+wp80+win81+wpa81/Design/Xamarin.Forms.Core.Design.dll",
-        "lib/portable-win+net45+wp80+win81+wpa81/Design/Xamarin.Forms.Xaml.Design.dll",
-        "lib/portable-win+net45+wp80+win81+wpa81/Xamarin.Forms.Core.dll",
-        "lib/portable-win+net45+wp80+win81+wpa81/Xamarin.Forms.Core.dll.mdb",
-        "lib/portable-win+net45+wp80+win81+wpa81/Xamarin.Forms.Core.pdb",
-        "lib/portable-win+net45+wp80+win81+wpa81/Xamarin.Forms.Core.xml",
-        "lib/portable-win+net45+wp80+win81+wpa81/Xamarin.Forms.Platform.dll",
-        "lib/portable-win+net45+wp80+win81+wpa81/Xamarin.Forms.Xaml.dll",
-        "lib/portable-win+net45+wp80+win81+wpa81/Xamarin.Forms.Xaml.dll.mdb",
-        "lib/portable-win+net45+wp80+win81+wpa81/Xamarin.Forms.Xaml.pdb",
-        "lib/portable-win+net45+wp80+win81+wpa81/Xamarin.Forms.Xaml.xml",
+        "lib/netstandard2.0/Design/Xamarin.Forms.Core.Design.dll",
+        "lib/netstandard2.0/Design/Xamarin.Forms.Xaml.Design.dll",
+        "lib/netstandard2.0/Xamarin.Forms.Core.dll",
+        "lib/netstandard2.0/Xamarin.Forms.Core.pdb",
+        "lib/netstandard2.0/Xamarin.Forms.Core.xml",
+        "lib/netstandard2.0/Xamarin.Forms.Platform.dll",
+        "lib/netstandard2.0/Xamarin.Forms.Xaml.dll",
+        "lib/netstandard2.0/Xamarin.Forms.Xaml.pdb",
+        "lib/netstandard2.0/Xamarin.Forms.Xaml.xml",
+        "lib/tizen40/Design/Xamarin.Forms.Core.Design.dll",
+        "lib/tizen40/Design/Xamarin.Forms.Xaml.Design.dll",
+        "lib/tizen40/Xamarin.Forms.Core.dll",
+        "lib/tizen40/Xamarin.Forms.Core.pdb",
+        "lib/tizen40/Xamarin.Forms.Core.xml",
+        "lib/tizen40/Xamarin.Forms.Platform.Tizen.dll",
+        "lib/tizen40/Xamarin.Forms.Platform.Tizen.pdb",
+        "lib/tizen40/Xamarin.Forms.Platform.dll",
+        "lib/tizen40/Xamarin.Forms.Xaml.dll",
+        "lib/tizen40/Xamarin.Forms.Xaml.pdb",
+        "lib/tizen40/Xamarin.Forms.Xaml.xml",
         "lib/uap10.0/Design/Xamarin.Forms.Core.Design.dll",
         "lib/uap10.0/Design/Xamarin.Forms.Xaml.Design.dll",
         "lib/uap10.0/Xamarin.Forms.Core.dll",
@@ -7519,6 +7610,7 @@
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/AutoSuggestStyle.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/FormsCommandBarStyle.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/FormsEmbeddedPageWrapper.xbf",
+        "lib/uap10.0/Xamarin.Forms.Platform.UAP/FormsFlyout.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/FormsProgressBarStyle.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/FormsTextBoxStyle.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/MasterDetailControlStyle.xbf",
@@ -7530,44 +7622,7 @@
         "lib/uap10.0/Xamarin.Forms.Platform.dll",
         "lib/uap10.0/Xamarin.Forms.Xaml.dll",
         "lib/uap10.0/Xamarin.Forms.Xaml.xml",
-        "lib/win81/Design/Xamarin.Forms.Core.Design.dll",
-        "lib/win81/Design/Xamarin.Forms.Xaml.Design.dll",
-        "lib/win81/Xamarin.Forms.Core.dll",
-        "lib/win81/Xamarin.Forms.Core.xml",
-        "lib/win81/Xamarin.Forms.Platform.WinRT.Tablet.dll",
-        "lib/win81/Xamarin.Forms.Platform.WinRT.Tablet.pri",
-        "lib/win81/Xamarin.Forms.Platform.WinRT.Tablet/FormsProgressBarStyle.xbf",
-        "lib/win81/Xamarin.Forms.Platform.WinRT.Tablet/FormsTextBoxStyle.xbf",
-        "lib/win81/Xamarin.Forms.Platform.WinRT.Tablet/Resources.xbf",
-        "lib/win81/Xamarin.Forms.Platform.WinRT.Tablet/TabletResources.xbf",
-        "lib/win81/Xamarin.Forms.Platform.WinRT.Tablet/Xamarin.Forms.Platform.WinRT.Tablet.xr.xml",
-        "lib/win81/Xamarin.Forms.Platform.WinRT.dll",
-        "lib/win81/Xamarin.Forms.Platform.WinRT.pri",
-        "lib/win81/Xamarin.Forms.Platform.WinRT/StepperControl.xbf",
-        "lib/win81/Xamarin.Forms.Platform.WinRT/Xamarin.Forms.Platform.WinRT.xr.xml",
-        "lib/win81/Xamarin.Forms.Platform.dll",
-        "lib/win81/Xamarin.Forms.Xaml.dll",
-        "lib/win81/Xamarin.Forms.Xaml.xml",
-        "lib/wpa81/Design/Xamarin.Forms.Core.Design.dll",
-        "lib/wpa81/Design/Xamarin.Forms.Xaml.Design.dll",
-        "lib/wpa81/Xamarin.Forms.Core.dll",
-        "lib/wpa81/Xamarin.Forms.Core.xml",
-        "lib/wpa81/Xamarin.Forms.Platform.WinRT.Phone.dll",
-        "lib/wpa81/Xamarin.Forms.Platform.WinRT.Phone.pri",
-        "lib/wpa81/Xamarin.Forms.Platform.WinRT.Phone/FormsProgressBarStyle.xbf",
-        "lib/wpa81/Xamarin.Forms.Platform.WinRT.Phone/FormsTextBoxStyle.xbf",
-        "lib/wpa81/Xamarin.Forms.Platform.WinRT.Phone/PhoneResources.xbf",
-        "lib/wpa81/Xamarin.Forms.Platform.WinRT.Phone/Resources.xbf",
-        "lib/wpa81/Xamarin.Forms.Platform.WinRT.Phone/SearchBox.xbf",
-        "lib/wpa81/Xamarin.Forms.Platform.WinRT.Phone/Xamarin.Forms.Platform.WinRT.Phone.xr.xml",
-        "lib/wpa81/Xamarin.Forms.Platform.WinRT.dll",
-        "lib/wpa81/Xamarin.Forms.Platform.WinRT.pri",
-        "lib/wpa81/Xamarin.Forms.Platform.WinRT/StepperControl.xbf",
-        "lib/wpa81/Xamarin.Forms.Platform.WinRT/Xamarin.Forms.Platform.WinRT.xr.xml",
-        "lib/wpa81/Xamarin.Forms.Platform.dll",
-        "lib/wpa81/Xamarin.Forms.Xaml.dll",
-        "lib/wpa81/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.2.5.1.527436.nupkg.sha512",
+        "xamarin.forms.3.0.0.482510.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
     },
@@ -7604,17 +7659,18 @@
       "CarouselView.FormsPlugin >= 5.2.0",
       "Microsoft.Azure.Mobile.Client >= 4.0.2",
       "Microsoft.Azure.Mobile.Client.SQLiteStore >= 4.0.2",
+      "Rg.Plugins.Popup >= 1.1.4.158-pre",
       "SuaveControls.FloatingActionButton >= 2018.1.5",
       "Toast.iOS >= 1.1.0",
       "WindowsAzure.Storage >= 9.1.1",
       "Xam.Plugins.Forms.ImageCircle >= 2.0.2",
-      "Xam.Plugins.Messaging >= 5.1.0",
+      "Xam.Plugins.Messaging >= 5.2.0",
       "Xam.Plugins.Settings >= 4.0.0.7",
       "Xamarin.Auth >= 1.6.0.2",
       "Xamarin.FFImageLoading >= 2.3.6",
       "Xamarin.FFImageLoading.Forms >= 2.3.6",
       "Xamarin.FFImageLoading.Transformations >= 2.3.6",
-      "Xamarin.Forms >= 2.5.1.527436",
+      "Xamarin.Forms >= 3.0.0.482510",
       "Xamarin.Forms.CarouselView >= 2.3.0-pre2",
       "Xamarin.Forms.Extended.InfiniteScrolling >= 1.0.0-preview2"
     ]
@@ -7664,6 +7720,10 @@
             "target": "Package",
             "version": "[4.0.2, )"
           },
+          "Rg.Plugins.Popup": {
+            "target": "Package",
+            "version": "[1.1.4.158-pre, )"
+          },
           "SuaveControls.FloatingActionButton": {
             "target": "Package",
             "version": "[2018.1.5, )"
@@ -7682,7 +7742,7 @@
           },
           "Xam.Plugins.Messaging": {
             "target": "Package",
-            "version": "[5.1.0, )"
+            "version": "[5.2.0, )"
           },
           "Xam.Plugins.Settings": {
             "target": "Package",
@@ -7706,7 +7766,7 @@
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[2.5.1.527436, )"
+            "version": "[3.0.0.482510, )"
           },
           "Xamarin.Forms.CarouselView": {
             "target": "Package",

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="MsorLi.Views.ItemPage">
 
     <ContentPage.Resources>
@@ -25,22 +26,32 @@
 
         <AbsoluteLayout>
 
-            <ScrollView Padding="0,0,0,20" x:Name="MyScrollView"
+            <ScrollView Padding="0,0,0,20" x:Name="MyScrollView" 
                         AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
                 <StackLayout>
 
                     <!--Images-->
-                    <control:CarouselView x:Name="imagesView">
+                    <control:CarouselView x:Name="imagesView" >
                         <control:CarouselView.ItemTemplate>
                             <DataTemplate>
 
                                 <AbsoluteLayout>
 
-                                    <Image Source="{Binding ImageUrl}"
+
+                                       <ffimageloading:CachedImage Source="{Binding ImageUrl}"
                                            AbsoluteLayout.LayoutFlags="All"
                                            AbsoluteLayout.LayoutBounds="0,0,1,1"
-                                           Aspect="AspectFill"/>
+                                           Aspect="AspectFill">
 
+
+
+                                        <ffimageloading:CachedImage.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OpenPopUp"></TapGestureRecognizer>
+                                        </ffimageloading:CachedImage.GestureRecognizers>
+                                    </ffimageloading:CachedImage>
+
+
+                                    
                                     <Frame CornerRadius="7"
                                            Padding="5"
                                            HasShadow="False"
@@ -203,11 +214,21 @@
                         <Label x:Name="email" Grid.Row="2" Grid.Column="0" Style="{DynamicResource LabelValueStyle}"/>
                     </Grid>
 
+
+                    <!--User Item List-->
+
+                    <!--Item Details-->
+                    <Label x:Name="UserLabel" HorizontalTextAlignment="End" Margin="0,30,25,10" Style="{DynamicResource mySubtitleStyle}"/>
+                    <!--List-->
+                    <ScrollView x:Name="ItemList" BackgroundColor="Transparent" Grid.Row="6" Orientation="Horizontal" Margin="7,0,7,0" HorizontalOptions="CenterAndExpand">
+                            <StackLayout x:Name="StackCategory" BackgroundColor="Transparent" Orientation="Horizontal" HorizontalOptions="End" />
+                    </ScrollView>
+
                     <!--Line-->
                     <BoxView Margin="20,20,20,0" HorizontalOptions="FillAndExpand"
                              HeightRequest="1"
                              Style="{StaticResource GrayColorBoxView}"/>
-                    
+
                     <!--Report Item-->
                     <Label Text="דווח על מוצר" Style="{DynamicResource myBodyStyle}"
                            HorizontalTextAlignment="End" Margin="0,10,25,0">
@@ -217,6 +238,9 @@
                     </Label>
                     
                 </StackLayout>
+
+
+                
             </ScrollView>
 
             <ActivityIndicator x:Name="MyActivityIndicator"

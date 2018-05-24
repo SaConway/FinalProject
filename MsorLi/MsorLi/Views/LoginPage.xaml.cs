@@ -95,69 +95,68 @@ namespace MsorLi.Views
 
         private void OnFacebookClick(object sender, EventArgs e)
         {
-            var apiRequest = "https://www.facebook.com/v2.12/dialog/oauth?%20client_id=317123308817276%20&response_type=token&redirect_uri=https://www.facebook.com/connect/login_success.html%20";
+                var apiRequest = "https://www.facebook.com/v2.12/dialog/oauth?%20client_id=317123308817276%20&response_type=token&redirect_uri=https://www.facebook.com/connect/login_success.html%20";
 
-            var webView = new WebView
-            {
-                Source = apiRequest,
-                HeightRequest = 1
-            };
+                var webView = new WebView
+                {
+                    Source = apiRequest,
+                    HeightRequest = 1
+                };
 
-            webView.Navigated += WebViewOnNavigated;
-            //change the page to web view
-            Content = webView;
+                webView.Navigated += WebViewOnNavigated;
+                //change the page to web view
+                Content = webView;
         }
 
         private async void WebViewOnNavigated(object sender, WebNavigatedEventArgs e)
         {
+                var accessToken = FacebookServices.ExtractAccessTokenFromUrl(e.Url);
 
-            var accessToken = FacebookServices.ExtractAccessTokenFromUrl(e.Url);
-
-            if (accessToken != "")
-            {
-                FacebookProfile userJson = await FacebookServices.GetFacebookProfileAsync(accessToken);
-                User user = await AzureUserService.DefaultManager.IsFacebookIdExistAsync(userJson.FacebookId);
-                User facebookUser = null;
-                //if user logged for the first time with facebook create new user
-                if(user == null)
+                if (accessToken != "")
                 {
-                    facebookUser = new User
+                    FacebookProfile userJson = await FacebookServices.GetFacebookProfileAsync(accessToken);
+                    User user = await AzureUserService.DefaultManager.IsFacebookIdExistAsync(userJson.FacebookId);
+                    User facebookUser = null;
+                    //if user logged for the first time with facebook create new user
+                    if (user == null)
                     {
-                        FirstName = userJson.FirstName,
-                        LastName = userJson.LastName,
-                        Email = userJson.Email,
-                        Address = userJson.Address,
-                        Permission = "User",
-                        NumOfItems = 0,
-                        NumOfItemsUserLike = 0,
-                        ImgUrl = userJson.Picture.Data.Url,
-                        FacebookId = userJson.FacebookId
-                    };
-                    await AzureUserService.DefaultManager.UploadToServer(facebookUser,facebookUser.Id);
+                        facebookUser = new User
+                        {
+                            FirstName = userJson.FirstName,
+                            LastName = userJson.LastName,
+                            Email = userJson.Email,
+                            Address = userJson.Address,
+                            Permission = "User",
+                            NumOfItems = 0,
+                            NumOfItemsUserLike = 0,
+                            ImgUrl = userJson.Picture.Data.Url,
+                            FacebookId = userJson.FacebookId
+                        };
+                        await AzureUserService.DefaultManager.UploadToServer(facebookUser, facebookUser.Id);
 
-                }
-                //facebook user is exist update info from facebook database and insert on msorli db
-                else
-                {
-                    facebookUser = new User
+                    }
+                    //facebook user is exist update info from facebook database and insert on msorli db
+                    else
                     {
-                        Id = user.Id,
-                        FirstName = userJson.FirstName,
-                        LastName = userJson.LastName,
-                        Email = userJson.Email,
-                        Address = userJson.Address,
-                        Permission = user.Permission,
-                        NumOfItems = user.NumOfItems,
-                        NumOfItemsUserLike = user.NumOfItemsUserLike,
-                        ImgUrl = userJson.Picture.Data.Url,
-                        FacebookId = userJson.FacebookId
-                    };
-                    await AzureUserService.DefaultManager.UploadToServer(facebookUser, facebookUser.Id);
-                }
+                        facebookUser = new User
+                        {
+                            Id = user.Id,
+                            FirstName = userJson.FirstName,
+                            LastName = userJson.LastName,
+                            Email = userJson.Email,
+                            Address = userJson.Address,
+                            Permission = user.Permission,
+                            NumOfItems = user.NumOfItems,
+                            NumOfItemsUserLike = user.NumOfItemsUserLike,
+                            ImgUrl = userJson.Picture.Data.Url,
+                            FacebookId = userJson.FacebookId
+                        };
+                        await AzureUserService.DefaultManager.UploadToServer(facebookUser, facebookUser.Id);
+                    }
 
-                Settings.UpdateUserInfo(facebookUser);
-                await Navigation.PopToRootAsync();
-            }
+                    Settings.UpdateUserInfo(facebookUser);
+                    await Navigation.PopToRootAsync();
+                }
         }
 
         private void Entry_TextChanged(object sender, TextChangedEventArgs e)

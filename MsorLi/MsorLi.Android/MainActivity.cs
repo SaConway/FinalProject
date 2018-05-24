@@ -38,6 +38,25 @@ namespace MsorLi.Droid
 
                 base.SetTheme(Resource.Style.MainTheme);
                 base.OnCreate(bundle);
+<<<<<<< HEAD
+=======
+            }
+            catch (System.Exception)
+            {
+
+<<<<<<< Updated upstream
+            }
+        }
+
+        protected async override void OnResume()
+        {
+            try
+            {
+                base.OnResume();
+
+                var categories = await CategoryStorage.GetCategories();
+
+>>>>>>> cb731558bb7723d882f86325a1c583aef2fae7c2
                 LoadApplication(new App());
 
             }
@@ -47,6 +66,28 @@ namespace MsorLi.Droid
             }
         }
 
+=======
+            base.SetTheme(Resource.Style.MainTheme);
+            base.OnCreate(bundle);
+
+            Rg.Plugins.Popup.Popup.Init(this, bundle);
+            LoadApplication(new App());
+        }
+
+
+        public override void OnBackPressed()
+        {
+            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            {
+                // Do something if there are some pages in the `PopupStack`
+            }
+            else
+            {
+                // Do something if there are not any pages in the `PopupStack`
+            }
+        }
+        
+>>>>>>> Stashed changes
         //--------------------------------------------
         // PICTURE HANDLE
 
