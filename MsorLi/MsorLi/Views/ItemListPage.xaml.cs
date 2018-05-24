@@ -553,22 +553,33 @@ namespace MsorLi.Views
 
             // Hide categories
             CategoryMainStack.IsVisible = false;
-            FilterCategoryLabel.Text = _ereaFilter;
+
+            // Update filter erea (text)
+
+            FilterCategoryLabel.Text = null;
+
+            FilterCategoryLabel.Text += _ereaFilter;
 
             if (FilterCategoryLabel.Text.Length > 0 && _categoryFilter.Length > 0)
             {
-                FilterCategoryLabel.Text += ", " + _categoryFilter;
+                FilterCategoryLabel.Text += ", ";
             }
+
+            FilterCategoryLabel.Text += _categoryFilter;
 
             if (FilterCategoryLabel.Text.Length > 0 && _subCategoryFilter.Length > 0)
             {
-                FilterCategoryLabel.Text += ", " + _subCategoryFilter;
+                FilterCategoryLabel.Text += ", ";
             }
+
+            FilterCategoryLabel.Text += _subCategoryFilter;
 
             if (FilterCategoryLabel.Text.Length > 0 && _conditionFilter.Length > 0)
             {
-                FilterCategoryLabel.Text += ", " + _conditionFilter;
+                FilterCategoryLabel.Text += ", ";
             }
+
+            FilterCategoryLabel.Text += _conditionFilter;
 
             FilterMainStack.IsVisible = true;
 

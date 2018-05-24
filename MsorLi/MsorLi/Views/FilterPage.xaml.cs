@@ -62,17 +62,17 @@ namespace MsorLi.Views
 
                     EreaPicker.SelectedItem = _erea;
 
+                    if (_subCategory != "")
+                    {
+                        await SetSubCategories();
+                        SubCategoryPicker.SelectedItem = _subCategory;
+                    }
+
                     if (CategoryPicker.SelectedIndex != -1 ||
                         ConditionPicker.SelectedIndex != -1 ||
                         EreaPicker.SelectedIndex != -1)
                     {
                         EnableSubmit();
-                    }
-
-                    if (_subCategory != "")
-                    {
-                        await SetSubCategories();
-                        SubCategoryPicker.SelectedItem = _subCategory;
                     }
                 }
             }
@@ -105,7 +105,7 @@ namespace MsorLi.Views
             try
             {
                 var category = CategoryPicker.SelectedIndex != -1 ? 
-                    CategoryPicker.Items[CategoryPicker.SelectedIndex].ToString() : "";
+                    CategoryPicker.Items[CategoryPicker.SelectedIndex].ToString() : "כל המוצרים";
 
                 var subCategory = SubCategoryPicker.SelectedIndex != -1 ?
                     SubCategoryPicker.Items[SubCategoryPicker.SelectedIndex].ToString() : "";
@@ -148,23 +148,36 @@ namespace MsorLi.Views
 
         private async Task SetSubCategories()
         {
-            var subCategories = await Services.AzureSubCategoryService.DefaultManager.
-                GetCategories(CategoryPicker.Items[CategoryPicker.SelectedIndex]);
-
-            SubCategoryPicker.Items.Clear();
-            foreach (var sc in subCategories)
+            try
             {
-                SubCategoryPicker.Items.Add(sc.Name);
-            }
+                var subCategories = await Services.AzureSubCategoryService.DefaultManager.GetCategories(CategoryPicker.Items[CategoryPicker.SelectedIndex]);
 
-            SubCategoryPicker.IsEnabled = true;
-            EnableSubmit();
+                SubCategoryPicker.Items.Clear();
+                foreach (var sc in subCategories)
+                {
+                    SubCategoryPicker.Items.Add(sc.Name);
+                }
+
+                SubCategoryPicker.IsEnabled = true;
+                if (!SearchBtn.IsEnabled) EnableSubmit();
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void EnableSubmit()
         {
-            SearchBtn.IsEnabled = true;
-            SearchBtn.BackgroundColor = Color.FromHex("19a4b4");
+            try
+            {
+                SearchBtn.IsEnabled = true;
+                SearchBtn.BackgroundColor = Color.FromHex("19a4b4");
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }

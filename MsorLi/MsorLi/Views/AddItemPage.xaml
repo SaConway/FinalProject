@@ -186,17 +186,18 @@
                                                 <RowDefinition Height="*"/>
                                                 <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
-                                            <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding .}"/>
+                                            <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding imageSource}"/>
                                             <StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
+
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnDeleteImg" CommandParameter="{Binding imageSource}"/>
+                                                </StackLayout.GestureRecognizers>
 
                                                 <Label Text="מחק" BackgroundColor="Transparent" 
                                                    TextColor="White" FontSize="Medium"
                                                    HorizontalOptions="Center"
-                                                   VerticalOptions="CenterAndExpand">
-                                                    <Label.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="OnDeleteImg" CommandParameter="{Binding .}"/>
-                                                    </Label.GestureRecognizers>
-                                                </Label>
+                                                   VerticalOptions="CenterAndExpand"/>
+
                                             </StackLayout>
                                         </Grid>
                                     </DataTemplate>

@@ -21,7 +21,9 @@ namespace MsorLi.Views
 
         bool _isEditingItem = false;
 
-        Dictionary<ImageSource, Tuple<ItemImage, byte[]>> _keyValues = new Dictionary<ImageSource, Tuple<ItemImage, byte[]>>();
+        Dictionary<ImageSource, Tuple<ItemImage, byte[]>> _keyValues = 
+            new Dictionary<ImageSource, Tuple<ItemImage, byte[]>>();
+
         Item _item = new Item();
 
         Boolean _isRunningItem = false;
@@ -44,6 +46,8 @@ namespace MsorLi.Views
                 InitializeComponent();
                 this.Title = "הוספת מודעה";
 
+                BindingContext = this;
+
                 contactName.Text = Settings.UserFirstName + " " + Settings.UserLastName;
                 contactNumber.Text = Settings.Phone;
                 email.Text = Settings.Email;
@@ -63,21 +67,15 @@ namespace MsorLi.Views
             {
                 _isEditingItem = true;
                 InitializeComponent();
+                InitializeCarouselView();
+
                 this.Title = "עריכת מודעה";
 
                 _item = item;
 
-                InitializeCarouselView();
-
-                var categories = await CategoryStorage.GetCategories();
-                await ShowSubCategories(item.Category);
-
-                category.Items.Clear();
-                foreach (var c in categories)
-                {
-                    if (!category.Items.Contains(c.Name))
-                        category.Items.Add(c.Name);
-                }
+                await SetCategoris();
+                await SetSubCategories(item.Category);
+                await SetEreas();
 
                 // Update item details
 
@@ -87,6 +85,7 @@ namespace MsorLi.Views
                 EreaPicker.SelectedItem = item.Erea;
                 contactName.Text = item.ContactName;
                 contactNumber.Text = item.ContactNumber;
+                subCategory.SelectedItem = item.SubCategory;
 
                 foreach (var img in images)
                 {
@@ -97,8 +96,6 @@ namespace MsorLi.Views
                 imagesView.ItemsSource = keyList;
 
                 pickPictureButton.IsEnabled = _keyValues.Count == Constants.MAX_NUM_OF_IMAGES ? false : true;
-
-                subCategory.SelectedItem = item.SubCategory;
             }
             catch (Exception) { }
         }
@@ -111,28 +108,11 @@ namespace MsorLi.Views
                 {
                     _firstAppearing = false;
 
-                    // Set locations to the location picker
-
-                    var locations = await LocationStorage.GetLocations();
-
-                    foreach (var l in locations)
-                    {
-                        if (!EreaPicker.Items.Contains(l.Name))
-                            EreaPicker.Items.Add(l.Name);
-                    }
-
+                    await SetEreas();
                     EreaPicker.SelectedItem = _erea;
-                    
-                    // Set categories to the category picker
 
-                    var categories = await CategoryStorage.GetCategories();
+                    await SetCategoris();
 
-                    category.Items.Clear();
-                    foreach (var c in categories)
-                    {
-                        if (!category.Items.Contains(c.Name))
-                            category.Items.Add(c.Name);
-                    }
                 }
             }
             catch (Exception)
@@ -179,10 +159,10 @@ namespace MsorLi.Views
                     }
 
                     //var keyList = new List<ImageSource>(_keyValues.Keys);
-                    var collection = new ObservableCollection<ImageSource>();
+                    var collection = new List<MsorLi.Utilities.ImageHelper>();
                     foreach (var img in _keyValues.Keys)
                     {
-                        collection.Add(img);
+                        collection.Add(new Utilities.ImageHelper { imageSource = img });
                     }
                     imagesView.ItemsSource = collection;
                 }
@@ -267,8 +247,15 @@ namespace MsorLi.Views
 
         private async void OnCategoryChanged(object sender, EventArgs e)
         {
-            string Category = category.Items[category.SelectedIndex];
-            await ShowSubCategories(Category);
+            try
+            {
+                string Category = category.Items[category.SelectedIndex];
+                await SetSubCategories(Category);
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private async void OnDeleteImg(object sender, TappedEventArgs e)
@@ -285,7 +272,7 @@ namespace MsorLi.Views
 
                 ImageSource key = (ImageSource)e.Parameter;
 
-                var tuple = _keyValues[key];
+                Tuple<ItemImage, byte[]> tuple = _keyValues[key];
 
                 if (tuple.Item2 == null)
                 {
@@ -298,19 +285,26 @@ namespace MsorLi.Views
 
                 _keyValues.Remove(key);
 
-                var imgs = new ObservableCollection<ImageSource>();
-                foreach (var item in _keyValues.Keys)
-                {
-                    imgs.Add(item);
-                }
+                //var imgs = new ObservableCollection<ImageSource>();
+                //foreach (var item in _keyValues.Keys)
+                //{
+                //    imgs.Add(item);
+                //}
 
-                imagesView.ItemsSource = imgs;
+                //imagesView.ItemsSource = imgs;
+
+                var collection = new List<MsorLi.Utilities.ImageHelper>();
+                foreach (var img in _keyValues.Keys)
+                {
+                    collection.Add(new Utilities.ImageHelper { imageSource = img });
+                }
+                imagesView.ItemsSource = collection;
 
                 if (_keyValues.Count == 0)
                 {
                     // Hide images view
 
-                    imagesView.Margin = new Thickness(0, 0, 0, 0);
+                    imagesView.Margin = new Thickness(0,0,0,0);
                     imagesView.HeightRequest = 0;
                 }
                 else if (_keyValues.Count == 1)
@@ -341,91 +335,172 @@ namespace MsorLi.Views
 
         private async Task UploadImages()
         {
-            var tList = new List<Task>();
-            foreach (var item in _keyValues)
+            try
             {
-                var ByteData = item.Value.Item2;
-
-                if (ByteData != null)
+                var tList = new List<Task>();
+                foreach (var item in _keyValues)
                 {
-                    // A New Image
+                    var ByteData = item.Value.Item2;
 
-                    var Url = await BlobService.SaveImageInBlob(ByteData);
+                    if (ByteData != null)
+                    {
+                        // A New Image
 
-                    item.Value.Item1.Url = Url;
-                    item.Value.Item1.ItemId = _item.Id;
-                    item.Value.Item1.UserId = Settings.UserId;
+                        var Url = await BlobService.SaveImageInBlob(ByteData);
+
+                        item.Value.Item1.Url = Url;
+                        item.Value.Item1.ItemId = _item.Id;
+                        item.Value.Item1.UserId = Settings.UserId;
+                    }
+
+                    item.Value.Item1.Category = category.Items[category.SelectedIndex];
+                    item.Value.Item1.SubCategory = subCategory.Items[subCategory.SelectedIndex];
+                    item.Value.Item1.Erea = EreaPicker.SelectedItem.ToString();
+                    item.Value.Item1.Condition = condition.SelectedItem.ToString();
+
+                    var t = UploadImageToDB(item.Value.Item1);
+                    tList.Add(t);
                 }
 
-                item.Value.Item1.Category = category.Items[category.SelectedIndex];
-                item.Value.Item1.SubCategory = subCategory.Items[subCategory.SelectedIndex];
-                item.Value.Item1.Erea = EreaPicker.SelectedItem.ToString();
-                item.Value.Item1.Condition = condition.SelectedItem.ToString();
-
-                var t = UploadImageToDB(item.Value.Item1);
-                tList.Add(t);
+                await Task.WhenAll(tList);
             }
+            catch (Exception)
+            {
 
-            await Task.WhenAll(tList);
+            }
         }
 
         private async Task UploadItem()
         {
-            _item.Category = category.Items[category.SelectedIndex];
-            _item.SubCategory = subCategory.Items[subCategory.SelectedIndex];
-            _item.NumOfImages = _keyValues.Count;
-            _item.Description = description.Text;
-            _item.Condition = condition.SelectedItem.ToString();
-            _item.Erea = EreaPicker.SelectedItem.ToString();
-            _item.Address = (street.Text != null && street.Text.Length > 0) ? street.ToString() : "";
-            _item.ViewCounter = 0;
-            _item.ContactName = contactName.Text;
-            _item.ContactNumber = contactNumber.Text;
-            _item.UserId = Settings.UserId;
-            _item.Email = (email.Text != null && email.Text.Length > 0) ? email.Text : "";
-
-            if (!_isEditingItem)
+            try
             {
-                _item.Date = DateTime.Today.ToString("d");
-                _item.Time = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString();
-            }
+                _item.Category = category.Items[category.SelectedIndex];
+                _item.SubCategory = subCategory.Items[subCategory.SelectedIndex];
+                _item.NumOfImages = _keyValues.Count;
+                _item.Description = description.Text;
+                _item.Condition = condition.SelectedItem.ToString();
+                _item.Erea = EreaPicker.SelectedItem.ToString();
+                _item.Address = (street.Text != null && street.Text.Length > 0) ? street.Text.ToString() : "";
+                _item.ViewCounter = 0;
+                _item.ContactName = contactName.Text;
+                _item.ContactNumber = contactNumber.Text;
+                _item.UserId = Settings.UserId;
+                _item.Email = (email.Text != null && email.Text.Length > 0) ? email.Text : "";
 
-            await AzureItemService.DefaultManager.UploadToServer(_item, _item.Id);
+                if (!_isEditingItem)
+                {
+                    _item.Date = DateTime.Today.ToString("d");
+                    _item.Time = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString();
+                }
+
+                await AzureItemService.DefaultManager.UploadToServer(_item, _item.Id);
+
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private async Task UploadImageToDB(ItemImage itemImage)
         {
-            await AzureImageService.DefaultManager.UploadToServer(itemImage, itemImage.Id);
+            try
+            {
+                await AzureImageService.DefaultManager.UploadToServer(itemImage, itemImage.Id);
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void InitializeCarouselView()
         {
-            // Update CarouselView attributes
-            imagesView.Margin = new Thickness(5, 60, 5, 0);
-            imagesView.HeightRequest = 300;
+            try
+            {
+                imagesView.Margin = new Thickness(5, 60, 5, 0);
+                imagesView.HeightRequest = 300;
+
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private bool Validation()
         {
-            if (category.SelectedIndex == -1 || _keyValues.Count == 0 ||
+            try
+            {
+                if (category.SelectedIndex == -1 || _keyValues.Count == 0 ||
                 description.Text.Length == 0 || condition.SelectedIndex == -1 ||
                 EreaPicker.SelectedIndex == -1 || contactName.Text.Length == 0 ||
                 contactNumber.Text.Length == 0 || subCategory.SelectedIndex == -1)
-                return false;
+                    return false;
 
-            return true;
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
         }
 
-        private async Task ShowSubCategories(string category)
+        private async Task SetSubCategories(string category)
         {
-            subCategory.IsEnabled = true;
-
-            var SubCategories = await SubCategoryStorage.GetSubCategories(category);
-
-            subCategory.Items.Clear();
-            foreach (var item in SubCategories)
+            try
             {
-                subCategory.Items.Add(item.Name);
+                subCategory.IsEnabled = true;
+
+                var SubCategories = await SubCategoryStorage.GetSubCategories(category);
+
+                subCategory.Items.Clear();
+                foreach (var item in SubCategories)
+                {
+                    subCategory.Items.Add(item.Name);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private async Task SetCategoris()
+        {
+            try
+            {
+                var categories = await CategoryStorage.GetCategories();
+
+                category.Items.Clear();
+                foreach (var c in categories)
+                {
+                    if (!category.Items.Contains(c.Name))
+                        category.Items.Add(c.Name);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private async Task SetEreas()
+        {
+            try
+            {
+                var locations = await LocationStorage.GetLocations();
+
+                foreach (var l in locations)
+                {
+                    if (!EreaPicker.Items.Contains(l.Name))
+                        EreaPicker.Items.Add(l.Name);
+                }
+            }
+            catch (Exception)
+            {
+
             }
         }
     }

@@ -197,15 +197,6 @@ namespace MsorLi.Services
                     .Skip(pageIndex * Constants.PAGE_SIZE).Take(Constants.PAGE_SIZE)
                     .ToEnumerableAsync();
                 }
-                // Only erea
-                else if (category == "כל המוצרים" && subCategory == "" && condition == "" && erea != "")
-                {
-                    images = await _table
-                    .OrderByDescending(ItemImage => ItemImage.CreatedAt)
-                    .Where(itemImage => itemImage.IsPriorityImage == true && itemImage.Erea == erea)
-                    .Skip(pageIndex * Constants.PAGE_SIZE).Take(Constants.PAGE_SIZE)
-                    .ToEnumerableAsync();
-                }
 
                 return images != null ? new ObservableCollection<ItemImage>(images) : null;
             }

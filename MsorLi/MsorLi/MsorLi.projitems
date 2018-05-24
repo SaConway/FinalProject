@@ -55,6 +55,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\CategoryStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\EncryptDecrypt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\ImageHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\ImagePair.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\ImageResizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\IMessage.cs" />

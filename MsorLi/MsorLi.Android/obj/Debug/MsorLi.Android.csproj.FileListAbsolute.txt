@@ -1,3 +1,7 @@
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\MsorLi.Android.dll
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\MsorLi.Android.pdb
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\com.companyname.MsorLi.apk
+C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\com.companyname.MsorLi-Signed.apk
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\MsorLi.Android.csprojAssemblyReference.cache
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\MsorLi.Android.csproj.CoreCompileInputs.cache
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\MsorLi.Droid.App.xaml.g.cs
@@ -13,10 +17,6 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\MsorLi.
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\MsorLi.Droid.Views.ReportItemPage.xaml.g.cs
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\MsorLi.Droid.Views.FilterPage.xaml.g.cs
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\MsorLi.Droid.Views.AboutPage.xaml.g.cs
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\MsorLi.Android.dll
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\MsorLi.Android.pdb
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\com.companyname.MsorLi.apk
-C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\com.companyname.MsorLi-Signed.apk
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\MsorLi.Android.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\MsorLi.Android.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\android\bin\com.companyname.MsorLi.apk

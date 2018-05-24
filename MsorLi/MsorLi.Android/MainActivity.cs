@@ -38,28 +38,13 @@ namespace MsorLi.Droid
 
                 base.SetTheme(Resource.Style.MainTheme);
                 base.OnCreate(bundle);
-            }
-            catch (System.Exception)
-            {
-
-            }
-        }
-
-        protected async override void OnResume()
-        {
-            try
-            {
-                base.OnResume();
-
-                var categories = await CategoryStorage.GetCategories();
-
                 LoadApplication(new App());
+
             }
             catch (System.Exception)
             {
 
             }
-            
         }
 
         //--------------------------------------------
