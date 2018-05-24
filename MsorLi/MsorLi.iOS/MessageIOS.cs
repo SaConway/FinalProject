@@ -1,4 +1,7 @@
+using System;
 using MsorLi.iOS;
+using Plugin.Toasts;
+using Xamarin.Forms;
 using GlobalToast;
 
 [assembly: Xamarin.Forms.Dependency(typeof(MessageIOS))]

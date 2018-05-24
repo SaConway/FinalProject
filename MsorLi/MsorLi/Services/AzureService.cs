@@ -33,18 +33,14 @@ namespace MsorLi.Services
 
         public async Task UploadToServer(TData newRow, string id)
         {
-            try
+            if (id == null)
             {
-                if (id == null)
-                {
-                    await _table.InsertAsync(newRow);
-                }
-                else
-                {
-                    await _table.UpdateAsync(newRow);
-                }
+                await _table.InsertAsync(newRow);
             }
-            catch(System.Exception) {}
+            else
+            {
+                await _table.UpdateAsync(newRow);
+            }
         }
     }
 }
