@@ -19,7 +19,6 @@ namespace MsorLi.Views
 
         AzureImageService _azureImageService = AzureImageService.DefaultManager;
         public ObservableCollection<ItemImage> AllImages = new ObservableCollection<ItemImage>();
-        public ObservableCollection<Tuple<string, string>> ImagePairs = new ObservableCollection<Tuple<string, string>>();
 
         // Two variables for OnItemSelection function
         Boolean _isRunningItem = false;
@@ -37,7 +36,9 @@ namespace MsorLi.Views
             MessagingCenter.Subscribe<ItemPage>(this, "Update Like Counter", (sender) => {
                 ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
             });
-
+			MessagingCenter.Subscribe<SavedItemsPage>(this, "Update Like Counter", (sender) => {
+                ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
+            });
 
         }
 
@@ -59,11 +60,18 @@ namespace MsorLi.Views
         private void UpdateUserData()
         {
                 UserName.Text = Settings.UserFirstName;
-                UserImg.Source = Settings.ImgUrl;
+
+    			//if user doesnt have profile picture
+                if (String.IsNullOrEmpty(Settings.ImgUrl))
+                    UserImg.Source = "unknownuser.png";
+                else
+                    UserImg.Source = Settings.ImgUrl;
+			
                 myItemCounter.Text = Settings.NumOfItems;
                 ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
-            
         }
+
+		//Get User Items (By User ID)
         private async Task GetUserItems()
         {
 
@@ -85,7 +93,6 @@ namespace MsorLi.Views
 
         private void ShowImages()
         {
-            ImagePairs.Clear();
             StackCategory.Children.Clear();
             for (int i = 0; i < AllImages.Count; i++)
             {
@@ -94,10 +101,10 @@ namespace MsorLi.Views
                     Source = AllImages[i].Url,
                     WidthRequest = Utilities.Constants.ScreenWidth / 2,
                     HeightRequest = Utilities.Constants.ScreenWidth / 2
-
                 };
 
                 image.Transformations.Add(new RoundedTransformation(15));
+                
                 var tap = new TapGestureRecognizer();
                 tap.CommandParameter = AllImages[i].ItemId;
 
@@ -132,7 +139,6 @@ namespace MsorLi.Views
 
                 image.GestureRecognizers.Add(tap);
                 StackCategory.Children.Add(image);
-
             }
         }
 

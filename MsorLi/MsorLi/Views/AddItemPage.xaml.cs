@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
 using MsorLi.Utilities;
-using FFImageLoading.Forms;
 #endregion
 
 namespace MsorLi.Views
@@ -49,7 +48,7 @@ namespace MsorLi.Views
                 email.Text = Settings.Email;
                 _erea = Settings.Erea;
             }
-            catch { }
+            catch(Exception) { }
         }
 
         public AddItemPage(string itemId)

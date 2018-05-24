@@ -156,7 +156,7 @@
                                                                 Source="{Binding UrlLeft}" Margin="0,0,0,3">
 
                                         <ffimageloading:CachedImage.Transformations>
-                                            <fftransformations:RoundedTransformation Radius="15"/>
+                                            <fftransformations:RoundedTransformation Radius="15" />
                                         </ffimageloading:CachedImage.Transformations>
 
                                         <ffimageloading:CachedImage.GestureRecognizers>
@@ -167,7 +167,7 @@
                                     </ffimageloading:CachedImage>
 
                                     <!--Left Location-->
-                                    <Frame CornerRadius="5" Grid.Column="0" Grid.Row="1"
+                                    <Frame CornerRadius="15" Grid.Column="0" Grid.Row="1"
                                            HasShadow="False"
                                            VerticalOptions="Center" HorizontalOptions="FillAndExpand"
                                           BackgroundColor="#80000000" Padding="5" Margin="2,3">
@@ -202,7 +202,7 @@
                                     </ffimageloading:CachedImage>
 
                                    <!--Right Location-->
-                                    <Frame CornerRadius="5" Grid.Column="1" Grid.Row="1"
+                                    <Frame CornerRadius="15" Grid.Column="1" Grid.Row="1"
                                            HasShadow="False" IsVisible="{Binding IsRightImageExist}"
                                            VerticalOptions="Center" HorizontalOptions="FillAndExpand"
                                            BackgroundColor="#80000000" Padding="5" Margin="2,3">
