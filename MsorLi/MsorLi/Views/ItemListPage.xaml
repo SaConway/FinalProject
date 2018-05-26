@@ -168,7 +168,7 @@
 
                                     <!--Left Location-->
                                     <Frame CornerRadius="5" Grid.Column="0" Grid.Row="1"
-                                           HasShadow="False"
+                                           HasShadow="False" BorderColor="Transparent"
                                            VerticalOptions="Center" HorizontalOptions="FillAndExpand"
                                           BackgroundColor="#80000000" Padding="5" Margin="2,3">
                                         <Grid HorizontalOptions="Center">
@@ -203,6 +203,7 @@
 
                                    <!--Right Location-->
                                     <Frame CornerRadius="5" Grid.Column="1" Grid.Row="1"
+                                           BorderColor="Transparent"
                                            HasShadow="False" IsVisible="{Binding IsRightImageExist}"
                                            VerticalOptions="Center" HorizontalOptions="FillAndExpand"
                                            BackgroundColor="#80000000" Padding="5" Margin="2,3">

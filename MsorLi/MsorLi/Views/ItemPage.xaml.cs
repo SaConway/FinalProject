@@ -150,6 +150,9 @@ namespace MsorLi.Views
             // Show View
             MyScrollView.IsVisible = true;
             await MyScrollView.FadeTo(1, 100);
+
+            await ItemList.ScrollToAsync(StackUserItems.Children[StackUserItems.Children.Count - 1], ScrollToPosition.MakeVisible, true);
+
         }
 
         protected async override void OnDisappearing()
@@ -410,7 +413,7 @@ namespace MsorLi.Views
                 if (AllImages.Count > 1)
                 {
                     ItemList.IsVisible = true;
-                    UserLabel.Text = "מוצרים נוספים ש " + _item.ContactName + " פירסם";
+                    UserLabel.Text = "מוצרים נוספים ש" + _item.ContactName + " פרסם";
                     ShowImages();
                 }
                 else
@@ -428,7 +431,7 @@ namespace MsorLi.Views
 
         private void ShowImages()
         {
-            StackCategory.Children.Clear();
+            StackUserItems.Children.Clear();
             for (int i = 0; i < AllImages.Count; i++)
             {
                 if (AllImages[i].ItemId == _item.Id)
@@ -476,7 +479,7 @@ namespace MsorLi.Views
                 };
 
                 image.GestureRecognizers.Add(tap);
-                StackCategory.Children.Add(image);
+                StackUserItems.Children.Add(image);
             }
         }
 
