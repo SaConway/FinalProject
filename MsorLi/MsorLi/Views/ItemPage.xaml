@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="MsorLi.Views.ItemPage">
 
     <ContentPage.Resources>
@@ -36,10 +37,16 @@
 
                                 <AbsoluteLayout>
 
-                                    <Image Source="{Binding ImageUrl}"
+                                   <ffimageloading:CachedImage Source="{Binding ImageUrl}"
                                            AbsoluteLayout.LayoutFlags="All"
                                            AbsoluteLayout.LayoutBounds="0,0,1,1"
-                                           Aspect="AspectFill"/>
+                                           Aspect="AspectFill">
+
+
+                                        <ffimageloading:CachedImage.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OpenPopUp"></TapGestureRecognizer>
+                                        </ffimageloading:CachedImage.GestureRecognizers>
+                                    </ffimageloading:CachedImage>
 
                                     <Frame CornerRadius="7"
                                            Padding="5"
@@ -202,6 +209,16 @@
                         <Label x:Name="contact_number" Grid.Row="1" Grid.Column="0" Style="{DynamicResource LabelValueStyle}"/>
                         <Label x:Name="email" Grid.Row="2" Grid.Column="0" Style="{DynamicResource LabelValueStyle}"/>
                     </Grid>
+
+
+                    <!--User Item List-->
+
+                    <!--Item Details-->
+                    <Label x:Name="UserLabel" HorizontalTextAlignment="End" Margin="0,30,25,10" Style="{DynamicResource mySubtitleStyle}"/>
+                    <!--List-->
+                    <ScrollView x:Name="ItemList" BackgroundColor="Transparent" Grid.Row="6" Orientation="Horizontal" Margin="7,0,7,0" HorizontalOptions="CenterAndExpand">
+                            <StackLayout x:Name="StackCategory" BackgroundColor="Transparent" Orientation="Horizontal" HorizontalOptions="End" />
+                    </ScrollView>
 
                     <!--Line-->
                     <BoxView Margin="20,20,20,0" HorizontalOptions="FillAndExpand"

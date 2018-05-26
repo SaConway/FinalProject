@@ -24,6 +24,8 @@ namespace MsorLi.iOS
 
             global::Xamarin.Forms.Forms.Init();
 
+            Rg.Plugins.Popup.Popup.Init();
+
             //init for the circle image plugin
             ImageCircle.Forms.Plugin.iOS.ImageCircleRenderer.Init();
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();

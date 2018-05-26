@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.Generic;
 using Plugin.Messaging;
+using FFImageLoading.Forms;
+using Rg.Plugins.Popup.Extensions;
+using FFImageLoading.Transformations;
 
 namespace MsorLi.Views
 {
@@ -26,6 +29,12 @@ namespace MsorLi.Views
         Item _item = new Item();
         string _userId = Utilities.Settings.UserId;
         ObservableCollection<ItemImage> _images = new ObservableCollection<ItemImage>();
+
+        //list of items form the same user
+        public ObservableCollection<ItemImage> AllImages = new ObservableCollection<ItemImage>();
+        Boolean _isRunningItem = false;
+        Object _lockObject = new Object();
+
         string _savedId = "";
 
         bool _DoInitialization = true;
@@ -84,6 +93,9 @@ namespace MsorLi.Views
             var task3 = SetItemSavedAsync();
 
             await Task.WhenAll(task1, task2, task3);
+
+            //get more items from same user
+            await GetUserItems(_item.UserId); 
 
             MyInitializeComponent();
         }
@@ -357,17 +369,129 @@ namespace MsorLi.Views
 
         private async Task SetItemAsync()
         {
-            _item = await AzureItemService.DefaultManager.GetItemAsync(_item.Id);
+            try
+            {
+                _item = await AzureItemService.DefaultManager.GetItemAsync(_item.Id);
+            }
+            catch(Exception){}
         }
 
         private async Task SetItemImagesAsync()
         {
-            _images = await AzureImageService.DefaultManager.GetItemImages(_item.Id);
+            try
+            {
+                _images = await AzureImageService.DefaultManager.GetItemImages(_item.Id);
+            }
+            catch(Exception){}
         }
 
         private async Task SetItemSavedAsync()
         {
-            _savedId = await AzureSavedItemService.DefaultManager.IsItemSaved(_item.Id, _userId);
+            try
+            {
+                _savedId = await AzureSavedItemService.DefaultManager.IsItemSaved(_item.Id, _userId);
+            }
+            catch(Exception){}
+        }
+
+
+
+
+        // Items List From same User FUNCTIONS
+        //----------------------------------------------------------
+
+        //Get User Items (By User ID)
+        private async Task GetUserItems(string userId)
+        {
+            try
+            {
+                AllImages = await AzureImageService.DefaultManager.GetAllImgByUserId(userId);
+
+                if (AllImages.Count > 1)
+                {
+                    ItemList.IsVisible = true;
+                    UserLabel.Text = "מוצרים נוספים ש " + _item.ContactName + " פירסם";
+                    ShowImages();
+                }
+                else
+                {
+                    ItemList.IsVisible = false;
+                    UserLabel.IsVisible = false;
+                }
+            }
+            catch (Exception)
+            {
+                await DisplayAlert("שגיאה", "שגיאה בקבלת מידע מהשרת", "אישור");
+
+            }
+        }
+
+        private void ShowImages()
+        {
+            StackCategory.Children.Clear();
+            for (int i = 0; i < AllImages.Count; i++)
+            {
+                if (AllImages[i].ItemId == _item.Id)
+                    continue;
+
+                var image = new CachedImage
+                {
+                    Source = AllImages[i].Url,
+                    WidthRequest = Utilities.Constants.ScreenWidth / 2,
+                    HeightRequest = Utilities.Constants.ScreenWidth / 2,
+                    DownsampleToViewSize = true
+                };
+
+                image.Transformations.Add(new RoundedTransformation(15));
+                var tap = new TapGestureRecognizer();
+                tap.CommandParameter = AllImages[i].ItemId;
+
+                //image tap function loading the item page 
+                tap.Tapped += async (s, e) =>
+                {
+                    try
+                    {
+                        var item = (CachedImage)s;
+                        var gets = item.GestureRecognizers;
+                        // To prevent double tap on images
+                        lock (_lockObject)
+                        {
+                            if (_isRunningItem)
+                                return;
+                            else
+                                _isRunningItem = true;
+                        }
+
+                        string itemId = (string)((TapGestureRecognizer)gets[0]).CommandParameter;
+
+                        if (itemId != "")
+                            await Navigation.PushAsync(new ItemPage(itemId));
+
+                        _isRunningItem = false;
+                    }
+                    catch (Exception)
+                    {
+                        await DisplayAlert("שגיאה", "לא ניתן לטעון עמוד מבוקש.", "אישור");
+                    }
+                };
+
+                image.GestureRecognizers.Add(tap);
+                StackCategory.Children.Add(image);
+            }
+        }
+
+        //pop up event for image preview click
+
+        private async void OpenPopUp()
+        {
+            try
+            {
+                var page = new ImagePopUp(_images);
+                await Navigation.PushPopupAsync(page);
+            }
+            catch (Exception){
+            }
+
         }
     }
 }
