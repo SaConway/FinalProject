@@ -9,34 +9,42 @@
 
                 <Label Text="אפליקציית מסור-לי" FontSize="Medium"
                        Style="{StaticResource mySubtitleStyle}"
-                       VerticalOptions="Center" HorizontalOptions="End"
+                       VerticalOptions="Center" HorizontalOptions="EndAndExpand"
                        HorizontalTextAlignment="End" Margin="0,10,10,0"/>
 
                 <!--Line-->
                 <BoxView Margin="10,10,10,0" HorizontalOptions="FillAndExpand"
                          HeightRequest="1" Color="#212121"/>
 
-                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
                     <Label HorizontalTextAlignment="End"
                            Style="{DynamicResource myBodyStyle}" Margin="0,10,0,0">1.0</Label>
-                    <Label HorizontalTextAlignment="End" Font="Bold" 
+                    <Label HorizontalTextAlignment="End" Font="Bold" HorizontalOptions="EndAndExpand"
                            Style="{DynamicResource myBodyStyle}" Margin="0,10,5,0">גרסה: </Label>
                 </StackLayout>
 
-                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
                     <Label HorizontalTextAlignment="End"
                            Style="{DynamicResource myBodyStyle}" Margin="0,5,0,0">שגיא קונווי ועידן מרסיאנו</Label>
                     <Label HorizontalTextAlignment="End" Font="Bold" 
                            Style="{DynamicResource myBodyStyle}" Margin="0,5,5,0">מפתחים: </Label>
                 </StackLayout>
 
+                <Label HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"
+                       Margin="0,10,5,0" Style="{DynamicResource myBodyStyle}">
+                    ניתן לפנות אלינו במייל: msorli.app@gmail.com
+                </Label>
+
                 <Label HorizontalTextAlignment="End" Margin="0,10,5,0" 
+                       HorizontalOptions="EndAndExpand"
                        Style="{DynamicResource myBodyStyle}">
                      בפיתוח אפליקציית מסור-לי נעשה שימוש באייקונים של:</Label>
                 <Label Font="Bold" HorizontalTextAlignment="End" Margin="0,10,5,0"
+                       HorizontalOptions="EndAndExpand"
                        Style="{DynamicResource myBodyStyle}">
                     Visual Pharm</Label>
                 <Label HorizontalTextAlignment="End" Margin="0,10,5,0"
+                       HorizontalOptions="EndAndExpand"
                        Style="{DynamicResource myBodyStyle}">
                     https://creativecommons.org/licenses/by-nd/3.0/</Label>
 

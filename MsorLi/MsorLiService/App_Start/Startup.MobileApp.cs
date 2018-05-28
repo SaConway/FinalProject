@@ -95,7 +95,7 @@ namespace MsorLiService
             List<Location> Locations = new List<Location>
             {
                 new Location { Id = Guid.NewGuid().ToString(), Name = "צפון", Order=1 },
-                new Location { Id = Guid.NewGuid().ToString(), Name = "השרון ", Order=2 },
+                new Location { Id = Guid.NewGuid().ToString(), Name = "השרון", Order=2 },
                 new Location { Id = Guid.NewGuid().ToString(), Name = "מרכז", Order=3 },
                 new Location { Id = Guid.NewGuid().ToString(), Name = "אזור ירושלים", Order=4 },
                 new Location { Id = Guid.NewGuid().ToString(), Name = "השפלה", Order=5 },

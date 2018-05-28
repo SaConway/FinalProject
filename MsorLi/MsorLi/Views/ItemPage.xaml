@@ -50,7 +50,6 @@
 
                                     <Frame CornerRadius="7"
                                            Padding="5"
-                                           BorderColor="Transparent"
                                            HasShadow="False"
                                            Margin="0,5,5,0"
                                            BackgroundColor="#80000000"

@@ -413,7 +413,7 @@ namespace MsorLi.Views
                 if (AllImages.Count > 1)
                 {
                     ItemList.IsVisible = true;
-                    UserLabel.Text = "מוצרים נוספים ש" + _item.ContactName + " פרסם";
+                    UserLabel.Text = "מוצרים נוספים של המוסר";
                     ShowImages();
                 }
                 else

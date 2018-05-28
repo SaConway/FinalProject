@@ -23,9 +23,10 @@
                         <BoxView Grid.Row="0" BackgroundColor="#f5f5f5"/>
 
                         <Label Grid.Row="0" Text="פרטי מוצר" HorizontalTextAlignment="End"
+                               HorizontalOptions="EndAndExpand"
                                VerticalOptions="Center" Margin="0,0,10,0"/>
 
-                        <Grid Grid.Row="1" ColumnSpacing="20" RowSpacing="20">
+                        <Grid Grid.Row="1">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -50,7 +51,7 @@
                             <!--Sub Category-->
                             <Label Grid.Row="1" Grid.Column="1" Text="תת קטגוריה"
                                    VerticalOptions="Center" HorizontalTextAlignment="End"
-                                   Margin="0,10,10,0"/>
+                                   Margin="0,10,10,0" HorizontalOptions="End"/>
                             <Picker x:Name="subCategory" HorizontalOptions="FillAndExpand"
                                     Margin="10,10,0,0" IsEnabled="False" Title="בחר תת קטגוריה"
                                     Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
@@ -58,7 +59,7 @@
                             <!--Condition-->
                             <Label Grid.Row="2" Grid.Column="1" Text="מצב מוצר"
                                    VerticalOptions="Center" HorizontalTextAlignment="End"
-                                   Margin="0,10,10,0"/>
+                                   Margin="0,10,10,0" HorizontalOptions="End"/>
                             <Picker x:Name="condition" HorizontalOptions="FillAndExpand"
                                     Margin="10,10,0,0" Title="בחר מצב מוצר"
                                     Grid.Row="2" Grid.Column="0" VerticalOptions="Center">
@@ -74,7 +75,7 @@
                             <!--Discription-->
                             <Label Grid.Row="3" Grid.Column="1" Text="תיאור מוצר"
                                    VerticalOptions="Center" HorizontalTextAlignment="End"
-                                   Margin="0,10,10,20"/>
+                                   Margin="0,10,10,20" HorizontalOptions="End"/>
                             <Entry x:Name="description" Grid.Row="3" Grid.Column="0" 
                                    HorizontalOptions="FillAndExpand"
                                    VerticalOptions="Center" Margin="10,10,0,20" 
@@ -85,7 +86,7 @@
 
                     </Grid>
 
-                    <Grid RowSpacing="0">
+                    <Grid>
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
@@ -96,9 +97,10 @@
 
                         <Label Grid.Row="0" Text="פרטים אישיים" 
                                HorizontalTextAlignment="End" VerticalOptions="Center" 
+                               HorizontalOptions="EndAndExpand"
                                Margin="0,0,10,0"/>
 
-                        <Grid Grid.Row="1" ColumnSpacing="20">
+                        <Grid Grid.Row="1" HorizontalOptions="FillAndExpand">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -116,7 +118,7 @@
                             <!--Contact Name-->
                             <Label Grid.Row="0" Grid.Column="1" Text="שם איש קשר" 
                                    VerticalOptions="Center" HorizontalTextAlignment="End"
-                                   Margin="0,10,10,0"/>
+                                   Margin="0,10,10,0" HorizontalOptions="End"/>
                             <Entry x:Name="contactName" Grid.Row="0" Grid.Column="0" 
                                    HorizontalOptions="FillAndExpand"
                                    VerticalOptions="Center" Margin="10,10,0,0" 
@@ -125,16 +127,15 @@
                             <!--Contact location-->
                             <Label Grid.Row="1" Grid.Column="1" Text="אזור" 
                                    VerticalOptions="Center" HorizontalTextAlignment="End"
-                                   Margin="0,10,10,0"/>
+                                   Margin="0,10,10,0" HorizontalOptions="End"/>
                             <Picker x:Name="EreaPicker" HorizontalOptions="FillAndExpand"
-                                    Margin="10,10,0,0"
-                                    Title="בחר אזור"
+                                    Margin="10,10,0,0" Title="בחר אזור"
                                     Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
 
                             <!--Contact Street-->
                             <Label Grid.Row="2" Grid.Column="1" Text="רחוב" 
                                    VerticalOptions="Center" HorizontalTextAlignment="End"
-                                   Margin="0,10,10,0"/>
+                                   Margin="0,10,10,0" HorizontalOptions="End"/>
                             <Entry x:Name="street" Grid.Row="2" Grid.Column="0"
                                    HorizontalOptions="FillAndExpand"
                                    VerticalOptions="Center" Margin="10,10,0,0" 
@@ -143,7 +144,7 @@
                             <!--Contact Phone-->
                             <Label Grid.Row="3" Grid.Column="1" Text="טלפון ליצירת קשר" 
                                    VerticalOptions="Center" HorizontalTextAlignment="End"
-                                   Margin="0,10,10,0"/>
+                                   Margin="0,10,10,0" HorizontalOptions="End"/>
                             <Entry x:Name="contactNumber" Grid.Row="3" Grid.Column="0"
                                    HorizontalOptions="FillAndExpand" Keyboard="Telephone"
                                    VerticalOptions="Center" Margin="10,10,0,0" 
@@ -152,7 +153,7 @@
                             <!--Contact Email-->
                             <Label Grid.Row="4" Grid.Column="1" Text="אימייל" 
                                    VerticalOptions="Center" HorizontalTextAlignment="End"
-                                   Margin="0,10,10,20"/>
+                                   Margin="0,10,10,20" HorizontalOptions="End"/>
                             <Entry x:Name="email" Grid.Row="4" Grid.Column="0"
                                    HorizontalOptions="FillAndExpand" Keyboard="Email"
                                    VerticalOptions="Center" Margin="10,10,0,20" 
@@ -162,7 +163,7 @@
 
                     </Grid>
 
-                    <Grid RowSpacing="0">
+                    <Grid>
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
@@ -173,6 +174,7 @@
 
                         <Label Grid.Row="0" Text="תמונות מוצר" 
                                HorizontalTextAlignment="End" VerticalOptions="Center" 
+                               HorizontalOptions="EndAndExpand"
                                Margin="0,0,10,0"/>
 
                         <StackLayout Spacing="0" Grid.Row="1">

@@ -19,7 +19,8 @@
                                  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 
                         <!--Erea-->
-                        <Label Text="אזור" HorizontalOptions="FillAndExpand"
+                        <Label Text="אזור" HorizontalOptions="EndAndExpand"
+                               
                                HorizontalTextAlignment="End" Margin="0,20,0,0"
                                Style="{DynamicResource myBodyStyle}"/>
 
@@ -27,7 +28,7 @@
                                 HorizontalOptions="FillAndExpand" SelectedIndexChanged="OnEreaChanged"/>
                         
                         <!--Category-->
-                        <Label Text="קטגוריה" HorizontalOptions="FillAndExpand"
+                        <Label Text="קטגוריה" HorizontalOptions="EndAndExpand"
                                HorizontalTextAlignment="End" Margin="0,20,0,0"
                                Style="{DynamicResource myBodyStyle}"/>
 
@@ -35,7 +36,7 @@
                                 HorizontalOptions="FillAndExpand" SelectedIndexChanged="OnCategoryChanged"/>
 
                         <!--Sub Category-->
-                        <Label Text="תת קטגוריה" HorizontalOptions="FillAndExpand"
+                        <Label Text="תת קטגוריה" HorizontalOptions="EndAndExpand"
                                HorizontalTextAlignment="End" Margin="0,20,0,0"
                                Style="{DynamicResource myBodyStyle}"/>
 
@@ -43,7 +44,7 @@
                                 Margin="0,10,0,0" HorizontalOptions="FillAndExpand"/>
 
                         <!--Condition-->
-                        <Label Text="מצב מוצר" HorizontalOptions="FillAndExpand"
+                        <Label Text="מצב מוצר" HorizontalOptions="EndAndExpand"
                                HorizontalTextAlignment="End" Margin="0,20,0,0"
                                Style="{DynamicResource myBodyStyle}"/>
 
