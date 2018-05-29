@@ -52,6 +52,7 @@ namespace MsorLi.Views
                 contactNumber.Text = Settings.Phone;
                 email.Text = Settings.Email;
                 _erea = Settings.Erea;
+                street.Text = Settings.Address != null && Settings.Address.Length > 0 ? Settings.Address : "";
             }
             catch { }
         }

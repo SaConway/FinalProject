@@ -188,7 +188,8 @@
                                                 <RowDefinition Height="*"/>
                                                 <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
-                                            <Image Grid.RowSpan="2" Aspect="AspectFill" Source="{Binding imageSource}"/>
+                                            <Image Grid.RowSpan="2" Aspect="AspectFill"
+                                                   Source="{Binding imageSource}"/>
                                             <StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
 
                                                 <StackLayout.GestureRecognizers>
