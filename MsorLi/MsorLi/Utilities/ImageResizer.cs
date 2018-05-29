@@ -52,8 +52,8 @@ namespace MsorLi.Utilities
 
                 UIKit.UIImage resizedImage = UIKit.UIImage.FromImage(context.ToImage(), 0, orientation);
 
-                // save the image as a jpeg
-                return resizedImage.AsJPEG().ToArray();
+                // save the image as a png
+                return resizedImage.AsPNG().ToArray();
             }
         }
 
@@ -88,7 +88,7 @@ namespace MsorLi.Utilities
 
             using (MemoryStream ms = new MemoryStream())
             {
-                resizedImage.Compress(Bitmap.CompressFormat.Jpeg, 100, ms);
+                resizedImage.Compress(Bitmap.CompressFormat.Png, 100, ms);
                 return ms.ToArray();
             }
         }

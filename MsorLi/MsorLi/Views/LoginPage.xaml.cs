@@ -4,8 +4,6 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MsorLi.Utilities;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace MsorLi.Views
 {

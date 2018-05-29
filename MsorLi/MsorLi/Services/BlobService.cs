@@ -40,7 +40,7 @@ namespace MsorLi.Services
 
             foreach (var imageData in byteData)
             {
-				byte[] resizedImage = ImageResizer.ResizeImage(imageData, 640, 480);
+				byte[] resizedImage = ImageResizer.ResizeImage(imageData, 640, 640); 
 
                 //Insert Image to Blob server
                 var imageUrl = await BlobService.UploadFileAsync(new MemoryStream(resizedImage));
@@ -52,7 +52,7 @@ namespace MsorLi.Services
 
         public static async Task<string> SaveImageInBlob(byte[] byteData)
         {
-			byte[] resizedImage = ImageResizer.ResizeImage(byteData, 640, 480);
+            byte[] resizedImage = ImageResizer.ResizeImage(byteData, 640, 480);//480
             var imageUrl = await BlobService.UploadFileAsync(new MemoryStream(resizedImage));
             imageUrl = BLOB_URL + imageUrl;
 

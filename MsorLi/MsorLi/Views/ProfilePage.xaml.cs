@@ -58,10 +58,16 @@ namespace MsorLi.Views
 
         private void UpdateUserData()
         {
-                UserName.Text = Settings.UserFirstName;
+            UserName.Text = Settings.UserFirstName;
+
+            //if user doesnt have profile picture
+            if (String.IsNullOrEmpty(Settings.ImgUrl))
+                UserImg.Source = "unknownuser.png";
+            else
                 UserImg.Source = Settings.ImgUrl;
-                myItemCounter.Text = Settings.NumOfItems;
-                ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
+            
+            myItemCounter.Text = Settings.NumOfItems;
+            ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
             
         }
         private async Task GetUserItems()

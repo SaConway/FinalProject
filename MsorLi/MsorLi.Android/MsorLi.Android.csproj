@@ -113,12 +113,6 @@
     <PackageReference Include="Microsoft.AppCenter">
       <Version>1.6.1</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.AppCenter.Analytics">
-      <Version>1.6.1</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AppCenter.Crashes">
-      <Version>1.6.1</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IShareService.cs" />

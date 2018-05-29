@@ -30,48 +30,6 @@
           "lib/MonoAndroid403/Microsoft.AppCenter.dll": {}
         }
       },
-      "Microsoft.AppCenter.Analytics/1.6.1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AppCenter": "1.6.1"
-        },
-        "compile": {
-          "lib/MonoAndroid403/Microsoft.AppCenter.Analytics.Android.Bindings.dll": {},
-          "lib/MonoAndroid403/Microsoft.AppCenter.Analytics.dll": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid403/Microsoft.AppCenter.Analytics.Android.Bindings.dll": {},
-          "lib/MonoAndroid403/Microsoft.AppCenter.Analytics.dll": {}
-        }
-      },
-      "Microsoft.AppCenter.Crashes/1.6.1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AppCenter": "1.6.1"
-        },
-        "compile": {
-          "lib/MonoAndroid403/Microsoft.AppCenter.Crashes.Android.Bindings.dll": {},
-          "lib/MonoAndroid403/Microsoft.AppCenter.Crashes.dll": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid403/Microsoft.AppCenter.Crashes.Android.Bindings.dll": {},
-          "lib/MonoAndroid403/Microsoft.AppCenter.Crashes.dll": {}
-        },
-        "runtimeTargets": {
-          "runtimes/win10-arm/native/WatsonRegistrationUtility.dll": {
-            "assetType": "native",
-            "rid": "win10-arm"
-          },
-          "runtimes/win10-x64/native/WatsonRegistrationUtility.dll": {
-            "assetType": "native",
-            "rid": "win10-x64"
-          },
-          "runtimes/win10-x86/native/WatsonRegistrationUtility.dll": {
-            "assetType": "native",
-            "rid": "win10-x86"
-          }
-        }
-      },
       "Microsoft.Azure.Mobile.Client/3.1.0": {
         "type": "package",
         "dependencies": {
@@ -1315,50 +1273,6 @@
         "lib/uap10.0/Microsoft.AppCenter.dll",
         "microsoft.appcenter.1.6.1.nupkg.sha512",
         "microsoft.appcenter.nuspec"
-      ]
-    },
-    "Microsoft.AppCenter.Analytics/1.6.1": {
-      "sha512": "KWwIMJJjpu7gcElpXx+xe0aa+szbtE6DeW82e6qBRZY1BwKh3OMxjP5I0Yh/beeigVOsOW0MBaR6Bnyr2zG7gg==",
-      "type": "package",
-      "path": "microsoft.appcenter.analytics/1.6.1",
-      "files": [
-        ".signature.p7s",
-        "lib/MonoAndroid403/Microsoft.AppCenter.Analytics.Android.Bindings.dll",
-        "lib/MonoAndroid403/Microsoft.AppCenter.Analytics.dll",
-        "lib/Xamarin.iOS10/Microsoft.AppCenter.Analytics.dll",
-        "lib/Xamarin.iOS10/Microsoft.AppCenter.Analytics.iOS.Bindings.dll",
-        "lib/netstandard1.0/Microsoft.AppCenter.Analytics.dll",
-        "lib/portable-net45+win8+wpa81+wp8/Microsoft.AppCenter.Analytics.dll",
-        "lib/uap10.0/Microsoft.AppCenter.Analytics.dll",
-        "microsoft.appcenter.analytics.1.6.1.nupkg.sha512",
-        "microsoft.appcenter.analytics.nuspec"
-      ]
-    },
-    "Microsoft.AppCenter.Crashes/1.6.1": {
-      "sha512": "2K/ZwzBDRB5xevOPu1bNJ7f0GWGidCk8HSGC2eRhQp0Ry06/HNCbSa/b6KXLVjzTRt5Hn7f9nIEeoQ9i9PzMTg==",
-      "type": "package",
-      "path": "microsoft.appcenter.crashes/1.6.1",
-      "files": [
-        ".signature.p7s",
-        "build/uap10.0/Microsoft.AppCenter.Crashes.targets",
-        "lib/MonoAndroid403/Microsoft.AppCenter.Crashes.Android.Bindings.dll",
-        "lib/MonoAndroid403/Microsoft.AppCenter.Crashes.dll",
-        "lib/Xamarin.iOS10/Microsoft.AppCenter.Crashes.dll",
-        "lib/Xamarin.iOS10/Microsoft.AppCenter.Crashes.iOS.Bindings.dll",
-        "lib/netstandard1.0/Microsoft.AppCenter.Crashes.dll",
-        "lib/portable-net45+win8+wpa81+wp8/Microsoft.AppCenter.Crashes.dll",
-        "microsoft.appcenter.crashes.1.6.1.nupkg.sha512",
-        "microsoft.appcenter.crashes.nuspec",
-        "ref/uap10.0/Microsoft.AppCenter.Crashes.dll",
-        "runtimes/win10-arm/lib/uap10.0/Microsoft.AppCenter.Crashes.dll",
-        "runtimes/win10-arm/lib/uap10.0/WatsonRegistrationUtility.winmd",
-        "runtimes/win10-arm/native/WatsonRegistrationUtility.dll",
-        "runtimes/win10-x64/lib/uap10.0/Microsoft.AppCenter.Crashes.dll",
-        "runtimes/win10-x64/lib/uap10.0/WatsonRegistrationUtility.winmd",
-        "runtimes/win10-x64/native/WatsonRegistrationUtility.dll",
-        "runtimes/win10-x86/lib/uap10.0/Microsoft.AppCenter.Crashes.dll",
-        "runtimes/win10-x86/lib/uap10.0/WatsonRegistrationUtility.winmd",
-        "runtimes/win10-x86/native/WatsonRegistrationUtility.dll"
       ]
     },
     "Microsoft.Azure.Mobile.Client/3.1.0": {
@@ -5351,8 +5265,6 @@
     "MonoAndroid,Version=v8.1": [
       "CarouselView.FormsPlugin >= 5.2.0",
       "Microsoft.AppCenter >= 1.6.1",
-      "Microsoft.AppCenter.Analytics >= 1.6.1",
-      "Microsoft.AppCenter.Crashes >= 1.6.1",
       "Microsoft.Azure.Mobile.Client >= 3.1.0",
       "Microsoft.Azure.Mobile.Client.SQLiteStore >= 3.1.0",
       "Rg.Plugins.Popup >= 1.1.4.158-pre",
@@ -5374,27 +5286,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sagee\\.nuget\\packages\\": {}
+    "/Users/Idan Marciano/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.Android\\MsorLi.Android.csproj",
+      "projectUniqueName": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/MsorLi.Android.csproj",
       "projectName": "MsorLi.Android",
-      "projectPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.Android\\MsorLi.Android.csproj",
-      "packagesPath": "C:\\Users\\sagee\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.Android\\obj\\",
+      "projectPath": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/MsorLi.Android.csproj",
+      "packagesPath": "/Users/Idan Marciano/.nuget/packages/",
+      "outputPath": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj",
       "projectStyle": "PackageReference",
-      "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\sagee\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/Idan Marciano/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "monoandroid81"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5408,106 +5317,86 @@
         "dependencies": {
           "CarouselView.FormsPlugin": {
             "target": "Package",
-            "version": "[5.2.0, )"
-          },
-          "Microsoft.AppCenter": {
-            "target": "Package",
-            "version": "[1.6.1, )"
-          },
-          "Microsoft.AppCenter.Analytics": {
-            "target": "Package",
-            "version": "[1.6.1, )"
-          },
-          "Microsoft.AppCenter.Crashes": {
-            "target": "Package",
-            "version": "[1.6.1, )"
+            "version": "5.2.0"
           },
           "Microsoft.Azure.Mobile.Client": {
             "target": "Package",
-            "version": "[3.1.0, )"
+            "version": "3.1.0"
           },
           "Microsoft.Azure.Mobile.Client.SQLiteStore": {
             "target": "Package",
-            "version": "[3.1.0, )"
-          },
-          "Rg.Plugins.Popup": {
-            "target": "Package",
-            "version": "[1.1.4.158-pre, )"
+            "version": "3.1.0"
           },
           "SuaveControls.FloatingActionButton": {
             "target": "Package",
-            "version": "[2018.1.5, )"
-          },
-          "Toasts.Forms.Plugin": {
-            "target": "Package",
-            "version": "[3.3.2, )"
-          },
-          "WindowsAzure.Storage": {
-            "target": "Package",
-            "version": "[9.1.0, )"
-          },
-          "Xam.Plugins.Forms.ImageCircle": {
-            "target": "Package",
-            "version": "[2.0.2, )"
+            "version": "2018.1.5"
           },
           "Xam.Plugins.Messaging": {
             "target": "Package",
-            "version": "[5.1.0, )"
+            "version": "5.1.0"
           },
           "Xam.Plugins.Settings": {
             "target": "Package",
-            "version": "[3.1.1, )"
+            "version": "3.1.1"
           },
           "Xamarin.Android.Support.CustomTabs": {
             "target": "Package",
-            "version": "[23.4.0.1, )"
+            "version": "23.4.0.1"
           },
           "Xamarin.Android.Support.v4": {
             "target": "Package",
-            "version": "[25.4.0.2, )"
+            "version": "25.4.0.2"
           },
           "Xamarin.Android.Support.v7.AppCompat": {
             "target": "Package",
-            "version": "[25.4.0.2, )"
+            "version": "25.4.0.2"
           },
-          "Xamarin.FFImageLoading": {
+          "WindowsAzure.Storage": {
             "target": "Package",
-            "version": "[2.3.6, )"
-          },
-          "Xamarin.FFImageLoading.Forms": {
-            "target": "Package",
-            "version": "[2.3.6, )"
-          },
-          "Xamarin.FFImageLoading.Transformations": {
-            "target": "Package",
-            "version": "[2.3.6, )"
-          },
-          "Xamarin.Forms": {
-            "target": "Package",
-            "version": "[2.5.1.444934, )"
+            "version": "9.1.0"
           },
           "Xamarin.Forms.CarouselView": {
             "target": "Package",
-            "version": "[2.3.0-pre2, )"
+            "version": "2.3.0-pre2"
+          },
+          "Xam.Plugins.Forms.ImageCircle": {
+            "target": "Package",
+            "version": "2.0.2"
+          },
+          "Xamarin.FFImageLoading.Transformations": {
+            "target": "Package",
+            "version": "2.3.6"
+          },
+          "Xamarin.FFImageLoading": {
+            "target": "Package",
+            "version": "2.3.6"
+          },
+          "Xamarin.FFImageLoading.Forms": {
+            "target": "Package",
+            "version": "2.3.6"
           },
           "Xamarin.Forms.Extended.InfiniteScrolling": {
             "target": "Package",
-            "version": "[1.0.0-preview2, )"
+            "version": "1.0.0-preview2"
+          },
+          "Toasts.Forms.Plugin": {
+            "target": "Package",
+            "version": "3.3.2"
+          },
+          "Rg.Plugins.Popup": {
+            "target": "Package",
+            "version": "1.1.4.158-pre"
+          },
+          "Xamarin.Forms": {
+            "target": "Package",
+            "version": "2.5.1.444934"
+          },
+          "Microsoft.AppCenter": {
+            "target": "Package",
+            "version": "1.6.1"
           }
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1608",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: Xamarin.Android.Support.CustomTabs 23.4.0.1 requires Xamarin.Android.Support.v4 (= 23.4.0.1) but version Xamarin.Android.Support.v4 25.4.0.2 was resolved.",
-      "libraryId": "Xamarin.Android.Support.v4",
-      "targetGraphs": [
-        "MonoAndroid,Version=v8.1"
-      ]
-    }
-  ]
+  }
 }

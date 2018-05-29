@@ -12,7 +12,7 @@ namespace MsorLi.Views
             if (Session.IsLogged())
             {
                 UserName.Text = "שלום " + Settings.UserFirstName;
-                UserImg.Source = Settings.ImgUrl;
+                UserProfilePicture();
                 logButton.Text = "התנתק";
                 logImg.Source = "logout.png";
             }
@@ -72,8 +72,8 @@ namespace MsorLi.Views
                     MessagingCenter.Subscribe<LoginPage>(this, "Success", (send) => {
 
                         MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
-                        UserImg.Source = Settings.ImgUrl;
-                        UserName.Text = Settings.UserFirstName +" "+ Settings.UserLastName;
+                        UserProfilePicture();
+                        UserName.Text = "שלום " + Settings.UserFirstName;
                     });
                 }
             }
@@ -160,6 +160,15 @@ namespace MsorLi.Views
             {
 
             }
+        }
+        private void UserProfilePicture()
+        {
+
+            //if user doesnt have profile picture
+            if (String.IsNullOrEmpty(Settings.ImgUrl))
+                UserImg.Source = "unknownuser.png";
+            else
+                UserImg.Source = Settings.ImgUrl;
         }
     }
 }
