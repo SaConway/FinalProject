@@ -591,39 +591,5 @@ namespace MsorLi.Views
             }
         }
 
-        //private void ChangeCond(string action)
-        //{
-        //    switch (action)
-        //    {
-        //        case "חדש":
-        //            button.BackgroundColor = Color.Transparent;
-        //            button.TextColor = Color.FromHex("19a4b4");
-        //            NewBtn.BackgroundColor = Color.FromHex("19a4b4");
-        //            NewBtn.TextColor = Color.FromHex("ffffff");
-        //            _conditionString = NewBtn.Text;
-        //            break;
-
-        //        case "משומש":
-        //            button.BackgroundColor = Color.Transparent;
-        //            button.TextColor = Color.FromHex("19a4b4");
-        //            UsedBtn.BackgroundColor = Color.FromHex("19a4b4");
-        //            UsedBtn.TextColor = Color.FromHex("ffffff");
-        //            _conditionString = UsedBtn.Text;
-        //            break;
-
-        //        case "דרוש תיקון":
-        //            button.BackgroundColor = Color.Transparent;
-        //            button.TextColor = Color.FromHex("19a4b4");
-        //            FixBtn.BackgroundColor = Color.FromHex("19a4b4");
-        //            FixBtn.TextColor = Color.FromHex("ffffff");
-        //            _conditionString = FixBtn.Text;
-        //            break;
-
-        //        default:
-        //            break;
-        //    }
-            
-        //}
-
     }
 }

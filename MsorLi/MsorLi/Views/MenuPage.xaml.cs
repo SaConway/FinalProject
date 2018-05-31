@@ -25,6 +25,7 @@ namespace MsorLi.Views
             }
         }
 
+
         private async void SavedItemsClickEvent(object sender, EventArgs e)
         {
             try
@@ -69,11 +70,13 @@ namespace MsorLi.Views
                 {
                     await Navigation.PushAsync(new LoginPage());
                     //user loged in success event
-                    MessagingCenter.Subscribe<LoginPage>(this, "Success", (send) => {
+                    MessagingCenter.Subscribe<LoginPage>(this, "Success", async (send) => {
 
                         MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
                         UserProfilePicture();
+                        UserName.Opacity = 0;
                         UserName.Text = "שלום " + Settings.UserFirstName;
+                        await UserName.FadeTo(1);
                     });
                 }
             }
@@ -108,7 +111,7 @@ namespace MsorLi.Views
             }
             catch (Exception)
             {
-                //await DisplayAlert("שגיאה", "לא ניתן להתנתק. נסה שנית מאוחר יותר.", "אישור");
+                await DisplayAlert("שגיאה", "לא ניתן להתנתק. נסה שנית מאוחר יותר.", "אישור");
             }
         }
 

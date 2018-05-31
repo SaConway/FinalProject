@@ -66,6 +66,7 @@ namespace MsorLi.Views
                     Settings.UpdateUserInfo(user);
      
                     _succcess = true;
+                    DependencyService.Get<IMessage>().LongAlert("ההתחברות בוצעה בהצלחה");
                     await Navigation.PopAsync();
                 }
 
@@ -154,6 +155,7 @@ namespace MsorLi.Views
                 }
 
                 Settings.UpdateUserInfo(facebookUser);
+                DependencyService.Get<IMessage>().LongAlert("ההתחברות בוצעה בהצלחה");
                 await Navigation.PopToRootAsync();
             }
         }

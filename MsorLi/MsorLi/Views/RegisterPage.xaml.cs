@@ -70,6 +70,7 @@ namespace MsorLi.Views
                     await DisplayAlert("", "אימייל לא תקין. נסה שנית.", "אישור");
                     return;
                 }
+                MyFrame.IsVisible = true;
 
                 string profileURL = "";
 
@@ -95,6 +96,7 @@ namespace MsorLi.Views
                 new_user.ImgUrl = profileURL;
 
                 await AzureUserService.DefaultManager.UploadToServer(new_user, new_user.Id);
+                DependencyService.Get<IMessage>().LongAlert("ההרשמה בוצעה בהצלחה");
                 await Navigation.PopToRootAsync();
             }
             catch (Exception)

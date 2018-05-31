@@ -43,6 +43,9 @@ namespace MsorLi.Droid
 			public static int CurvedMask = 0;
 			
 			// aapt resource value: 0
+			public static int CurvedMask1 = 0;
+			
+			// aapt resource value: 0
 			public static int delete = 0;
 			
 			// aapt resource value: 0
