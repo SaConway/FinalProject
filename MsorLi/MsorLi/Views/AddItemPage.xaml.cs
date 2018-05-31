@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
 using MsorLi.Utilities;
-using FFImageLoading.Forms;
 #endregion
 
 namespace MsorLi.Views
@@ -201,10 +200,14 @@ namespace MsorLi.Views
                 MyScrollView.Opacity = 0.5;
                 MyFrame.IsVisible = true;
 
-                var t1 = UploadItem();
+                await UploadItem();
+
+                if (_item.Id == null)
+                    throw new Exception();
+                    
                 var t2 = UploadImages();
 
-                await Task.WhenAll(t1, t2);
+                await Task.WhenAll( t2);
                 
                 if (!_isEditingItem)
                 {

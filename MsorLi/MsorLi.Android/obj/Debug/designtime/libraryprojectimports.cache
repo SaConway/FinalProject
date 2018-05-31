@@ -1,27 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Paths>
-  <Jars>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/12/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/14/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/15/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/41/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/42/jl/support-annotations.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/43/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/44/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/45/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/47/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/48/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/49/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/50/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/51/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/52/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/53/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/54/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/55/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/56/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/57/jl/bin/classes.jar</Jar>
-    <Jar>/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/lp/9/jl/formsviewgroup.jar</Jar>
-  </Jars>
+  <Jars />
   <ResolvedResourceDirectories />
   <ResolvedAssetDirectories />
   <ResolvedEnvironmentFiles />

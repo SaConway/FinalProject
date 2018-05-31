@@ -31,13 +31,30 @@ namespace MsorLi.Views
         public ProfilePage()
         {
             InitializeComponent();
+            myItemCounter.Text = " ";
+            ItemUserLikeCounter.Text = " ";
             MyItemLabel.IsVisible = NoItemLabel.IsVisible = false;
 
-            UpdateUserData();
-            MessagingCenter.Subscribe<ItemPage>(this, "Update Like Counter", (sender) => {
-                ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
+
+            UserName.Text = Settings.UserFirstName;
+
+            //if user doesnt have profile picture
+            if (String.IsNullOrEmpty(Settings.ImgUrl))
+                UserImg.Source = "unknownuser.png";
+            else
+                UserImg.Source = Settings.ImgUrl;
+
+            MessagingCenter.Subscribe<ItemPage>(this, "Update Like Counter", async (sender) => {
+                int num = await AzureSavedItemService.DefaultManager.NumOfItemsSavedByUser(Settings.UserId);
+
+                ItemUserLikeCounter.Text = num.ToString();
             });
 
+            MessagingCenter.Subscribe<SavedItemsPage>(this, "Update Like Counter", async (sender) => {
+                int num = await AzureSavedItemService.DefaultManager.NumOfItemsSavedByUser(Settings.UserId);
+
+                ItemUserLikeCounter.Text = num.ToString();
+            });
 
         }
 
@@ -45,8 +62,9 @@ namespace MsorLi.Views
         {
             try
             {
-                UpdateUserData();
+                await UpdateUserData();
                 await GetUserItems();
+
                 if (AllImages.Count > 0)
                     NoItemLabel.IsVisible = false;
             }
@@ -56,18 +74,23 @@ namespace MsorLi.Views
             }
         }
 
-        private void UpdateUserData()
+        private async Task UpdateUserData()
         {
-            UserName.Text = Settings.UserFirstName;
 
-            //if user doesnt have profile picture
-            if (String.IsNullOrEmpty(Settings.ImgUrl))
-                UserImg.Source = "unknownuser.png";
-            else
-                UserImg.Source = Settings.ImgUrl;
             
-            myItemCounter.Text = Settings.NumOfItems;
-            ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
+            //item counter
+            int item_counter = await AzureItemService.DefaultManager.NumOfItemsByUserId(Settings.UserId);
+            myItemCounter.Text = item_counter.ToString();
+            myItemCounter.Opacity = 0;
+
+
+            //like counter
+            int like_counter = await AzureSavedItemService.DefaultManager.NumOfItemsSavedByUser(Settings.UserId);
+            ItemUserLikeCounter.Text = like_counter.ToString();
+            ItemUserLikeCounter.Opacity = 0;
+            var t1 =  myItemCounter.FadeTo(1);
+            var t2 =  ItemUserLikeCounter.FadeTo(1);
+            await Task.WhenAll(t1,t2);
             
         }
         private async Task GetUserItems()

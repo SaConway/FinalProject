@@ -248,7 +248,7 @@ namespace MsorLi.Views
 
             catch (Exception ex)
             {
-                //await DisplayAlert("שגיאה", "לא ניתן לטעון עמוד מבוקש.", "אישור");
+                _isRunningItem = false;
                 await DisplayAlert("", ex.Message, "אישור");
             }
         }

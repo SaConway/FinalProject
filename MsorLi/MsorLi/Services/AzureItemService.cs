@@ -48,5 +48,25 @@ namespace MsorLi.Services
             await _table.DeleteAsync(item);
         }
 
+
+        public async Task<int> NumOfItemsByUserId(string userId)
+        {
+            try
+            {
+                var list = await _table
+                    .Where(Item => Item.UserId == userId)
+                    .ToListAsync();
+
+                return list.Count;
+            }
+
+            catch (Exception)
+            {
+                return 0;
+            }
+
+        }
+
+
     }
 }

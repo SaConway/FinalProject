@@ -1,6 +1,5 @@
 ﻿using MsorLi.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -74,6 +73,23 @@ namespace MsorLi.Services
             catch (Exception)
             {
                 return "";
+            }
+        }
+
+        public async Task<int> NumOfItemsSavedByUser(string userId)
+        {
+            try
+            {
+                var list = await _table
+                    .Where(Saved => Saved.UserId == userId)
+                    .ToListAsync();
+
+                return list.Count;
+            }
+
+            catch (Exception)
+            {
+                return 0;
             }
         }
     }

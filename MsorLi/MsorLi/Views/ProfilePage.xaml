@@ -8,8 +8,10 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     
     <ContentPage.Content>
-        <ScrollView>
-            <Grid RowSpacing="0" >
+        
+        <ScrollView >
+            <ActivityIndicator x:Name="indicatorLoader" Color="#607D8B" />
+            <Grid x:Name="MainGrid" RowSpacing="0" >
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>

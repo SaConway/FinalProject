@@ -211,6 +211,8 @@ namespace MsorLi.Views
                 await AzureSavedItemService.DefaultManager
                     .DeleteSavedItem(new SavedItem { Id = _dictionary[itemId].SavedId });
 
+                UpdateLikeCounter(-1);
+
                 // Delete Item from collection and dictionary
                 _collection.Remove(_dictionary[itemId]);
                 _dictionary.Remove(itemId);
@@ -247,6 +249,13 @@ namespace MsorLi.Views
 
             if (imageUrl != null)
                 _dictionary[index].ImageUrl = imageUrl;
+        }
+
+        private async void UpdateLikeCounter(int prefix)
+        {
+            int _numOfLikedItem = await AzureUserService.DefaultManager.UpdateNumOfItemsLiked(MsorLi.Utilities.Settings.UserId, prefix);
+            Utilities.Settings.NumOfItemsUserLike = _numOfLikedItem.ToString();
+            MessagingCenter.Send<SavedItemsPage>(this, "Update Like Counter");
         }
     }
 }
