@@ -181,15 +181,16 @@
                     </control:CarouselView.ItemTemplate>
                 </control:CarouselView>
 
-                <Grid ColumnSpacing="15" Margin="20">
-
-                    <Button Clicked="SubmitBtnClicked" Style="{StaticResource ButtonStyle}" 
-                                        Text="עדכון פרטים" Grid.Column="0"/>
+                <Grid RowSpacing="15" Margin="20">
 
                     <Button x:Name="ProfilePictureBtn" Clicked="UpdateProfilePicAsync" 
                                         Style="{StaticResource ButtonStyle}" Text="שינוי תמונת פרופיל"
-                                        Grid.Column="1" BorderColor="#19a4b4" BackgroundColor="White"
+                                        Grid.Row="0" BorderColor="#19a4b4" BackgroundColor="White"
                                         TextColor="#19a4b4" BorderWidth="0.5"/>
+                    
+                    <Button Clicked="SubmitBtnClicked" Style="{StaticResource ButtonStyle}" 
+                                        Text="עדכון פרטים" Grid.Row="1"/>
+
                 </Grid>
 
             </StackLayout>

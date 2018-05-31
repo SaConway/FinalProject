@@ -27,6 +27,7 @@ namespace MsorLi.Views
 
         Boolean _isRunningItem = false;
         Object _lockObject = new Object();
+        string _conditionString = "חדש";
 
         bool _firstAppearing = true;
 
@@ -81,7 +82,39 @@ namespace MsorLi.Views
 
                 category.SelectedItem = item.Category;
                 description.Text = item.Description;
-                condition.SelectedItem = item.Condition;
+                //condition.SelectedItem = item.Condition;
+
+
+                switch (item.Condition)
+                {
+                    case "חדש":
+                        //button.BackgroundColor = Color.Transparent;
+                        //button.TextColor = Color.FromHex("19a4b4");
+                        NewBtn.BackgroundColor = Color.FromHex("19a4b4");
+                        NewBtn.TextColor = Color.FromHex("ffffff");
+                        _conditionString = NewBtn.Text;
+                        break;
+
+                    case "משומש":
+                        NewBtn.BackgroundColor = Color.Transparent;
+                        NewBtn.TextColor = Color.FromHex("19a4b4");
+                        UsedBtn.BackgroundColor = Color.FromHex("19a4b4");
+                        UsedBtn.TextColor = Color.FromHex("ffffff");
+                        _conditionString = UsedBtn.Text;
+                        break;
+
+                    case "דרוש תיקון":
+                        NewBtn.BackgroundColor = Color.Transparent;
+                        NewBtn.TextColor = Color.FromHex("19a4b4");
+                        FixBtn.BackgroundColor = Color.FromHex("19a4b4");
+                        FixBtn.TextColor = Color.FromHex("ffffff");
+                        _conditionString = FixBtn.Text;
+                        break;
+
+                    default:
+                        break;
+                }
+
                 EreaPicker.SelectedItem = item.Erea;
                 contactName.Text = item.ContactName;
                 contactNumber.Text = item.ContactNumber;
@@ -207,7 +240,7 @@ namespace MsorLi.Views
                     
                 var t2 = UploadImages();
 
-                await Task.WhenAll( t2);
+                await Task.WhenAll(t2);
                 
                 if (!_isEditingItem)
                 {
@@ -360,7 +393,7 @@ namespace MsorLi.Views
                     item.Value.Item1.Category = category.Items[category.SelectedIndex];
                     item.Value.Item1.SubCategory = subCategory.Items[subCategory.SelectedIndex];
                     item.Value.Item1.Erea = EreaPicker.SelectedItem.ToString();
-                    item.Value.Item1.Condition = condition.SelectedItem.ToString();
+                    item.Value.Item1.Condition = _conditionString;
 
                     var t = UploadImageToDB(item.Value.Item1);
                     tList.Add(t);
@@ -382,7 +415,7 @@ namespace MsorLi.Views
                 _item.SubCategory = subCategory.Items[subCategory.SelectedIndex];
                 _item.NumOfImages = _keyValues.Count;
                 _item.Description = description.Text;
-                _item.Condition = condition.SelectedItem.ToString();
+                _item.Condition = _conditionString;
                 _item.Erea = EreaPicker.SelectedItem.ToString();
                 _item.Address = (street.Text != null && street.Text.Length > 0) ? street.Text.ToString() : "";
                 _item.ViewCounter = 0;
@@ -437,7 +470,7 @@ namespace MsorLi.Views
             try
             {
                 if (category.SelectedIndex == -1 || _keyValues.Count == 0 ||
-                description.Text.Length == 0 || condition.SelectedIndex == -1 ||
+                description.Text.Length == 0 || 
                 EreaPicker.SelectedIndex == -1 || contactName.Text.Length == 0 ||
                 contactNumber.Text.Length == 0 || subCategory.SelectedIndex == -1)
                     return false;
@@ -507,5 +540,90 @@ namespace MsorLi.Views
 
             }
         }
+        private void ConditionNewClicked(object sender, TappedEventArgs e)
+        {
+
+            ConditionChange();
+            NewBtn.BackgroundColor = Color.FromHex("19a4b4");
+            NewBtn.TextColor = Color.FromHex("ffffff");
+            _conditionString = NewBtn.Text;
+
+        }
+        private void ConditionUsedClicked(object sender, TappedEventArgs e)
+        {
+
+            ConditionChange();
+            UsedBtn.BackgroundColor = Color.FromHex("19a4b4");
+            UsedBtn.TextColor = Color.FromHex("ffffff");
+            _conditionString = UsedBtn.Text;
+        }
+        private void ConditionFixClicked(object sender, TappedEventArgs e)
+        {
+
+            ConditionChange();
+            FixBtn.BackgroundColor = Color.FromHex("19a4b4");
+            FixBtn.TextColor = Color.FromHex("ffffff");
+            _conditionString = FixBtn.Text;
+
+        }
+
+        private void ConditionChange()
+        {
+            switch (_conditionString)
+            {
+                case "חדש":
+                    NewBtn.BackgroundColor = Color.Transparent;
+                    NewBtn.TextColor = Color.FromHex("19a4b4");
+                    break;
+
+                case "משומש":
+                    UsedBtn.BackgroundColor = Color.Transparent;
+                    UsedBtn.TextColor = Color.FromHex("19a4b4");
+                    break;
+
+                case "דרוש תיקון":
+                    FixBtn.BackgroundColor = Color.Transparent;
+                    FixBtn.TextColor = Color.FromHex("19a4b4");
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        //private void ChangeCond(string action)
+        //{
+        //    switch (action)
+        //    {
+        //        case "חדש":
+        //            button.BackgroundColor = Color.Transparent;
+        //            button.TextColor = Color.FromHex("19a4b4");
+        //            NewBtn.BackgroundColor = Color.FromHex("19a4b4");
+        //            NewBtn.TextColor = Color.FromHex("ffffff");
+        //            _conditionString = NewBtn.Text;
+        //            break;
+
+        //        case "משומש":
+        //            button.BackgroundColor = Color.Transparent;
+        //            button.TextColor = Color.FromHex("19a4b4");
+        //            UsedBtn.BackgroundColor = Color.FromHex("19a4b4");
+        //            UsedBtn.TextColor = Color.FromHex("ffffff");
+        //            _conditionString = UsedBtn.Text;
+        //            break;
+
+        //        case "דרוש תיקון":
+        //            button.BackgroundColor = Color.Transparent;
+        //            button.TextColor = Color.FromHex("19a4b4");
+        //            FixBtn.BackgroundColor = Color.FromHex("19a4b4");
+        //            FixBtn.TextColor = Color.FromHex("ffffff");
+        //            _conditionString = FixBtn.Text;
+        //            break;
+
+        //        default:
+        //            break;
+        //    }
+            
+        //}
+
     }
 }
