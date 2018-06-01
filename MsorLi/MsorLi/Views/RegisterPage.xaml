@@ -1,127 +1,139 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
              x:Class="MsorLi.Views.RegisterPage"
              Title="רישום">
     <ContentPage.Content>
-        <ScrollView>
+        <AbsoluteLayout>
+            <ScrollView>
 
-            <StackLayout Margin="0" Spacing="0">
+                <StackLayout Margin="0" Spacing="0">
 
-                <Grid RowSpacing="0">
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
-                    <BoxView Grid.Row="0" BackgroundColor="#f5f5f5"/>
-
-                    <Label Grid.Row="0" Text="פרטים אישיים" HorizontalTextAlignment="End"
-                           HorizontalOptions="EndAndExpand"
-                           VerticalOptions="Center" Margin="0,0,10,0"/>
-
-                    <Grid Grid.Row="1" ColumnSpacing="20" RowSpacing="20">
+                    <Grid RowSpacing="0">
 
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        <BoxView Grid.Row="0" BackgroundColor="#f5f5f5"/>
 
-                        <!--First Name-->
-                        <Label Grid.Row="0" Grid.Column="1" 
-                               Text="שם פרטי" HorizontalTextAlignment="End"
-                               VerticalOptions="Center" Margin="0,10,10,0" 
-                               HorizontalOptions="End"/>
-                        <Entry x:Name="firstName" Grid.Row="0" Grid.Column="0" 
-                               HorizontalOptions="FillAndExpand"
-                               VerticalOptions="Center" TextChanged="Event_TextChanged" 
-                               Margin="10,10,0,0" HorizontalTextAlignment="End"/>
+                        <Label Grid.Row="0" Text="פרטים אישיים" HorizontalTextAlignment="End"
+                               HorizontalOptions="EndAndExpand"
+                               VerticalOptions="Center" Margin="0,0,10,0"/>
 
-                        <!--Last Name-->
-                        <Label Grid.Row="1" Grid.Column="1" Text="שם משפחה"
-                               VerticalOptions="Center" HorizontalTextAlignment="End"
-                               Margin="0,10,10,20"/>
-                        <Entry x:Name="lastName" Grid.Row="1" Grid.Column="0" 
-                               HorizontalOptions="FillAndExpand"
-                               VerticalOptions="Center" TextChanged="Event_TextChanged"
-                               Margin="10,10,0,20" HorizontalTextAlignment="End"/>
+                        <Grid Grid.Row="1" ColumnSpacing="20" RowSpacing="20">
 
-                        <!--Phone Number-->
-                        <Label Grid.Row="2" Grid.Column="1" Text="מס׳ טלפון" 
-                               HorizontalTextAlignment="End"
-                               VerticalOptions="Center" Margin="0,10,10,0" 
-                               HorizontalOptions="End"/>
-                        <Entry x:Name="phoneNumber" Grid.Row="2" Grid.Column="0" 
-                               HorizontalOptions="FillAndExpand"
-                               VerticalOptions="Center" TextChanged="Event_TextChanged"
-                               Margin="10,10,0,0" Keyboard="Telephone" HorizontalTextAlignment="End"/>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
 
-                        <!--City-->
-                        <Label Grid.Row="3" Grid.Column="1" Text="אזור" 
-                               VerticalOptions="Center" HorizontalTextAlignment="End"
-                               Margin="0,10,10,0"/>
-                        <Picker x:Name="LocationPicker" HorizontalOptions="FillAndExpand"
-                                Margin="10,10,0,0" Title="בחר אזור" SelectedIndexChanged="OnLocationChanged"
-                                Grid.Row="3" Grid.Column="0"  VerticalOptions="Center"/>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <!--Address-->
-                        <Label Grid.Row="4" Grid.Column="1" Text="כתובת" 
-                               VerticalOptions="Center" HorizontalTextAlignment="End"
+                            <!--First Name-->
+                            <Label Grid.Row="0" Grid.Column="1" 
+                                   Text="שם פרטי" HorizontalTextAlignment="End"
+                                   VerticalOptions="Center" Margin="0,10,10,0" 
+                                   HorizontalOptions="End"/>
+                            <Entry x:Name="firstName" Grid.Row="0" Grid.Column="0" 
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="Center" TextChanged="Event_TextChanged" 
+                                   Margin="10,10,0,0" HorizontalTextAlignment="End"/>
+
+                            <!--Last Name-->
+                            <Label Grid.Row="1" Grid.Column="1" Text="שם משפחה"
+                                   VerticalOptions="Center" HorizontalTextAlignment="End"
                                    Margin="0,10,10,20"/>
-                        <Entry x:Name="address" Grid.Row="4" Grid.Column="0" 
-                               HorizontalOptions="FillAndExpand"
-                               VerticalOptions="Center" Margin="10,10,0,20"
-                               HorizontalTextAlignment="End"/>
+                            <Entry x:Name="lastName" Grid.Row="1" Grid.Column="0" 
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="Center" TextChanged="Event_TextChanged"
+                                   Margin="10,10,0,20" HorizontalTextAlignment="End"/>
 
-                        <!--Email-->
-                        <Label Grid.Column="1" Grid.Row="5" Text="אימייל" VerticalOptions="Center" HorizontalTextAlignment="End"
-                               Margin="0,10,10,20"/>
-                        <Entry x:Name="email" Grid.Column="0" Grid.Row="5" HorizontalOptions="FillAndExpand"
-                               VerticalOptions="Center" TextChanged="Event_TextChanged"
-                               Margin="10,10,0,20" Keyboard="Email" HorizontalTextAlignment="End"/>
+                            <!--Phone Number-->
+                            <Label Grid.Row="2" Grid.Column="1" Text="מס׳ טלפון" 
+                                   HorizontalTextAlignment="End"
+                                   VerticalOptions="Center" Margin="0,10,10,0" 
+                                   HorizontalOptions="End"/>
+                            <Entry x:Name="phoneNumber" Grid.Row="2" Grid.Column="0" 
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="Center" TextChanged="Event_TextChanged"
+                                   Margin="10,10,0,0" Keyboard="Telephone" HorizontalTextAlignment="End"/>
 
-                        <!--Password-->
-                        <Label Grid.Column="1" Grid.Row="6" Text="סיסמה" VerticalOptions="Center"
-                               HorizontalTextAlignment="End"
-                               Margin="0,10,10,20"/>
-                        <Entry x:Name="password" Grid.Row="6" Grid.Column="0" HorizontalOptions="FillAndExpand"
-                               VerticalOptions="Center" TextChanged="Event_TextChanged"
-                               Margin="10,10,0,20" Keyboard="Email" HorizontalTextAlignment="End"/>
+                            <!--City-->
+                            <Label Grid.Row="3" Grid.Column="1" Text="אזור" 
+                                   VerticalOptions="Center" HorizontalTextAlignment="End"
+                                   Margin="0,10,10,0"/>
+                            <Picker x:Name="LocationPicker" HorizontalOptions="FillAndExpand"
+                                    Margin="10,10,0,0" Title="בחר אזור" SelectedIndexChanged="OnLocationChanged"
+                                    Grid.Row="3" Grid.Column="0"  VerticalOptions="Center"/>
+
+                            <!--Address-->
+                            <Label Grid.Row="4" Grid.Column="1" Text="כתובת" 
+                                   VerticalOptions="Center" HorizontalTextAlignment="End"
+                                       Margin="0,10,10,20"/>
+                            <Entry x:Name="address" Grid.Row="4" Grid.Column="0" 
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="Center" Margin="10,10,0,20"
+                                   HorizontalTextAlignment="End"/>
+
+                            <!--Email-->
+                            <Label Grid.Column="1" Grid.Row="5" Text="אימייל" VerticalOptions="Center" HorizontalTextAlignment="End"
+                                   Margin="0,10,10,20"/>
+                            <Entry x:Name="email" Grid.Column="0" Grid.Row="5" HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="Center" TextChanged="Event_TextChanged"
+                                   Margin="10,10,0,20" Keyboard="Email" HorizontalTextAlignment="End"/>
+
+                            <!--Password-->
+                            <Label Grid.Column="1" Grid.Row="6" Text="סיסמה" VerticalOptions="Center"
+                                   HorizontalTextAlignment="End"
+                                   Margin="0,10,10,20"/>
+                            <Entry x:Name="password" Grid.Row="6" Grid.Column="0" HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="Center" TextChanged="Event_TextChanged"
+                                   Margin="10,10,0,20" IsPassword="true" HorizontalTextAlignment="End"/>
+                        </Grid>
                     </Grid>
-                </Grid>
 
-                <!--תמונות-->
-                <control:CarouselView x:Name="imagesView" HeightRequest="0">
-                    <control:CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <Image Aspect="AspectFill" Source="{Binding .}"/>
-                        </DataTemplate>
-                    </control:CarouselView.ItemTemplate>
-                </control:CarouselView>
+                    <!--תמונות-->
+                    <control:CarouselView x:Name="imagesView" HeightRequest="0">
+                        <control:CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Aspect="AspectFill" Source="{Binding .}"/>
+                            </DataTemplate>
+                        </control:CarouselView.ItemTemplate>
+                    </control:CarouselView>
 
-                <!--כפתור בחירת תמונות-->
-                <Button Text="בחירת תמונת פרופיל" Margin="0,50,0,0" FontSize="Medium"
-                        BackgroundColor="Transparent" TextColor="#19a4b4"
-                        HorizontalOptions="Center" x:Name="pickPictureButton" Clicked="PickImageButton_Event"/>
+                    <!--כפתור בחירת תמונות-->
+                    <Button Text="בחירת תמונת פרופיל" Margin="0,50,0,0" FontSize="Medium"
+                            BackgroundColor="Transparent" TextColor="#19a4b4"
+                            HorizontalOptions="Center" x:Name="pickPictureButton" Clicked="PickImageButton_Event"/>
 
-                <Button Text="הרשמה" Margin="15,80,15,10" IsEnabled="False" 
-                        FontSize="Medium" x:Name="SubmitBtn"
-                        Clicked="SubmitBtnClicked" Style="{StaticResource ButtonStyle}" 
-                        BackgroundColor="#999999"/>
+                    <Button Text="הרשמה" Margin="15,80,15,10" IsEnabled="False" 
+                            FontSize="Medium" x:Name="SubmitBtn"
+                            Clicked="SubmitBtnClicked" Style="{StaticResource ButtonStyle}" 
+                            BackgroundColor="#999999"/>
 
-            </StackLayout>
-        </ScrollView>
+                </StackLayout>
+            </ScrollView>
+            
+                <Frame x:Name="MyFrame" IsVisible="False"
+                   OutlineColor="#212121"
+                   AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                   VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+                <Label TextColor="#212121" Margin="15,10">אנא המתן..</Label>
+            </Frame>
+            
+        </AbsoluteLayout>
     </ContentPage.Content>
+    
 </ContentPage>

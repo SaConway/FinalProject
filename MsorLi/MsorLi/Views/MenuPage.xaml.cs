@@ -12,7 +12,7 @@ namespace MsorLi.Views
             if (Session.IsLogged())
             {
                 UserName.Text = "שלום " + Settings.UserFirstName;
-                UserImg.Source = Settings.ImgUrl;
+                UserProfilePicture();
                 logButton.Text = "התנתק";
                 logImg.Source = "logout.png";
             }
@@ -24,6 +24,7 @@ namespace MsorLi.Views
                 logImg.Source = "login.png";
             }
         }
+
 
         private async void SavedItemsClickEvent(object sender, EventArgs e)
         {
@@ -69,11 +70,13 @@ namespace MsorLi.Views
                 {
                     await Navigation.PushAsync(new LoginPage());
                     //user loged in success event
-                    MessagingCenter.Subscribe<LoginPage>(this, "Success", (send) => {
+                    MessagingCenter.Subscribe<LoginPage>(this, "Success", async (send) => {
 
                         MessagingCenter.Unsubscribe<LoginPage>(this, "Success");
-                        UserImg.Source = Settings.ImgUrl;
-                        UserName.Text = Settings.UserFirstName +" "+ Settings.UserLastName;
+                        UserProfilePicture();
+                        UserName.Opacity = 0;
+                        UserName.Text = "שלום " + Settings.UserFirstName;
+                        await UserName.FadeTo(1);
                     });
                 }
             }
@@ -108,7 +111,7 @@ namespace MsorLi.Views
             }
             catch (Exception)
             {
-                //await DisplayAlert("שגיאה", "לא ניתן להתנתק. נסה שנית מאוחר יותר.", "אישור");
+                await DisplayAlert("שגיאה", "לא ניתן להתנתק. נסה שנית מאוחר יותר.", "אישור");
             }
         }
 
@@ -160,6 +163,15 @@ namespace MsorLi.Views
             {
 
             }
+        }
+        private void UserProfilePicture()
+        {
+
+            //if user doesnt have profile picture
+            if (String.IsNullOrEmpty(Settings.ImgUrl))
+                UserImg.Source = "unknownuser.png";
+            else
+                UserImg.Source = Settings.ImgUrl;
         }
     }
 }

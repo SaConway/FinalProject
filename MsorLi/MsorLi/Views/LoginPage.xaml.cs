@@ -4,8 +4,6 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MsorLi.Utilities;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace MsorLi.Views
 {
@@ -68,6 +66,7 @@ namespace MsorLi.Views
                     Settings.UpdateUserInfo(user);
      
                     _succcess = true;
+                    DependencyService.Get<IMessage>().LongAlert("ההתחברות בוצעה בהצלחה");
                     await Navigation.PopAsync();
                 }
 
@@ -156,6 +155,7 @@ namespace MsorLi.Views
                 }
 
                 Settings.UpdateUserInfo(facebookUser);
+                DependencyService.Get<IMessage>().LongAlert("ההתחברות בוצעה בהצלחה");
                 await Navigation.PopToRootAsync();
             }
         }

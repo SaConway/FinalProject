@@ -24,10 +24,6 @@ namespace MsorLi.Droid
 			global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 		}
 		
-		public static void UpdateIdValues()
-		{
-		}
-		
 		public partial class Drawable
 		{
 			
@@ -45,6 +41,9 @@ namespace MsorLi.Droid
 			
 			// aapt resource value: 0
 			public static int CurvedMask = 0;
+			
+			// aapt resource value: 0
+			public static int CurvedMask1 = 0;
 			
 			// aapt resource value: 0
 			public static int delete = 0;

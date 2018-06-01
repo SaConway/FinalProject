@@ -8,8 +8,10 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     
     <ContentPage.Content>
-        <ScrollView>
-            <Grid RowSpacing="0" >
+        
+        <ScrollView >
+            <ActivityIndicator x:Name="indicatorLoader" Color="#607D8B" />
+            <Grid x:Name="MainGrid" RowSpacing="0" >
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -101,7 +103,7 @@
                 <Label x:Name="NoItemLabel" Grid.Row="6" Text="לא פרסמתי מוצרים" Margin="0,20,0,0" Style="{StaticResource StatsCaptionLabel}" VerticalOptions="Center" HorizontalOptions="Center"/>
 
                 <ScrollView x:Name="ItemList" BackgroundColor="Transparent" Grid.Row="6" Orientation="Horizontal" Margin="7,0,7,20" HorizontalOptions="CenterAndExpand">
-                        <StackLayout x:Name="StackCategory" BackgroundColor="Transparent" Orientation="Horizontal" HorizontalOptions="End" />
+                        <StackLayout x:Name="StackUserItems" BackgroundColor="Transparent" Orientation="Horizontal" HorizontalOptions="End" />
                 </ScrollView>
                 
             </Grid>

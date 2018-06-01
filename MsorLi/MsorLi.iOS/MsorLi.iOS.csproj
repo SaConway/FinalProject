@@ -164,12 +164,6 @@
     <PackageReference Include="Microsoft.AppCenter">
       <Version>1.6.1</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.AppCenter.Crashes">
-      <Version>1.6.1</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AppCenter.Analytics">
-      <Version>1.6.1</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Contents.json">
@@ -202,6 +196,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\report%402x~iphone.png" />
+    <BundleResource Include="Resources\IconSplash%402x.png" />
+    <BundleResource Include="Resources\delete%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\share%402x.png" />
@@ -243,7 +239,6 @@
     <BundleResource Include="Resources\tag%402x~iphone.png" />
     <BundleResource Include="Resources\logout%402x~iphone.png" />
     <BundleResource Include="Resources\x%402x~iphone.png" />
-    <BundleResource Include="Resources\location%402x~iphone.png" />
     <BundleResource Include="Resources\plus%402x~iphone.png" />
     <BundleResource Include="Resources\filter%402x~iphone.png" />
     <BundleResource Include="Resources\menu%402x~iphone.png" />
@@ -266,8 +261,6 @@
     <BundleResource Include="Resources\CurvedMask.png" />
     <BundleResource Include="Resources\Arimo-Regular.ttf" />
     <BundleResource Include="Resources\unknownuser.png" />
-    <BundleResource Include="Resources\iconicon%402x.png" />
-    <BundleResource Include="Resources\iconicon%402x~iphone.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

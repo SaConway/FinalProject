@@ -31,13 +31,30 @@ namespace MsorLi.Views
         public ProfilePage()
         {
             InitializeComponent();
+            myItemCounter.Text = " ";
+            ItemUserLikeCounter.Text = " ";
             MyItemLabel.IsVisible = NoItemLabel.IsVisible = false;
 
-            UpdateUserData();
-            MessagingCenter.Subscribe<ItemPage>(this, "Update Like Counter", (sender) => {
-                ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
+
+            UserName.Text = Settings.UserFirstName;
+
+            //if user doesnt have profile picture
+            if (String.IsNullOrEmpty(Settings.ImgUrl))
+                UserImg.Source = "unknownuser.png";
+            else
+                UserImg.Source = Settings.ImgUrl;
+
+            MessagingCenter.Subscribe<ItemPage>(this, "Update Like Counter", async (sender) => {
+                int num = await AzureSavedItemService.DefaultManager.NumOfItemsSavedByUser(Settings.UserId);
+
+                ItemUserLikeCounter.Text = num.ToString();
             });
 
+            MessagingCenter.Subscribe<SavedItemsPage>(this, "Update Like Counter", async (sender) => {
+                int num = await AzureSavedItemService.DefaultManager.NumOfItemsSavedByUser(Settings.UserId);
+
+                ItemUserLikeCounter.Text = num.ToString();
+            });
 
         }
 
@@ -45,10 +62,17 @@ namespace MsorLi.Views
         {
             try
             {
-                UpdateUserData();
-                await GetUserItems();
+
+                var t1 =  UpdateUserData();
+                var t2 =  GetUserItems();
+
+                await Task.WhenAll(t1,t2);
+
                 if (AllImages.Count > 0)
+                {
+                    await ItemList.ScrollToAsync(StackUserItems.Children[StackUserItems.Children.Count - 1], ScrollToPosition.MakeVisible, true);
                     NoItemLabel.IsVisible = false;
+                }
             }
             catch (Exception)
             {
@@ -56,37 +80,57 @@ namespace MsorLi.Views
             }
         }
 
-        private void UpdateUserData()
+
+        private async Task UpdateUserData()
         {
-                UserName.Text = Settings.UserFirstName;
-                UserImg.Source = Settings.ImgUrl;
-                myItemCounter.Text = Settings.NumOfItems;
-                ItemUserLikeCounter.Text = Settings.NumOfItemsUserLike;
+
+            try
+            {
+                //item counter
+                int item_counter = await AzureItemService.DefaultManager.NumOfItemsByUserId(Settings.UserId);
+                myItemCounter.Text = item_counter.ToString();
+                myItemCounter.Opacity = 0;
+
+
+                //like counter
+                int like_counter = await AzureSavedItemService.DefaultManager.NumOfItemsSavedByUser(Settings.UserId);
+                ItemUserLikeCounter.Text = like_counter.ToString();
+                ItemUserLikeCounter.Opacity = 0;
+                var t1 = myItemCounter.FadeTo(1);
+                var t2 = ItemUserLikeCounter.FadeTo(1);
+                await Task.WhenAll(t1, t2);
+            }
+            catch(Exception){}
             
         }
         private async Task GetUserItems()
         {
-
-            AllImages = await _azureImageService.GetAllImgByUserId(Settings.UserId);
-
-            if (AllImages.Count > 0)
+            try
             {
-                MyItemLabel.IsVisible = true;
-                ItemList.IsVisible = true;
-                ShowImages();
+                AllImages = await _azureImageService.GetAllImgByUserId(Settings.UserId);
+
+                if (AllImages.Count > 0)
+                {
+                    MyItemLabel.IsVisible = true;
+                    ItemList.Opacity = 0;
+                    ItemList.IsVisible = true;
+                    ShowImages();
+                    await ItemList.FadeTo(1);
+                }
+                else
+                {
+                    ItemList.IsVisible = false;
+                    MyItemLabel.IsVisible = false;
+                    NoItemLabel.IsVisible = true;
+                }
             }
-            else
-            {
-                ItemList.IsVisible = false;
-                MyItemLabel.IsVisible = false;
-                NoItemLabel.IsVisible = true;
-            }
+            catch(Exception){}
         }
 
         private void ShowImages()
         {
             ImagePairs.Clear();
-            StackCategory.Children.Clear();
+            StackUserItems.Children.Clear();
             for (int i = 0; i < AllImages.Count; i++)
             {
                 var image = new CachedImage
@@ -131,7 +175,7 @@ namespace MsorLi.Views
                 };
 
                 image.GestureRecognizers.Add(tap);
-                StackCategory.Children.Add(image);
+                StackUserItems.Children.Add(image);
 
             }
         }

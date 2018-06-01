@@ -151,7 +151,9 @@ namespace MsorLi.Views
             MyScrollView.IsVisible = true;
             await MyScrollView.FadeTo(1, 100);
 
-            await ItemList.ScrollToAsync(StackUserItems.Children[StackUserItems.Children.Count - 1], ScrollToPosition.MakeVisible, true);
+
+            if(StackUserItems.Children.Count > 0)
+                await ItemList.ScrollToAsync(StackUserItems.Children[StackUserItems.Children.Count - 1], ScrollToPosition.MakeVisible, true);
 
         }
 

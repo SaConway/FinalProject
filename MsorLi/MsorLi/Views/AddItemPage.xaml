@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -42,14 +42,14 @@
 
                             <!--Category-->
                             <Label Grid.Row="0" Grid.Column="1" x:Name="firstNameLabel" 
-                                   Text="קטגוריה" HorizontalTextAlignment="End"
+                                   Text="קטגוריה *" HorizontalTextAlignment="End"
                                    VerticalOptions="Center" Margin="0,10,10,0" HorizontalOptions="End"/>
                             <Picker x:Name="category" HorizontalOptions="FillAndExpand" Margin="10,10,0,0" 
                                     Title="בחר קטגוריה" SelectedIndexChanged="OnCategoryChanged"
                                     Grid.Row="0" Grid.Column="0" VerticalOptions="Center"/>
 
                             <!--Sub Category-->
-                            <Label Grid.Row="1" Grid.Column="1" Text="תת קטגוריה"
+                            <Label Grid.Row="1" Grid.Column="1" Text="תת קטגוריה *"
                                    VerticalOptions="Center" HorizontalTextAlignment="End"
                                    Margin="0,10,10,0" HorizontalOptions="End"/>
                             <Picker x:Name="subCategory" HorizontalOptions="FillAndExpand"
@@ -57,10 +57,10 @@
                                     Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
                             
                             <!--Condition-->
-                            <Label Grid.Row="2" Grid.Column="1" Text="מצב מוצר"
+                            <Label Grid.Row="2"  Grid.Column="1" Text="מצב מוצר *"
                                    VerticalOptions="Center" HorizontalTextAlignment="End"
                                    Margin="0,10,10,0" HorizontalOptions="End"/>
-                            <Picker x:Name="condition" HorizontalOptions="FillAndExpand"
+             <!--               <Picker x:Name="condition" IsVisible="false" HorizontalOptions="FillAndExpand"
                                     Margin="10,10,0,0" Title="בחר מצב מוצר"
                                     Grid.Row="2" Grid.Column="0" VerticalOptions="Center">
                                 <Picker.ItemsSource>
@@ -70,10 +70,18 @@
                                         <x:String>דרוש תיקון/שיפוץ</x:String>
                                     </x:Array>
                                 </Picker.ItemsSource>
-                            </Picker>
+                            </Picker>-->
+
+                            <Grid Grid.Row="2" ColumnSpacing="0" Margin="5,0,0,0">
+                                <Button x:Name="NewBtn" Margin="0,15,5,10" Clicked="ConditionNewClicked"  Text="חדש" BackgroundColor="#19a4b4" Grid.Column="0" BorderColor="#19a4b4" BorderWidth="0.5" TextColor="#ffffff"/>
+                                <Button x:Name="UsedBtn" Margin="0,15,5,10" Clicked="ConditionUsedClicked"  Text="משומש" Grid.Column="1" BorderColor="#19a4b4" BorderWidth="0.5" TextColor="#19a4b4"/>
+                                <Button x:Name="FixBtn" Margin="0,15,5,10" Clicked="ConditionFixClicked"  Text="דרוש תיקון" Grid.Column="2" BorderColor="#19a4b4" BorderWidth="0.5" TextColor="#19a4b4"/>
+
+                                
+                            </Grid>
                             
                             <!--Discription-->
-                            <Label Grid.Row="3" Grid.Column="1" Text="תיאור מוצר"
+                            <Label Grid.Row="3" Grid.Column="1" Text="תיאור מוצר *"
                                    VerticalOptions="Center" HorizontalTextAlignment="End"
                                    Margin="0,10,10,20" HorizontalOptions="End"/>
                             <Entry x:Name="description" Grid.Row="3" Grid.Column="0" 
@@ -116,7 +124,7 @@
                             </Grid.ColumnDefinitions>
 
                             <!--Contact Name-->
-                            <Label Grid.Row="0" Grid.Column="1" Text="שם איש קשר" 
+                            <Label Grid.Row="0" Grid.Column="1" Text="שם איש קשר *" 
                                    VerticalOptions="Center" HorizontalTextAlignment="End"
                                    Margin="0,10,10,0" HorizontalOptions="End"/>
                             <Entry x:Name="contactName" Grid.Row="0" Grid.Column="0" 
@@ -125,7 +133,7 @@
                                    HorizontalTextAlignment="End"/>
 
                             <!--Contact location-->
-                            <Label Grid.Row="1" Grid.Column="1" Text="אזור" 
+                            <Label Grid.Row="1" Grid.Column="1" Text="אזור *" 
                                    VerticalOptions="Center" HorizontalTextAlignment="End"
                                    Margin="0,10,10,0" HorizontalOptions="End"/>
                             <Picker x:Name="EreaPicker" HorizontalOptions="FillAndExpand"
@@ -142,7 +150,7 @@
                                    HorizontalTextAlignment="End"/>
 
                             <!--Contact Phone-->
-                            <Label Grid.Row="3" Grid.Column="1" Text="טלפון ליצירת קשר" 
+                            <Label Grid.Row="3" Grid.Column="1" Text="טלפון ליצירת קשר *" 
                                    VerticalOptions="Center" HorizontalTextAlignment="End"
                                    Margin="0,10,10,0" HorizontalOptions="End"/>
                             <Entry x:Name="contactNumber" Grid.Row="3" Grid.Column="0"
@@ -172,7 +180,7 @@
 
                         <BoxView Grid.Row="0" BackgroundColor="#f5f5f5"/>
 
-                        <Label Grid.Row="0" Text="תמונות מוצר" 
+                        <Label Grid.Row="0" Text="תמונות מוצר (עד 4 תמונות)" 
                                HorizontalTextAlignment="End" VerticalOptions="Center" 
                                HorizontalOptions="EndAndExpand"
                                Margin="0,0,10,0"/>
@@ -208,7 +216,7 @@
                             </control:CarouselView>
 
                             <!--Btn Img-->
-                            <Button Text="בחירת תמונות" Margin="0,50,0,0" FontSize="Medium"
+                            <Button Text="בחירת תמונות" BorderColor="#19a4b4" BorderWidth="0.5" Margin="0,50,0,0" FontSize="Medium"
                             BackgroundColor="Transparent" TextColor="#19a4b4"
                             HorizontalOptions="Center" x:Name="pickPictureButton" Clicked="OnAddImageClick"/>
                         </StackLayout>
@@ -216,7 +224,7 @@
                     
                     <!--Btn Submit-->
                     <Button Text="פרסום מוצר" Clicked="OnAddItemClick" 
-                            HorizontalOptions="FillAndExpand" Margin="20,50,20,20" 
+                            HorizontalOptions="FillAndExpand" Margin="20,30,20,20" 
                             Style="{StaticResource ButtonStyle}"/>
 
                 </StackLayout>
