@@ -27,9 +27,9 @@ namespace MsorLiService.Controllers
         }
 
         // GET tables/Item
-        public IOrderedQueryable<Item> GetAllItems()
+        public IQueryable<Item> GetAllItems()
         {
-            return Query().OrderByDescending(Item => Item.CreatedAt);
+            return Query();
         } 
 
         // GET tables/Item
