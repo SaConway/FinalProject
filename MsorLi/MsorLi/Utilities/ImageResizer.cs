@@ -100,9 +100,6 @@ namespace MsorLi.Utilities
                 resizedImage.Compress(Bitmap.CompressFormat.Png, 100, ms);
                 return ms.ToArray();
             }
-
-
-
         }
 #endif
     }

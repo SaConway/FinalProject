@@ -73,9 +73,15 @@
                             </Picker>-->
 
                             <Grid Grid.Row="2" ColumnSpacing="0" Margin="5,0,0,0">
-                                <Button x:Name="NewBtn" Margin="0,15,5,10" Clicked="ConditionNewClicked"  Text="חדש" BackgroundColor="#19a4b4" Grid.Column="0" BorderColor="#19a4b4" BorderWidth="0.5" TextColor="#ffffff"/>
-                                <Button x:Name="UsedBtn" Margin="0,15,5,10" Clicked="ConditionUsedClicked"  Text="משומש" Grid.Column="1" BorderColor="#19a4b4" BorderWidth="0.5" TextColor="#19a4b4"/>
-                                <Button x:Name="FixBtn" Margin="0,15,5,10" Clicked="ConditionFixClicked"  Text="דרוש תיקון" Grid.Column="2" BorderColor="#19a4b4" BorderWidth="0.5" TextColor="#19a4b4"/>
+                                <Button x:Name="NewBtn" Margin="0,15,5,10" Clicked="ConditionNewClicked" 
+                                        Text="חדש" BackgroundColor="#19a4b4" Grid.Column="0" BorderColor="#19a4b4"
+                                        BorderWidth="0.5" TextColor="#ffffff"/>
+                                <Button x:Name="UsedBtn" Margin="0,15,5,10" Clicked="ConditionUsedClicked" 
+                                        Text="משומש" Grid.Column="1" BorderColor="#19a4b4" BorderWidth="0.5"
+                                        TextColor="#19a4b4" BackgroundColor="Transparent"/>
+                                <!--<Button x:Name="FixBtn" Margin="0,15,5,10" Clicked="ConditionFixClicked"
+                                        Text="דרוש תיקון" Grid.Column="2" BorderColor="#19a4b4" BorderWidth="0.5"
+                                        TextColor="#19a4b4" BackgroundColor="Transparent" />-->
 
                                 
                             </Grid>
@@ -216,7 +222,8 @@
                             </control:CarouselView>
 
                             <!--Btn Img-->
-                            <Button Text="בחירת תמונות" BorderColor="#19a4b4" BorderWidth="0.5" Margin="0,50,0,0" FontSize="Medium"
+                            <Button Text="בחירת תמונות" BorderColor="#19a4b4" BorderWidth="0.5"
+                                    Margin="0,50,0,0" FontSize="Medium"
                             BackgroundColor="Transparent" TextColor="#19a4b4"
                             HorizontalOptions="Center" x:Name="pickPictureButton" Clicked="OnAddImageClick"/>
                         </StackLayout>

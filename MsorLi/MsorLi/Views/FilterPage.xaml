@@ -53,9 +53,9 @@
                                 Margin="0,10,0,0" HorizontalOptions="FillAndExpand">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
-                                    <x:String>כמו חדש</x:String>
+                                    <x:String>חדש</x:String>
                                     <x:String>משומש</x:String>
-                                    <x:String>דרוש תיקון/שיפוץ</x:String>
+                                    <!--<x:String>דרוש תיקון</x:String>-->
                                 </x:Array>
                             </Picker.ItemsSource>
                         </Picker>

@@ -7775,24 +7775,27 @@
     ]
   },
   "packageFolders": {
-    "/Users/Idan Marciano/.nuget/packages/": {}
+    "C:\\Users\\sagee\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.iOS/MsorLi.iOS.csproj",
+      "projectUniqueName": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.iOS\\MsorLi.iOS.csproj",
       "projectName": "MsorLi.iOS",
-      "projectPath": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.iOS/MsorLi.iOS.csproj",
-      "packagesPath": "/Users/Idan Marciano/.nuget/packages/",
-      "outputPath": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.iOS/obj",
+      "projectPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.iOS\\MsorLi.iOS.csproj",
+      "packagesPath": "C:\\Users\\sagee\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.iOS\\obj\\",
       "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
       "configFilePaths": [
-        "/Users/Idan Marciano/.config/NuGet/NuGet.Config"
+        "C:\\Users\\sagee\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "xamarinios10"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7806,75 +7809,75 @@
         "dependencies": {
           "CarouselView.FormsPlugin": {
             "target": "Package",
-            "version": "5.2.0"
-          },
-          "SuaveControls.FloatingActionButton": {
-            "target": "Package",
-            "version": "2018.1.5"
-          },
-          "WindowsAzure.Storage": {
-            "target": "Package",
-            "version": "9.1.1"
-          },
-          "Microsoft.Azure.Mobile.Client": {
-            "target": "Package",
-            "version": "4.0.2"
-          },
-          "Microsoft.Azure.Mobile.Client.SQLiteStore": {
-            "target": "Package",
-            "version": "4.0.2"
-          },
-          "Xamarin.Forms.CarouselView": {
-            "target": "Package",
-            "version": "2.3.0-pre2"
-          },
-          "Xam.Plugins.Forms.ImageCircle": {
-            "target": "Package",
-            "version": "2.0.2"
-          },
-          "Xamarin.FFImageLoading.Transformations": {
-            "target": "Package",
-            "version": "2.3.6"
-          },
-          "Xamarin.FFImageLoading": {
-            "target": "Package",
-            "version": "2.3.6"
-          },
-          "Xamarin.FFImageLoading.Forms": {
-            "target": "Package",
-            "version": "2.3.6"
-          },
-          "Xamarin.Auth": {
-            "target": "Package",
-            "version": "1.6.0.2"
-          },
-          "Xam.Plugins.Settings": {
-            "target": "Package",
-            "version": "4.0.0.7"
-          },
-          "Xamarin.Forms.Extended.InfiniteScrolling": {
-            "target": "Package",
-            "version": "1.0.0-preview2"
-          },
-          "Toast.iOS": {
-            "target": "Package",
-            "version": "1.1.0"
-          },
-          "Xam.Plugins.Messaging": {
-            "target": "Package",
-            "version": "5.2.0"
-          },
-          "Xamarin.Forms": {
-            "target": "Package",
-            "version": "2.5.1.444934"
-          },
-          "Rg.Plugins.Popup": {
-            "target": "Package",
-            "version": "1.1.4.158-pre"
+            "version": "[5.2.0, )"
           },
           "Microsoft.AppCenter": {
             "target": "Package",
-            "version": "1.6.1"
+            "version": "[1.6.1, )"
+          },
+          "Microsoft.Azure.Mobile.Client": {
+            "target": "Package",
+            "version": "[4.0.2, )"
+          },
+          "Microsoft.Azure.Mobile.Client.SQLiteStore": {
+            "target": "Package",
+            "version": "[4.0.2, )"
+          },
+          "Rg.Plugins.Popup": {
+            "target": "Package",
+            "version": "[1.1.4.158-pre, )"
+          },
+          "SuaveControls.FloatingActionButton": {
+            "target": "Package",
+            "version": "[2018.1.5, )"
+          },
+          "Toast.iOS": {
+            "target": "Package",
+            "version": "[1.1.0, )"
+          },
+          "WindowsAzure.Storage": {
+            "target": "Package",
+            "version": "[9.1.1, )"
+          },
+          "Xam.Plugins.Forms.ImageCircle": {
+            "target": "Package",
+            "version": "[2.0.2, )"
+          },
+          "Xam.Plugins.Messaging": {
+            "target": "Package",
+            "version": "[5.2.0, )"
+          },
+          "Xam.Plugins.Settings": {
+            "target": "Package",
+            "version": "[4.0.0.7, )"
+          },
+          "Xamarin.Auth": {
+            "target": "Package",
+            "version": "[1.6.0.2, )"
+          },
+          "Xamarin.FFImageLoading": {
+            "target": "Package",
+            "version": "[2.3.6, )"
+          },
+          "Xamarin.FFImageLoading.Forms": {
+            "target": "Package",
+            "version": "[2.3.6, )"
+          },
+          "Xamarin.FFImageLoading.Transformations": {
+            "target": "Package",
+            "version": "[2.3.6, )"
+          },
+          "Xamarin.Forms": {
+            "target": "Package",
+            "version": "[2.5.1.444934, )"
+          },
+          "Xamarin.Forms.CarouselView": {
+            "target": "Package",
+            "version": "[2.3.0-pre2, )"
+          },
+          "Xamarin.Forms.Extended.InfiniteScrolling": {
+            "target": "Package",
+            "version": "[1.0.0-preview2, )"
           }
         }
       }

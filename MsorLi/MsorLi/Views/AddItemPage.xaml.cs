@@ -103,13 +103,13 @@ namespace MsorLi.Views
                         _conditionString = UsedBtn.Text;
                         break;
 
-                    case "דרוש תיקון":
-                        NewBtn.BackgroundColor = Color.Transparent;
-                        NewBtn.TextColor = Color.FromHex("19a4b4");
-                        FixBtn.BackgroundColor = Color.FromHex("19a4b4");
-                        FixBtn.TextColor = Color.FromHex("ffffff");
-                        _conditionString = FixBtn.Text;
-                        break;
+                    //case "דרוש תיקון":
+                    //    NewBtn.BackgroundColor = Color.Transparent;
+                    //    NewBtn.TextColor = Color.FromHex("19a4b4");
+                    //    FixBtn.BackgroundColor = Color.FromHex("19a4b4");
+                    //    FixBtn.TextColor = Color.FromHex("ffffff");
+                    //    _conditionString = FixBtn.Text;
+                    //    break;
 
                     default:
                         break;
@@ -540,6 +540,7 @@ namespace MsorLi.Views
 
             }
         }
+
         private void ConditionNewClicked(object sender, TappedEventArgs e)
         {
 
@@ -551,21 +552,21 @@ namespace MsorLi.Views
         }
         private void ConditionUsedClicked(object sender, TappedEventArgs e)
         {
-
             ConditionChange();
             UsedBtn.BackgroundColor = Color.FromHex("19a4b4");
             UsedBtn.TextColor = Color.FromHex("ffffff");
             _conditionString = UsedBtn.Text;
         }
-        private void ConditionFixClicked(object sender, TappedEventArgs e)
-        {
 
-            ConditionChange();
-            FixBtn.BackgroundColor = Color.FromHex("19a4b4");
-            FixBtn.TextColor = Color.FromHex("ffffff");
-            _conditionString = FixBtn.Text;
+        //private void ConditionFixClicked(object sender, TappedEventArgs e)
+        //{
 
-        }
+        //    ConditionChange();
+        //    FixBtn.BackgroundColor = Color.FromHex("19a4b4");
+        //    FixBtn.TextColor = Color.FromHex("ffffff");
+        //    _conditionString = FixBtn.Text;
+
+        //}
 
         private void ConditionChange()
         {
@@ -581,15 +582,14 @@ namespace MsorLi.Views
                     UsedBtn.TextColor = Color.FromHex("19a4b4");
                     break;
 
-                case "דרוש תיקון":
-                    FixBtn.BackgroundColor = Color.Transparent;
-                    FixBtn.TextColor = Color.FromHex("19a4b4");
-                    break;
+                //case "דרוש תיקון":
+                //    FixBtn.BackgroundColor = Color.Transparent;
+                //    FixBtn.TextColor = Color.FromHex("19a4b4");
+                //    break;
 
                 default:
                     break;
             }
         }
-
     }
 }
