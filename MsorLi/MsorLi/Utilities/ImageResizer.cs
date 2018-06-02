@@ -91,13 +91,13 @@ namespace MsorLi.Utilities
 
         public static byte[] ResizeImageAndroid(byte[] imageData, float width, float height)
         {
-            // Load the bitmap
             Bitmap originalImage = BitmapFactory.DecodeByteArray(imageData, 0, imageData.Length);
-            Bitmap resizedImage = Bitmap.CreateScaledBitmap(originalImage, (int)width, (int)height, false);
+            Bitmap resizedImage = Bitmap.CreateScaledBitmap(originalImage, (int)width, (int)height, true);
 
             using (MemoryStream ms = new MemoryStream())
             {
-                resizedImage.Compress(Bitmap.CompressFormat.Png, 100, ms);
+                resizedImage.Compress(Bitmap.CompressFormat.Jpeg, 100, ms);
+                resizedImage.Recycle();
                 return ms.ToArray();
             }
         }
