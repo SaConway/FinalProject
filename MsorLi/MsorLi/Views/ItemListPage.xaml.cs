@@ -159,7 +159,7 @@ namespace MsorLi.Views
                 //if there is more items to 
                 OnCanLoadMore = () =>
                 {
-					Boolean count =  ImagePairCount() < _numOfItems;
+                    Boolean count =  ImagePairCount() + 2 < _numOfItems;
 					Footer.IsVisible = count;
 					return count;
                 }
@@ -176,17 +176,12 @@ namespace MsorLi.Views
                 if (!_startupRefresh)
                 {
                     _startupRefresh = true;
-                    CategoryMainStack.IsVisible = false;
-                    CategoryMainStack.IsEnabled = false;
+                    
 
-                    Task t2 =  RefreshItems();
-                    Task t1 = CreateCategories();
-                    await Task.WhenAll(t1, t2);
+                    await CreateCategories();
+                    await RefreshItems();
+                   // await Task.WhenAll(t1, t2);
 
-                    CategoryMainStack.IsVisible = true;
-					CategoryMainStack.IsEnabled = true;
-
-                    await CategoryScroll.ScrollToAsync(_currentCategoryStackLayout, ScrollToPosition.MakeVisible, true);
                 }
             }
             catch (NoConnectionException)
@@ -517,6 +512,9 @@ namespace MsorLi.Views
 
         private async Task CreateCategories()
         {
+            CategoryMainStack.IsVisible = false;
+            CategoryMainStack.IsEnabled = false;
+
             var categories = await CategoryStorage.GetCategories();
             
 
@@ -530,6 +528,13 @@ namespace MsorLi.Views
             CreateCategory("כל המוצרים",
                 _categoryIconSources[_categoryIconSources.Count - 1],
                 defultCategory: true);
+
+
+            CategoryMainStack.IsVisible = true;
+            CategoryMainStack.IsEnabled = true;
+
+            await CategoryScroll.ScrollToAsync(_currentCategoryStackLayout, ScrollToPosition.MakeVisible, true);
+
         }
 
         private void CreateCategory(string categoryName, string categoryIconSource, bool defultCategory = false)
