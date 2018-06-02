@@ -164,6 +164,9 @@
     <PackageReference Include="Microsoft.AppCenter">
       <Version>1.6.1</Version>
     </PackageReference>
+    <PackageReference Include="Xam.Plugin.Connectivity">
+      <Version>4.0.0.186-beta</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Contents.json">
@@ -198,6 +201,7 @@
     <BundleResource Include="Resources\report%402x~iphone.png" />
     <BundleResource Include="Resources\IconSplash%402x.png" />
     <BundleResource Include="Resources\delete%402x.png" />
+    <BundleResource Include="Resources\noconnection.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\share%402x.png" />

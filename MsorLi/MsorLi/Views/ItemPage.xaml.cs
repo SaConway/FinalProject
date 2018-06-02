@@ -49,21 +49,38 @@ namespace MsorLi.Views
         // c-tor
         public ItemPage(string itemId)
         {
+
             _item.Id = itemId;
 
             MessagingCenter.Subscribe<AddItemPage>(this, "Updated Item", async (sender) => {
+                try
+                {
 
-                MessagingCenter.Unsubscribe<AddItemPage>(this, "Updated Item");
 
-                var task1 = SetItemAsync();
-                var task2 = SetItemImagesAsync();
+                    MessagingCenter.Unsubscribe<AddItemPage>(this, "Updated Item");
 
-                await Task.WhenAll(task1, task2);
+                    var task1 = SetItemAsync();
+                    var task2 = SetItemImagesAsync();
 
-                UpdateItemDetails();
-                UpdateItemImages();
+                    await Task.WhenAll(task1, task2);
 
-                MessagingCenter.Send<ItemPage>(this, "Finished To Updated Item");
+                    UpdateItemDetails();
+                    UpdateItemImages();
+
+                    MessagingCenter.Send<ItemPage>(this, "Finished To Updated Item");
+                }
+                catch (NoConnectionException)
+                {
+                    _isRunningItem = false;
+                    if (!NoConnctionPage.Loaded)
+                    {
+                        await Navigation.PushAsync(new NoConnctionPage());
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
 
             });
         }
@@ -88,16 +105,29 @@ namespace MsorLi.Views
 
         async Task InitializeAsync()
         {
-            var task1 = SetItemAsync();
-            var task2 = SetItemImagesAsync();
-            var task3 = SetItemSavedAsync();
+            try
+            {
+                var task1 = SetItemAsync();
+                var task2 = SetItemImagesAsync();
+                var task3 = SetItemSavedAsync();
 
-            await Task.WhenAll(task1, task2, task3);
+                await Task.WhenAll(task1, task2, task3);
 
-            //get more items from same user
-            await GetUserItems(_item.UserId); 
+                //get more items from same user
+                await GetUserItems(_item.UserId);
 
-            MyInitializeComponent();
+                MyInitializeComponent();
+            }
+            catch (NoConnectionException)
+            {
+                _isRunningItem = false;
+                if (!NoConnctionPage.Loaded)
+                {
+                    await Navigation.PushAsync(new NoConnctionPage());
+                }
+            }
+            catch(Exception){}
+
         }
 
         async void MyInitializeComponent()
@@ -159,22 +189,37 @@ namespace MsorLi.Views
 
         protected async override void OnDisappearing()
         {
-            //Save Item
-            if (_saveItem && !_itemWasSaved && _item.Id != null)
+            try
             {
-                await AzureSavedItemService.DefaultManager.UploadToServer(new SavedItem { ItemId = _item.Id, UserId = _userId }, null);
-                UpdateLikeCounter(1);
+                //Save Item
+                if (_saveItem && !_itemWasSaved && _item.Id != null)
+                {
+                    await AzureSavedItemService.DefaultManager.UploadToServer(new SavedItem { ItemId = _item.Id, UserId = _userId }, null);
+                    UpdateLikeCounter(1);
+                }
+                //Unsave Item
+                else if (_unSaveItem && _itemWasSaved && _item.Id != null)
+                {
+                    await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedId });
+                    UpdateLikeCounter(-1);
+                    MessagingCenter.Send<ItemPage, string>(this, "Item Unsaved", _item.Id);
+                }
+                else
+                {
+                    MessagingCenter.Send<ItemPage>(this, "Back From Item Page");
+                }
+            }            
+            catch (NoConnectionException)
+            {
+                _isRunningItem = false;
+                if (!NoConnctionPage.Loaded)
+                {
+                    await Navigation.PushAsync(new NoConnctionPage());
+                }
             }
-            //Unsave Item
-            else if (_unSaveItem && _itemWasSaved && _item.Id != null)
+            catch (Exception)
             {
-                await AzureSavedItemService.DefaultManager.DeleteSavedItem(new SavedItem { Id = _savedId });
-                UpdateLikeCounter(-1);
-                MessagingCenter.Send<ItemPage, string>(this, "Item Unsaved", _item.Id);
-            }
-            else
-            {
-                MessagingCenter.Send<ItemPage>(this, "Back From Item Page");
+
             }
         }
 
@@ -318,6 +363,14 @@ namespace MsorLi.Views
                 MessagingCenter.Send<ItemPage>(this, "Item Deleted");
                 await Navigation.PopAsync();
                 DependencyService.Get<IMessage>().LongAlert("המודעה נמחקה");
+            }      
+            catch (NoConnectionException)
+            {
+                _isRunningItem = false;
+                if (!NoConnctionPage.Loaded)
+                {
+                    await Navigation.PushAsync(new NoConnctionPage());
+                }
             }
             catch (Exception)
             {
@@ -374,29 +427,17 @@ namespace MsorLi.Views
 
         private async Task SetItemAsync()
         {
-            try
-            {
-                _item = await AzureItemService.DefaultManager.GetItemAsync(_item.Id);
-            }
-            catch(Exception){}
+            _item = await AzureItemService.DefaultManager.GetItemAsync(_item.Id);
         }
 
         private async Task SetItemImagesAsync()
         {
-            try
-            {
-                _images = await AzureImageService.DefaultManager.GetItemImages(_item.Id);
-            }
-            catch(Exception){}
+            _images = await AzureImageService.DefaultManager.GetItemImages(_item.Id);
         }
 
         private async Task SetItemSavedAsync()
         {
-            try
-            {
-                _savedId = await AzureSavedItemService.DefaultManager.IsItemSaved(_item.Id, _userId);
-            }
-            catch(Exception){}
+            _savedId = await AzureSavedItemService.DefaultManager.IsItemSaved(_item.Id, _userId);
         }
 
 
@@ -408,26 +449,19 @@ namespace MsorLi.Views
         //Get User Items (By User ID)
         private async Task GetUserItems(string userId)
         {
-            try
-            {
-                AllImages = await AzureImageService.DefaultManager.GetAllImgByUserId(userId);
 
-                if (AllImages.Count > 1)
-                {
-                    ItemList.IsVisible = true;
-                    UserLabel.Text = "מוצרים נוספים של המוסר";
-                    ShowImages();
-                }
-                else
-                {
-                    ItemList.IsVisible = false;
-                    UserLabel.IsVisible = false;
-                }
+            AllImages = await AzureImageService.DefaultManager.GetAllImgByUserId(userId);
+
+            if (AllImages.Count > 1)
+            {
+                ItemList.IsVisible = true;
+                UserLabel.Text = "מוצרים נוספים של המוסר";
+                ShowImages();
             }
-            catch (Exception)
+            else
             {
-                await DisplayAlert("שגיאה", "שגיאה בקבלת מידע מהשרת", "אישור");
-
+                ItemList.IsVisible = false;
+                UserLabel.IsVisible = false;
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MsorLi.Utilities;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -76,6 +77,13 @@ namespace MsorLi.Views
                     }
                 }
             }
+            catch (NoConnectionException)
+            {
+                if (!NoConnctionPage.Loaded)
+                {
+                    await Navigation.PushAsync(new NoConnctionPage());
+                }
+            }
             catch (Exception)
             {
 
@@ -87,7 +95,21 @@ namespace MsorLi.Views
 
         private async void OnCategoryChanged(object sender, EventArgs e)
         {
-            await SetSubCategories();
+            try
+            {
+                await SetSubCategories();
+            }
+            catch (NoConnectionException)
+            {
+                if (!NoConnctionPage.Loaded)
+                {
+                    await Navigation.PushAsync(new NoConnctionPage());
+                }
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void OnConditionChanged(object sender, EventArgs e)
@@ -148,23 +170,18 @@ namespace MsorLi.Views
 
         private async Task SetSubCategories()
         {
-            try
+           
+            var subCategories = await Services.AzureSubCategoryService.DefaultManager.GetCategories(CategoryPicker.Items[CategoryPicker.SelectedIndex]);
+
+            SubCategoryPicker.Items.Clear();
+            foreach (var sc in subCategories)
             {
-                var subCategories = await Services.AzureSubCategoryService.DefaultManager.GetCategories(CategoryPicker.Items[CategoryPicker.SelectedIndex]);
-
-                SubCategoryPicker.Items.Clear();
-                foreach (var sc in subCategories)
-                {
-                    SubCategoryPicker.Items.Add(sc.Name);
-                }
-
-                SubCategoryPicker.IsEnabled = true;
-                if (!SearchBtn.IsEnabled) EnableSubmit();
+                SubCategoryPicker.Items.Add(sc.Name);
             }
-            catch (Exception)
-            {
 
-            }
+            SubCategoryPicker.IsEnabled = true;
+            if (!SearchBtn.IsEnabled) EnableSubmit();
+  
         }
 
         private void EnableSubmit()

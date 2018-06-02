@@ -24,14 +24,19 @@ namespace MsorLi.Services
 
         public static async Task<string> UploadFileAsync(Stream stream)
         {
-            var container = GetContainer();
-            await container.CreateIfNotExistsAsync();
+            if (await Connection.IsServerReachableAndRunning())
+            {
+                var container = GetContainer();
+                await container.CreateIfNotExistsAsync();
 
-            var name = Guid.NewGuid().ToString();
-            var fileBlob = container.GetBlockBlobReference(name);
-            await fileBlob.UploadFromStreamAsync(stream);
-
-            return name;
+                var name = Guid.NewGuid().ToString();
+                var fileBlob = container.GetBlockBlobReference(name);
+                await fileBlob.UploadFromStreamAsync(stream);
+                return name;
+            }
+            else
+                throw new NoConnectionException();
+            
         }
 
         public static async Task<List<string>> SaveImagesInDB(List<byte[]> byteData)
@@ -62,7 +67,7 @@ namespace MsorLi.Services
 
         public static async Task DeleteImage(string image) // Name in the container
         {
-            try
+            if (await Connection.IsServerReachableAndRunning())
             {
                 string toBeSearched = BLOB_URL;
                 string imageIdToDelete = image.Substring(image.IndexOf(toBeSearched, StringComparison.CurrentCulture) + toBeSearched.Length);
@@ -71,11 +76,8 @@ namespace MsorLi.Services
                 var fileBlob = container.GetBlockBlobReference(imageIdToDelete);
                 await fileBlob.DeleteAsync();
             }
-            catch(Exception)
-            {
-                
-            }
+            else
+                throw new NoConnectionException();
         }
-              
     }
 }

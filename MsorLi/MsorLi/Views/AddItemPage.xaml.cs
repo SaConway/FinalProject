@@ -82,7 +82,6 @@ namespace MsorLi.Views
 
                 category.SelectedItem = item.Category;
                 description.Text = item.Description;
-                //condition.SelectedItem = item.Condition;
 
 
                 switch (item.Condition)
@@ -103,14 +102,6 @@ namespace MsorLi.Views
                         _conditionString = UsedBtn.Text;
                         break;
 
-                    //case "דרוש תיקון":
-                    //    NewBtn.BackgroundColor = Color.Transparent;
-                    //    NewBtn.TextColor = Color.FromHex("19a4b4");
-                    //    FixBtn.BackgroundColor = Color.FromHex("19a4b4");
-                    //    FixBtn.TextColor = Color.FromHex("ffffff");
-                    //    _conditionString = FixBtn.Text;
-                    //    break;
-
                     default:
                         break;
                 }
@@ -130,6 +121,13 @@ namespace MsorLi.Views
 
                 pickPictureButton.IsEnabled = _keyValues.Count == Constants.MAX_NUM_OF_IMAGES ? false : true;
             }
+            catch(NoConnectionException)
+            {
+                if (!NoConnctionPage.Loaded)
+                {
+                    await Navigation.PushAsync(new NoConnctionPage());
+                }
+            }
             catch (Exception) { }
         }
 
@@ -141,11 +139,20 @@ namespace MsorLi.Views
                 {
                     _firstAppearing = false;
 
+                    //get areas from server
                     await SetEreas();
                     EreaPicker.SelectedItem = _erea;
 
+                    //get categories from server
                     await SetCategoris();
 
+                }
+            }
+            catch (NoConnectionException)
+            {
+                if (!NoConnctionPage.Loaded)
+                {
+                    await Navigation.PushAsync(new NoConnctionPage());
                 }
             }
             catch (Exception)
@@ -233,6 +240,7 @@ namespace MsorLi.Views
                 MyScrollView.Opacity = 0.5;
                 MyFrame.IsVisible = true;
 
+                //upload item into item table
                 await UploadItem();
 
                 if (_item.Id == null)
@@ -272,6 +280,14 @@ namespace MsorLi.Views
                 _isRunningItem = false;
 
             }
+            catch (NoConnectionException)
+            {
+                _isRunningItem = false;
+                if (!NoConnctionPage.Loaded)
+                {
+                    await Navigation.PushAsync(new NoConnctionPage());
+                }
+            }
 
             catch (Exception)
             {
@@ -288,6 +304,14 @@ namespace MsorLi.Views
             {
                 string Category = category.Items[category.SelectedIndex];
                 await SetSubCategories(Category);
+            }
+            catch (NoConnectionException)
+            {
+                _isRunningItem = false;
+                if (!NoConnctionPage.Loaded)
+                {
+                    await Navigation.PushAsync(new NoConnctionPage());
+                }
             }
             catch (Exception)
             {
@@ -358,6 +382,14 @@ namespace MsorLi.Views
 
                 _isRunningItem = false;
             }
+            catch (NoConnectionException)
+            {
+                _isRunningItem = false;
+                if (!NoConnctionPage.Loaded)
+                {
+                    await Navigation.PushAsync(new NoConnctionPage());
+                }
+            }
             catch (Exception)
             {
                 _isRunningItem = false;
@@ -396,10 +428,19 @@ namespace MsorLi.Views
                     item.Value.Item1.Condition = _conditionString;
 
                     var t = UploadImageToDB(item.Value.Item1);
+
                     tList.Add(t);
                 }
 
                 await Task.WhenAll(tList);
+            }
+            catch (NoConnectionException)
+            {
+                _isRunningItem = false;
+                if (!NoConnctionPage.Loaded)
+                {
+                    await Navigation.PushAsync(new NoConnctionPage());
+                }
             }
             catch (Exception)
             {
@@ -429,26 +470,19 @@ namespace MsorLi.Views
                     _item.Date = DateTime.Today.ToString("d");
                     _item.Time = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString();
                 }
-
-                await AzureItemService.DefaultManager.UploadToServer(_item, _item.Id);
-
             }
             catch (Exception)
             {
 
             }
+
+            await AzureItemService.DefaultManager.UploadToServer(_item, _item.Id);
+   
         }
 
         private async Task UploadImageToDB(ItemImage itemImage)
         {
-            try
-            {
-                await AzureImageService.DefaultManager.UploadToServer(itemImage, itemImage.Id);
-            }
-            catch (Exception)
-            {
-
-            }
+            await AzureImageService.DefaultManager.UploadToServer(itemImage, itemImage.Id);
         }
 
         private void InitializeCarouselView()
@@ -457,7 +491,6 @@ namespace MsorLi.Views
             {
                 imagesView.Margin = new Thickness(5, 60, 5, 0);
                 imagesView.HeightRequest = 300;
-
             }
             catch (Exception)
             {
@@ -486,59 +519,45 @@ namespace MsorLi.Views
 
         private async Task SetSubCategories(string category)
         {
-            try
+
+            subCategory.IsEnabled = true;
+
+            var SubCategories = await SubCategoryStorage.GetSubCategories(category);
+
+            subCategory.Items.Clear();
+            foreach (var item in SubCategories)
             {
-                subCategory.IsEnabled = true;
-
-                var SubCategories = await SubCategoryStorage.GetSubCategories(category);
-
-                subCategory.Items.Clear();
-                foreach (var item in SubCategories)
-                {
-                    subCategory.Items.Add(item.Name);
-                }
+                subCategory.Items.Add(item.Name);
             }
-            catch (Exception)
-            {
 
-            }
         }
 
         private async Task SetCategoris()
         {
-            try
-            {
-                var categories = await CategoryStorage.GetCategories();
 
-                category.Items.Clear();
-                foreach (var c in categories)
-                {
-                    if (!category.Items.Contains(c.Name))
-                        category.Items.Add(c.Name);
-                }
-            }
-            catch (Exception)
-            {
+            var categories = await CategoryStorage.GetCategories();
 
+            category.Items.Clear();
+            foreach (var c in categories)
+            {
+                if (!category.Items.Contains(c.Name))
+                    category.Items.Add(c.Name);
             }
+
+
         }
 
         private async Task SetEreas()
         {
-            try
-            {
-                var locations = await LocationStorage.GetLocations();
 
-                foreach (var l in locations)
-                {
-                    if (!EreaPicker.Items.Contains(l.Name))
-                        EreaPicker.Items.Add(l.Name);
-                }
-            }
-            catch (Exception)
-            {
+            var locations = await LocationStorage.GetLocations();
 
+            foreach (var l in locations)
+            {
+                if (!EreaPicker.Items.Contains(l.Name))
+                    EreaPicker.Items.Add(l.Name);
             }
+
         }
 
         private void ConditionNewClicked(object sender, TappedEventArgs e)
@@ -558,16 +577,6 @@ namespace MsorLi.Views
             _conditionString = UsedBtn.Text;
         }
 
-        //private void ConditionFixClicked(object sender, TappedEventArgs e)
-        //{
-
-        //    ConditionChange();
-        //    FixBtn.BackgroundColor = Color.FromHex("19a4b4");
-        //    FixBtn.TextColor = Color.FromHex("ffffff");
-        //    _conditionString = FixBtn.Text;
-
-        //}
-
         private void ConditionChange()
         {
             switch (_conditionString)
@@ -581,11 +590,6 @@ namespace MsorLi.Views
                     UsedBtn.BackgroundColor = Color.Transparent;
                     UsedBtn.TextColor = Color.FromHex("19a4b4");
                     break;
-
-                //case "דרוש תיקון":
-                //    FixBtn.BackgroundColor = Color.Transparent;
-                //    FixBtn.TextColor = Color.FromHex("19a4b4");
-                //    break;
 
                 default:
                     break;

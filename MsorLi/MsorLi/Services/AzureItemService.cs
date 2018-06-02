@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using MsorLi.Models;
-
+using MsorLi.Utilities;
 
 namespace MsorLi.Services
 {
@@ -33,19 +33,28 @@ namespace MsorLi.Services
 
         public async Task<Item> GetItemAsync(string itemId)
         {
-            try
+            if (await Connection.IsServerReachableAndRunning())
             {
                 Item item = await _table.LookupAsync(itemId);
                 return item;
             }
-
-            catch (Exception) { }
-            return null;
+            else
+            {
+                throw new NoConnectionException();
+            }
         }
 
         public async Task DeleteItem(Item item)
         {
-            await _table.DeleteAsync(item);
+            if (await Connection.IsServerReachableAndRunning())
+            {
+                await _table.DeleteAsync(item);
+            }
+            else
+            {
+                throw new NoConnectionException();
+            }
+            
         }
 
 
@@ -66,7 +75,5 @@ namespace MsorLi.Services
             }
 
         }
-
-
     }
 }

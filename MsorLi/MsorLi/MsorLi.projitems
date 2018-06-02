@@ -34,6 +34,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NoConnctionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -122,6 +126,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ImagePopUp.xaml.cs">
       <DependentUpon>ImagePopUp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NoConnctionPage.xaml.cs">
+      <DependentUpon>NoConnctionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\Connection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\NoConnectionException.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ItemListPage.xaml">

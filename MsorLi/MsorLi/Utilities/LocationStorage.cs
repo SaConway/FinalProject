@@ -18,17 +18,26 @@ namespace MsorLi.Utilities
 
         public static async Task<List<Models.Location>> GetLocations()
         {
-            if (_locations == null)
+            if (await Connection.IsServerReachableAndRunning())
             {
-                await LoadLocations();
+                if (_locations == null)
+                {
+                    await LoadLocations();
+                }
+                return _locations;
             }
-            return _locations;
+            else
+                throw new NoConnectionException();
         }
 
         private static async Task LoadLocations()
         {
             _locations = new List<Models.Location>();
-            _locations = await AzureLocationService.DefaultManager.GetLocations();
+            if (await Connection.IsServerReachableAndRunning())
+                _locations = await AzureLocationService.DefaultManager.GetLocations();
+            
+            else
+                throw new NoConnectionException();
         }
     }
 }

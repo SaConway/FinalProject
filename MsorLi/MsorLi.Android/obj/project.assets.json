@@ -808,6 +808,17 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
+      "Xam.Plugin.Connectivity/4.0.0.186-beta": {
+        "type": "package",
+        "compile": {
+          "lib/MonoAndroid10/Plugin.Connectivity.Abstractions.dll": {},
+          "lib/MonoAndroid10/Plugin.Connectivity.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10/Plugin.Connectivity.Abstractions.dll": {},
+          "lib/MonoAndroid10/Plugin.Connectivity.dll": {}
+        }
+      },
       "Xam.Plugins.Forms.ImageCircle/2.0.2": {
         "type": "package",
         "dependencies": {
@@ -4534,6 +4545,71 @@
         "windowsazure.storage.nuspec"
       ]
     },
+    "Xam.Plugin.Connectivity/4.0.0.186-beta": {
+      "sha512": "omhy5ycD6LoXwuJYJAOQgth86oayAXfglT4e/ce5h8cn8oO3QJYZZug6leT5wQD8bD1Kb0wxIOXs8jKZZO1/Gw==",
+      "type": "package",
+      "path": "xam.plugin.connectivity/4.0.0.186-beta",
+      "files": [
+        "lib/MonoAndroid10/Plugin.Connectivity.Abstractions.dll",
+        "lib/MonoAndroid10/Plugin.Connectivity.Abstractions.pdb",
+        "lib/MonoAndroid10/Plugin.Connectivity.Abstractions.xml",
+        "lib/MonoAndroid10/Plugin.Connectivity.dll",
+        "lib/MonoAndroid10/Plugin.Connectivity.pdb",
+        "lib/MonoAndroid10/Plugin.Connectivity.xml",
+        "lib/UAP10/Plugin.Connectivity.Abstractions.dll",
+        "lib/UAP10/Plugin.Connectivity.Abstractions.pdb",
+        "lib/UAP10/Plugin.Connectivity.Abstractions.xml",
+        "lib/UAP10/Plugin.Connectivity.XML",
+        "lib/UAP10/Plugin.Connectivity.dll",
+        "lib/UAP10/Plugin.Connectivity.pdb",
+        "lib/UAP10/Plugin.Connectivity.pri",
+        "lib/UAP10/Plugin.Connectivity/Properties/Plugin.Connectivity.rd.xml",
+        "lib/Xamarin.Mac20/Plugin.Connectivity.Abstractions.dll",
+        "lib/Xamarin.Mac20/Plugin.Connectivity.Abstractions.pdb",
+        "lib/Xamarin.Mac20/Plugin.Connectivity.Abstractions.xml",
+        "lib/Xamarin.Mac20/Plugin.Connectivity.dll",
+        "lib/Xamarin.Mac20/Plugin.Connectivity.pdb",
+        "lib/Xamarin.Mac20/Plugin.Connectivity.xml",
+        "lib/Xamarin.iOS10/Plugin.Connectivity.Abstractions.dll",
+        "lib/Xamarin.iOS10/Plugin.Connectivity.Abstractions.pdb",
+        "lib/Xamarin.iOS10/Plugin.Connectivity.Abstractions.xml",
+        "lib/Xamarin.iOS10/Plugin.Connectivity.dll",
+        "lib/Xamarin.iOS10/Plugin.Connectivity.pdb",
+        "lib/Xamarin.iOS10/Plugin.Connectivity.xml",
+        "lib/XamarinTVOS/Plugin.Connectivity.Abstractions.dll",
+        "lib/XamarinTVOS/Plugin.Connectivity.Abstractions.pdb",
+        "lib/XamarinTVOS/Plugin.Connectivity.Abstractions.xml",
+        "lib/XamarinTVOS/Plugin.Connectivity.dll",
+        "lib/XamarinTVOS/Plugin.Connectivity.pdb",
+        "lib/XamarinTVOS/Plugin.Connectivity.xml",
+        "lib/net45/Plugin.Connectivity.Abstractions.dll",
+        "lib/net45/Plugin.Connectivity.Abstractions.pdb",
+        "lib/net45/Plugin.Connectivity.Abstractions.xml",
+        "lib/net45/Plugin.Connectivity.XML",
+        "lib/net45/Plugin.Connectivity.dll",
+        "lib/net45/Plugin.Connectivity.pdb",
+        "lib/netcoreapp2.0/Plugin.Connectivity.Abstractions.dll",
+        "lib/netcoreapp2.0/Plugin.Connectivity.Abstractions.pdb",
+        "lib/netcoreapp2.0/Plugin.Connectivity.Abstractions.xml",
+        "lib/netcoreapp2.0/Plugin.Connectivity.deps.json",
+        "lib/netcoreapp2.0/Plugin.Connectivity.dll",
+        "lib/netcoreapp2.0/Plugin.Connectivity.xml",
+        "lib/netstandard1.0/Plugin.Connectivity.Abstractions.dll",
+        "lib/netstandard1.0/Plugin.Connectivity.Abstractions.pdb",
+        "lib/netstandard1.0/Plugin.Connectivity.Abstractions.xml",
+        "lib/netstandard1.0/Plugin.Connectivity.deps.json",
+        "lib/netstandard1.0/Plugin.Connectivity.dll",
+        "lib/netstandard1.0/Plugin.Connectivity.pdb",
+        "lib/netstandard1.0/Plugin.Connectivity.xml",
+        "lib/tizen40/Plugin.Connectivity.Abstractions.dll",
+        "lib/tizen40/Plugin.Connectivity.Abstractions.pdb",
+        "lib/tizen40/Plugin.Connectivity.Abstractions.xml",
+        "lib/tizen40/Plugin.Connectivity.deps.json",
+        "lib/tizen40/Plugin.Connectivity.dll",
+        "xam.plugin.connectivity.4.0.0.186-beta.nupkg.sha512",
+        "xam.plugin.connectivity.nuspec"
+      ]
+    },
     "Xam.Plugins.Forms.ImageCircle/2.0.2": {
       "sha512": "LyLQE2Pn9hHFKURhCCs5Z+5nb5KALmzQPUySeCi7AmCBbs0UkXQ48PSre8Nf4SbXSvASe8ewycD++xeqaeufJw==",
       "type": "package",
@@ -5271,6 +5347,7 @@
       "SuaveControls.FloatingActionButton >= 2018.1.5",
       "Toasts.Forms.Plugin >= 3.3.2",
       "WindowsAzure.Storage >= 9.1.0",
+      "Xam.Plugin.Connectivity >= 4.0.0.186-beta",
       "Xam.Plugins.Forms.ImageCircle >= 2.0.2",
       "Xam.Plugins.Messaging >= 5.1.0",
       "Xam.Plugins.Settings >= 3.1.1",
@@ -5286,27 +5363,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sagee\\.nuget\\packages\\": {}
+    "/Users/Idan Marciano/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.Android\\MsorLi.Android.csproj",
+      "projectUniqueName": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/MsorLi.Android.csproj",
       "projectName": "MsorLi.Android",
-      "projectPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.Android\\MsorLi.Android.csproj",
-      "packagesPath": "C:\\Users\\sagee\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi.Android\\obj\\",
+      "projectPath": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/MsorLi.Android.csproj",
+      "packagesPath": "/Users/Idan Marciano/.nuget/packages/",
+      "outputPath": "/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj",
       "projectStyle": "PackageReference",
-      "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\sagee\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/Idan Marciano/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "monoandroid81"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5315,103 +5389,97 @@
         }
       }
     },
+    "dependencies": {
+      "Xam.Plugin.Connectivity": {
+        "target": "Package",
+        "version": "[4.0.0.186-beta, )"
+      }
+    },
     "frameworks": {
       "monoandroid81": {
         "dependencies": {
           "CarouselView.FormsPlugin": {
             "target": "Package",
-            "version": "[5.2.0, )"
-          },
-          "Microsoft.AppCenter": {
-            "target": "Package",
-            "version": "[1.6.1, )"
+            "version": "5.2.0"
           },
           "Microsoft.Azure.Mobile.Client": {
             "target": "Package",
-            "version": "[3.1.0, )"
+            "version": "3.1.0"
           },
           "Microsoft.Azure.Mobile.Client.SQLiteStore": {
             "target": "Package",
-            "version": "[3.1.0, )"
-          },
-          "Rg.Plugins.Popup": {
-            "target": "Package",
-            "version": "[1.1.4.158-pre, )"
+            "version": "3.1.0"
           },
           "SuaveControls.FloatingActionButton": {
             "target": "Package",
-            "version": "[2018.1.5, )"
-          },
-          "Toasts.Forms.Plugin": {
-            "target": "Package",
-            "version": "[3.3.2, )"
-          },
-          "WindowsAzure.Storage": {
-            "target": "Package",
-            "version": "[9.1.0, )"
-          },
-          "Xam.Plugins.Forms.ImageCircle": {
-            "target": "Package",
-            "version": "[2.0.2, )"
+            "version": "2018.1.5"
           },
           "Xam.Plugins.Messaging": {
             "target": "Package",
-            "version": "[5.1.0, )"
+            "version": "5.1.0"
           },
           "Xam.Plugins.Settings": {
             "target": "Package",
-            "version": "[3.1.1, )"
+            "version": "3.1.1"
           },
           "Xamarin.Android.Support.CustomTabs": {
             "target": "Package",
-            "version": "[23.4.0.1, )"
+            "version": "23.4.0.1"
           },
           "Xamarin.Android.Support.v4": {
             "target": "Package",
-            "version": "[25.4.0.2, )"
+            "version": "25.4.0.2"
           },
           "Xamarin.Android.Support.v7.AppCompat": {
             "target": "Package",
-            "version": "[25.4.0.2, )"
+            "version": "25.4.0.2"
           },
-          "Xamarin.FFImageLoading": {
+          "WindowsAzure.Storage": {
             "target": "Package",
-            "version": "[2.3.6, )"
-          },
-          "Xamarin.FFImageLoading.Forms": {
-            "target": "Package",
-            "version": "[2.3.6, )"
-          },
-          "Xamarin.FFImageLoading.Transformations": {
-            "target": "Package",
-            "version": "[2.3.6, )"
-          },
-          "Xamarin.Forms": {
-            "target": "Package",
-            "version": "[2.5.1.444934, )"
+            "version": "9.1.0"
           },
           "Xamarin.Forms.CarouselView": {
             "target": "Package",
-            "version": "[2.3.0-pre2, )"
+            "version": "2.3.0-pre2"
+          },
+          "Xam.Plugins.Forms.ImageCircle": {
+            "target": "Package",
+            "version": "2.0.2"
+          },
+          "Xamarin.FFImageLoading.Transformations": {
+            "target": "Package",
+            "version": "2.3.6"
+          },
+          "Xamarin.FFImageLoading": {
+            "target": "Package",
+            "version": "2.3.6"
+          },
+          "Xamarin.FFImageLoading.Forms": {
+            "target": "Package",
+            "version": "2.3.6"
           },
           "Xamarin.Forms.Extended.InfiniteScrolling": {
             "target": "Package",
-            "version": "[1.0.0-preview2, )"
+            "version": "1.0.0-preview2"
+          },
+          "Toasts.Forms.Plugin": {
+            "target": "Package",
+            "version": "3.3.2"
+          },
+          "Rg.Plugins.Popup": {
+            "target": "Package",
+            "version": "1.1.4.158-pre"
+          },
+          "Xamarin.Forms": {
+            "target": "Package",
+            "version": "2.5.1.444934"
+          },
+          "Microsoft.AppCenter": {
+            "target": "Package",
+            "version": "1.6.1"
           }
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1608",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: Xamarin.Android.Support.CustomTabs 23.4.0.1 requires Xamarin.Android.Support.v4 (= 23.4.0.1) but version Xamarin.Android.Support.v4 25.4.0.2 was resolved.",
-      "libraryId": "Xamarin.Android.Support.v4",
-      "targetGraphs": [
-        "MonoAndroid,Version=v8.1"
-      ]
-    }
-  ]
+  }
 }

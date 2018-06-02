@@ -36,6 +36,10 @@ namespace MsorLi.Droid
                 DependencyService.Register<ToastNotification>(); // Register your dependency
                 ToastNotification.Init(this);
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                 base.SetTheme(Resource.Style.MainTheme);
                 base.OnCreate(bundle);
                 Rg.Plugins.Popup.Popup.Init(this, bundle);

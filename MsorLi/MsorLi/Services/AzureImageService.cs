@@ -33,7 +33,7 @@ namespace MsorLi.Services
 
         public async Task<ObservableCollection<ItemImage>> GetItemImages(string itemId)
         {
-            try
+            if (await Connection.IsServerReachableAndRunning())
             {
                 IEnumerable<ItemImage> images = await _table
                     .Where(itemImage => itemImage.ItemId == itemId)
@@ -41,40 +41,14 @@ namespace MsorLi.Services
                     .ToEnumerableAsync();
                 return new ObservableCollection<ItemImage>(images);
             }
-
-            catch (Exception) { }
-            return null;
+            else
+                throw new NoConnectionException();
         }
 
 
         public async Task<ObservableCollection<ItemImage>> GetAllPriorityImages
             (int pageIndex, string category, string subCategory, string condition, string erea)
         {
-            //var _TypeCategory = typeof(ItemImage);
-            //var _PropCategory = _TypeCategory.GetProperty("Category");
-            //var _ParamCategory = System.Linq.Expressions.Expression.Parameter(_TypeCategory, _PropCategory.Name);
-            //var _LeftCategory = System.Linq.Expressions.Expression.PropertyOrField(_ParamCategory, _PropCategory.Name);
-            //var _RightCategory = System.Linq.Expressions.Expression.Constant(category, _PropCategory.PropertyType);
-            //var _BodyCategory = System.Linq.Expressions.Expression.Equal(_LeftCategory, _RightCategory);
-            //var _WhereCategory = System.Linq.Expressions.Expression.Lambda<Func<ItemImage, bool>>(_BodyCategory, _ParamCategory);
-
-            //var _TypeSubCategory = typeof(ItemImage);
-            //var _PropSubCategory = _TypeSubCategory.GetProperty("SubCategory");
-            //var _ParamSubCategory = System.Linq.Expressions.Expression.Parameter(_TypeSubCategory, _PropSubCategory.Name);
-            //var _LeftSubCategory = System.Linq.Expressions.Expression.PropertyOrField(_ParamSubCategory, _PropSubCategory.Name);
-            //var _RightSubCategory = System.Linq.Expressions.Expression.Constant(subCategory, _PropSubCategory.PropertyType);
-            //var _BodySubCategory = System.Linq.Expressions.Expression.Equal(_LeftSubCategory, _RightSubCategory);
-            //var _WhereSubCategory = System.Linq.Expressions.Expression.Lambda<Func<ItemImage, bool>>(_BodySubCategory, _ParamSubCategory);
-
-            //var _TypeCondition = typeof(ItemImage);
-            //var _PropCondition = _TypeCondition.GetProperty("Condition");
-            //var _ParamCondition = System.Linq.Expressions.Expression.Parameter(_TypeCondition, _PropCondition.Name);
-            //var _LeftCondition = System.Linq.Expressions.Expression.PropertyOrField(_ParamCondition, _PropCondition.Name);
-            //var _RightCondition = System.Linq.Expressions.Expression.Constant(condition, _PropCondition.PropertyType);
-            //var _BodyCondition = System.Linq.Expressions.Expression.Equal(_LeftCondition, _RightCondition);
-            //var _WhereCondition = System.Linq.Expressions.Expression.Lambda<Func<ItemImage, bool>>(_BodyCondition, _ParamCondition);
-
-
             try
             {
                 IEnumerable<ItemImage> images = null;
@@ -209,7 +183,7 @@ namespace MsorLi.Services
 
         public async Task<ObservableCollection<ItemImage>> GetAllImgByUserId(string userId)
         {
-            try
+            if (await Connection.IsServerReachableAndRunning())
             {
                 IEnumerable<ItemImage> images = await _table
                     .OrderByDescending(ItemImage => ItemImage.CreatedAt)
@@ -218,9 +192,9 @@ namespace MsorLi.Services
 
                 return new ObservableCollection<ItemImage>(images);
             }
+            else
+                throw new NoConnectionException();
 
-            catch (Exception) { }
-            return null;
         }
 
         public async Task<string> GetImageUrl(string itemId)
@@ -243,7 +217,11 @@ namespace MsorLi.Services
 
         public async Task DeleteImage(ItemImage itemImage)
         {
-            await _table.DeleteAsync(itemImage);
+            if (await Connection.IsServerReachableAndRunning())
+                await _table.DeleteAsync(itemImage);
+            else
+                throw new NoConnectionException();
+
         }
 
 		public async Task<int> NumOfItems(string category, string subCategory,
