@@ -61,6 +61,13 @@ namespace MsorLi.Views
                     EreaPicker.SelectedItem = _erea;
                 }
             }
+            catch (NoConnectionException)
+            {
+                if (!NoConnctionPage.Loaded)
+                {
+                    await Navigation.PushAsync(new NoConnctionPage());
+                }
+            }
             catch (Exception)
             {
 
@@ -123,6 +130,13 @@ namespace MsorLi.Views
                 Settings.UpdateUserInfo(new_user);
                 await Navigation.PopAsync();
             }
+            catch (NoConnectionException)
+            {
+                if (!NoConnctionPage.Loaded)
+                {
+                    await Navigation.PushAsync(new NoConnctionPage());
+                }
+            }
             catch (Exception)
             {
                 await DisplayAlert("שגיאה", "לא ניתן להשלים את הפעולה. נסה שנית.", "אישור");
@@ -147,33 +161,27 @@ namespace MsorLi.Views
             return true;
         }
 
-        private async System.Threading.Tasks.Task<bool> Validation()
+        private async Task<bool> Validation()
         {
-            try
-            {
-                System.Text.RegularExpressions.Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-                Match match = regex.Match(email.Text);
+            
+            System.Text.RegularExpressions.Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(email.Text);
 
-                if (!match.Success)
-                {
-                    throw new Exception();
-                }
-                if (email.Text != Settings.Email)
-                {
-                    var emailCheck = await AzureUserService.DefaultManager.IsEmailExistAsync(email.Text);
-                    if (emailCheck)
-                    {
-                        //Email exist
-                        return false;
-                    }
-                }
-                return true;
-            }
-
-            catch (Exception)
+            if (!match.Success)
             {
                 return false;
             }
+            if (email.Text != Settings.Email)
+            {
+                var emailCheck = await AzureUserService.DefaultManager.IsEmailExistAsync(email.Text);
+                if (emailCheck)
+                {
+                    //Email exist
+                    return false;
+                }
+            }
+            return true;
+      
         }
          
 

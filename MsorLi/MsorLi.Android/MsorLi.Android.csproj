@@ -113,6 +113,9 @@
     <PackageReference Include="Microsoft.AppCenter">
       <Version>1.6.1</Version>
     </PackageReference>
+    <PackageReference Include="Xam.Plugin.Connectivity">
+      <Version>4.0.0.186-beta</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IShareService.cs" />
@@ -183,6 +186,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\love.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\profile.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable\noconnection.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

@@ -1,4 +1,5 @@
 ﻿using MsorLi.Models;
+using MsorLi.Utilities;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -61,7 +62,7 @@ namespace MsorLi.Services
         // Return ItemSaved id if exist
         public async Task<string> IsItemSaved(string itemId, string userId)
         {
-            try
+            if (await Connection.IsServerReachableAndRunning())
             {
                 var mySavedItem = await _table
                     .Where(Saved => Saved.ItemId == itemId && Saved.UserId == userId)
@@ -69,11 +70,9 @@ namespace MsorLi.Services
 
                 return mySavedItem.Count == 0 ? "" : mySavedItem[0].Id;
             }
+            else
+                throw new NoConnectionException();
 
-            catch (Exception)
-            {
-                return "";
-            }
         }
 
         public async Task<int> NumOfItemsSavedByUser(string userId)

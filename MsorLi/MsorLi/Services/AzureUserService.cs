@@ -47,7 +47,7 @@ namespace MsorLi.Services
 
         public async Task<bool> IsEmailExistAsync(string email)
         {
-            try
+            if (await Connection.IsServerReachableAndRunning())
             {
                 var user = await _table
                     .Where(User => User.Email == email)
@@ -55,10 +55,10 @@ namespace MsorLi.Services
 
                 return user.Count != 0 ? true : false;
             }
+            else
+                throw new NoConnectionException();
 
-            catch (Exception)
-            {}
-            return false;
+            //return false;
         }
 
         public async Task<User> IsFacebookIdExistAsync(string facebookId)
@@ -79,7 +79,7 @@ namespace MsorLi.Services
 
         public async Task<int> UpdateNumOfItems(string userId, int prefix)
         {
-            try
+            if (await Connection.IsServerReachableAndRunning())
             {
                 var user = await _table
                     .LookupAsync(userId);
@@ -89,17 +89,16 @@ namespace MsorLi.Services
                 await UploadToServer(user, user.Id);
 
                 return user.NumOfItems;
-
             }
-            catch(Exception)
+            else
             {
-                return Int32.Parse(Settings.NumOfItems);
+                throw new NoConnectionException();
             }
         }
 
         public async Task<int> UpdateNumOfItemsLiked(string userId, int prefix)
         {
-            try
+            if (await Connection.IsServerReachableAndRunning())
             {
                 var user = await _table
                     .LookupAsync(userId);
@@ -109,12 +108,10 @@ namespace MsorLi.Services
                 await UploadToServer(user, user.Id);
 
                 return user.NumOfItemsUserLike;
-
             }
-            catch (Exception)
-            {
-                return Int32.Parse(Settings.NumOfItemsUserLike);
-            }
+            else
+                throw new NoConnectionException();
+     
         }
 
         public async Task<int> getNumOfItems(string userId)
@@ -135,7 +132,7 @@ namespace MsorLi.Services
 
         public async Task<User> UpdateUser(User newUser)
         {
-            try
+            if (await Connection.IsServerReachableAndRunning())
             {
                 await UploadToServer(newUser, newUser.Id);
 
@@ -144,10 +141,8 @@ namespace MsorLi.Services
 
                 return user;
             }
-            catch (Exception)
-            {
-                return null;
-            }
+            else
+                throw new NoConnectionException();
         }
     }
 }

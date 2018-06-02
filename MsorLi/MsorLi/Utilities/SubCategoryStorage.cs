@@ -29,9 +29,14 @@ namespace MsorLi.Utilities
 
         private static async Task LoadSubCategories(string mainCategory)
         {
-            var subCategories = await AzureSubCategoryService.DefaultManager.GetCategories(mainCategory);
+            if (await Connection.IsServerReachableAndRunning())
+            {
+                var subCategories = await AzureSubCategoryService.DefaultManager.GetCategories(mainCategory);
 
-            _subCategories.Add(mainCategory, subCategories);
+                _subCategories.Add(mainCategory, subCategories);
+            }
+            else
+                throw new NoConnectionException();
         }
     }
 }

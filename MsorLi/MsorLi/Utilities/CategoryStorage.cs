@@ -1,4 +1,5 @@
 ﻿using MsorLi.Services;
+using MsorLi.Views;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -27,8 +28,13 @@ namespace MsorLi.Utilities
 
         private static async Task LoadCategories()
         {
+
             _categories = new List<Models.ItemCategory>();
-            _categories = await AzureCategoryService.DefaultManager.GetAllCategories();
+            if (await Connection.IsServerReachableAndRunning())
+                _categories = await AzureCategoryService.DefaultManager.GetAllCategories();
+            
+            else
+                throw new NoConnectionException();
         }
     }
 }

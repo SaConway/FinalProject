@@ -1,5 +1,5 @@
 ﻿using MsorLi.Models;
-using System;
+using MsorLi.Utilities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -31,7 +31,7 @@ namespace MsorLi.Services
 
         public async Task<List<ItemSubCategory>> GetCategories(string mainCategory)
         {
-            try
+            if (await Connection.IsServerReachableAndRunning())
             {
                 var subCategories = await _table
                     .Where(Sub => Sub.MainCategory == mainCategory)
@@ -40,11 +40,8 @@ namespace MsorLi.Services
 
                 return subCategories;
             }
-
-            catch (Exception)
-            {
-                return null;
-            }
+            else
+                throw new NoConnectionException();
         }
     }
-}
+}    

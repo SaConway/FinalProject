@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using MsorLi.Utilities;
 using Xamarin.Forms.Extended;
+using Plugin.Connectivity;
 
 namespace MsorLi.Views
 {
@@ -54,6 +55,20 @@ namespace MsorLi.Views
         // Contrusctor
         public ItemListPage()
         {
+            
+            //register event of connection change
+            CrossConnectivity.Current.ConnectivityChanged += async (sender, args) =>
+            {
+                //if the no connection page is not loaded and there is no connection
+                if (!NoConnctionPage.Loaded && !await Connection.IsServerReachableAndRunning() )
+                    await Navigation.PushAsync(new NoConnctionPage());
+
+                //if the connection page is loaded and the connection is good
+                if (NoConnctionPage.Loaded && await Connection.IsServerReachableAndRunning())
+                    await Navigation.PopAsync();
+            };
+
+
             // Hide Navigation Bar
             NavigationPage.SetHasNavigationBar(this, false);
 
@@ -95,32 +110,51 @@ namespace MsorLi.Views
             {
                 OnLoadMore = async () =>
                 {
-                    Is_Busy = true;
-
-                    // load the next page
-                    var page = ImagePairs.Count * 2 / Constants.PAGE_SIZE;
-
-                    AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages
-                    (page, _categoryFilter, _subCategoryFilter, _conditionFilter, _ereaFilter); 
-
-                    var ip = new ObservableCollection<ImagePair>();
-
-					_numOfItems = await AzureImageService.DefaultManager.NumOfItems
-                    (_categoryFilter, _subCategoryFilter, _conditionFilter, _ereaFilter);
-
-                    if (AllImages != null)
+                    try
                     {
-                        ip = CreateImagePairs();
+                        Is_Busy = true;
 
-                        if (ImagePairs != null)
+                        // load the next page
+                        var page = ImagePairs.Count * 2 / Constants.PAGE_SIZE;
+
+                        if (await Connection.IsServerReachableAndRunning())
                         {
-                            listView_items.ItemsSource = ImagePairs;
-                        }
-                    }
-                    Is_Busy = false;
+                            AllImages = await AzureImageService.DefaultManager.GetAllPriorityImages
+                            (page, _categoryFilter, _subCategoryFilter, _conditionFilter, _ereaFilter);
 
-                    // return the items that need to be added
-                    return ip;
+                            _numOfItems = await AzureImageService.DefaultManager.NumOfItems
+                                                                 (_categoryFilter, _subCategoryFilter, _conditionFilter, _ereaFilter);
+                        }
+                        else
+                            throw new NoConnectionException();
+                        
+                        var ip = new ObservableCollection<ImagePair>();
+
+
+                        if (AllImages != null)
+                        {
+                            ip = CreateImagePairs();
+
+                            if (ImagePairs != null)
+                            {
+                                listView_items.ItemsSource = ImagePairs;
+                            }
+                        }
+                        Is_Busy = false;
+
+                        // return the items that need to be added
+                        return ip;
+                    }
+                    catch (NoConnectionException)
+                    {
+                        listView_items.IsRefreshing = false;
+                        if (!NoConnctionPage.Loaded)
+                        {
+                            await Navigation.PushAsync(new NoConnctionPage());
+                        }
+                        return null;
+                    }
+
                 },
                 //if there is more items to 
                 OnCanLoadMore = () =>
@@ -142,8 +176,6 @@ namespace MsorLi.Views
                 if (!_startupRefresh)
                 {
                     _startupRefresh = true;
-                    //IsVisible = false;
-                    //IsEnabled = false;
                     CategoryMainStack.IsVisible = false;
                     CategoryMainStack.IsEnabled = false;
 
@@ -151,19 +183,26 @@ namespace MsorLi.Views
                     Task t1 = CreateCategories();
                     await Task.WhenAll(t1, t2);
 
-                    //IsVisible = true;
-                    //IsEnabled = true;
-
                     CategoryMainStack.IsVisible = true;
 					CategoryMainStack.IsEnabled = true;
 
                     await CategoryScroll.ScrollToAsync(_currentCategoryStackLayout, ScrollToPosition.MakeVisible, true);
                 }
             }
-            catch
+            catch (NoConnectionException)
             {
+                listView_items.IsRefreshing = false;
+                if (!NoConnctionPage.Loaded)
+                {
+                    await Navigation.PushAsync(new NoConnctionPage());
+                }
+            }
+            catch(Exception)
+            {
+                listView_items.IsRefreshing = false;
                 await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים", "אישור");
             }
+
         }
 
         //---------------------------------
@@ -217,7 +256,6 @@ namespace MsorLi.Views
                 _currentCategoryStackLayout = s;
 
                 // Scroll to current category
-                //problem with iOS
 				await RefreshItems();
 				CategoryMainStack.IsEnabled = true;
                 await CategoryScroll.ScrollToAsync(_currentCategoryStackLayout, ScrollToPosition.MakeVisible, true);
@@ -389,45 +427,61 @@ namespace MsorLi.Views
 
         private async Task RefreshItems()
         {
-            try
-            {
-                listView_items.IsRefreshing = true;
+            
 
+            listView_items.IsRefreshing = true;
+
+            if (await Connection.IsServerReachableAndRunning())
+            {
+                //get all priority images (first 10 images)
                 AllImages = await AzureImageService.DefaultManager.
                     GetAllPriorityImages
                     (0, _categoryFilter, _subCategoryFilter, _conditionFilter, _ereaFilter);
 
-				_numOfItems = await AzureImageService.DefaultManager.
+                _numOfItems = await AzureImageService.DefaultManager.
                     NumOfItems
                     (_categoryFilter, _subCategoryFilter, _conditionFilter, _ereaFilter);
-
-                ImagePairs.Clear();
-                if (AllImages.Count > 0)
-                {
-                    NoItemsLabel.IsVisible = false;
-
-                    var temp_image_pair = CreateImagePairs();
-                    ImagePairs.AddRange(temp_image_pair);
-
-                    if (ImagePairs != null)
-                    {
-                        listView_items.IsRefreshing = false;
-
-                        listView_items.ItemsSource = ImagePairs;
-                    }
-                    return;
-                }
-                listView_items.IsRefreshing = false;
-
-                NoItemsLabel.IsVisible = true;
-                Is_Busy = false;
             }
-            catch(Exception)
+            else
             {
-                listView_items.IsRefreshing = false;
-
-                await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים.", "אישור");
+                throw new NoConnectionException();   
             }
+
+            ImagePairs.Clear();
+            if (AllImages.Count > 0)
+            {
+                NoItemsLabel.IsVisible = false;
+
+                var temp_image_pair = CreateImagePairs();
+                ImagePairs.AddRange(temp_image_pair);
+
+                if (ImagePairs != null)
+                {
+                    listView_items.IsRefreshing = false;
+
+                    listView_items.ItemsSource = ImagePairs;
+                }
+                return;
+            }
+            listView_items.IsRefreshing = false;
+
+            NoItemsLabel.IsVisible = true;
+            Is_Busy = false;
+            
+            //catch (NoConnectionException)
+            //{
+            //    listView_items.IsRefreshing = false;
+            //    if (!NoConnctionPage.Loaded)
+            //    {
+            //        await Navigation.PushAsync(new NoConnctionPage());
+            //    }
+            //}
+            //catch(Exception)
+            //{
+            //    listView_items.IsRefreshing = false;
+
+            //    await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים.", "אישור");
+            //}
         }
 
         private ObservableCollection<ImagePair> CreateImagePairs()
@@ -464,6 +518,7 @@ namespace MsorLi.Views
         private async Task CreateCategories()
         {
             var categories = await CategoryStorage.GetCategories();
+            
 
             // Create button for each category
             for (int i = categories.Count - 1; i >= 0; i--)
