@@ -200,6 +200,12 @@ namespace MsorLi.Views
 
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            _startupRefresh = true;
+            return true;
+        }
+
         //---------------------------------
         // Event Functions
         //---------------------------------
