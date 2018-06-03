@@ -35,7 +35,7 @@ namespace MsorLi.Views
         string _ereaFilter = "";
 
         private bool _isBusy;
-        int _numOfItems = 0;
+        long _numOfItems = 0;
 
         public bool Is_Busy
         {
