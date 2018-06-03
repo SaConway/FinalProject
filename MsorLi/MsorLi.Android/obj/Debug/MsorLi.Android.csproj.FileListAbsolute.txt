@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\MsorLi.Android.dll
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\MsorLi.Android.pdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\bin\Debug\com.companyname.MsorLi.apk
@@ -201,3 +202,22 @@ C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\linksrc
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\linksrc\Xamarin.Forms.Core.dll.mdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\linksrc\Xamarin.Forms.Platform.Android.dll.mdb
 C:\Users\sagee\Source\Repos\FinalProject\MsorLi\MsorLi.Android\obj\Debug\linksrc\Xamarin.Forms.Xaml.dll.mdb
+=======
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Android.csprojResolveAssemblyReference.cache
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Android.csproj.CoreCompileInputs.cache
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Droid.App.xaml.g.cs
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Droid.Views.AddItemPage.xaml.g.cs
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Droid.Views.MenuPage.xaml.g.cs
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Droid.Views.ProfilePage.xaml.g.cs
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Droid.Views.ItemPage.xaml.g.cs
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Droid.Views.EditUserInfoPage.xaml.g.cs
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Droid.Views.ImagePopUp.xaml.g.cs
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Droid.Views.NoConnctionPage.xaml.g.cs
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Droid.Views.ItemListPage.xaml.g.cs
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Droid.Views.LoginPage.xaml.g.cs
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Droid.Views.RegisterPage.xaml.g.cs
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Droid.Views.SavedItemsPage.xaml.g.cs
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Droid.Views.ReportItemPage.xaml.g.cs
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Droid.Views.FilterPage.xaml.g.cs
+/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi.Android/obj/Debug/MsorLi.Droid.Views.AboutPage.xaml.g.cs
+>>>>>>> Stashed changes

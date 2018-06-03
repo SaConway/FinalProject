@@ -11,8 +11,13 @@
 namespace MsorLi.Views {
     
     
+<<<<<<< Updated upstream
     [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\sagee\\Source\\Repos\\FinalProject\\MsorLi\\MsorLi\\Views\\EditUserInfoPage.xam" +
         "l")]
+=======
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("/Users/Idan Marciano/Projects/SaConway/FinalProject2.git/MsorLi/MsorLi/Views/Edit" +
+        "UserInfoPage.xaml")]
+>>>>>>> Stashed changes
     public partial class EditUserInfoPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]

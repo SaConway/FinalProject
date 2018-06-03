@@ -177,10 +177,9 @@ namespace MsorLi.Views
                 {
                     _startupRefresh = true;
                     
-
-                    await CreateCategories();
-                    await RefreshItems();
-                   // await Task.WhenAll(t1, t2);
+                    var t1 = CreateCategories();
+                    var t2 = RefreshItems();
+                    await Task.WhenAll(t1, t2);
 
                 }
             }
@@ -468,21 +467,7 @@ namespace MsorLi.Views
 
             NoItemsLabel.IsVisible = true;
             Is_Busy = false;
-            
-            //catch (NoConnectionException)
-            //{
-            //    listView_items.IsRefreshing = false;
-            //    if (!NoConnctionPage.Loaded)
-            //    {
-            //        await Navigation.PushAsync(new NoConnctionPage());
-            //    }
-            //}
-            //catch(Exception)
-            //{
-            //    listView_items.IsRefreshing = false;
 
-            //    await DisplayAlert("שגיאה", "לא ניתן לטעון נתונים.", "אישור");
-            //}
         }
 
         private ObservableCollection<ImagePair> CreateImagePairs()

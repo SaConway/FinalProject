@@ -133,7 +133,7 @@
                    AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
                    AbsoluteLayout.LayoutFlags="PositionProportional"
                    VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
-                <Label x:Name="FrameLabel"  TextColor="#212121" HorizontalTextAlignment="End"
+                <Label x:Name="FrameLabel" TextColor="#212121" HorizontalTextAlignment="End"
                        Margin="10,10" Text="אנא המתן..."/>
             </Frame>
             
