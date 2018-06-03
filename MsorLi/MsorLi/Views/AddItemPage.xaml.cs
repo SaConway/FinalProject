@@ -118,7 +118,12 @@ namespace MsorLi.Views
                 }
 
                 var keyList = new List<ImageSource>(_keyValues.Keys);
-                imagesView.ItemsSource = keyList;
+                var collection = new List<MsorLi.Utilities.ImageHelper>();
+                foreach (var img in _keyValues.Keys)
+                {
+                    collection.Add(new Utilities.ImageHelper { imageSource = img });
+                }
+                imagesView.ItemsSource = collection;
 
                 pickPictureButton.IsEnabled = _keyValues.Count == Constants.MAX_NUM_OF_IMAGES ? false : true;
             }
