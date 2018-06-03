@@ -26,6 +26,7 @@ namespace MsorLi.Views
         Item _item = new Item();
 
         Boolean _isRunningItem = false;
+        Boolean _runFrame = false;
         Object _lockObject = new Object();
         string _conditionString = "חדש";
 
@@ -117,7 +118,12 @@ namespace MsorLi.Views
                 }
 
                 var keyList = new List<ImageSource>(_keyValues.Keys);
-                imagesView.ItemsSource = keyList;
+                var collection = new List<MsorLi.Utilities.ImageHelper>();
+                foreach (var img in _keyValues.Keys)
+                {
+                    collection.Add(new Utilities.ImageHelper { imageSource = img });
+                }
+                imagesView.ItemsSource = collection;
 
                 pickPictureButton.IsEnabled = _keyValues.Count == Constants.MAX_NUM_OF_IMAGES ? false : true;
             }
@@ -239,6 +245,9 @@ namespace MsorLi.Views
                 MyScrollView.IsEnabled = false;
                 MyScrollView.Opacity = 0.5;
                 MyFrame.IsVisible = true;
+                _runFrame = true;
+                UpdaterFrameAsync();
+
 
                 //upload item into item table
                 await UploadItem();
@@ -271,6 +280,7 @@ namespace MsorLi.Views
                         MessagingCenter.Unsubscribe<ItemPage>(this, "Finished To Updated Item");
 
                         MyFrame.IsVisible = false;
+                        _runFrame = true;
                         DependencyService.Get<IMessage>().LongAlert("עדכון המוצר בוצע בהצלחה");
 						await Navigation.PopToRootAsync();
 
@@ -345,14 +355,6 @@ namespace MsorLi.Views
                 }
 
                 _keyValues.Remove(key);
-
-                //var imgs = new ObservableCollection<ImageSource>();
-                //foreach (var item in _keyValues.Keys)
-                //{
-                //    imgs.Add(item);
-                //}
-
-                //imagesView.ItemsSource = imgs;
 
                 var collection = new List<MsorLi.Utilities.ImageHelper>();
                 foreach (var img in _keyValues.Keys)
@@ -593,6 +595,28 @@ namespace MsorLi.Views
 
                 default:
                     break;
+            }
+        }
+
+        private async Task UpdaterFrameAsync()
+        {
+            while (_runFrame)
+            {
+                switch (FrameLabel.Text)
+                {
+                    case "אנא המתן.  ":
+                        FrameLabel.Text = "אנא המתן.. ";
+                        break;
+                    case "אנא המתן.. ":
+                        FrameLabel.Text = "אנא המתן...";
+                        break;
+                    case "אנא המתן...":
+                        FrameLabel.Text = "אנא המתן.  ";
+                        break;
+
+                }
+
+                await Task.Delay(500);
             }
         }
     }

@@ -383,8 +383,8 @@ namespace MsorLi.Views
             try
             {
                 AddItemPage addItemPage = new AddItemPage(_item.Id);
-                await Navigation.PushAsync(addItemPage);
                 await addItemPage.EditItemInit(_item, _images);
+                await Navigation.PushAsync(addItemPage);
             }
             catch (Exception)
             {

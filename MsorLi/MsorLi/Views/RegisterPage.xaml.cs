@@ -25,6 +25,8 @@ namespace MsorLi.Views
             new ObservableCollection<ImageSource>();
 
         bool _firstAppearing = true;
+        Boolean _runFrame = false;
+
 
         //---------------------------------------------------
         // FUNCTIONS
@@ -71,6 +73,9 @@ namespace MsorLi.Views
                     return;
                 }
                 MyFrame.IsVisible = true;
+                _runFrame = true;
+                UpdaterFrameAsync();
+
 
                 string profileURL = "";
 
@@ -97,6 +102,8 @@ namespace MsorLi.Views
 
                 await AzureUserService.DefaultManager.UploadToServer(new_user, new_user.Id);
                 DependencyService.Get<IMessage>().LongAlert("ההרשמה בוצעה בהצלחה");
+                MyFrame.IsVisible = false;
+                _runFrame = true;
                 await Navigation.PopToRootAsync();
             }
             catch (Exception)
@@ -208,6 +215,26 @@ namespace MsorLi.Views
             // Update CarouselView attributes
             imagesView.Margin = new Thickness(5, 60, 5, 0);
             imagesView.HeightRequest = 300;
+        }
+        private async Task UpdaterFrameAsync()
+        {
+            while (_runFrame)
+            {
+                switch (FrameLabel.Text)
+                {
+                    case "אנא המתן.  ":
+                        FrameLabel.Text = "אנא המתן.. ";
+                        break;
+                    case "אנא המתן.. ":
+                        FrameLabel.Text = "אנא המתן...";
+                        break;
+                    case "אנא המתן...":
+                        FrameLabel.Text = "אנא המתן.  ";
+                        break;
+                }
+
+                await Task.Delay(500);
+            }
         }
     }
 }
