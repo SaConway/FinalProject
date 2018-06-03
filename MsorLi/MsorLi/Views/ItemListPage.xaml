@@ -129,6 +129,7 @@
 
                 <!--List Of Images-->
                 <ListView x:Name="listView_items" Refreshing="OnRefresh" 
+                          IsRefreshing="True"
                           IsPullToRefreshEnabled="True"
                           SeparatorVisibility="None" Margin="0,3,0,0">
 

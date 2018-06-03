@@ -159,7 +159,7 @@ namespace MsorLi.Views
                 //if there is more items to 
                 OnCanLoadMore = () =>
                 {
-                    Boolean count =  ImagePairCount() + 2 < _numOfItems;
+                    Boolean count =  ImagePairCount() < _numOfItems;
 					Footer.IsVisible = count;
 					return count;
                 }
