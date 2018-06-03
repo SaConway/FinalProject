@@ -6,8 +6,8 @@
     <ContentPage.Content>
 
         <Grid>
-            <Image Grid.Row="0" Source="noconnection.png" Grid.RowSpan="2"/>
-            <Label Text="קיימת בעיה עם החיבור לרשת או לשרת. נסה שנית מאוחר יותר" Grid.Row="2" HorizontalTextAlignment="Center"/>
+            <Image Grid.Row="0" Margin="10,10,10,10" Source="noconnection.png" Grid.RowSpan="2"/>
+            <Label Margin="10,10,10,10" Text="קיימת בעיה עם החיבור לרשת או לשרת. נסה שנית מאוחר יותר" Grid.Row="2" HorizontalTextAlignment="Center"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
